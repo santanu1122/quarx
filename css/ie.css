@@ -1,0 +1,52 @@
+/* IE Sucks
+***************************************************************/
+
+html{
+    height: 100%;
+    overflow-x: hidden;
+}
+
+#imageLibraryCloseBtn{
+    position: absolute;
+    top: 0px;
+    left: 220px;
+    z-index: 10000;
+}
+
+#newCollection{
+    position: absolute;
+    z-index: 100;
+    top: 165px;
+    left: 25px;
+}
+
+#newCollectionChange{
+    position: absolute;
+    z-index: 100;
+    top: 65px;
+    left: 25px;
+}
+
+#fullScreenImageLibrary{
+    border: none; 
+    min-height: 90%; 
+    margin-top: -22px;
+}
+
+#fullScreenImageLibrary iframe{
+    display: none;
+}
+
+#fullScreenImageNav{
+    width: 24%;
+    margin-left: 1%;
+    float: right;
+}
+
+#state{
+    display: none;
+}
+
+iframe{
+    border: 1px solid #bbb;
+}

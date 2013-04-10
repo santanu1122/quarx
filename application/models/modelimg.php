@@ -3,7 +3,6 @@
 /*
     Filename:   modelimg.php
     Location:   /application/models/
-    Author:     Matt Lantz
 */
 
 class modelimg extends CI_Model {
@@ -16,32 +15,45 @@ class modelimg extends CI_Model {
 /* Upload Images
 ***************************************************************/
 
-    function upload_img($img, $type, $plugin, $galId) {
+    function upload_img($img, $collection) {
         $this->img_location   = site_url().'uploads/img/full/'.$img;
+        $this->img_medium_location   = site_url().'uploads/img/medium/'.$img;
         $this->img_thumb_location   = site_url().'uploads/img/thumb/'.$img;
-        
-        if($type === 'embeded'){
-            $this->img_collection = $galId;
-        }
-        
-        $this->category_type = $plugin;
-
+        $this->img_collection = $collection;
         $this->db->insert('img', $this);
             
+        return true;
+    }
+
+/* Update Collection
+***************************************************************/
+
+    function update_collection(){
+        $this->img_collection = $this->input->post('collections');
+        $this->db->where('img_id', $this->input->post('imageId'));
+        $this->db->update('img', $this);
+
         return true;
     }
 
 /* Gets
 ***************************************************************/
     
-    function get_all_img($type) {
-        $query = $this->db->query("SELECT * FROM img WHERE category_type = '".$type."' ORDER BY img_id DESC");
+    function get_all_img($collection) {
+        if($collection == null){
+            $collection = '';
+        }else{
+            $collection = 'WHERE img_collection = '.$collection;
+        }
+
+        $query = $this->db->query("SELECT * FROM img ".$collection." ORDER BY img_id DESC");
         return $query->result();
     }
 
-    function get_img_collection($type, $id) {
-        $query = $this->db->query("SELECT * FROM img WHERE category_type = '".$type."' AND img_collection = '".$id."' ORDER BY img_id DESC");
-        return $query->result();
+    function get_collection_name($id){
+        $query = $this->db->query("SELECT * FROM img_collections WHERE collection_id = ".$id);
+        $collection = $query->result();
+        return $collection[0]->collection_name;
     }
 
     function favorite_img_set($id, $blog_id) {
@@ -56,7 +68,12 @@ class modelimg extends CI_Model {
         }
     }
 
-/* Delete Images
+    function get_collections() {
+        $query = $this->db->query("SELECT * FROM img_collections ORDER BY collection_id DESC");
+        return $query->result();
+    }
+
+/* Delete Images/Collections
 ***************************************************************/
 
     function delete_img($id) {
@@ -70,6 +87,21 @@ class modelimg extends CI_Model {
         $img_qry = $this->db->query('SELECT * FROM `img` WHERE img_id = '.$id);     
         if($img_qry){
             return $img_qry->result();
+        }
+    }
+
+    function delete_collection(){
+        $id = $this->input->post('idTag');
+        $res = $this->db->query("SELECT * FROM img WHERE img_collection = '".$id."'");
+        $res = $res->num_rows();
+
+        if($res > 0){
+            return false;
+        }else{
+            $query = $this->db->query("DELETE FROM img_collections WHERE collection_id = '".$id."'");
+            if($query){
+                return true;
+            }
         }
     }
 
@@ -93,6 +125,19 @@ class modelimg extends CI_Model {
             return $img_qry->result();
         }
     }
+
+/* Collections
+***************************************************************/
+
+    function new_collection(){
+        $this->collection_name = $this->input->post('collection_name');
+        $this->db->insert('img_collections', $this);
+            
+        return true;
+    }
+    
+
+
 }
 // End of File
 ?>

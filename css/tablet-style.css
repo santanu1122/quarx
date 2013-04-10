@@ -1,0 +1,52 @@
+/* Custom Tablet Styles for Quarx
+***************************************************************/
+
+.ui-content { 
+    max-width: 680px; 
+    padding: 10px; 
+    margin: auto;
+}
+
+#Menu.ui-body-c{
+    background: transparent;
+}
+
+/* Menu
+***************************************************************/
+#Menu.menuPanel{
+    background: url(../images/bg_linen.jpg);
+}
+
+/* Custom classes
+***************************************************************/
+
+.tHide{
+    display: none;
+}
+
+/* Profile Images
+***************************************************************/
+
+.profileImageBox{
+    min-width: 320px;
+    max-width: 325px;
+}
+
+/* Device
+***************************************************************/
+
+.device{
+    width: 680px;
+    margin: 5px auto;
+}
+
+.smallDevice{
+    width: 320px;
+    margin: 5px auto;
+}
+
+/* Account Views
+***************************************************************/
+.accountControls{
+    width: 680px;
+}

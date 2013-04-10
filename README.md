@@ -1,8 +1,8 @@
 # Quarx
 
-**Quarx** - A powerful yet rediculously simple CMS designed for developers not designers.
+**Quarx** - A modular administrative structure for a website/application built on CodeIgniter
 
-Download Here: https://github.com/mlantz/onyx/zipball/master
+Download Here: https://github.com/mlantz/quarx/zipball/master
 
 **Author(s):**
 
@@ -10,7 +10,7 @@ Download Here: https://github.com/mlantz/onyx/zipball/master
 
 **Requirements:**
 
-1. PHP 5.2+
+1. PHP 5.1.6+
 2. MySQL 5.0+
 3. cURL
 
@@ -18,7 +18,7 @@ Download Here: https://github.com/mlantz/onyx/zipball/master
 
 Deploy the contents of the zip file to your server and visit the folder, you will be prompted through the installation
 
-    http://www.example.com/onyx
+    http://www.example.com/quarx
 
 If you want a front-end (client side) package please view the atomic framework information in the installation documentation.
 

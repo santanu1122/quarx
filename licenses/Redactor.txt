@@ -1,0 +1,47 @@
+Redactor [ Using Developer License ]
+
+This license is a legal agreement between you and Imperavi for the use of Redactor (*all versions*) Software (the “Software”). By downloading any version of redactor you agree to be bound by the terms and conditions of this license. Imperavi reserves the right to alter this agreement at any time, for any reason, without notice.
+
+Revised on: October 10, 2012
+
+Redactor Installations
+A Redactor Developer License, Corporate/Business License & OEM License purchases allow a multiple “live” installation in a production environment and ancillary “development use only” installations as needed to support the live installation (such as development and a staging servers). Additional installations do not require additional license purchases. If you have specific installation needs not covered by this license, please contact us.
+
+Permitted Use
+Redactor License:
+Developer License: Holder of the Developer License may use the Software personally or allow use of the Software to their colleagues, clients and users on an unlimited websites engaging a commercial, for-profit or non-for-profit activities. Websites engaging in direct, or indirect commercial activities must purchase a Developer License. Users of the Developer License may include the Software in their projects, products, widgets, extensions, or use in any other fair way while developing other products (according to restrictions below).
+Corporate/Business License: Holders of the Corporate/Business License may use the Software as if they had the Developer license. In addition, the Corporate/Business License holders allowed to integrate Redactor with intranet websites and public web services. The Corporate/Business License holders may expect priority response to their support requests and the highest quality of service and support, including but not limited to: priority bug fixes in the Software, help with installation of the Software, reasonable customization, phone, Skype or other live consultations, etc. Support for the holders of the Corporate/Business License is limited to one year from the date of purchase.
+The OEM License: Holders of the OEM License may use the Software as if they had the Corporate/Business license. In addition OEM License holder’s clients are allowed to develop their own products based on or containing Redactor. License holder’s clients do not have to obtain their own Developer licenses. However, neither license holder nor license holder’s clients can sell Redactor as a sole product (with or without modification); License holder and license holder’s clients should use it fairly; we still hold all the rights for Redactor’s code, and we solely determine “fair use” of Redactor. The OEM License holders may expect priority response to their support requests and the highest quality of service and support, including but not limited to: priority bug fixes in the Software, help with installation of the Software, reasonable customization, phone, Skype or other live consultations, etc. The OEM License is limited to one year from the date of purchase.
+Imperavi will be the sole arbiter as to what constitutes commercial activities.
+
+Restrictions
+Unless you have been granted prior, written consent from Imperavi, you may not:
+Reproduce, distribute, or transfer the Software as a sole product, or portions thereof, to any third party.
+Sell, rent, lease, assign, or sublet the Software as a sole product or portions thereof.
+Grant rights to any other person.
+Use the software in violation of any Canadian or international laws or regulations.
+Display of Copyright Notices
+All copyright and proprietary notices and logos (if any) of Redactor/Imperavi and within the Software files must remain intact.
+
+Making Copies
+You may make copies of the Software for back-up purposes, provided that you reproduce the Software in its original form and with all proprietary notices on the back-up copy. You may include copies of the Software as an integral part of your product (according to Permitted Use stated above).
+
+Software Modification
+You may alter, modify, or extend the Software for your own use or for use in as an integral part of your product or service, or commission a third-party to perform modifications for you, but you may not resell, redistribute or transfer the modified or derivative version of the Software as a sole product without prior written consent from Imperavi. Components from the Software may not be extracted and used in other programs without prior written consent from Imperavi.
+
+Technical Support
+Technical support is provided by email. No representations or guarantees are made regarding the response itself or response time in which support questions are answered. For the Support License holders response is guaranteed and the response time is no more than 1 (one) business day (Friday requests are answered on Monday; afternoon requests are answered next day).
+
+Refund Policy
+We offer a 30 day money back. If for any reason Redactor doesn’t work out for your project, simply email us within 30 days of purchase for a full refund.
+
+Indemnity
+You agree to indemnify and hold harmless Imperavi for any third-party claims, actions or suits, as well as any related expenses, liabilities, damages, settlements or fees arising from your use or misuse of the Software, or a violation of any terms of this license.
+
+Disclaimer Of Warranty
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, WARRANTIES OF QUALITY, PERFORMANCE, NON-INFRINGEMENT, MERCHANTABILITY, OR FITNESS FOR A PARTICULAR PURPOSE. FURTHER, IMPERAVI DOES NOT WARRANT THAT THE SOFTWARE OR ANY RELATED SERVICE WILL ALWAYS BE AVAILABLE.
+
+Limitations Of Liability
+YOU ASSUME ALL RISK ASSOCIATED WITH THE INSTALLATION AND USE OF THE SOFTWARE. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS OF THE SOFTWARE BE LIABLE FOR CLAIMS, DAMAGES OR OTHER LIABILITY ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE. LICENSE HOLDERS ARE SOLELY RESPONSIBLE FOR DETERMINING THE APPROPRIATENESS OF USE AND ASSUME ALL RISKS ASSOCIATED WITH ITS USE, INCLUDING BUT NOT LIMITED TO THE RISKS OF PROGRAM ERRORS, DAMAGE TO EQUIPMENT, LOSS OF DATA OR SOFTWARE PROGRAMS, OR UNAVAILABILITY OR INTERRUPTION OF OPERATIONS.
+
+© Imperavi 2009-2013

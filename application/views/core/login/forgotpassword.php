@@ -16,19 +16,15 @@
     </div>  
 <?php } ?>
 
-<div class="wide_box"><!-- content -->
+<div class="raw100"><!-- content -->
 
-    <div style="width: 960px; margin: 50px auto; height: 400px;">
+    <div class="smallDevice">
 
-    	<div style="width: 960px; height: 50px; float: left;">
-        	<h1 style="margin-top: 10px;">Bummer</h1>
-        </div>
-
-        <div style="width: 660px; margin: 0 auto;">
-        	<h2 style="padding: 30px; text-align: left;">We know how much it sucks to forget your password, so here is a simple form to get your password back.</h2>
+        <div class="raw100">
+        	<p>Please enter the following to get a new password sent to you.</p>
         </div>
         
-        <div style="width: 960px; float: left;">
+        <div class="raw100 form">
         	
             <?php if(isset($error)){ ?>
     			<div class="errorMsg">
@@ -53,6 +49,7 @@
     		</form>
         
         </div>
+    
     </div>
 
 </div><!--/content -->

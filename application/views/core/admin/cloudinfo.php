@@ -20,34 +20,34 @@
     #phpinfo .p {text-align: left;}
     #phpinfo .e {background-color: #CCC; font-weight: bold; color: #111; font-size: 12px;}
     #phpinfo .h {background-color: #9999cc; font-weight: bold; color: #000000; display: none;}
-    #phpinfo .v {background-color: #eee; color: #000000; font-size: 12px;}
+    #phpinfo .v {background-color: #eee; color: #000000; font-size: 12px; max-width: 500px; font-size: 0.8em; overflow: hidden;}
     #phpinfo .vr {background-color: #cccccc; text-align: right; color: #000000;}
     #phpinfo img {float: right; border: 0px;}
-    #phpinfo hr {width: 800px; background-color: #cccccc; border: 0px; height: 1px; color: #000000;}
+    #phpinfo hr {width: 100%; background-color: #cccccc; border: 0px; height: 1px; color: #000000;}
 </style>
 
-<div class="wide_box" style="text-align: left;"><!-- content -->
+<div class="raw100" style="text-align: left;"><!-- content -->
     <h1 style="margin: 20px 20px 20px 0px;">CloudInfo: Your Server Information</h1>
-    <div class="wide_box">
+    <div class="device form">
         
-        <div class="grid gridrow">
-            <div class="grid50"><p>Currently Hosted On:</p></div>
-            <div class="grid50"><p><?php echo $_SERVER['HTTP_HOST']; ?></p></div>
+        <div class="raw100">
+            <div class="raw50"><p>Currently Hosted On:</p></div>
+            <div class="raw50"><p><?php echo $_SERVER['HTTP_HOST']; ?></p></div>
         </div>
-        <div class="grid gridrow">
-            <div class="grid50"><p>Current IP Address:</p></div>
-            <div class="grid50"><p><?php echo $_SERVER['SERVER_ADDR']; ?></p></div>
+        <div class="raw100">
+            <div class="raw50"><p>Current IP Address:</p></div>
+            <div class="raw50"><p><?php echo $_SERVER['SERVER_ADDR']; ?></p></div>
         </div>
-        <div class="grid gridrow">
-            <div class="grid50"><p>Current Server Protocol:</p></div>
-            <div class="grid50"><p><?php echo $_SERVER['SERVER_PROTOCOL']; ?></p></div>
+        <div class="raw100">
+            <div class="raw50"><p>Current Server Protocol:</p></div>
+            <div class="raw50"><p><?php echo $_SERVER['SERVER_PROTOCOL']; ?></p></div>
         </div>
-        <div class="grid gridrow">
-            <div class="grid50"><p>Total Space Used:</p></div>
-            <div class="grid50"><p><?php echo format_size(foldersize('./')); ?></p></div>
+        <div class="raw100">
+            <div class="raw50"><p>Total Space Used:</p></div>
+            <div class="raw50"><p><?php echo format_size(foldersize('./')); ?></p></div>
         </div>
     
-        <div id="phpinfo">
+        <div id="phpinfo" class="mHide">
         <?php
             ob_start();
             phpinfo();

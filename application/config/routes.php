@@ -38,7 +38,9 @@
 |
 */
 
-$route['default_controller'] = "login";
+$route['default_controller'] = "setup/install";
+$route['setup'] = "setup/master";
+
 $route['404_override'] = '';
 
 //This makes sure that the default controller is loaded even when a language call is in the url

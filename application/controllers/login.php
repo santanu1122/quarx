@@ -1,6 +1,4 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
-// Author: Matt Lantz
      
 class login extends CI_Controller {
 
@@ -8,8 +6,8 @@ class login extends CI_Controller {
 ***************************************************************/
 
     public function index() { 
-        $this->load->model('modellogin');
-        $qry = $this->modellogin->is_installed();
+        $this->load->model('modelsetup');
+        $qry = $this->modelsetup->is_installed();
         
         if($qry === false){
             redirect('setup');
@@ -23,10 +21,7 @@ class login extends CI_Controller {
             // load the cookie helper
             $this->load->helper('cookie');
             $this->load->model('modellogin');
-            // This needs to be reviewed so that it works. Not sure what is going on here.
             $query = $this->modellogin->cookie_validate($this->input->cookie('quarx-uname'), $this->input->cookie('quarx-pword'));
-
-            // echo $this->input->cookie('quarx-uname').' - '.$this->input->cookie('quarx-pword');
 
             if($query === 'fail'){
                 //configured the data to be transported to the view
@@ -37,7 +32,6 @@ class login extends CI_Controller {
                 
                 //load the view elements
                 $this->load->view('common/header', $data);
-                $this->load->view('common/mainmenu', $data);
                 $this->load->view('core/login/login', $data);
                 $this->load->view('common/footer', $data);
             
@@ -55,12 +49,11 @@ class login extends CI_Controller {
         //configured the data to be transported to the view
         $data['root'] = base_url();
         $data['pageRoot'] = base_url().'index.php';
-        $data['pagetitle'] = 'Login';
+        $data['pagetitle'] = 'Limbo';
         $data['date'] = date("m-d-y");
         
         //load the view elements
         $this->load->view('common/header', $data);
-        $this->load->view('common/mainmenu', $data);
         $this->load->view('core/login/login_error', $data);
         $this->load->view('common/footer', $data);
     }
@@ -100,7 +93,6 @@ class login extends CI_Controller {
             
             //load the view elements
             $this->load->view('common/header', $data);
-            $this->load->view('common/mainmenu', $data);
             $this->load->view('core/login/login', $data);
             $this->load->view('common/footer', $data);
     }
@@ -119,7 +111,6 @@ class login extends CI_Controller {
         
         // load the view components
         $this->load->view('common/header', $data);
-        $this->load->view('common/mainmenu', $data);
         $this->load->view('core/login/forgotpassword', $data);
         $this->load->view('common/footer', $data);
     }
@@ -176,9 +167,9 @@ class login extends CI_Controller {
                 
                 // load the view components
                 $this->load->view('common/header', $data);
-                $this->load->view('common/mainmenu', $data);
                 $this->load->view('core/login/passwordsent', $data);
                 $this->load->view('common/footer', $data);
+
             }else{
                 
                 //unfortuneatley there is an error
@@ -191,7 +182,6 @@ class login extends CI_Controller {
                 
                 // load the view components
                 $this->load->view('common/header', $data);
-                $this->load->view('common/mainmenu', $data);
                 $this->load->view('core/login/forgotpassword', $data);
                 $this->load->view('common/footer', $data);
             }

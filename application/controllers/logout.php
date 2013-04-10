@@ -18,13 +18,14 @@ class logout extends CI_Controller {
         $data['root'] = base_url();
         $data['pageRoot'] = base_url().'index.php';
         $data['pagetitle'] = 'Sign Out';
+
+        //jquery page handler
+        $data['page'] = 'Logout';
         
         //load the view elements
         $this->load->view('common/header', $data);
-        $this->load->view('common/mainmenu', $data);
         $this->load->view('core/login/logout', $data);
         $this->load->view('common/footer', $data);
-
     }
 
 }

@@ -6,6 +6,7 @@ class accounts extends CI_Controller {
 
     function __construct(){
         parent::__construct();
+        
         if(!$this->session->userdata('logged_in')){
             redirect('login/error'); // Denied! 
         }
@@ -17,32 +18,6 @@ class accounts extends CI_Controller {
 ***************************************************************/  
 
     function index() {   
-        if($this->session->userdata('user_id') == 1){
-            $this->load->model('modelsetup');
-            $version = $this->modelsetup->current_version();
-            $data['current_quarx_version'] = $version[0]->option_title;
-
-            $version_list = file_get_contents('http://ottacon.co/_quarx_/version_list.json');
-            $version_list = json_decode($version_list);
-            $data['latest_quarx_version'] = $version_list->quarx->ver;
-
-            $this->load->library('plugin_tools');
-
-            //Check active plugins
-            $this->load->model('modelsetup');
-            $plugin_qry = $this->modelsetup->installed_plugins();
-
-            $data['plugin_updates_available'] = false;
-
-            if($plugin_qry){
-                foreach ($plugin_qry as $plugin) {
-                    if($plugin->plugin_version < latest_plugin_version($plugin->plugin_id_tag)){ 
-                        $data['plugin_updates_available'] = true;
-                    }
-                }
-            }
-        }
-
         if(isset($_GET['success'])){
             $data['profilesuccess'] = 'Your password has been changed successfully.';
         }
@@ -59,46 +34,43 @@ class accounts extends CI_Controller {
             //Pull in the accounts to manage
             $data['myprofile'] = $this->modelaccounts->my_account();
         }
-
+        //Quarx specific data
         $data['opts'] = $this->quarxsetup->account_opts();
+
+        //Page handler for jQuery mobile
+        $data['page'] = base_url().'accounts';
         
-        //configured the data to be transported to the view
+        //General Information
         $data['root'] = base_url();
         $data['pageRoot'] = base_url().'index.php';
-        $data['pagetitle'] = 'Accounts';
+        $data['pagetitle'] = 'My Account';
         
         //load the view elements
         $this->load->view('common/header', $data);
-        $this->load->view('common/mainmenu', $data);
         $this->load->view('core/accounts/accounts', $data);
         $this->load->view('common/footer', $data);
     }
 
     function profile_updater() {
-        if($this->input->post('userfile')){
-            //first we run through this function and drop the old image to save space
-            $this->load->model('modelaccounts');
-            $profile = $this->modelaccounts->this_account($_POST['user_id']);
-            foreach($profile as $myprofileImg): endforeach;
-            
-            $oldimg = $myprofileImg->img;
-            if($oldimg && $oldimg != site_url().'uploads/img/thumb/default.jpg'){
-                unlink('./uploads/img/full/'.$oldimg);
-                unlink('./uploads/img/thumb/'.$oldimg);
-                }
-            }
-            
         //load the form helper to help with the image upload
         $this->load->helper(array('form', 'url'));
+
+        if($this->input->post('userfile')){
+            
+        }
         
         //set the parameters of the files new name
         $id = 'img';
         $now = time();
+
+        ini_set('memory_limit','128M');
         
         //setting the configuration for the file uploads
         $config['upload_path'] = './uploads/img/full/';
-        $config['allowed_types'] = 'gif|jpg|jpeg|png';
+        $config['allowed_types'] = 'gif|jpg|jpeg|png|GIF|JPG|JPEG|PNG';
         $config['max_size'] = '4000';
+        $config['max_width'] = '4000';
+        $config['max_height'] = '4000';
         $config['file_name'] = $id.'_'.$now.'.jpg';
         
         //we make this variable for the make_thumb function
@@ -120,41 +92,46 @@ class accounts extends CI_Controller {
             //Send the data to the model page to update the profile
             $this->load->model('modelaccounts');
             $query = $this->modelaccounts->profile_update($img, $opts);
-            redirect('accounts?profilesuccess');
+            
+             // $this->index();
+            
+            redirect('/accounts?profilesuccess');
         }
         else{
             $this->make_thumb($img);
+            $this->make_medium($img);
+
+            /* Clean out the old
+            ***************************************************************/
+
+            //first we run through this function and drop the old image to save space
+            $this->load->model('modelaccounts');
+            $profile = $this->modelaccounts->this_account($this->session->userdata('user_id'));
+            foreach($profile as $myprofileImg): endforeach;
+
+            $oldimg = $myprofileImg->img;
+            if($oldimg && $oldimg != site_url().'uploads/img/thumb/default.jpg'){
+                $x_img = str_replace(site_url().'uploads/img/thumb/', '', $oldimg);
+
+                unlink('./uploads/img/full/'.$x_img);
+                unlink('./uploads/img/medium/'.$x_img);
+                unlink('./uploads/img/thumb/'.$x_img);
+            }
             
             //Send the data to the model page to update the profile
             $this->load->model('modelaccounts');
             $query = $this->modelaccounts->profile_update($img, $opts);
+
+            /*
+            ***************************************************************/
             
-            if($query) 
-            {
+            if($query){
                 redirect('accounts?profilesuccess');
-            }
-            else
-            {
+
+            }else{
                 $data['error'] = 'Sorry, but were unable to update your profile.';
                 
-                //configure the data to be transported to the view
-                $data['root'] = base_url();
-                $data['pageRoot'] = base_url().'index.php';
-                $data['pagetitle'] = 'Accounts';
-                $data['sub_menu_title'] = 'Accounts';
-
-                $plugin_qry = $this->menusetup->plugins();
-                if($plugin_qry){
-                    foreach ($plugin_qry as $plugin) {
-                        $data[$plugin->plugin_name] = $plugin->plugin_title;
-                    }
-                }
-                
-                //load the view elements
-                $this->load->view('common/header', $data);
-                $this->load->view('common/mainmenu', $data);
-                $this->load->view('core/accounts/accounts', $data);
-                $this->load->view('common/footer', $data);
+                redirect('accounts?error');
             }
         }
     }
@@ -162,20 +139,44 @@ class accounts extends CI_Controller {
 /* General Tools
 ***************************************************************/ 
 
-    function make_thumb($img) {
-        //set the configuration to make a new file
+/* Generate a thumbnail img
+*************************************/
+    function make_thumb($img){
         $img_root = str_replace(site_url().'uploads/img/thumb/', "", $img);
+        $this->load->library('image_lib');
+        //set the configuration to make a new file
         $config['image_library'] = 'gd2';
         $config['source_image'] = './uploads/img/full/'.$img_root;
         $config['new_image'] = './uploads/img/thumb/'.$img_root;
         $config['thumb_marker'] = TRUE;
         $config['maintain_ratio'] = TRUE;
-        $config['width'] = 450;
-        $config['height'] = 338;
-        //load the library tool
-        $this->load->library('image_lib', $config);
+        $config['width'] = 250;
+        $config['height'] = 188;
+        //initialize the function
+        $this->image_lib->initialize($config);
         //run the function
-        $this->image_lib->resize(); 
+        $this->image_lib->resize();
+        $this->image_lib->clear();
+    }
+
+/* Generate a medium img
+*************************************/
+    function make_medium($img){
+        $img_root = str_replace(site_url().'uploads/img/thumb/', "", $img);
+        $this->load->library('image_lib');
+        //set the configuration to make a new file
+        $config['image_library'] = 'gd2';
+        $config['source_image'] = './uploads/img/full/'.$img_root;
+        $config['new_image'] = './uploads/img/medium/'.$img_root;
+        $config['thumb_marker'] = TRUE;
+        $config['maintain_ratio'] = TRUE;
+        $config['width'] = 800;
+        $config['height'] = 600;
+        //initialize the function
+        $this->image_lib->initialize($config);
+        //run the function
+        $this->image_lib->resize();
+        $this->image_lib->clear();
     }
 
     function insufficient() {   
@@ -189,7 +190,6 @@ class accounts extends CI_Controller {
         
         //load the view elements
         $this->load->view('common/header', $data);
-        $this->load->view('common/mainmenu', $data);
         $this->load->view('core/accounts/insufficient', $data);
         $this->load->view('common/footer', $data);
     }
@@ -224,13 +224,12 @@ class accounts extends CI_Controller {
         
         //load the view elements
         $this->load->view('common/header', $data);
-        $this->load->view('common/mainmenu', $data);
         $this->load->view('core/accounts/password_changer', $data);
         $this->load->view('common/footer', $data);
     }   
 
     function changepassword() {   
-        if($this->input->post('password')==$this->input->post('password2')) {
+        if($this->input->post('password') == $this->input->post('confirm')) {
             //Hop, skip, and jump our way through
             $this->load->model('modellogin');
             $query = $this->modellogin->changepassword();
@@ -269,7 +268,6 @@ class accounts extends CI_Controller {
         
         //load the view elements
         $this->load->view('common/header', $data);
-        $this->load->view('common/mainmenu', $data);
         $this->load->view('core/accounts/add_account', $data);
         $this->load->view('common/footer', $data);
     }   
@@ -279,13 +277,9 @@ class accounts extends CI_Controller {
             //load the preliminary parts
             $this->load->model('modelaccounts');
             $query = $this->modelaccounts->unc_validate($name);
+            
             //check the data
-            $data['result'] = $query;
-            if($query == 1){
-                $this->load->view('core/accounts/unc', $data);
-            }else{
-                $this->load->view('core/accounts/unc', $data);
-            }
+            echo $query;
         }else{
             redirect('login');
         }
@@ -513,7 +507,6 @@ class accounts extends CI_Controller {
         
         //load the view elements
         $this->load->view('common/header', $data);
-        $this->load->view('common/mainmenu', $data);
         $this->load->view('core/accounts/editor', $data);
         $this->load->view('common/footer', $data);
     }  
@@ -605,13 +598,15 @@ class accounts extends CI_Controller {
         $config['total_rows'] = $this->modelaccounts->all_profiles_tally();
         $config['per_page'] = 20;
         $config['num_links'] = 10;
+        $config['uri_segment'] = 2;
         $config['full_tag_open'] = '<div id="pagination">';
         $config['full_tag_close'] = '</div>';
-            
+        
+        $this->cur_page = $this->uri->segment(2);
         $this->pagination->initialize($config);
         
         //Send the data to the model page to update the profile
-        $data['profiles'] = $this->modelaccounts->all_profiles($this->uri->segment(3), $config['per_page']);
+        $data['profiles'] = $this->modelaccounts->all_profiles($this->uri->segment(2), $config['per_page']);
 
         //configure the data to be transported to the view
         $data['root'] = base_url();
@@ -621,7 +616,6 @@ class accounts extends CI_Controller {
         
         //load the view elements
         $this->load->view('common/header', $data);
-        $this->load->view('common/mainmenu', $data);
         $this->load->view('core/accounts/view', $data);
         $this->load->view('common/footer', $data);       
     }
@@ -642,39 +636,42 @@ class accounts extends CI_Controller {
         $this->load->library('toolbelt');
 
         if($id == null){ $id = $this->input->post('search', true); }
-        $offset = $this->uri->segment(4);
+        $offset = $this->uri->segment(3);
         
         $this->load->library('pagination');
         $this->load->model('modelaccounts');
         
-        $config['base_url'] = site_url('accounts/results/'.$id);
+        $config['base_url'] = site_url('accounts/search/'.$id);
         $config['total_rows'] = $this->modelaccounts->full_search_totals($id);
-        $config['per_page'] = 10;
-        $config['num_links'] = 20;
-        $config['uri_segment'] = 4;  
+        $config['per_page'] = 20;
+        $config['num_links'] = 10;
+        $config['uri_segment'] = 3;
         $config['full_tag_open'] = '<div id="pagination">';
         $config['full_tag_close'] = '</div>';
-            
+        
+        $this->cur_page = $this->uri->segment(3);
         $this->pagination->initialize($config);
         
         $qry = $this->modelaccounts->search_accounts_full($id, $offset, $config['per_page']);
         
-        //we need to send the settings first to decide what we can do!
+        // Search Term
+        $data['searchTerm'] = $this->input->post('search');
+
+        // Results
         $data['totals'] = $config['total_rows'];
-        //load some data, and the pagination tool!
         $data['results'] = $qry;
 
-        $plugin_qry = $this->menusetup->plugins();
+        if(count($qry) == 0){
+            $data['empty_result'] = 'Sorry, we were unable to find any one';
+        }
         
         //configure the data to be transported to the view
         $data['root'] = base_url();
         $data['pageRoot'] = base_url().'index.php';
-        $data['pagetitle'] = 'Search Engine';
-        $data['sub_menu_title'] = 'Search Engine';
+        $data['pagetitle'] = 'Search Accounts';
         
         //load the view elements
         $this->load->view('common/header', $data);
-        $this->load->view('common/mainmenu', $data);
         $this->load->view('core/accounts/search', $data);
         $this->load->view('common/footer', $data);  
     }

@@ -10,39 +10,45 @@
     });
 </script>
 
-<div class="wide_box">
-    <br />
     <?php if(isset($error)){ ?>
         <div id="errorBox" class="errorBox">
             <p><?php echo $error; ?></p>
         </div>  
     <?php } ?>
-        
-        <div class="wide_box" style="margin: 80px auto;">
-            <div class="centered wide320">
-                <form method="post" action="<?php echo site_url('login/validator'); ?>">
-                    <div class="grid" style="width: 300px;">
-                        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />
-                        <div class="gridrow">
-                            <div class="grid50"><p>Username</p></div>
-                            <div class="grid50"><p><input type="text" name="username" /></p></div>
-                        </div>
-                        <div class="gridrow">
-                            <div class="grid50"><p>Password</p></div>
-                            <div class="grid50"><p><input type="password" name="password" /></p></div>
-                        </div>
-                        <div class="gridrow">
-                            <div class="grid50"><p>Username</p></div>
-                            <div class="grid50"><p><input type="checkbox" name="remember_me" value="1" /> (2 weeks)</p></div>
-                        </div>
-                        <div class="gridrow">
-                            <input style="float: right;" type="submit" value="Login" />
-                        </div>
+    
+<div class="raw100">
+
+    <div class="smallDevice">
+        <div class="form raw100">
+            <form method="post" action="<?php echo site_url('login/validator'); ?>" data-ajax="false">
+                <div class="raw100">
+                    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />
+                    <div class="raw100">
+                        <div class="raw50"><p>Username</p></div>
+                        <div class="raw50"><p><input type="text" name="username" /></p></div>
                     </div>
-                </form>
-                
-                <button style="margin-top: 50px;" onclick="document.location='<?php echo site_url('login/forgotpassword'); ?>'">Forgot My Password</button>
-            </div>
+                    <div class="raw100">
+                        <div class="raw50"><p>Password</p></div>
+                        <div class="raw50"><p><input type="password" name="password" /></p></div>
+                    </div>
+                    <div class="raw100">
+                        <div class="raw50"><p>Remember Me <br /> ( 2 weeks )</p></div>
+                        <div class="raw50"><input type="checkbox" id="rememberMe" name="remember_me" value="1" /><label for="rememberMe">I agree</label></div>
+                        
+                    </div>
+                    <div class="raw100">
+                        <input type="submit" value="Login" />
+                    </div>
+                </div>
+            </form>
+            
         </div>
+
+        <div class="raw100">
+            <a data-role="button" href="<?php echo site_url('login/forgotpassword'); ?>">Forgot My Password</a>
+        </div>
+    </div>
+    
+</div>
     
 <?php /* End of File */ ?>

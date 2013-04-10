@@ -20,7 +20,7 @@ class modeladmin extends CI_Model {
         $qry = $this->db->query("SELECT * FROM `admin` WHERE admin_opts = 2");
         $res = $qry->result();
 
-        return $res;
+        return $res[0];
     }
 
 }

@@ -3,20 +3,9 @@
 /*
     Filename:   modellogin.php
     Location:   /application/models/
-    Author:     Matt Lantz
 */
 
 class modellogin extends CI_Model {
-    
-    //verifies the root table of the entire quarx platform
-    function is_installed() {
-        $qry = mysql_query('SELECT * FROM admin');
-        if(!$qry){
-            return false;
-        }else{
-            return true;
-        }
-    }
 
     function validAccount($uname, $upass){
         $this->db->where('user_name', $uname);
@@ -30,11 +19,13 @@ class modellogin extends CI_Model {
             $qry = mysql_query($sql);
             $row = mysql_fetch_assoc($qry);
             
+            $this->db->query("UPDATE users SET `last_login` = '".date('Y-m-d')."', `login_counter` = login_counter+1 WHERE user_id = ".$row['user_id']);
+
             $this->session->set_userdata('user_id', $row['user_id']);
             $this->session->set_userdata('email', $row['user_email']);
             $this->session->set_userdata('permission', $row['permission']);
             $this->session->set_userdata('owner', $row['owner']);
-            $this->session->set_userdata('company', $row['company']);
+            @$this->session->set_userdata('company', $row['company']);
 
                 //In case they opt for the remember me option!
                 if($this->input->post('remember_me') >= 1){
@@ -136,7 +127,9 @@ class modellogin extends CI_Model {
             $this->session->set_userdata('company', $row['company']);
             $this->session->set_userdata('username', $row['user_name']);
             $this->session->set_userdata('logged_in', true);
-            
+
+            $this->db->query("UPDATE users SET `last_login` = '".date('Y-m-d')."', `login_counter` = login_counter+1 WHERE user_id = ".$row['user_id']);
+
             return 'success';
         }else{
             return 'fail';

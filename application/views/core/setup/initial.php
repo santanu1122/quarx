@@ -1,8 +1,42 @@
 <?php /*
     Filename:   initial.php
     Location:   /application/views/setup
-    Author:     Matt Lantz
 */ ?>
+
+<div class="smallDevice tall">
+    <div id="pwStrength"></div>
+</div>
+
+<div class="raw100">
+    
+    <div class="wide_box" style="text-align: center; min-height: 500px;">
+
+        <div id="masterAccount" class="smallDevice">
+            <h1>Admin Setup</h1>
+            <p class="align-left">Stay calm we just need a little more information.</p>
+            <div class="raw100">
+                <h2>Master Account Information</h2>
+                <form method="post" enctype="multipart/form-data" action="<?php echo site_url('setup/complete'); ?>">
+                    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />
+                    
+                    <input class="" value="User Name" type="text" name="username" onfocus="this.value=''" />
+                    <input id="password" value="Password" type="text" name="password" onfocus="this.value=''; this.type='password'" />
+                    <input id="confirm" value="Password Again" type="text" name="confirm" onfocus="this.value=''; this.type='password'" />
+                    <h2>Options</h2>
+                    <br />
+                    <input data-theme="a" id="accountStatus" type="checkbox" value="1" name="advancedAccounts" />
+                    <label for="accountStatus">Advanced Accounts</label>
+
+                    <input data-theme="a" id="masterAccess" type="checkbox" value="1" name="masterAccess" />
+                    <label for="masterAccess">Master Access</label>
+                    <br />
+                    <br />
+                    <input type="submit" value="Install Quarx" />
+                </form>
+            </div>
+        </div>
+    </div>
+    
 
 <script type="text/javascript">
     
@@ -24,91 +58,52 @@
         }
 
         if(val <= 20){
-            $("#pwStrength").css('border', '1px solid #600');
-            $("#pwStrength").html('<p style="padding: 5px; color: #600; font-size: 11px;">Your Password is Weak</p>'); 
+            $("#pwStrength").attr('class', 'errorBorder');
+            $("#pwStrength").html('<p class="errorTxt">Your Password is Weak</p>'); 
         }else{
-            $("#pwStrength").css('border', '1px solid #0C3');
-            $("#pwStrength").html('<p style="padding: 5px; color: #0C3; font-size: 11px;">Your Password is Strong</p>'); 
+            $("#pwStrength").attr('class', 'successBorder');
+            $("#pwStrength").html('<p class="successTxt">Your Password is Strong</p>'); 
         }
-        
-        $("#pwStrength").show(); 
+            $("#pwStrength").show(); 
     }
 
     //verify that they match first
-    function pwChecker(pw2){
-        $("#pwStrength").hide(); 
-        var pw1 = $("#password1").val();
+    function pwChecker(){
+        var pw1 = $("#password").val()
+            pw2 = $("#confirm").val();
+
         if(pw1 != pw2){
-            $("#success").hide(); 
-            $("#error").show(); 
+            $("#pwStrength").attr('class', 'errorBorder');
+            $("#pwStrength").html('<p class="errorTxt">Your Passwords don\'t Match</p>'); 
+            return false;
         }else{
-            $("#error").hide(); 
-            $("#success").show();
-            setTimeout(function(){ $("#success").fadeOut(); }, 1000);
+            $("#pwStrength").attr('class', 'successBorder');
+            $("#pwStrength").html('<p class="successTxt">Your Passwords Match</p>'); 
+            return true;
         }
     }
 
-    $(function() {
-        $( "#progressBar" ).progressbar({
-            value: 50
+    $(document).ready(function(){
+
+        $('#password').keyup(function(){
+            strengthCH($('#password').val());
+        });
+
+        $('#confirm').keyup(function(){
+            strengthCH($('#confirm').val());
+            pwChecker();
+        });
+
+        $("#changeBtn").click(function(event){
+            event.preventDefault();
+            if(!pwChecker()){
+                $("#pwStrength").attr('class', 'errorBorder');
+                $("#pwStrength").html('<p class="errorTxt">Your Passwords don\'t Match</p>'); 
+            }else{
+                $('#pwChanger').submit();
+            }
         });
     });
 
 </script>
-
-<div id="error" class="errorMsg">
-    <p>Sorry, you're passwords do not match</p>
-</div>
-
-<div id="success" class="successMsg">
-    <p>Your passwords match!</p>
-</div>
-
-<div id="pwStrength" class="passwordStrength">
-    <p>&nbsp;</p>
-</div>
-
-<div class="wide_box">
-
-    <div id="progressBar"></div>
-    
-    <div class="wide_box" style="text-align: center; min-height: 500px;">
-
-        <div id="masterAccount" class="wide300 centered">
-            <br />
-            <h1>Admin Setup</h1>
-            <br />
-            <p class="align-left">Stay calm we just need a little more information.</p>
-            <br />
-            <div class="wide300">
-                <form method="post" enctype="multipart/form-data" action="<?php echo site_url('setup/complete'); ?>">
-                    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />
-                    <h2>Master Account Information</h2>
-                    <br />
-                    <input class="padded10 roundcorners greyborder wide300" value="User Name" type="text" name="username" onfocus="this.value=''" />
-                    <br />
-                    <input id="password1" class="padded10 roundcorners greyborder wide300" value="Password" type="text" name="userpassword1" onfocus="this.value=''; this.type='password'" onkeyup="strengthCH(this.value)" />
-                    <br />
-                    <input id="password2" class="padded10 roundcorners greyborder wide300" value="Password Again" type="text" name="userpassword2" onfocus="this.value=''; this.type='password'" onkeyup="pwChecker(this.value)" />
-                    <br />
-                    <br />
-                    <h2>Options</h2>
-                    <br />
-                    <div class="wide300 centered padded10">
-                        <div class="leftBox wide200"><p>Advanced Accounts</p></div>
-                        <div class="leftBox"><input type="checkbox" value="1" name="advancedAccounts" /></div>
-                    </div>
-
-                    <div class="wide300 centered padded10">
-                        <div class="leftBox wide200"><p>Master Access</p></div>
-                        <div class="leftBox"><input type="checkbox" value="1" name="masterAccess" /></div>
-                    </div>
-                    <br />
-                    <br />
-                    <input type="submit" class="green centered" style="padding: 15px 25px; width: 200px;" value="Install Quarx" />
-                </form>
-            </div>
-        </div>
-    </div>
-    
 <?php /* End of File */ ?>

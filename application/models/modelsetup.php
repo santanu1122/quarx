@@ -7,21 +7,17 @@
 
 class modelsetup extends CI_Model {
 
-/* Create Database
+/* Check setup state
 ***************************************************************/
 
-function connect_to_db($user, $pass){
-    $db_connect = mysql_connect('localhost', $user, $pass);
-
-    if(!$db_connect){
-        return false;
-    }else{
-        return true;
-    }
+function is_installed() {
+    $qry = $this->db->query('SELECT * FROM admin');
+    return $qry;
 }
 
 function createdb($user, $name){
-    $qry = mysql_query("CREATE DATABASE `".$user."_".$name."`");
+    $this->load->dbforge();
+    $qry = $this->dbforge->create_database($user."_".$name);
     if(!$qry){
         return false;
     }else{
@@ -30,9 +26,7 @@ function createdb($user, $name){
 }
 
 function find_db($user, $pass, $name){
-    $db_connect = mysql_connect('localhost', $user, $pass);
-    $qry = mysql_select_db($name, $db_connect);
-
+    $qry = $this->load->database($name);
     if(!$qry){
         return false;
     }else{
@@ -60,47 +54,47 @@ function update_version($ver){
 ***************************************************************/
 
     function add_user_table($extras) {
+        $this->load->dbforge();
+        $this->dbforge->add_field("`user_id` INT(14) NOT NULL auto_increment");
+        $this->dbforge->add_field("`user_name` VARCHAR(140) NOT NULL");
+        $this->dbforge->add_field("`user_pass` VARCHAR(140) NOT NULL");
+        $this->dbforge->add_field("`user_email` VARCHAR(255) NOT NULL");
+        $this->dbforge->add_field("`permission` INT(2) NOT NULL");
+        $this->dbforge->add_field("`owner` INT(14) NOT NULL");
+        $this->dbforge->add_field("`status` VARCHAR(40) NOT NULL");
+        $this->dbforge->add_field("`full_name` VARCHAR(255) NOT NULL");
+
         if($extras === true){
-            $optional = 
-               '`phone` varchar(255) NOT NULL,
-                `fax` varchar(255) NOT NULL,
-                `address` varchar(255) NOT NULL,
-                `city` varchar(255) NOT NULL,
-                `state` varchar(255) NOT NULL,
-                `country` varchar(255) NOT NULL,
-                `website` varchar(255) NOT NULL,
-                `company` varchar(255) NOT NULL,';
-        }else{
-            $optional = '';
+            $this->dbforge->add_field("`phone` VARCHAR(150) NOT NULL");
+            $this->dbforge->add_field("`fax` VARCHAR(150) NOT NULL");
+            $this->dbforge->add_field("`address` VARCHAR(255) NOT NULL");
+            $this->dbforge->add_field("`city` VARCHAR(155) NOT NULL");
+            $this->dbforge->add_field("`state` VARCHAR(155) NOT NULL");
+            $this->dbforge->add_field("`country` VARCHAR(155) NOT NULL");
+            $this->dbforge->add_field("`website` VARCHAR(255) NOT NULL");
+            $this->dbforge->add_field("`company` VARCHAR(255) NOT NULL");
         }
 
-        $qry = mysql_query('
-            CREATE TABLE `users` (
-                `user_id` int(8) NOT NULL AUTO_INCREMENT,
-                `user_name` varchar(40) NOT NULL,
-                `user_pass` varchar(40) NOT NULL,
-                `user_email` varchar(50) NOT NULL,
-                `permission` int(2) NOT NULL,
-                `owner` int(8) NOT NULL,
-                `status` varchar(40) NOT NULL,
-                `full_name` varchar(255) NOT NULL,'.
-                $optional
-                .'`img` varchar(255) NOT NULL DEFAULT \'default.jpg\',
-                `location` varchar(255) NOT NULL,
-                `lat` decimal(9,6) NOT NULL,
-                `lng` decimal(9,6) NOT NULL,
-                `user_state` varchar(40) NOT NULL,
-                PRIMARY KEY (`user_id`),
-                UNIQUE KEY `user_name` (`user_name`)
-            ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;');
-        
+        $this->dbforge->add_field("`img` VARCHAR(40) NOT NULL default 'default.jpg'");
+        $this->dbforge->add_field("`location` VARCHAR(255) NOT NULL");
+        $this->dbforge->add_field("`user_state` VARCHAR(40) NOT NULL");
+        $this->dbforge->add_field("`last_login` DATE NOT NULL");
+        $this->dbforge->add_field("`login_counter` INT(10) NOT NULL");
+        $this->dbforge->add_field("`lat` decimal(9,6) NOT NULL");
+        $this->dbforge->add_field("`lng` decimal(9,6) NOT NULL");
+
+        $this->dbforge->add_key('user_id', TRUE);
+        $qry = $this->dbforge->create_table('users', TRUE);
+
+        $this->db->query("CREATE UNIQUE INDEX `user_name` ON users (`user_name`)");
+
         if(!$qry){
             return false;
         }
     }
 
     function add_master_user($username, $userpass){
-        $qry = mysql_query("INSERT INTO `users` (`user_id`, `user_name`, `user_pass`, `user_email`, `permission`, `full_name`, `img`, `location`, `lat`, `lng`, `user_state`, `status`) 
+        $qry = $this->db->query("INSERT INTO `users` (`user_id`, `user_name`, `user_pass`, `user_email`, `permission`, `full_name`, `img`, `location`, `lat`, `lng`, `user_state`, `status`) 
             VALUES
             (1, '".$username."', '".sha1($userpass)."', '', 1, '', '".site_url()."uploads/img/thumb/default.jpg', '', 0.000000, 0.000000, 'enabled', 'authorized');");
         
@@ -113,31 +107,31 @@ function update_version($ver){
 ***************************************************************/
 
     function add_admin_table() {
-        $qry = mysql_query('
-            CREATE TABLE `admin` (
-                `admin_opts` int(8) NOT NULL AUTO_INCREMENT,
-                `option_title` varchar(50) NOT NULL,
-                `db_uname` varchar(50) NOT NULL,
-                `db_password` varchar(50) NOT NULL,
-                `db_name` varchar(50) NOT NULL,
-                PRIMARY KEY (`admin_opts`)
-            ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;');
-        
+        $this->load->dbforge();
+        $this->dbforge->add_field("`admin_opts` INT(14) NOT NULL AUTO_INCREMENT");
+        $this->dbforge->add_field("`option_title` VARCHAR(80) NOT NULL");
+        $this->dbforge->add_field("`db_uname` VARCHAR(50) NOT NULL");
+        $this->dbforge->add_field("`db_password` VARCHAR(55) NOT NULL");
+        $this->dbforge->add_field("`db_name` VARCHAR(50) NOT NULL");
+
+        $this->dbforge->add_key('admin_opts', TRUE);
+        $qry = $this->dbforge->create_table('admin', TRUE);
+
         if(!$qry){
             return false;
         }
     }
 
     function add_admin_opts($avdAccounts, $master, $version, $db_array){
-        $adv_acc_qry = mysql_query("INSERT INTO `admin` (`admin_opts`, `option_title`) 
+        $adv_acc_qry = $this->db->query("INSERT INTO `admin` (`admin_opts`, `option_title`) 
             VALUES
             (1, '".$avdAccounts."');");
 
-        $master_qry = mysql_query("INSERT INTO `admin` (`admin_opts`, `option_title`) 
+        $master_qry = $this->db->query("INSERT INTO `admin` (`admin_opts`, `option_title`) 
             VALUES
             (3, '".$master."');");
 
-        $version_qry = mysql_query("INSERT INTO `admin` (`admin_opts`, `option_title`) 
+        $version_qry = $this->db->query("INSERT INTO `admin` (`admin_opts`, `option_title`) 
             VALUES
             (5, '".$version."');");
         
@@ -149,7 +143,7 @@ function update_version($ver){
     }
 
     function add_admin_db_opts($db_array){
-        $qry = mysql_query("INSERT INTO `admin` (`admin_opts`, `option_title`, `db_uname`, `db_password`, `db_name`) 
+        $qry = $this->db->query("INSERT INTO `admin` (`admin_opts`, `option_title`, `db_uname`, `db_password`, `db_name`) 
             VALUES
             (2, '".$avdAccounts."', '".$db_array['db_uname']."', '".$db_array['db_password']."', '".$db_array['db_name']."');");
         
@@ -159,7 +153,7 @@ function update_version($ver){
     }
 
     function connected_to($system){
-        $qry = mysql_query("INSERT INTO `admin` (`admin_opts`, `option_title`) 
+        $qry = $this->db->query("INSERT INTO `admin` (`admin_opts`, `option_title`) 
             VALUES
             (4, '".$system."');");
         
@@ -188,142 +182,50 @@ function update_version($ver){
 ***************************************************************/
 
     function add_img_table() {
-        $qry = mysql_query('
-            CREATE TABLE `img` (
-                `img_id` int(8) NOT NULL AUTO_INCREMENT,
-                `img_location` varchar(250) NOT NULL,
-                `img_thumb_location` varchar(250) NOT NULL,
-                `category_type` varchar(40) NOT NULL,
-                `img_collection` varchar(255) NOT NULL,
-                `favorite` int(2) NOT NULL DEFAULT "0",
-                `img_alt_tag` varchar(255) NOT NULL,
-                `img_title_tag` varchar(255) NOT NULL,
-                PRIMARY KEY (`img_id`)
-            ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;');
+        $this->load->dbforge();
+        $this->dbforge->add_field("`img_id` INT(14) NOT NULL AUTO_INCREMENT");
+        $this->dbforge->add_field("`img_location` VARCHAR(255) NOT NULL");
+        $this->dbforge->add_field("`img_medium_location` VARCHAR(255) NOT NULL");
+        $this->dbforge->add_field("`img_thumb_location` VARCHAR(255) NOT NULL");
+        $this->dbforge->add_field("`img_collection` INT(14) NOT NULL");
+        $this->dbforge->add_field("`favorite` int(2) NOT NULL DEFAULT '0'");
+        $this->dbforge->add_field("`img_alt_tag` varchar(255) NOT NULL");
+        $this->dbforge->add_field("`img_title_tag` varchar(255) NOT NULL");
+
+        $this->dbforge->add_key('img_id', TRUE);
+        $qry = $this->dbforge->create_table('img', TRUE);
+
+        $this->load->dbforge();
+        $this->dbforge->add_field("`collection_id` INT(14) NOT NULL AUTO_INCREMENT");
+        $this->dbforge->add_field("`collection_name` VARCHAR(255) NOT NULL");
+
+        $this->dbforge->add_key('collection_id', TRUE);
+        $qry = $this->dbforge->create_table('img_collections', TRUE);
 
         if(!$qry){
             return false;
         }
     }
 
-/* Plugin Details
-***************************************************************/
-
-    function add_plugin_tables() {
-        $plugin_tbl_exists = mysql_query('SELECT * FROM plugins'); 
-        
-        if(! $plugin_tbl_exists ){
-            $qry = mysql_query('
-                CREATE TABLE `plugins` (
-                    `plugin_id` int(8) NOT NULL AUTO_INCREMENT,
-                    `plugin_name` varchar(40) NOT NULL,
-                    `plugin_id_tag` int(8) NOT NULL,
-                    `plugin_title` varchar(40) NOT NULL,
-                    `plugin_pages` varchar(255) NOT NULL,
-                    `plugin_version` varchar(40) NOT NULL,
-                    `plugin_active` varchar(40) NOT NULL,
-                    PRIMARY KEY (`plugin_id`)
-                ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;');
-            
-            if(!$qry){
-                return true;
-            }
-        }
-
-        $cat_tbl_exists = mysql_query('SELECT * FROM categories'); 
-        
-        if(! $cat_tbl_exists ){
-            $cat_qry = mysql_query('
-                CREATE TABLE `categories` (
-                    `cat_id` int(8) NOT NULL AUTO_INCREMENT,
-                    `cat_title` varchar(255) NOT NULL,
-                    `cat_url_title` varchar(255) NOT NULL,
-                    `cat_type` varchar(50) NOT NULL,
-                    `cat_parent` int(8) NOT NULL,
-                    PRIMARY KEY (`cat_id`)
-                ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3');
-            
-            if(!$cat_qry){
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    function installed_plugins() {
-        $query = mysql_query('SELECT * FROM plugins');
-        if($query){
-            $qry = $this->db->query("SELECT * FROM plugins ORDER BY plugin_name ASC");
-            return $qry->result();
-        }
-        
-    }
-
-    function remove_plugin_table($plugin) {
-        $sql = "DELETE FROM plugins WHERE plugin_name = '".$plugin."'";
-        $qry = mysql_query($sql);
-        if($qry){
-            $sql = "DROP TABLE ".$plugin;
-            $qry = mysql_query($sql);
-        }
-
-        return true;
-    }
-
-    function disable_plugin($plugin) {
-        $query = mysql_query('UPDATE `plugins` SET plugin_active = "no" WHERE plugin_name = "'.$plugin.'"');
-        if($query){
-            return true;
-        }
-    }
-
-    function enable_plugin($plugin) {
-        $query = mysql_query('UPDATE `plugins` SET plugin_active = "yes" WHERE plugin_name = "'.$plugin.'"');
-        if($query){
-            return true;
-        }
-    }
-
-    function update_plugin($plugin, $plugin_version){
-        $query = mysql_query('UPDATE `plugins` SET plugin_version = "'.$plugin_version.'" WHERE plugin_name = "'.$plugin.'"');
-        if($query){
-            return true;
-        }
-    }
-
-/* Install Members
-***************************************************************/
-
-function install_members(){
-    $qry = mysql_query("INSERT INTO `plugins` (`plugin_id_tag`, `plugin_name`, `plugin_title`, `plugin_active`) 
-        VALUES
-        ('0000', 'members', 'Members', 'yes');");
-    
-    if(!$qry){
-        return false;
-    }
-}
-
 /* Edit Setup
 ***************************************************************/
 
     function edit_account_config($avdAccounts){
-        $qry = mysql_query("UPDATE 
+        $qry = $this->db->query("UPDATE 
                             `admin` 
                             SET 
                             `option_title`= '".$avdAccounts."' 
                             WHERE `admin_opts`= 1");
 
         if($avdAccounts === 'advanced accounts'){
-            mysql_query("ALTER TABLE `users` ADD `address` VARCHAR( 250 ) NOT NULL");
-            mysql_query("ALTER TABLE `users` ADD `city` VARCHAR( 250 ) NOT NULL");
-            mysql_query("ALTER TABLE `users` ADD `state` VARCHAR( 250 ) NOT NULL");
-            mysql_query("ALTER TABLE `users` ADD `country` VARCHAR( 250 ) NOT NULL");
-            mysql_query("ALTER TABLE `users` ADD `phone` VARCHAR( 250 ) NOT NULL");
-            mysql_query("ALTER TABLE `users` ADD `fax` VARCHAR( 250 ) NOT NULL");
-            mysql_query("ALTER TABLE `users` ADD `website` VARCHAR( 250 ) NOT NULL");
-            mysql_query("ALTER TABLE `users` ADD `company` VARCHAR( 250 ) NOT NULL");
+            $this->db->query("ALTER TABLE `users` ADD `address` VARCHAR( 250 ) NOT NULL");
+            $this->db->query("ALTER TABLE `users` ADD `city` VARCHAR( 250 ) NOT NULL");
+            $this->db->query("ALTER TABLE `users` ADD `state` VARCHAR( 250 ) NOT NULL");
+            $this->db->query("ALTER TABLE `users` ADD `country` VARCHAR( 250 ) NOT NULL");
+            $this->db->query("ALTER TABLE `users` ADD `phone` VARCHAR( 250 ) NOT NULL");
+            $this->db->query("ALTER TABLE `users` ADD `fax` VARCHAR( 250 ) NOT NULL");
+            $this->db->query("ALTER TABLE `users` ADD `website` VARCHAR( 250 ) NOT NULL");
+            $this->db->query("ALTER TABLE `users` ADD `company` VARCHAR( 250 ) NOT NULL");
         }
         
         if(!$qry){
@@ -332,7 +234,7 @@ function install_members(){
     }
 
     function edit_master_access_config($masterAccess){
-        $qry = mysql_query("UPDATE 
+        $qry = $this->db->query("UPDATE 
                             `admin` 
                             SET 
                             `option_title`= '".$masterAccess."' 

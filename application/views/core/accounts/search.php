@@ -1,31 +1,7 @@
 <?php /*
     Filename:   full_search_results.php
     Location:   /application/views/core
-    Author:     Matt Lantz
 */ ?>
-
-<style>
-    #pagination{
-       margin-top: 30px;    
-    }
-    
-    #pagination a, #pagination strong {
-       background: #e3e3e3;
-       padding: 4px 7px;
-       text-decoration: none;
-       border: 1px solid #cac9c9;
-       color: #292929;
-       font-size: 13px;
-       font-weight: bold;
-       font-family: Arial, Helvetica, sans-serif;
-    }
-
-    #pagination strong, #pagination a:hover {
-       font-weight: bold;
-       font-family: Arial, Helvetica, sans-serif;
-       background: #cac9c9;
-    }
-</style>
 
 <script>
     
@@ -47,39 +23,41 @@
     
 </script>
 
-<div class="wide_box">  
-    <div class="wide_box" style="text-align: center; min-height: 500px;">
-        <div style="width: 90%; margin: 0 auto;">
-            <div style="margin: 10px; text-align: left;">
-                <br />
-                <h1>Search Accounts</h1>
-                <div style="width: 100%; min-height: 40px; text-align: center; margin: 20px auto;">
+    <div class="raw100">
+        <div class="device">
+                <div class="raw100">
                     <form id="memberSearch" method="post" action="<?php echo site_url('accounts/search'); ?>"> 
                         <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" /> 
                         <input id="search" name="search" class="searchBar" value="Enter a Search Term" onfocus="resetSearch()" />
                     </form>
                 </div>
-                
-                <div id="searchResults" style="width: 90%; min-height: 300px; margin: 0 auto;">
+                <div class="raw100">
+                    <p>You searched for: <?php echo $searchTerm; ?></p>
+                </div>
+                <div id="searchResults" class="raw100">
                     
+                <?php if($empty_result){ ?>
+
+                    <p><?php echo $empty_result; ?></p>
+
+                <?php }else{ ?>
+
                 <?php foreach($results as $member): ?>
-                    
-                    <div class="grid25 gridrow">
-                        <div class="grid25"><a href="<?php echo site_url('accounts/editor/'.encrypt($member->user_id)); ?>">
-                            <img src="<?php echo $member->img; ?>" style="float: left; width: 40px;" />
-                        </a></div>
-                        <div class="grid25"><h3><?php echo $member->user_name; ?></h3></div>
-                        <div class="grid25"><p><?php echo valCheck($member->user_email); ?></p></div> 
-                        <div class="grid25"><p><?php echo valCheck($member->full_name); ?></p></div> 
+
+                    <div class="accountInfoRow gridrow bordered clickable" onclick="window.location='<?php echo site_url('accounts/editor/'.encrypt($member->user_id)); ?>'">
+                        <div class="grid25"><p><?php echo $member->user_name; ?></p></div>
+                        <div class="grid25 mHide"><p><?php echo valCheck($member->user_email); ?></p></div> 
+                        <div class="grid25 mHide"><p><?php echo valCheck($member->full_name); ?></p></div> 
+                        <div class="grid25 mHide"><p><?php echo valCheck($member->location); ?></p></div> 
                     </div>
 
                 <?php endforeach; ?>
 
+                <?php } ?>
+
                 </div>
                 <?php echo $this->pagination->create_links(); ?>
-            </div>
         </div>
     </div>
-</div>
     
 <?php //End of File ?>

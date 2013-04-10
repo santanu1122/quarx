@@ -77,9 +77,13 @@ $config['language']	= 'english';
 $config['language_abbr'] = "en";
 
 /* set available language abbreviations */
-$config['lang_uri_abbr'] = array("fr" => "french", "en" => "english", "es" => "spanish");
+$config['lang_uri_abbr'] = array(   "fr" => "french", 
+                                    "en" => "english", 
+                                    "es" => "spanish"
+                                );
 
 /* hide the language segment (use cookie) */
+/* Changing this to FALSE will break the modules */
 $config['lang_ignore'] = TRUE;
 
 /*
@@ -368,6 +372,20 @@ $config['rewrite_short_tags'] = FALSE;
 */
 $config['proxy_ips'] = '';
 
+
+/*
+|--------------------------------------------------------------------------
+| Modules
+|--------------------------------------------------------------------------
+| https://bitbucket.org/wiredesignz/codeigniter-modular-extensions-hmvc
+|
+| This allows the codeigniter core of the system to use modular structure
+| the modules are set in the modules folder in the core, and uses a couple 
+| core modifiers in the application/core folder.
+|
+*/
+
+$config['modules_locations'] = array( APPPATH.'modules/' => '../modules/' );
 
 /* End of file config.php */
 /* Location: ./application/config/config.php */

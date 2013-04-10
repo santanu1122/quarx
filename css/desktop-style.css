@@ -1,0 +1,895 @@
+/* Custom Styles for Quarx
+***************************************************************/
+
+body, html{
+    background: #f9f9f9;
+    overflow: none;
+}
+
+#Menu.ui-body-c{
+    background: transparent;
+}
+
+#ImageBox.ui-body-c{
+    background: transparent;
+}
+
+.panelBox{
+    min-height: 100%;
+    background: #f9f9f9;
+    overflow-y: scroll;
+}
+
+.ui-content{
+    min-height: 100%;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.ui-page{
+    min-height: 100%;
+}
+
+.ui-content{
+    overflow: hidden;
+}
+
+#imageLibrary > div.ui-panel-inner{
+    padding: 0;
+}
+
+#quarx-modal{
+    width: 110%;
+    height: 110%;
+    position: fixed;
+    z-index: 1000;
+    background: #333;
+    display: none;
+    opacity: 0.7;
+    margin: -20px -15px;
+}
+
+/* Menu
+***************************************************************/
+#Menu.menuPanel{
+    background: url(../images/bg_linen.jpg);
+}
+
+#ImageBox.imagePanel{
+    background: url(../images/bg_linen.jpg);   
+}
+
+/* Abstract classes
+***************************************************************/
+
+.frontAndCenter{
+    margin: 20px auto 0;
+    text-align: center;
+}
+
+/* Boxes
+***************************************************************/
+
+.cBox{
+    float: none;
+    margin: 0 auto;
+}
+
+.lBox{
+    float: left;
+}
+
+.rBox{
+    float: right;
+}
+
+/* Raw Grid Structure
+***************************************************************/
+.raw0{
+    float: none;
+    margin: 0 auto;
+}
+
+.raw25{
+    width: 25%;
+    float: left;
+}
+
+.raw33{
+    width: 33.333%;
+    float: left;
+}
+
+.raw50{
+    width: 50%;
+    float: left;
+}
+
+.raw66{
+    width: 66.666%;
+    float: left;
+}
+
+.raw75{
+    width: 75%;
+    float: left;
+}
+
+.raw100{
+    width: 100%;
+    float: left;
+}
+
+/* Raw Margins
+***************************************************************/
+
+.rm25{
+    margin: 0 75%;
+}
+
+.rm50{
+    margin: 0 25%;
+}
+
+.rm33{
+    margin: 0 66%;
+}
+
+.rm66{
+    margin: 0 15.15%;
+}
+
+/* Device
+***************************************************************/
+
+.device{
+    width: 960px;
+    margin: 5px auto;
+    clear: both;
+}
+
+.smallDevice{
+    width: 320px;
+    margin: 5px auto;
+}
+
+/* controlbox
+***************************************************************/
+
+#controlbox{
+    overflow: visible;
+}
+
+#controlbox .ui-controlgroup{
+    margin: 0;
+    height: 40px;
+    overflow: hidden;
+}
+
+/* Messages
+************************************/
+
+.errorMsg{
+    border: #600 solid 1px; 
+    width: 30%; 
+    margin: 5px auto; 
+    text-align: center;
+    position: absolute;
+    top: 130px;
+    left: 35%;
+    display: none;
+    background: #fff;
+    z-index: 10001;
+}
+
+.errorMsg p{
+    padding: 7px; 
+    color: #600; 
+    font-size: 11px;
+}
+
+.successMsg{
+    border: #0C3 solid 1px; 
+    width: 30%; 
+    margin: 5px auto; 
+    text-align: center; 
+    position: absolute;
+    top: 130px;
+    left: 35%;
+    display: none;
+    background: #fff;
+    z-index: 1000002;
+}
+
+/* Password Details
+*************************************/
+
+#pwStrength{
+    width: 300px;
+    min-height: 55px; 
+    margin: 5px auto; 
+    text-align: center; 
+    position: absolute;
+    top: 50px;
+    z-index: 10000;
+}
+
+.successMsg p{
+    padding: 7px; 
+    color: #0C3; 
+    font-size: 11px;
+}
+
+.tall{
+    min-height: 50px;
+}
+
+/* Buttons
+***********************************************/
+.blue:span{
+    background: #0099FF;
+    color: #fff;
+}
+
+.blue:hover{
+    background: #0055BB;
+}
+
+.blue span:hover{
+    color: #FFF;
+}
+
+.green{
+    background: #009900;
+    color: #fff;
+}
+
+.green:hover{
+    background: #006600;
+}
+
+.green span:hover{
+    color: #FFF;
+}
+
+.yellow{
+    background: #FFFF33;
+    color: #111;
+}
+
+.yellow:hover{
+    background: #FFFF00;
+}
+
+.red{
+    background: #CC3300;
+    color: #fff;
+}
+
+.red:hover{
+    background: #990000;
+}
+
+.red span:hover{
+    color: #FFF;
+}
+
+/* Grids
+***********************************************/
+.grid{
+    text-align: left;
+}
+
+.grid25{
+    float: left; 
+    width: 25%;
+}
+
+.grid50{
+    float: left; 
+    width: 50%;
+}
+
+.grid33{
+    float: left; 
+    width: 33%;
+}
+
+.grid20{
+    float: left; 
+    width: 20%;
+}
+
+.grid16{
+    float: left; 
+    width: 16%;
+}
+
+.grid14{
+    float: left; 
+    width: 14%;
+}
+
+.grid8{
+    float: left; 
+    width: 8%;
+}
+
+.grid9{
+    float: left; 
+    width: 9%;
+}
+
+.grid16 p, .grid9 p, .grid25 p, .grid50 p, .grid14 p, .grid20 p, .grid8 p, .grid33 p{
+    display: inline;
+}
+
+.bordered{
+    border-bottom: 1px solid #ddd;
+}
+
+.gridrow{
+    min-height: 40px;
+    width: 100%;
+    float: left;
+}
+
+.gridrow p{
+    line-height: 40px;
+}
+
+.unauthorized{
+    background: #CC3300;
+}
+
+.unauthorized p, .unauthorized h3{
+    color: #fff;
+}
+
+/* Image Characteristics ================================= */
+
+.profileImageBox{
+    min-width: 320px;
+    max-width: 450px;
+    height: 350px;
+    border: 1px solid #bbb; 
+    background: url(../images/bg_linen.jpg);
+    text-align: left;
+    margin: 0 0;
+}
+
+.profileImageBox img{
+    background: #fff;
+    width: 60%;
+    max-width: 320px;
+    margin: 20px auto;
+    box-shadow: 0px 0px 5px;
+}
+
+/* Map Characteristics ================================= */
+
+.mapBox{
+    width: 99.8%; 
+    height: 400px; 
+    margin: 20px auto;
+    display: block; 
+    border: 1px solid #bbb; 
+}
+
+.map{
+    width: 100%;
+    height: 100%;
+}
+
+/* General Characteristics ================================= */
+
+.pointer{
+    cursor: pointer;
+}
+
+.muted{
+    color: #999;
+}
+
+.googleMap{
+    width: 90%; 
+    float: left; 
+    height: 400px; 
+    display: block; 
+    border: 1px solid #DDD;
+}
+
+.googleMapInner{
+    width: 100%; 
+    height: 400px; 
+    float:left;
+}
+
+.profileImage{
+    border: 5px solid #222; 
+    box-shadow: 0 5px 10px #222;
+    width: 90%;
+    margin: 0px 0px;
+}
+
+.centered{
+    margin: 0 auto;
+    float: none;
+}
+
+.padded5{
+    padding: 5px;
+}
+
+.padded10{
+    padding: 10px;
+}
+
+.padded20{
+    padding: 20px;
+}
+
+.roundcorners{
+    border-radius: 5px;
+}
+
+.greyborder{
+    border: 1px solid #ccc;
+}
+
+.align-left{
+    text-align: left;
+}
+
+.align-right{
+    text-align: right;
+}
+
+.align-center{
+    text-align: center;
+}
+
+.leftBox{
+    float: left;
+}
+
+.rightBox{
+    float: right;
+}
+
+.tall{
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.reallyTall{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.fat{
+    width: 100%;
+}
+
+.fluffy{
+    width: 70%;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.chubby{
+    width: 80%;
+}
+
+.dark{
+    background: #111;
+}
+
+.medium{
+    background: #ccc;
+}
+
+.tallBox{
+    min-height: 180px;
+}
+
+.border-bottom{
+    border-bottom: 1px solid #222;
+}
+
+.border-top{
+    /*border-top: 1px solid #222;*/
+}
+
+/* CloudMail ======================================= */
+
+.textBox p{
+    cursor: pointer;
+}
+
+/*  Manual ========================================= */
+
+#manualMenu{
+    position: absolute;
+    top: 40px;
+    width: 200px;
+    z-index: 1;
+    min-height: 300px;
+    text-align: left;
+}
+
+#manualMenuContent ul{
+    padding: 0;
+}
+
+#manualMenuContent ul li{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#manualMenuContent ul li:hover{
+    text-decoration: underline;
+    cursor: pointer;
+    background: #eee;
+}
+
+.manualContent{
+    margin-left: 25%;
+}
+
+/* UpdateBox ============================================ */
+
+.updateBox{
+    z-index: 10000001;
+    width: 100%;
+    background: #33CC33;
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-box-shadow: 0px 0px 10px;
+    box-shadow: 0px 0px 10px;
+    display: none;
+}
+
+.updateBox p{
+    color: #fff;
+    line-height: 30px;
+    text-align: center;
+}
+
+.successTxt{
+    padding: 5px; 
+    color: #0C3; 
+}
+
+.successBorder{
+    border: 1px solid #0C3;
+}
+
+/* ErrorBox ============================================ */
+
+.errorBox{
+    z-index: 10060001;
+    width: 100%;
+    background: #F00;
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-box-shadow: 0px 0px 10px;
+    box-shadow: 0px 0px 10px;
+    display: none;
+}
+
+.errorBox p{
+    line-height: 30px;
+    text-align: center;
+    color: #fff;
+}
+
+.errorText{
+    padding: 5px; 
+    color: #F00; 
+}
+
+.errorBorder{
+    border: 1px solid #F00;
+}
+
+.uploadImage{
+    z-index: 100001;
+    width: 35%;
+    height: 250px;
+    background: #eee;
+    position: absolute;
+    top: 180px;
+    left: 35%;
+    -webkit-box-shadow: 0px 0px 10px;
+    box-shadow: 0px 0px 10px;
+    display: none;
+}
+
+.thumbShot{
+    width: 100%; 
+    cursor: pointer;
+    height: 130px;
+}
+
+.imgThumbHolder{
+    margin: 10px;
+    height: 130px;
+}
+
+.delBox{
+    float: right;
+    width: 17px;
+    height: 17px;
+    border-radius: 16px;
+    background: #fff;
+    border: 5px solid #F00;
+    position: relative;
+    z-index: 1000;
+    cursor: pointer;
+    margin: 0 -10px;
+}   
+
+.favBox{
+    float: left;
+    width: 21px;
+    height: 21px;
+    border-radius: 15px;
+    background: #004F00;
+    border: 1px solid #FFF;
+    position: relative;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+.delIcon{
+    background: url(../images/del-Icon.png) no-repeat;
+    width: 16px;
+    height: 16px;
+    display: block;
+}
+
+.imgCollectionBox{
+    width: 100%;
+    margin: -15px;
+    clear: both;
+}
+
+.imageBox{
+    width: 120px;
+    float: left;
+    overflow: hidden;
+}
+
+/* Calendar
+****************************************/
+
+/*.calendar {
+    font-family: Arial, Verdana, Sans-serif;
+    width: 95%;
+    min-width: 940px;
+    border-collapse: collapse;
+}
+
+.calendar tbody tr:first-child th {
+    color: #505050;
+    margin: 0 0 10px 0;
+}
+
+.day_header {
+    font-weight: normal;
+    text-align: center;
+    color: #757575;
+    font-size: 10px;
+}
+
+.calendar td {
+    width: 14%;  Force all cells to be about the same width regardless of content 
+    border:1px solid #CCC;
+    height: 100px;
+    vertical-align: top;
+    font-size: 10px;
+    padding: 0;
+}
+
+.calendar td:hover {
+    background: #F3F3F3;
+}
+
+.day_listing {
+    display: block;
+    text-align: right;
+    font-size: 12px;
+    color: #2C2C2C;
+    padding: 5px 5px 0 0;
+}
+
+div.today {
+    background: #E9EFF7;
+    height: 100%;
+} 
+
+.calMonth{
+    text-align: center;
+}
+
+/* Account Controls
+***************************************************************/
+
+.accountInfoRow{
+    float: left;
+}
+
+.accountInfo{
+    position: relative;
+    z-index: 0;
+    width: 100%;
+    height: 40px;
+}
+
+.accountControls{
+    width: 960px;
+    display: none;
+    position: absolute;
+    z-index: 1;
+    height: 40px;
+    background: url(../images/70black.png);
+}
+
+.clickable{
+    cursor: pointer;
+}
+
+.clickable:hover{
+    background: #eee;
+}
+
+/* Pagination
+***************************************************************/
+
+#pagination{
+    width: 100%;
+    margin-top: 10px;
+    float: left;
+    text-align: center;
+}
+
+#pagination a, #pagination strong {
+    background: #e3e3e3;
+    padding: 4px 7px;
+    text-decoration: none;
+    border: 1px solid #cac9c9;
+    color: #292929;
+    font-size: 13px;
+}
+
+#pagination strong, #pagination a:hover {
+    font-weight: normal;
+    background: #cac9c9;
+}
+
+/* jQuery Mobile Resets
+***************************************************************/
+
+.accountControls .ui-btn{
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    height: 40px;
+}
+
+.ui-dialog-contain {
+    width: 92.5%;
+    max-width: 500px;
+    margin: 10% auto 15px auto;
+    padding: 0;
+    position: relative;
+    top: -15px;
+}
+
+/* Dialog
+***************************************************************/
+
+.dialogBox{
+    min-width: 260px;
+    max-width: 260px;
+    top: 0;
+    margin: 40px auto;
+    position: absolute;
+    z-index: 110700;
+    background: #FFF;
+    border: 1px solid #bbb;
+    border-radius: 15px;
+    box-shadow: 0 0 15px #111;
+    display: none;
+}
+
+.dialogbox_header{
+    width: 260px;
+    background: #222;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    height: 50px;
+    margin: -12px 0 0 0;
+    text-align: center;
+}
+
+.dialogbox_body{
+    padding: 0 20px 20px 20px;
+}
+
+.dialogbox_header h1{
+    color: #FFF;
+    line-height: 50px;
+    font-size: 18px;
+}
+
+/* Image Library
+***************************************************************/
+
+#imageLibraryCloseBtn{
+    position: absolute;
+    top: 0px;
+    left: 220px;
+    z-index: 10000;
+}
+
+#imageLibraryBox{
+    margin: 0px 0 0 0px; 
+    border: none; 
+    width: 100%;
+    overflow: hidden;
+}
+
+#newCollection{
+    position: absolute;
+    z-index: 100;
+    top: 165px;
+    left: 25px;
+}
+
+#newCollectionChange{
+    position: absolute;
+    z-index: 100;
+    top: 65px;
+    left: 25px;
+}
+
+#fullScreenImageLibrary{
+    border: none; 
+    min-height: 90%;
+    margin-top: -22px;
+}
+
+#fullScreenImageLibrary iframe{
+    display: none;
+}
+
+#fullScreenImageNav{
+    width: 24%;
+    margin-left: 1%;
+    float: right;
+}
+
+#state{
+    display: none;
+}
+
+/* Admin Manual
+***************************************************************/
+
+#toTopButton{
+    position: fixed;
+    z-index: 100000;
+    bottom: 10px;
+    left: 0;
+}
+
+.cloudcatcherBox{
+    border: none;
+    overflow-y: hidden; 
+}
