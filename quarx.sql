@@ -98,6 +98,13 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `user_name` (`user_name`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `user_name`, `user_pass`, `user_email`, `permission`, `owner`, `status`, `full_name`, `img`, `location`, `lat`, `lng`, `user_state`, `address`, `city`, `state`, `country`, `phone`, `fax`, `website`, `company`, `last_login`, `login_counter`) VALUES
+(1, 'master', '4f26aeafdb2367620a393c973eddbe8f8b846ebd', 'masteruser@somewhere.com', 1, 0, 'authorized', 'Master User', 'default.jpg', 'somewhere', 0.000000, 0.000000, 'enabled', '', '', '', '', '', '', '', '', '2013-01-01', 0);
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
