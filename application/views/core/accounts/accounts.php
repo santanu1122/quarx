@@ -122,7 +122,7 @@
 </div>
 
 <script type="text/javascript">
-    setTimeout(profileImageResize, 300);
+    $(window).load(function(){ profileImageResize() });
 
     function hideSuccessErrors(){
         $('#success').fadeIn('fast').delay(3000).fadeOut('slow');

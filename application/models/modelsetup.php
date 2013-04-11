@@ -56,8 +56,8 @@ function update_version($ver){
     function add_user_table($extras) {
         $this->load->dbforge();
         $this->dbforge->add_field("`user_id` INT(14) NOT NULL auto_increment");
-        $this->dbforge->add_field("`user_name` VARCHAR(140) NOT NULL");
-        $this->dbforge->add_field("`user_pass` VARCHAR(140) NOT NULL");
+        $this->dbforge->add_field("`user_name` VARCHAR(160) NOT NULL");
+        $this->dbforge->add_field("`user_pass` VARCHAR(160) NOT NULL");
         $this->dbforge->add_field("`user_email` VARCHAR(255) NOT NULL");
         $this->dbforge->add_field("`permission` INT(2) NOT NULL");
         $this->dbforge->add_field("`owner` INT(14) NOT NULL");
@@ -75,7 +75,7 @@ function update_version($ver){
             $this->dbforge->add_field("`company` VARCHAR(255) NOT NULL");
         }
 
-        $this->dbforge->add_field("`img` VARCHAR(40) NOT NULL default 'default.jpg'");
+        $this->dbforge->add_field("`img` VARCHAR(255) NOT NULL default 'default.jpg'");
         $this->dbforge->add_field("`location` VARCHAR(255) NOT NULL");
         $this->dbforge->add_field("`user_state` VARCHAR(40) NOT NULL");
         $this->dbforge->add_field("`last_login` DATE NOT NULL");

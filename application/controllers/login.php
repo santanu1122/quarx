@@ -41,21 +41,28 @@ class login extends CI_Controller {
         }
     }
 
-    public function error() {   
-        //load the cookie helper
-        $this->load->helper('cookie');
-        $this->load->model('modellogin');
+    public function error() {
+        $this->load->model('modelsetup');
+        $qry = $this->modelsetup->is_installed();
         
-        //configured the data to be transported to the view
-        $data['root'] = base_url();
-        $data['pageRoot'] = base_url().'index.php';
-        $data['pagetitle'] = 'Limbo';
-        $data['date'] = date("m-d-y");
-        
-        //load the view elements
-        $this->load->view('common/header', $data);
-        $this->load->view('core/login/login_error', $data);
-        $this->load->view('common/footer', $data);
+        if($qry === false){
+            redirect('setup');
+        }else{ 
+
+            $this->load->helper('cookie');
+            $this->load->model('modellogin');
+            
+            //configured the data to be transported to the view
+            $data['root'] = base_url();
+            $data['pageRoot'] = base_url().'index.php';
+            $data['pagetitle'] = 'Limbo';
+            $data['date'] = date("m-d-y");
+            
+            //load the view elements
+            $this->load->view('common/header', $data);
+            $this->load->view('core/login/login_error', $data);
+            $this->load->view('common/footer', $data);
+        }
     }
 
 /* Account Validation

@@ -570,7 +570,7 @@ body, html{
 /* ErrorBox ============================================ */
 
 .errorBox{
-    z-index: 10060001;
+    z-index: 1006001;
     width: 100%;
     background: #F00;
     position: absolute;

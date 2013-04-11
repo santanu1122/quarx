@@ -112,6 +112,7 @@
 
     function newCollectionBox(){
         $( "#dialog-newColl" ).dialogboxInput({
+            web_link: false,
             buttons: {
                 Ok: function() {
                     $.ajax({
@@ -136,7 +137,6 @@
     }
 
     $(document).ready(function(e) {
-        // $('input:submit').button();
         
         <?php if(isset($_GET['error'])){ ?>
             feedback('error');

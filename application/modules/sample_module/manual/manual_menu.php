@@ -1,1 +1,0 @@
-<li onclick="pageScroll('#sampleModule')">Sample Module</li>

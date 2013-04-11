@@ -74,9 +74,9 @@ CREATE TABLE IF NOT EXISTS `img_collections` (
 
 CREATE TABLE IF NOT EXISTS `users` (
   `user_id` int(8) NOT NULL AUTO_INCREMENT,
-  `user_name` varchar(40) NOT NULL,
-  `user_pass` varchar(40) NOT NULL,
-  `user_email` varchar(50) NOT NULL,
+  `user_name` varchar(160) NOT NULL,
+  `user_pass` varchar(160) NOT NULL,
+  `user_email` varchar(160) NOT NULL,
   `permission` int(2) NOT NULL,
   `owner` int(8) NOT NULL,
   `status` varchar(40) NOT NULL,

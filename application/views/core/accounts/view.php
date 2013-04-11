@@ -80,10 +80,10 @@
                         </div>
 
                         <div class="accountInfo">
-                            <div class="grid25"><p><?php echo $accounts->user_name; ?></p></div>
-                            <div class="grid25 mHide"><p><?php echo valCheck($accounts->user_email); ?></p></div> 
-                            <div class="grid25 mHide"><p><?php echo valCheck($accounts->full_name); ?></p></div> 
-                            <div class="grid25 mHide"><p><?php echo valCheck($accounts->location); ?></p></div> 
+                            <div class="grid25"><p><?php echo valTrim($accounts->user_name, 20); ?></p></div>
+                            <div class="grid25 mHide"><p><?php echo valTrim(valCheck($accounts->user_email), 20); ?></p></div> 
+                            <div class="grid25 mHide"><p><?php echo valTrim(valCheck($accounts->full_name), 20); ?></p></div> 
+                            <div class="grid25 mHide"><p><?php echo valTrim(valCheck($accounts->location), 20); ?></p></div> 
                         </div>
 
                     </div>
@@ -117,7 +117,7 @@
                     window.location="<?php echo site_url('accounts/authorize_user').'/'; ?>"+id; 
                 },
                 Cancel: function() {
-                    $( this ).dialog( "close" );
+                    dialogDestroy("#dialog-authorize");
                 }
             }
         });
@@ -130,7 +130,7 @@
                     window.location="<?php echo site_url('accounts/delete_user').'/'; ?>"+id; 
                 },
                 Cancel: function() {
-                    $( this ).dialog( "close" );
+                    dialogDestroy("#dialog-confirm");
                 }
             }
         });
@@ -143,7 +143,7 @@
                     window.location="<?php echo site_url('accounts/master_user_upgrade_view').'/'; ?>"+id; 
                 },
                 Cancel: function() {
-                    $( this ).dialog( "close" );
+                    dialogDestroy("#dialog-master");
                 }
             }
         });
@@ -156,7 +156,7 @@
                     window.location="<?php echo site_url('accounts/master_user_downgrade_view').'/'; ?>"+id; 
                 },
                 Cancel: function() {
-                    $( this ).dialog( "close" );
+                    dialogDestroy("#dialog-downgrade");
                 }
             }
         });
@@ -169,7 +169,7 @@
                     window.location="<?php echo site_url('accounts/enable_user').'/'; ?>"+id; 
                 },
                 Cancel: function() {
-                    $( this ).dialog( "close" );
+                    dialogDestroy("#dialog-enable");
                 }
             }
         });

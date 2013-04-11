@@ -1,6 +1,4 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
-// Author: Matt Lantz
      
 class accounts extends CI_Controller {
 
@@ -8,7 +6,7 @@ class accounts extends CI_Controller {
         parent::__construct();
         
         if(!$this->session->userdata('logged_in')){
-            redirect('login/error'); // Denied! 
+            redirect('login/error');
         }
 
         $this->lang->load(config_item('language_abbr'), config_item('language'));
@@ -307,10 +305,14 @@ class accounts extends CI_Controller {
             $id = 'img';
             $now = time();
             
+           ini_set('memory_limit','128M');
+        
             //setting the configuration for the file uploads
             $config['upload_path'] = './uploads/img/full/';
-            $config['allowed_types'] = 'gif|jpeg|jpg|png';
+            $config['allowed_types'] = 'gif|jpg|jpeg|png|GIF|JPG|JPEG|PNG';
             $config['max_size'] = '4000';
+            $config['max_width'] = '4000';
+            $config['max_height'] = '4000';
             $config['file_name'] = $id.'_'.$now.'.jpg';
             
             //we make this variable for the make_thumb function
@@ -322,6 +324,7 @@ class accounts extends CI_Controller {
                 $img = site_url().'uploads/img/thumb/default.jpg';
             }else{
                 $this->make_thumb($img);
+                $this->make_medium($img);
             }
 
             $opts = $this->quarxsetup->account_opts();    

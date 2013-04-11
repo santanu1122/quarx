@@ -70,6 +70,7 @@
 
     function newCollectionBox(){
         $( "#dialog-newColl" ).dialogboxInput({
+            web_link: false,
             buttons: {
                 Ok: function() {
                     $.ajax({

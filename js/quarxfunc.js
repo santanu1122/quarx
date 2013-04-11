@@ -174,8 +174,9 @@ function inputDialogDestroy(idTag){
         };  
         options = $.extend(defaults, options);  
 
-        var idTag = $(this).attr('id');
-            coreTxt = $(this).html();
+        var idTag = $(this).attr('id'),
+            coreTxt = $(this).html(),
+            linkBox = '';
 
         inputDialogDestroy('#'+idTag);
 
@@ -185,8 +186,14 @@ function inputDialogDestroy(idTag){
             $(this).attr('data-copy', $(this).html());
         }
 
+        if(options.web_link == false){
+            linkBox = '';
+        }else{
+            linkBox = '<p>Web Link: <input value="'+options.web_link+'" /></p>';
+        }
+
         $('#'+idTag).prepend('<div class="dialogbox_header" id="'+idTag+'_dialog-header"><h1>'+$(this).attr('title')+'</h1></div>');
-        $('#'+idTag+ ' .dialogbox_body').append('<div class="dialogbox_body_btns"><p>Web Link: <input value="'+options.web_link+'" /></p><button data-theme="a" data-role="button" id="'+idTag+'_okBtn">Ok</button><button data-theme="a" data-role="button" id="'+idTag+'_CnclBtn">Cancel</button></div>').trigger('create');
+        $('#'+idTag+ ' .dialogbox_body').append('<div class="dialogbox_body_btns">'+linkBox+'<button data-theme="a" data-role="button" id="'+idTag+'_okBtn">Ok</button><button data-theme="a" data-role="button" id="'+idTag+'_CnclBtn">Cancel</button></div>').trigger('create');
 
         $('#'+idTag+'_okBtn').click( options.buttons.Ok );
         $('#'+idTag+'_CnclBtn').click( options.buttons.Cancel );

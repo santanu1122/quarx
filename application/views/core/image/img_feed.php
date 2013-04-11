@@ -45,7 +45,7 @@
                             
             <div class="imageBox">
                 <div class="imgThumbHolder">
-                    <div class="delBox" onclick="deleteMe(<?php echo $pic->img_id; ?>')">
+                    <div class="delBox" onclick="deleteMe(<?php echo $pic->img_id; ?>)">
                         <span class="delIcon"></span>
                     </div>
                     <div class="thumbShot">
