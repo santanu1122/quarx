@@ -8,7 +8,15 @@ class image_tools{
     
     public function image_tools(){ 
 
-        function imgLibrarySelect(){
+        function getCollectionName($id){
+        $CI =& get_instance();
+        $CI->load->model('modelimg');
+
+        $qry = $CI->modelimg->get_collection_name($id);
+        return $qry;
+    }
+
+        function imgLibrarySelect($img_collection){
             $CI =& get_instance();
             $CI->load->model('modelimg');
 
@@ -18,7 +26,12 @@ class image_tools{
 
             $data .= '<p>If you\'d like to add an image library please select one below.</p>';
 
-            $data .= '<select id="selectLibrary-Collections" data-theme="a" name="gallery">';
+            $data .= '<select id="selectLibrary-Collections" data-theme="a" name="img_library">';
+
+            if($img_collection != 0){
+                $data .= '<option value="'.$img_collection.'">Currently: '.getCollectionName($img_collection).'</option>';
+            }
+
             $data .= '<option value="0">None</option>';
 
                 foreach ($collection as $col) {

@@ -135,8 +135,6 @@ class modelimg extends CI_Model {
             
         return true;
     }
-    
-
 
 }
 // End of File
