@@ -28,7 +28,7 @@ class edit extends CI_Controller {
                 $data['accountStatus'] = '';
             } 
 
-            if($state[1]->option_title === 'master access'){
+            if($state[2]->option_title === 'master access'){
                 $data['masterAccess'] = 'checked="checked"';
             }else{
                 $data['masterAccess'] = '';

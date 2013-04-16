@@ -105,9 +105,7 @@
 <script type="text/javascript">
 
     $('.accountInfoRow').bind('click', function(){
-        
         $(this).children('.accountControls').fadeToggle();
-
     });
 
     function authorize(id){

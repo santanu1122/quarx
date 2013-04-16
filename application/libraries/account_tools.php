@@ -1,13 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-// Author: Matt Lantz
-/* This library gives us a handful of general 
- * tools for accounts.
- */
-
 class account_tools {
     
-    public function account_tools(){ 
+    public function account_tools(){
 
         function getUserName($id){
             $CI =& get_instance();
@@ -18,6 +13,20 @@ class account_tools {
             return $res;
         }
 
+        function check_master_access(){
+            $CI =& get_instance();
+            $CI->load->model('modeladmin');
+
+            $opts = $CI->modeladmin->get_permissions();
+
+            if($opts->option_title == 'master access'){
+                return TRUE;
+                exit;
+            }else{
+                return FALSE;
+                exit;
+            }
+        }
     }
 }
 

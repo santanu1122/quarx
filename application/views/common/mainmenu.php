@@ -27,9 +27,15 @@
             <?php if($this->session->userdata('logged_in')){ ?>
 
             <?php get_module_menus(); ?>
-
+            
+            <?php if($this->session->userdata('permission') > 1){ ?>
+            <?php if(check_master_access() == false){ ?>
             <li><a href="<?php echo site_url('image/library'); ?>">Image Library</a></li>
-                
+            <?php } ?>
+            <?php }else{ ?>
+            <li><a href="<?php echo site_url('image/library'); ?>">Image Library</a></li>
+            <?php } ?>
+
                 <?php if($this->session->userdata('permission') == 1){ ?>
                     <li><a href="<?php echo site_url('admin/cloudinfo'); ?>">Admin - CloudInfo</a></li>
                     <li onclick="window.location='<?php echo site_url('admin/cloudmail'); ?>'"><a>Admin - CloudMail</a></li>

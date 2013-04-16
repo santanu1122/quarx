@@ -6,19 +6,37 @@
 
 class module_tools{
     
-    public function module_tools(){ 
+    public function module_tools(){
 
         function get_module_menus(){
-            //scan the modules directory for modules
-            $modules = "application/modules/";
-             
-            //get all files in specified directory
-            $files = glob($modules . "*");
-             
-            //check for each module's menu
-            foreach($files as $file){
-                if(is_dir($file)){
-                    include($file.'/menu.php');
+            $CI =& get_instance();
+            if($CI->session->userdata('permission') > 1){
+                if(check_master_access() == false){
+                    //scan the modules directory for modules
+                    $modules = "application/modules/";
+                     
+                    //get all files in specified directory
+                    $files = glob($modules . "*");
+                     
+                    //check for each module's menu
+                    foreach($files as $file){
+                        if(is_dir($file)){
+                            include($file.'/menu.php');
+                        }
+                    }
+                }
+            }else{
+                //scan the modules directory for modules
+                $modules = "application/modules/";
+                 
+                //get all files in specified directory
+                $files = glob($modules . "*");
+                 
+                //check for each module's menu
+                foreach($files as $file){
+                    if(is_dir($file)){
+                        include($file.'/menu.php');
+                    }
                 }
             }
         }
@@ -81,6 +99,7 @@ class module_tools{
 
         function get_module_js(){
             $CI =& get_instance();
+
             $router =& load_class('Router', 'core');
 
             $currentModule = $router->fetch_class();

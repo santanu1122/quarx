@@ -23,6 +23,13 @@ class modeladmin extends CI_Model {
         return $res[0];
     }
 
+    function get_permissions() {
+        $qry = $this->db->query("SELECT * FROM `admin` WHERE admin_opts = 3");
+        $res = $qry->result();
+
+        return $res[0];
+    }
+
 }
 
 // End of File

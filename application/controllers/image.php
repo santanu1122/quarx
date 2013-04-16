@@ -12,6 +12,13 @@ class image extends CI_Controller {
             exit();
         }
 
+        if($this->session->userdata('permission') > 1){
+            $access = check_master_access(); //check if master access is on
+            if($access){
+                redirect('login/insufficient'); // Denied! 
+            }
+        }
+
         $this->lang->load(config_item('language_abbr'), config_item('language'));
     }
 

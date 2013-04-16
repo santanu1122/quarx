@@ -65,6 +65,25 @@ class login extends CI_Controller {
         }
     }
 
+    public function insufficient() {
+        $this->load->model('modelsetup');
+        $qry = $this->modelsetup->is_installed();
+        
+        if($qry === false){
+            redirect('setup');
+        }else{ 
+            //configured the data to be transported to the view
+            $data['root'] = base_url();
+            $data['pageRoot'] = base_url().'index.php';
+            $data['pagetitle'] = 'Limbo';
+            
+            //load the view elements
+            $this->load->view('common/header', $data);
+            $this->load->view('core/login/insufficient', $data);
+            $this->load->view('common/footer', $data);
+        }
+    }
+
 /* Account Validation
 ***************************************************************/
 
