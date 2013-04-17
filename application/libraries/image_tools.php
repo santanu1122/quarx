@@ -16,7 +16,7 @@ class image_tools{
         return $qry;
     }
 
-        function imgLibrarySelect($img_collection){
+        function imgLibrarySelect($img_collection = null){
             $CI =& get_instance();
             $CI->load->model('modelimg');
 

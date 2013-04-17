@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
 INSERT INTO `admin` (`admin_opts`, `option_title`, `db_uname`, `db_password`, `db_name`) VALUES
 (1, 'simple accounts', '', '', ''),
 (3, 'standard access', '', '', ''),
-(5, '0.2.5', '', '', ''),
+(5, '0.3.0', '', '', ''),
 (2, '', 'username', 'password', 'dbname');
 
 -- --------------------------------------------------------

@@ -3,33 +3,51 @@
 //Author: Matt Lantz
 
 class cryptography {
-	
-	public function cryptography(){
-		
-		function encrypt($string){
-			$CI =& get_instance();
-			$key = $CI->config->item('encryption_key');
+    
+    public function cryptography(){
 
-			$iv_size = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC);
-			$iv = mcrypt_create_iv($iv_size, $key);
+        function url_base64_encode($str){
+            return strtr(base64_encode($str),
+                array(
+                    '+' => '.',
+                    '=' => '-',
+                    '/' => '~'
+            ));
+        }
+         
+        function url_base64_decode($str){
+            return base64_decode(strtr($str,
+                array(
+                    '.' => '+',
+                    '-' => '=',
+                    '~' => '/'
+            )));
+        }
 
-			$encrypted = urlencode( base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_128, $key, $string, MCRYPT_MODE_CBC, $iv)) );
-			
-			return $encrypted; 
-		}
-		
-		function decrypt($string){
-			$CI =& get_instance();
-			$key = $CI->config->item('encryption_key');
+        function encrypt($string){
+            $CI =& get_instance();
+            $config_key = $CI->config->item('encryption_key');
+            $sess = $CI->session->userdata('session_id');
 
-			$iv_size = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC);
-			$iv = mcrypt_create_iv($iv_size, $key);
+            $key = substr($config_key.$sess, 0, 30);
 
-			$decrypted =  mcrypt_decrypt(MCRYPT_RIJNDAEL_128, $key, base64_decode(urldecode($string)), MCRYPT_MODE_CBC, $iv);
-			
-			return '"'.$decrypted.'"';
-		}
-	}
+            $encrypted = rawurlencode( url_base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_128, $key, $string, MCRYPT_MODE_ECB)) );
+            
+            return trim($encrypted); 
+        }
+        
+        function decrypt($string){
+            $CI =& get_instance();
+            $config_key = $CI->config->item('encryption_key');
+            $sess = $CI->session->userdata('session_id');
+
+            $key = substr($config_key.$sess, 0, 30);
+
+            $decrypted =  mcrypt_decrypt(MCRYPT_RIJNDAEL_128, $key, url_base64_decode(rawurldecode($string)), MCRYPT_MODE_ECB);
+            
+            return trim($decrypted);
+        }
+    }
 
 }
 //End of File
