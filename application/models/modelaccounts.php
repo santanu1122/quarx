@@ -104,7 +104,7 @@ class modelaccounts extends CI_Model {
                 VALUES( '".mysql_real_escape_string($_POST['user_name'])."', 
                         '".mysql_real_escape_string($_POST['user_email'])."',
                         '".mysql_real_escape_string($password)."',
-                        '0',
+                        '".$this->session->userdata('user_id')."',
                         '".$permission."',
                         'authorized',
                         ".$optional_vals."

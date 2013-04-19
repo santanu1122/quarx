@@ -72,7 +72,7 @@
                         <?php if($profile->owner > 0){ ?>
                         <div class="raw100">
                             <div class="raw33"><p>Guarantor</p></div>
-                            <div class="raw66"><?php echo getUserName($profile->owner); ?></div>
+                            <div class="raw66"><p><?php echo getUserName($profile->owner); ?></p></div>
                         </div>
                         <?php } ?>
 
