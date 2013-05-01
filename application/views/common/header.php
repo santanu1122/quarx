@@ -18,7 +18,7 @@
     <link rel="shortcut icon" type="image" href="<?php echo $root; ?>images/favicon.ico" />
     <link rel="stylesheet" href="<?php echo $root; ?>css/raw.min.css" />
     <link rel="stylesheet" href="<?php echo $root; ?>css/desktop-style.css" lang="EN" dir="ltr" type="text/css" />
-    <link rel='stylesheet' media='screen and (min-width: 320px) and (max-width: 1280px)' href='<?php echo $root; ?>css/tablet-style.css' />
+    <link rel='stylesheet' media='screen and (min-width: 320px) and (max-width: 980px)' href='<?php echo $root; ?>css/tablet-style.css' />
     <link rel='stylesheet' media='screen and (min-width: 120px) and (max-width: 768px)' href='<?php echo $root; ?>css/mobile-styles.css' />
 
     <!-- jQuery -->

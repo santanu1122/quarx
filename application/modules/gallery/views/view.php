@@ -34,25 +34,25 @@
 
     <div class="raw100">
         <div class="raw25"><p><b>Title</b></p></div>
-        <div class="raw12"><p><b>Date</b></p></div>
-        <div class="raw13"><p><b>Category</b></p></div>
-        <div class="raw50"><p><b>Actions</b></p></div>
+        <div class="raw12 tHide mHide"><p><b>Date</b></p></div>
+        <div class="raw13 tHide mHide"><p><b>Category</b></p></div>
+        <div class="raw50 mHide"><p><b>Actions</b></p></div>
     </div>
 
     <?php foreach ($entries as $entry): ?>
         
     <div class="raw100">
-        <div class="raw25 infoBlock"><p><?php echo valTrim($entry->gallery_title, 20); ?></p></div>
-        <div class="raw12 infoBlock"><p><?php echo valCheck($entry->gallery_date); ?></p></div>
-        <div class="raw13 infoBlock"><p><?php echo valCheck(getCatName($entry->gallery_cat)); ?></p></div>
+        <div class="raw25 infoBlock"><p><a href="<?php echo site_url('gallery/editor/'.encrypt($entry->gallery_id)); ?>"><?php echo valTrim($entry->gallery_title, 20); ?></a></p></div>
+        <div class="raw12 infoBlock tHide mHide"><p><?php echo valCheck($entry->gallery_date); ?></p></div>
+        <div class="raw13 infoBlock tHide mHide"><p><?php echo valCheck(getCatName($entry->gallery_cat)); ?></p></div>
 
-        <div class="raw17"><button data-theme="c" onclick="window.location='<?php echo site_url('gallery/editor/'.encrypt($entry->gallery_id)); ?>'">Edit</button></div>
+        <div class="raw17 mHide"><button data-theme="c" onclick="window.location='<?php echo site_url('gallery/editor/'.encrypt($entry->gallery_id)); ?>'">Edit</button></div>
         <?php if($entry->gallery_hide === '1'){ ?>
-        <div class="raw16"><button data-theme="c" onclick="displayEntry('<?php echo encrypt($entry->gallery_id); ?>')">Display</button></div>
+        <div class="raw16 mHide"><button data-theme="c" onclick="displayEntry('<?php echo encrypt($entry->gallery_id); ?>')">Display</button></div>
         <?php }else{ ?>
-        <div class="raw16"><button data-theme="b" onclick="archiveEntry('<?php echo encrypt($entry->gallery_id); ?>')">Archive</button></div>
+        <div class="raw16 mHide"><button data-theme="b" onclick="archiveEntry('<?php echo encrypt($entry->gallery_id); ?>')">Archive</button></div>
         <?php } ?>
-        <div class="raw16"><button data-theme="e" onclick="deleteConfirm('<?php echo encrypt($entry->gallery_id); ?>')">Delete</button></div>
+        <div class="raw16 mHide"><button data-theme="e" onclick="deleteConfirm('<?php echo encrypt($entry->gallery_id); ?>')">Delete</button></div>
     </div>
 
     <?php endforeach; ?>

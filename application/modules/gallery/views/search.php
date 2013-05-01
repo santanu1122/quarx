@@ -6,11 +6,15 @@
 <div class="raw100 align-left">
 
     <div class="device">
-    
-        <h1>Search Results</h1>
-        <div class="wide_box">
+
+        <div class="raw100">
+            <a href="#" data-role="button" onclick="showMenu()">Gallery Menu</a>
+        </div>
+
+        <div class="raw100">
             <div class="reallyTall">
-                <form id="SearchBox" method="post" action="<?php echo site_url('gallery/search'); ?>">   
+                <form id="SearchBox" method="post" action="<?php echo site_url('gallery/search'); ?>"> 
+                    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />   
                     <input id="search" name="search" class="searchBar" value="Enter a Search Term" onfocus="resetSearch()" />
                 </form>
             </div>

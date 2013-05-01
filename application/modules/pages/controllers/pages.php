@@ -99,7 +99,6 @@ class pages extends MX_Controller {
         $data['root'] = base_url();
         $data['pageRoot'] = base_url().'index.php';
         $data['pagetitle'] = 'Pages : Search';
-        $data['sub_menu_title'] = 'Pages : Search';
         
         //load the view elements
         $this->load->view('common/header', $data);

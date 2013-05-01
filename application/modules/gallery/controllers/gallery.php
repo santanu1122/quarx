@@ -98,8 +98,7 @@ class gallery extends MX_Controller {
 
         $data['root'] = base_url();
         $data['pageRoot'] = base_url().'index.php';
-        $data['pagetitle'] = 'Blog : Search';
-        $data['sub_menu_title'] = 'Gallery : Search';
+        $data['pagetitle'] = 'Gallery : Search';
         
         //load the view elements
         $this->load->view('common/header', $data);

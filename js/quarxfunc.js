@@ -105,6 +105,9 @@ function inputDialogDestroy(idTag){
 
 (function($){  
     $.fn.dialogbox = function(options) {
+
+        destroyDialogs();
+
         var defaults = {  
             ok: '',  
             buttons: {}
@@ -158,7 +161,7 @@ function inputDialogDestroy(idTag){
 
         $(this).css({
             left: ($(window).width() - 260)/2,
-            top: ($(window).height() - 260)/2 + $(window).scrollTop()
+            top: (($(window).height() - $(this).height())/2) - 40
         });
 
         $(this).fadeIn();
@@ -167,6 +170,9 @@ function inputDialogDestroy(idTag){
 
 (function($){  
     $.fn.dialogboxInput = function(options) {
+
+        destroyDialogs();
+
         var defaults = {  
             ok: '',
             web_link: '',
@@ -204,7 +210,7 @@ function inputDialogDestroy(idTag){
 
         $(this).css({
             left: ($(window).width() - 260)/2,
-            top: ($(window).height() - 260)/2 + $(window).scrollTop()
+            top: (($(window).height() - $(this).height())/2) - 40
         });
 
         $(this).fadeIn();
@@ -216,3 +222,7 @@ $(document).ready(function(){
         setTimeout(profileImageResize, 200);
     });
 });
+
+function destroyDialogs(){
+    $('.dialogBox').hide();
+}

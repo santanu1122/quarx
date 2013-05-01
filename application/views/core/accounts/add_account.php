@@ -3,38 +3,6 @@ Filename:   add_account.php
 Location:   /application/views/core
 */ ?>
 
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-<script type="text/JavaScript" src="<?php echo $root; ?>js/googlemaps.js"></script>
-
-<script type="text/javascript">
-    function hideSuccessErrors(){
-        $('#error').delay(3000).fadeOut('slow');    
-    }
-
-    $(document).ready(function(e) {
-        hideSuccessErrors();
-    });
-
-    function validationCheck(name){
-        $.ajax({
-            type: 'GET',
-            url: "<?php echo site_url('accounts/unc'); ?>/"+name,
-            dataType: "html",
-            success: function(data){
-                if(data == 1){
-                    $('#u_name').parent().css({
-                        border: '1px solid #f00'
-                    });
-                }else{
-                    $('#u_name').parent().css({
-                        border: '1px solid #61B329'
-                    });
-                }
-            }
-        });
-    }
-</script>
-
 <div class="raw100">
     <div class="device">
         <div class="raw50 mHide">
@@ -121,12 +89,51 @@ Location:   /application/views/core
                         <div class="raw66"><input type="file" name="userfile" size="20" data-role="none" /></div>
                     </div>
                     <div class="raw100">
-                        <div class="raw100"><input class="fatButton" type="submit" value="Add Account" /></div>
+                        <div class="raw100"><input id="addBtn" class="fatButton" type="submit" value="Add Account" /></div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script type="text/JavaScript" src="<?php echo $root; ?>js/googlemaps.js"></script>
+
+<script type="text/javascript">
+    function hideSuccessErrors(){
+        $('#error').delay(3000).fadeOut('slow');    
+    }
+
+    $(document).ready(function(e) {
+        hideSuccessErrors();
+
+        $('#formHolder').keypress(function(event){
+            if (event.keyCode == 10 || event.keyCode == 13) 
+                event.preventDefault();
+          });
+    });
+
+    function validationCheck(name){
+        $.ajax({
+            type: 'GET',
+            url: "<?php echo site_url('accounts/unc'); ?>/"+name,
+            dataType: "html",
+            success: function(data){
+                if(data == 1){
+                    $('#u_name').parent().css({
+                        border: '1px solid #f00'
+                    });
+                    $('#addBtn').attr('disabled', 'disabled');
+                }else{
+                    $('#u_name').parent().css({
+                        border: '1px solid #61B329'
+                    });
+                    $('#addBtn').removeAttr('disabled');
+                }
+            }
+        });
+    }
+</script>
 
 <?php //End of File ?>
