@@ -17,8 +17,8 @@
 <script type="text/javascript">
     
     $(document).ready(function(){
-        $('#imageLibraryBox').height($(window).height()-10);
-        $('#fullScreenImageLibrary').height($(window).height()-10);
+        $('#imageLibraryBox').height($(document).height()-10);
+        $('#fullScreenImageLibrary').height($(document).height()-10);
         $('#Menu').height($(window).height()-10);
         
         $(window).scroll(function(){

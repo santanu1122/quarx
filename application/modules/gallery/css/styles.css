@@ -1,0 +1,27 @@
+/* blog engine rules */
+
+textarea.tinymce{
+    height: 400px;
+}
+
+.pad15{
+    padding: 0 15px;
+}
+
+.tinymce_m{
+    resize: vertical; 
+}
+
+/* Image Gallery
+***************************************************************/
+
+.plusBtn > div{
+    margin: 11px 0 0 14px;
+}
+
+/* View
+***************************************************************/
+
+.infoBlock p{
+    line-height: 30px;
+}

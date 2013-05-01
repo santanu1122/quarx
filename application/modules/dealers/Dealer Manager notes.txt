@@ -1,0 +1,3 @@
+Dealer Manager
+
+The dealer manager is a branch of the accounts controls, it needs to handle adding accounts and edit them, it needs to have multiple levels and the ability to expand on those levels. It needs to utilize the users table in the database to ensure that the master user has full control of all the accounts regardless. 

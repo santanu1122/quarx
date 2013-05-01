@@ -2,7 +2,7 @@
 ***************************************************************/
 
 .ui-content { 
-    max-width: 680px; 
+    /*max-width: 680px; */
     padding: 10px; 
     margin: auto;
 }

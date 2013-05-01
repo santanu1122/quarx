@@ -157,8 +157,8 @@ function inputDialogDestroy(idTag){
         }
 
         $(this).css({
-            marginLeft: ($(window).width() - 287)/2,
-            marginTop: ($(window).height() - 287)/2
+            left: ($(window).width() - 260)/2,
+            top: ($(window).height() - 260)/2 + $(window).scrollTop()
         });
 
         $(this).fadeIn();
@@ -203,8 +203,8 @@ function inputDialogDestroy(idTag){
         }
 
         $(this).css({
-            marginLeft: ($(window).width() - 287)/2,
-            marginTop: ($(window).height() - 287)/2
+            left: ($(window).width() - 260)/2,
+            top: ($(window).height() - 260)/2 + $(window).scrollTop()
         });
 
         $(this).fadeIn();
