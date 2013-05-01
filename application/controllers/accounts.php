@@ -247,8 +247,8 @@ class accounts extends CI_Controller {
         if($this->session->userdata('permission') > 1){
             $setup = $this->quarxsetup->account_opts();
             //check if master access is on
-            if($setup[2]->option_title === 'master access'){
-                redirect('accounts/permission'); // Denied! 
+            if($setup[2]->option_title !== 'master access'){
+                redirect('login/insufficient'); // Denied! 
             }
         }
 
@@ -270,7 +270,7 @@ class accounts extends CI_Controller {
         $this->load->view('common/footer', $data);
     }   
 
-    public function unc($name) {
+    function unc($name) {
         if($name > ''){
             //load the preliminary parts
             $this->load->model('modelaccounts');
@@ -287,8 +287,8 @@ class accounts extends CI_Controller {
         if($this->session->userdata('permission') > 1){
             $setup = $this->quarxsetup->account_opts();
             //check if master access is on
-            if($setup[2]->option_title === 'master access'){
-                redirect('accounts/permission'); // Denied! 
+            if($setup[2]->option_title !== 'master access'){
+                redirect('login/insufficient'); // Denied! 
             }
         }
                 
@@ -357,8 +357,8 @@ class accounts extends CI_Controller {
         if($this->session->userdata('permission') > 1){
             $setup = $this->quarxsetup->account_opts();
             //check if master access is on
-            if($setup[2]->option_title === 'master access'){
-                redirect('accounts/permission'); // Denied! 
+            if($setup[2]->option_title !== 'master access'){
+                redirect('login/insufficient'); // Denied! 
             }
         }
 
@@ -479,8 +479,8 @@ class accounts extends CI_Controller {
         if($this->session->userdata('permission') > 1){
             $setup = $this->quarxsetup->account_opts();
             //check if master access is on
-            if($setup[2]->option_title === 'master access'){
-                redirect('accounts/permission'); // Denied! 
+            if($setup[2]->option_title !== 'master access'){
+                redirect('login/insufficient'); // Denied! 
             }
         }
 
@@ -580,12 +580,11 @@ class accounts extends CI_Controller {
 ***************************************************************/
 
     function view() {
-        // $this->output->cache(9);
         if($this->session->userdata('permission') > 1){
             $setup = $this->quarxsetup->account_opts();
             //check if master access is on
-            if($setup[2]->option_title === 'master access'){
-                redirect('accounts/permission'); // Denied! 
+            if($setup[2]->option_title !== 'master access'){
+                redirect('login/insufficient'); // Denied! 
             }
         }
 
@@ -630,8 +629,8 @@ class accounts extends CI_Controller {
         if($this->session->userdata('permission') > 1){
             $setup = $this->quarxsetup->account_opts();
             //check if master access is on
-            if($setup[2]->option_title === 'master access'){
-                redirect('accounts/permission'); // Denied! 
+            if($setup[2]->option_title !== 'master access'){
+                redirect('login/insufficient'); // Denied! 
             }
         }
 
