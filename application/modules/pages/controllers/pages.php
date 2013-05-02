@@ -82,8 +82,6 @@ class pages extends MX_Controller {
 
     function search(){
         $name = $this->input->post('search');
-            
-            // print_r($_POST);
 
         $this->load->model('model_pages');
         $qry = $this->model_pages->search_page($name);

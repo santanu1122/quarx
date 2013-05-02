@@ -26,7 +26,7 @@
             <?php foreach($results as $page): ?>
                 <div class="grid gridrow">
                     <div class="grid25"><p><a href="<?php echo site_url('pages/editor/'.encrypt($page->page_id)); ?>"><?php echo substr($page->page_title, 0, 30); ?></a></p></div>
-                    <div class="grid25 mHide"><p><?php echo valCheck($page->page_parent); ?></p></div>
+                    <div class="grid25 mHide"><p><?php echo valCheck(getParentName($page->page_parent)); ?></p></div>
                     <div class="grid25 mHide"><p><?php echo valTrim(strip_tags($page->page_entry, 20)); ?></p></div>
                     <div class="grid25 mHide"><p><?php //echo getCatName($page->page_cat); ?></p></div>
                 </div>
