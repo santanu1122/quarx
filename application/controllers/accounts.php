@@ -590,7 +590,6 @@ class accounts extends CI_Controller {
 
         //Grab the tools
         $this->load->library('toolbelt'); 
-        $this->load->library('cryptography'); 
         
         //just to load up the pagination tools and model
         $this->load->library('pagination'); 

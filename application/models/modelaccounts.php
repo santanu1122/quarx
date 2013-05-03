@@ -332,12 +332,14 @@ class modelaccounts extends CI_Model {
             $qry = $this->db->query('   SELECT * 
                                         FROM `users` 
                                         WHERE permission >= 1
+                                        AND permission < 50
                                         AND user_id != 1
                                         ORDER BY user_name ASC LIMIT '.$offset.', '.$limit);
         }else{
             $qry = $this->db->query('   SELECT * 
                                         FROM `users` 
                                         WHERE permission > 1 
+                                        AND permission < 50
                                         OR owner = '.$this->session->userdata('user_id').' 
                                         ORDER BY user_name ASC LIMIT '.$offset.', '.$limit);
         }
@@ -349,7 +351,7 @@ class modelaccounts extends CI_Model {
     
 //collect all the sub users
     function all_profiles_unlimited() {
-        $qry = $this->db->query('SELECT * FROM `users` WHERE permission > 1 ORDER BY user_name ASC');       
+        $qry = $this->db->query('SELECT * FROM `users` WHERE permission > 1 AND permission < 50 ORDER BY user_name ASC');       
         if($qry){
             return $qry->result();
         }
@@ -357,7 +359,7 @@ class modelaccounts extends CI_Model {
     
 //collect the total number of users
     function all_profiles_tally() {
-        $qry = $this->db->query('SELECT * FROM `users` WHERE permission > 1 ORDER BY user_name ASC');       
+        $qry = $this->db->query('SELECT * FROM `users` WHERE permission > 1 AND permission < 50 ORDER BY user_name ASC');       
         if($qry){
             return count($qry->result());
         }
