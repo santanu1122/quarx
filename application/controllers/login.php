@@ -169,7 +169,7 @@ class login extends CI_Controller {
 
                 //configure the emailer
                 $config['charset'] = 'utf-8';
-                $config['protocol'] = 'sendmail';
+                $config['protocol'] = 'mail';
                 $config['mailtype'] = 'html';
                 $config['wordwrap'] = TRUE;
                 $this->email->initialize($config);

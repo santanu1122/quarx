@@ -5,7 +5,7 @@
 
 <!-- Notices -->
 
-<div id="entryUpdated" class="updateBox">
+<!-- <div id="entryUpdated" class="updateBox">
     <p>Your update was successful!</p>
 </div>
 
@@ -20,16 +20,16 @@
 <div id="catFailed" class="errorBox">
     <p>Sorry, adding this category failed. Are you sure you don't have a category with the same title?</p>
 </div>
-
+ -->
 <!-- Dialogs -->
 
-<div id="dialog-cat" class="dialogBox" title="Delete Confirmation">
+<!-- <div id="dialog-cat" class="dialogBox" title="Delete Confirmation">
     <p>Are you sure you want to delete this category?</p>
 </div>
 
 <div id="dialog-oops" class="dialogBox" title="Oops!">
     <p>Sorry, but you can't delete a category that has entries :(</p>
-</div>
+</div> -->
 
 <!-- Main Page -->
 

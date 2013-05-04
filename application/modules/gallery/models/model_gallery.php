@@ -17,17 +17,7 @@ class model_gallery extends CI_Model {
     function add_entry() {
         if($this->input->post('gallery_name') > '' && $this->input->post('gallery_entry') > '' && $this->input->post('gallery_cat') > ''){
             $title = strtolower($_POST['gallery_name']);
-            $url_title = str_replace(" ", "-", $title);
-            $url_title = str_replace("'", "", $url_title);
-            $url_title = str_replace("\"", "", $url_title);
-            $url_title = str_replace("?", "", $url_title);
-            $url_title = str_replace("!", "", $url_title);
-            $url_title = str_replace(":", "", $url_title);
-            $url_title = str_replace("&", "", $url_title);
-            $url_title = str_replace("%", "", $url_title);
-            $url_title = str_replace("*", "", $url_title);
-            $url_title = str_replace("#", "", $url_title);
-            $url_title = str_replace("@", "", $url_title);
+            $url_title = strip_special_chars($title);
 
             $sql = "INSERT INTO 
                         gallery(gallery_title, gallery_url_title, gallery_entry, gallery_cat, gallery_img_library, gallery_date, gallery_hide, author_id) 
@@ -41,8 +31,8 @@ class model_gallery extends CI_Model {
                             '".mysql_real_escape_string($this->session->userdata('user_id'))."'
                             )";
 
-            $qry = mysql_query($sql);
-            $id = mysql_insert_id();
+            $qry = $this->db->query($sql);
+            $id = $this->db->insert_id();
             if($qry){
                 return $id;
             }else{
@@ -57,17 +47,7 @@ class model_gallery extends CI_Model {
     function edit_entry() {  
         $title = strtolower($_POST['gallery_name']);
         $title = html_entity_decode($title);
-        $url_title = str_replace(" ", "-", $title);
-        $url_title = str_replace("'", "", $url_title);
-        $url_title = str_replace("\"", "", $url_title);
-        $url_title = str_replace("?", "", $url_title);
-        $url_title = str_replace("!", "", $url_title);
-        $url_title = str_replace(":", "", $url_title);
-        $url_title = str_replace("&", "", $url_title);
-        $url_title = str_replace("%", "", $url_title);
-        $url_title = str_replace("*", "", $url_title);
-        $url_title = str_replace("#", "", $url_title);
-        $url_title = str_replace("@", "", $url_title);
+        $url_title = strip_special_chars($title);
 
         $sql = "UPDATE 
                     gallery 
@@ -81,7 +61,7 @@ class model_gallery extends CI_Model {
                 WHERE 
                     gallery_id = ".$_POST['gallery_id'];
                     
-        $qry = mysql_query($sql);
+        $qry = $this->db->query($sql);
         
         if($qry){
             return $_POST['gallery_id'];

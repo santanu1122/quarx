@@ -508,6 +508,12 @@ body, html{
     /*border-top: 1px solid #222;*/
 }
 
+.epic{
+    font-size: 80px;
+    text-align: center;
+    line-height: 70px;
+}
+
 /* CloudMail ======================================= */
 
 .textBox p{

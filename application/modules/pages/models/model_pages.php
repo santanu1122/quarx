@@ -17,17 +17,7 @@ class model_pages extends CI_Model {
     function add_entry() {
         if($this->input->post('page_name') > '' && $this->input->post('page_entry') > '' && $this->input->post('page_parent') > ''){
             $title = strtolower($this->input->post('page_name'));
-            $url_title = str_replace(" ", "-", $title);
-            $url_title = str_replace("'", "", $url_title);
-            $url_title = str_replace("\"", "", $url_title);
-            $url_title = str_replace("?", "", $url_title);
-            $url_title = str_replace("!", "", $url_title);
-            $url_title = str_replace(":", "", $url_title);
-            $url_title = str_replace("&", "", $url_title);
-            $url_title = str_replace("%", "", $url_title);
-            $url_title = str_replace("*", "", $url_title);
-            $url_title = str_replace("#", "", $url_title);
-            $url_title = str_replace("@", "", $url_title);
+            $url_title = strip_special_chars($title);
 
             $sql = "INSERT INTO 
                         pages(page_title, page_url_title, page_entry, page_parent, page_img_library, page_hide, author_id) 
@@ -56,17 +46,7 @@ class model_pages extends CI_Model {
     function edit_entry() {  
         $title = strtolower($this->input->post('page_name'));
         $title = html_entity_decode($title);
-        $url_title = str_replace(" ", "-", $title);
-        $url_title = str_replace("'", "", $url_title);
-        $url_title = str_replace("\"", "", $url_title);
-        $url_title = str_replace("?", "", $url_title);
-        $url_title = str_replace("!", "", $url_title);
-        $url_title = str_replace(":", "", $url_title);
-        $url_title = str_replace("&", "", $url_title);
-        $url_title = str_replace("%", "", $url_title);
-        $url_title = str_replace("*", "", $url_title);
-        $url_title = str_replace("#", "", $url_title);
-        $url_title = str_replace("@", "", $url_title);
+        $url_title = strip_special_chars($title);
 
         $sql = "UPDATE 
                     pages 

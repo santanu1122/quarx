@@ -95,8 +95,7 @@ class users extends MX_Controller {
 
         $data['root'] = base_url();
         $data['pageRoot'] = base_url().'index.php';
-        $data['pagetitle'] = 'Pages : Search';
-        $data['sub_menu_title'] = 'Pages : Search';
+        $data['pagetitle'] = 'Users : Search';
         
         //load the view elements
         $this->load->view('common/header', $data);
@@ -105,6 +104,22 @@ class users extends MX_Controller {
         $this->load->view('users/search', $data);
         $this->load->view('common/footer', $data);
     }
+
+    public function settings() {
+        $data['root'] = base_url();
+        $data['pageRoot'] = base_url().'index.php';
+        $data['pagetitle'] = 'Users : Settings';
+
+        //load the view elements
+        $this->load->view('common/header', $data);
+        $this->load->view('users/extras', $data);
+        $this->load->view('users/users_menu', $users);
+        $this->load->view('users/settings', $data);
+        $this->load->view('common/footer', $data);
+    }
+
+/* Invisible
+***************************************************************/
 
     public function options(){
         $this->load->model('model_users');
@@ -115,6 +130,11 @@ class users extends MX_Controller {
         foreach($parents as $item):
             echo '<option value="'.$item->page_id.'">'.$item->page_title.'</option>';
         endforeach;
+    }
+
+    public function edit(){
+        $this->load->model('model_users');
+        $parents = $this->model_users->get_all_users($this->input->post('autoAuth'));
     }
 
 /* Redirects
@@ -191,17 +211,17 @@ class users extends MX_Controller {
         }
     }
 
-/* Add Pages Entry
+/* Add User
 ***************************************************************/
 
-    public function add_entry() {
+    public function add_user() {
         $this->load->model('model_users');
-        $qry = $this->model_users->add_entry();
+        $qry = $this->model_users->add_user();
         
         if($qry){
             echo $qry;
         }else{
-            echo 'duplicate title';
+            echo 'duplicate user';
         }
     }
 

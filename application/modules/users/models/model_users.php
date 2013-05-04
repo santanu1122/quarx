@@ -11,44 +11,39 @@ class model_users extends CI_Model {
         parent::__construct();
     }
     
-/* Add Entry
+/* Add User
 ***************************************************************/
 
-    // function add_entry() {
-    //     if($this->input->post('page_name') > '' && $this->input->post('page_entry') > '' && $this->input->post('page_parent') > ''){
-    //         $title = strtolower($this->input->post('page_name'));
-    //         $url_title = str_replace(" ", "-", $title);
-    //         $url_title = str_replace("'", "", $url_title);
-    //         $url_title = str_replace("\"", "", $url_title);
-    //         $url_title = str_replace("?", "", $url_title);
-    //         $url_title = str_replace("!", "", $url_title);
-    //         $url_title = str_replace(":", "", $url_title);
-    //         $url_title = str_replace("&", "", $url_title);
-    //         $url_title = str_replace("%", "", $url_title);
-    //         $url_title = str_replace("*", "", $url_title);
-    //         $url_title = str_replace("#", "", $url_title);
-    //         $url_title = str_replace("@", "", $url_title);
+    function add_user() {
 
-    //         $sql = "INSERT INTO 
-    //                     pages(page_title, page_url_title, page_entry, page_parent, page_img_library, page_hide, author_id) 
-    //                 VALUES( '".$this->input->post('page_name')."', 
-    //                         '".mysql_real_escape_string($url_title)."', 
-    //                         '".$this->input->post('page_entry')."',
-    //                         '".$this->input->post('page_parent')."',
-    //                         '".$this->input->post('page_img_library')."',
-    //                         '0',
-    //                         '".$this->session->userdata('user_id')."'
-    //                         )";
+            $sql = "INSERT INTO 
+                        pages(  page_title, 
+                                page_url_title, 
+                                page_entry, 
+                                page_parent, 
+                                page_img_library, 
+                                page_hide, 
+                                author_id
+                            ) 
+                    
+                    VALUES( '".$this->input->post('page_name')."', 
+                            '".mysql_real_escape_string($url_title)."', 
+                            '".$this->input->post('page_entry')."',
+                            '".$this->input->post('page_parent')."',
+                            '".$this->input->post('page_img_library')."',
+                            '0',
+                            '".$this->session->userdata('user_id')."'
+                            )";
 
-    //         $qry = $this->db->query($sql);
-    //         $id = $this->db->insert_id();
-    //         if($qry){
-    //             return $id;
-    //         }else{
-    //             return false;
-    //         }
-    //     }  
-    // }
+            $qry = $this->db->query($sql);
+            $id = $this->db->insert_id();
+            if($qry){
+                return $id;
+            }else{
+                return false;
+            }
+        }  
+    }
 
 /* Edit Entry
 ***************************************************************/

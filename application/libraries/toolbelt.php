@@ -19,6 +19,13 @@ class toolbelt {
                 return $val;
             }
         }
+
+        function strip_special_chars($str){
+            $stripped = preg_replace("/[^A-Za-z0-9 ]/", "", $str);
+            $polished = str_replace(" ", "-", $stripped);
+
+            return $polished;
+        }
     
     }
 

@@ -42,17 +42,7 @@ class model_blog_categories extends CI_Model {
     function add_category($cat_name, $cat_parent) { 
         $title = strtolower($this->input->post('cat_name'));
         $title = html_entity_decode($title);
-        $url_title = str_replace(" ", "-", $title);
-        $url_title = str_replace("'", "", $url_title);
-        $url_title = str_replace("\"", "", $url_title);
-        $url_title = str_replace("?", "", $url_title);
-        $url_title = str_replace("!", "", $url_title);
-        $url_title = str_replace(":", "", $url_title);
-        $url_title = str_replace("&", "", $url_title);
-        $url_title = str_replace("%", "", $url_title);
-        $url_title = str_replace("*", "", $url_title);
-        $url_title = str_replace("#", "", $url_title);
-        $url_title = str_replace("@", "", $url_title);
+        $url_title = strip_special_chars($title);
 
         $sql = "INSERT INTO 
                     blog_categories(cat_title, cat_url_title, cat_parent) 

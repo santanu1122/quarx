@@ -3,6 +3,8 @@
     Location:   /application/views/core
 */ ?>
 
+<!-- notifications -->
+
 <div id="dialog-confirm" class="dialogBox" title="Delete Confirmation">
     <p>Are you sure you want to delete this account?</p>
 </div>
@@ -26,6 +28,8 @@
 <div id="dialog-disable" class="dialogBox" title="Disable Confirmation">
     <p>Are you sure you want to disable this account? This will not delete the account or its information.</p>
 </div>
+
+<!-- content -->
 
 <div class="raw100">
     <div class="device">

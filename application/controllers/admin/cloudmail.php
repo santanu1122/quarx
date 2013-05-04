@@ -84,7 +84,7 @@ class cloudmail extends CI_Controller {
                 $this->load->library('email');
 
                 $config['charset'] = 'utf-8';
-                $config['protocol'] = 'sendmail';
+                $config['protocol'] = 'mail';
                 $config['mailtype'] = 'html';
                 $config['wordwrap'] = TRUE;
 

@@ -1,1 +1,1 @@
-<li onclick="pageScroll('#blog-main')">Blog - Module</li>
+<li onclick="pageScroll('#users-main')">Users - Module</li>

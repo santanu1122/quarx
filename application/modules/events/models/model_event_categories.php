@@ -42,24 +42,14 @@ class model_event_categories extends CI_Model {
     function add_category($cat_name, $cat_parent) { 
         $title = strtolower($this->input->post('cat_name'));
         $title = html_entity_decode($title);
-        $url_title = str_replace(" ", "-", $title);
-        $url_title = str_replace("'", "", $url_title);
-        $url_title = str_replace("\"", "", $url_title);
-        $url_title = str_replace("?", "", $url_title);
-        $url_title = str_replace("!", "", $url_title);
-        $url_title = str_replace(":", "", $url_title);
-        $url_title = str_replace("&", "", $url_title);
-        $url_title = str_replace("%", "", $url_title);
-        $url_title = str_replace("*", "", $url_title);
-        $url_title = str_replace("#", "", $url_title);
-        $url_title = str_replace("@", "", $url_title);
+        $url_title = strip_special_chars($title);
 
         $sql = "INSERT INTO 
                     event_categories(cat_title, cat_url_title, cat_parent) 
                 VALUES( '".mysql_real_escape_string($cat_name)."', 
                         '".mysql_real_escape_string($url_title)."', 
                         '".mysql_real_escape_string($cat_parent)."')";
-        $qry = mysql_query($sql);
+        $qry = $this->db->query($sql);
         
         if($qry){
             return true;
@@ -79,7 +69,7 @@ class model_event_categories extends CI_Model {
                 return false;
             }else{
                 $del_sql = "DELETE FROM `event_categories` WHERE cat_id = ".$id;
-                $del_qry = mysql_query($del_sql);
+                $del_qry = $this->db->query($del_sql);
                 return true;
             } 
         }

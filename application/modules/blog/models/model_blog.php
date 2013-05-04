@@ -16,18 +16,7 @@ class model_blog extends CI_Model {
 
     function add_entry() {
         if($this->input->post('blog_name') > '' && $this->input->post('blog_entry') > '' && $this->input->post('blog_cat') > ''){
-            $title = strtolower($_POST['blog_name']);
-            $url_title = str_replace(" ", "-", $title);
-            $url_title = str_replace("'", "", $url_title);
-            $url_title = str_replace("\"", "", $url_title);
-            $url_title = str_replace("?", "", $url_title);
-            $url_title = str_replace("!", "", $url_title);
-            $url_title = str_replace(":", "", $url_title);
-            $url_title = str_replace("&", "", $url_title);
-            $url_title = str_replace("%", "", $url_title);
-            $url_title = str_replace("*", "", $url_title);
-            $url_title = str_replace("#", "", $url_title);
-            $url_title = str_replace("@", "", $url_title);
+            $url_title = strip_special_chars(strtolower($_POST['blog_name']));
 
             $sql = "INSERT INTO 
                         blog(blog_title, blog_url_title, blog_entry, blog_cat, blog_img_library, blog_date, blog_hide, author_id) 
@@ -56,18 +45,7 @@ class model_blog extends CI_Model {
 
     function edit_entry() {  
         $title = strtolower($this->input->post('blog_name'));
-        $title = html_entity_decode($title);
-        $url_title = str_replace(" ", "-", $title);
-        $url_title = str_replace("'", "", $url_title);
-        $url_title = str_replace("\"", "", $url_title);
-        $url_title = str_replace("?", "", $url_title);
-        $url_title = str_replace("!", "", $url_title);
-        $url_title = str_replace(":", "", $url_title);
-        $url_title = str_replace("&", "", $url_title);
-        $url_title = str_replace("%", "", $url_title);
-        $url_title = str_replace("*", "", $url_title);
-        $url_title = str_replace("#", "", $url_title);
-        $url_title = str_replace("@", "", $url_title);
+        $url_title = strip_special_chars(html_entity_decode($title));
 
         $sql = "UPDATE 
                     blog 
