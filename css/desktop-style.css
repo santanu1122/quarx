@@ -350,7 +350,7 @@ body, html{
 }
 
 .unauthorized p, .unauthorized h3{
-    color: #fff;
+    color: #111;
 }
 
 /* Image Characteristics ================================= */
@@ -461,6 +461,14 @@ body, html{
 }
 
 .rightBox{
+    float: right;
+}
+
+.leftFloat{
+    float: left;
+}
+
+.rightFloat{
     float: right;
 }
 

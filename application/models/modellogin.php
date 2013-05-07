@@ -14,18 +14,21 @@ class modellogin extends CI_Model {
         $this->db->where('status', 'authorized');
         $query = $this->db->get('users');
 
-        if($query->num_rows == 1){
+        if($query->num_rows() == 1){
             $sql = "SELECT * FROM users WHERE user_name ='".$uname."'";
-            $qry = mysql_query($sql);
-            $row = mysql_fetch_assoc($qry);
-            
-            $this->db->query("UPDATE users SET `last_login` = '".date('Y-m-d')."', `login_counter` = login_counter+1 WHERE user_id = ".$row['user_id']);
+            $qry = $this->db->query($sql);
 
-            $this->session->set_userdata('user_id', $row['user_id']);
-            $this->session->set_userdata('email', $row['user_email']);
-            $this->session->set_userdata('permission', $row['permission']);
-            $this->session->set_userdata('owner', $row['owner']);
-            @$this->session->set_userdata('company', $row['company']);
+            foreach ($qry->result() as $row):
+            
+            $this->db->query("UPDATE users SET `last_login` = '".date('Y-m-d')."', `login_counter` = login_counter+1 WHERE user_id = ".$row->user_id);
+
+            $this->session->set_userdata('user_id', $row->user_id);
+            $this->session->set_userdata('email', $row->user_email);
+            $this->session->set_userdata('permission', $row->permission);
+            @$this->session->set_userdata('owner', $row->owner);
+            $this->session->set_userdata('logged_in', true);
+
+            @$this->session->set_userdata('company', $row->company);
 
                 //In case they opt for the remember me option!
                 if($this->input->post('remember_me') >= 1){
@@ -45,11 +48,8 @@ class modellogin extends CI_Model {
 
                     $this->input->set_cookie($cookie_pass); 
                 }
-                
-                $data = array(
-                    'username' => $this->input->post('username'),
-                    'logged_in' => true
-                );
+
+            endforeach;
             
             return true;
         }
@@ -72,7 +72,6 @@ class modellogin extends CI_Model {
     function unauthorizedAccount($uname, $upass){
         $this->db->where('user_name', $uname);
         $this->db->where('user_pass', $upass);
-        // $this->db->where('user_state', 'disabled');
         $this->db->where('status', 'unauthorized');
         $query = $this->db->get('users');
 
@@ -92,17 +91,16 @@ class modellogin extends CI_Model {
     }
 
     function validate() {
-
-        if($this->validAccount($this->input->post('username'), sha1($this->input->post('password'))) ){
+        if($this->validAccount($this->input->post('username'), hash("sha256", $this->input->post('password'))) ){
             return 'valid';
         }
-        elseif($this->disabledAccount($this->input->post('username'), sha1($this->input->post('password'))) ){
+        elseif($this->disabledAccount($this->input->post('username'), hash("sha256", $this->input->post('password'))) ){
             return 'disabled';
         }
-        elseif($this->unauthorizedAccount($this->input->post('username'), sha1($this->input->post('password'))) ){
+        elseif($this->unauthorizedAccount($this->input->post('username'), hash("sha256", $this->input->post('password'))) ){
             return 'unauthorized';
         }
-        elseif($this->noAccount($this->input->post('username'), sha1($this->input->post('password'))) ){
+        elseif($this->noAccount($this->input->post('username'), hash("sha256", $this->input->post('password'))) ){
             return 'noAccount';
         }
     }
@@ -110,51 +108,38 @@ class modellogin extends CI_Model {
     //A cookie validator if they want to be rememebered!
     function cookie_validate($username, $password){
         $sql = "SELECT * FROM users WHERE user_name = '".$username."' AND user_pass = '".$password."'";
-        $query = mysql_query($sql);
-        $numRows = mysql_num_rows($query);
+        $query = $this->db->query($sql);
+        $numRows = $query->num_rows();
         if($numRows === null){
             $numRows = 3;
         }
 
         if($numRows === 1){
             $sql = "SELECT * FROM users WHERE user_name ='".$username."'";
-            $qry = mysql_query($sql);
-            $row = mysql_fetch_assoc($qry);
+            $qry = $this->db->query($sql);
+            foreach ($qry->result() as $row):
             
-            $this->session->set_userdata('user_id', $row['user_id']);
-            $this->session->set_userdata('email', $row['user_email']);
-            $this->session->set_userdata('permission', $row['permission']);
-            $this->session->set_userdata('company', $row['company']);
-            $this->session->set_userdata('username', $row['user_name']);
+            $this->session->set_userdata('user_id', $row->user_id);
+            $this->session->set_userdata('email', $row->user_email);
+            $this->session->set_userdata('permission', $row->permission);
+            $this->session->set_userdata('company', $row->company);
+            $this->session->set_userdata('username', $row->user_name);
             $this->session->set_userdata('logged_in', true);
 
-            $this->db->query("UPDATE users SET `last_login` = '".date('Y-m-d')."', `login_counter` = login_counter+1 WHERE user_id = ".$row['user_id']);
+            $this->db->query("UPDATE users SET `last_login` = '".date('Y-m-d')."', `login_counter` = login_counter+1 WHERE user_id = ".$row->user_id);
+
+            endforeach;
 
             return 'success';
         }else{
             return 'fail';
-        }
-        
-    }
-
-    //When you need more teammates, 
-    function create_member(){
-        $new_member_insert_data = array(
-            'first_name' => $this->input->post('first_name'),
-            'last_name' => $this->input->post('last_name'),
-            'email_address' => $this->input->post('email_address'),         
-            'username' => $this->input->post('username'),
-            'password' => md5($this->input->post('password'))                       
-        );
-        
-        $insert = $this->db->insert('membership', $new_member_insert_data);
-        return $insert;
+        } 
     }
     
     //A small user validator for forgotten passwords
     function user_validate(){
-        $this->db->where('user_name', mysql_real_escape_string($this->input->post('u_name')));
-        $this->db->where('user_email', mysql_real_escape_string($this->input->post('u_email')));
+        $this->db->where('user_name', $this->input->post('u_name'));
+        $this->db->where('user_email', $this->input->post('u_email'));
         $query = $this->db->get('users');
     
         if($query->num_rows == 1){
@@ -164,27 +149,29 @@ class modellogin extends CI_Model {
     
     //A clean and simple password maker
     function newpassword(){
-        $rand = rand(10000001,99999999);
+
+        $rand = substr(sha1(rand(10000001,99999999)), 0, 9);
             
             $update_sql = "
                         UPDATE
                             users
                         SET
-                            user_pass = '".sha1($rand)."'
+                            user_pass = '".hash("sha256", $rand)."'
                         WHERE
-                            user_name = '".mysql_real_escape_string($this->input->post('u_name'))."'
+                            user_name = '".$this->input->post('u_name')."'
                         AND
-                            user_email = '".mysql_real_escape_string($this->input->post('u_email'))."'                          
+                            user_email = '".$this->input->post('u_email')."'                          
             ";
             
-        $update_result = mysql_query($update_sql);  
+        $update_result = $this->db->query($update_sql);
+
         return $rand;
     }
     
-    //change the password
+//change the password
     function changepassword(){
-        $sql = "UPDATE users SET `user_pass` = '".sha1($_POST['password'])."' WHERE user_id =".$this->session->userdata('user_id');
-        $qry = mysql_query($sql);
+        $sql = "UPDATE users SET `user_pass` = '".hash("sha256", $this->input->post('password'))."' WHERE user_id =".$this->session->userdata('user_id');
+        $qry = $this->db->query($sql);
         
         if($qry){
             return true;

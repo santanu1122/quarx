@@ -51,10 +51,9 @@
 
             <div class="smallDevice">
                 <h1 class="epic">404</h1>
-                <h1>Ahhhh! You caught us offguard!</h1>
+                <h1>Ops! You caught us offguard.</h1>
                 <p>It seems that we've made a terrible error. We'll be doing our best to make sure this is fixed as soon as possible.</p>
-                <button onclick="javascript:history.back()">Go Back!</button>
-                <p id="followback"></p>
+                <button onclick="javascript:history.back()">Back</button>
             </div>
         </div>
     </div>
@@ -66,10 +65,11 @@
     //fire an email to someone so we know what an error happened!
 
     $refURL = $_SERVER['REQUEST_URI'];
+    $browser = $_SERVER['HTTP_USER_AGENT'];
 
     $to = 'mattlantz@gmail.com';
     $from = "Website Error";
-    $message = "The following website: ".$root." recieved a 404 error: ".$refURL;
+    $message = "The following website: ".$root." recieved a 404 error: ".$refURL." while using the following browser: ".$browser;
 
     mail($to, $from, $message);
 

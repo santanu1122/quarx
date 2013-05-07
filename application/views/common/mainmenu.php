@@ -40,12 +40,14 @@
                     <li><a href="<?php echo site_url('admin/cloudinfo'); ?>">Admin - CloudInfo</a></li>
                     <li onclick="window.location='<?php echo site_url('admin/cloudmail'); ?>'"><a>Admin - CloudMail</a></li>
                     <li onclick="window.location='<?php echo site_url('admin/cloudcatcher'); ?>'"><a>Admin - CloudCatcher</a></li>
+
+                    <li><a href="<?php echo site_url('admin/manual'); ?>">Manual</a></li>
                     
                 <?php if($this->session->userdata('user_id') == 1){ ?>
 
-                <li><a href="<?php echo site_url('admin/manual'); ?>">Manual</a></li>
                 <li><a href="<?php echo site_url('setup'); ?>">Setup</a></li>
                 <li><a href="<?php echo site_url('admin/about'); ?>">About</a></li>
+
                 <?php } ?>
             <?php } ?>
 

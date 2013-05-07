@@ -3,6 +3,32 @@
     Location:   /application/views/page
 */ ?>
 
+<!-- Notices -->
+
+<?php if(isset($_GET['fail'])){ ?>
+<div id="error" class="errorBox">
+    <p>Sorry, we were unable to add this user. Please try again.</p>
+</div>
+<?php } ?>
+
+<?php if(isset($_GET['efail'])){ ?>
+<div id="error" class="errorBox">
+    <p>Sorry, we were unable to edit this user. Please try again.</p>
+</div>
+<?php } ?>
+
+<?php if(isset($_GET['dfail'])){ ?>
+<div id="error" class="errorBox">
+    <p>Sorry, we were unable to delete this user. Please try again.</p>
+</div>
+<?php } ?>
+
+<?php if(isset($_GET['success'])){ ?>
+<div id="success" class="updateBox">
+    <p>You've successfully updated a users profile!</p>
+</div>
+<?php } ?>
+
 <!-- Dialogs -->
 
 <div id="dialog-confirm" class="dialogBox" title="Delete Confirmation">
@@ -14,7 +40,7 @@
 </div>
 
 <div id="dialog-enable" class="dialogBox" title="Enable Confirmation">
-    <p>Are you sure you want to enable this u?</p>
+    <p>Are you sure you want to enable this user?</p>
 </div>
 
 <!-- Content -->
@@ -26,7 +52,7 @@
     </div>
 
     <div class="raw100">
-        <form id="SearchBox" method="post" action="<?php echo site_url('user/search'); ?>">
+        <form id="SearchBox" method="post" action="<?php echo site_url('users/search'); ?>">
             <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />    
             <input id="search" name="search" class="searchBar" value="Enter a Search Term" onfocus="resetSearch()" />
         </form>
@@ -51,7 +77,7 @@
         <?php }else{ ?>
         <div class="raw16 mHide"><button data-theme="b" onclick="disableUser('<?php echo encrypt($u->user_id); ?>')">Disable</button></div>
         <?php } ?>
-        <div class="raw16 mHide"><button data-theme="e" onclick="deleteUser('<?php echo encrypt($u->user_id); ?>')">Delete</button></div>
+        <div class="raw16 mHide"><button data-theme="e" onclick="deleteConfirm('<?php echo encrypt($u->user_id); ?>')">Delete</button></div>
     </div>
 
     <?php endforeach; ?>
@@ -59,7 +85,11 @@
 </div>
 
 <script type="text/javascript">
-
+    
+    function hideSuccessErrors(){
+        $('#error, #success').fadeIn('fast').delay(3000).fadeOut('slow');    
+    }
+    
     function resetSearch(){
         $('#search').val('');
         $('#search').css('color','#222');
@@ -72,7 +102,7 @@
         $( "#dialog-confirm" ).dialogbox({
             buttons: {
                 Ok: function() {
-                    window.location="<?php echo site_url('pages/delete_u').'/'; ?>"+id; 
+                    window.location="<?php echo site_url('users/delete_user').'/'; ?>"+id; 
                 },
                 Cancel: function() {
                     dialogDestroy('#dialog-confirm');
@@ -81,31 +111,35 @@
         });
     }
 
-    function archiveEntry(id){
-        $( "#dialog-archive" ).dialogbox({
+    function enableUser(id){
+        $( "#dialog-enable" ).dialogbox({
             buttons: {
                 Ok: function() {
-                    window.location="<?php echo site_url('pages/archive_u').'/'; ?>"+id; 
+                    window.location="<?php echo site_url('users/enable_user').'/'; ?>"+id; 
                 },
                 Cancel: function() {
-                    dialogDestroy('#dialog-archive');
+                    dialogDestroy('#dialog-enable');
                 }
             }
         });
     }
 
-    function displayEntry(id){    
-        $( "#dialog-display" ).dialogbox({
+    function disableUser(id){    
+        $( "#dialog-disable" ).dialogbox({
             buttons: {
                 Ok: function() {
-                    window.location="<?php echo site_url('pages/display_u').'/'; ?>"+id; 
+                    window.location="<?php echo site_url('users/disable_user').'/'; ?>"+id; 
                 },
                 Cancel: function() {
-                    dialogDestroy('#dialog-display');
+                    dialogDestroy('#dialog-disable');
                 }
             }
         });
     }
+
+    $(document).ready(function(){
+        hideSuccessErrors();
+    });
 
 </script>
     

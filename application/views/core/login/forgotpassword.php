@@ -3,13 +3,6 @@
 	Location: 	/application/views/core
 */ ?>
 
-<script type="text/javascript">
-    $(document).ready(function(){
-        $("#errorBox").fadeIn();
-        setTimeout(function(){ $("#errorBox").fadeOut(); }, 2200);
-    });
-</script>
-
 <?php if(isset($error)){ ?>
     <div id="errorBox" class="errorBox">
         <p><?php echo $error; ?></p>
@@ -53,5 +46,12 @@
     </div>
 
 </div><!--/content -->
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#errorBox").fadeIn();
+        setTimeout(function(){ $("#errorBox").fadeOut(); }, 2200);
+    });
+</script>
 
 <?php /* End of File */ ?>

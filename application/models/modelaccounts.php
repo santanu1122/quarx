@@ -2,7 +2,6 @@
 /*
     Filename:   modelaccounts.php
     Location:   /application/models/
-    Author:     Matt Lantz
 */
 
 class modelaccounts extends CI_Model {
@@ -41,81 +40,97 @@ class modelaccounts extends CI_Model {
     
 //simple task of updating the master profile based on the new inputs
     function profile_update($img, $opts){
+        $optional = '';
+
         if($opts[0]->option_title === 'advanced accounts'){
             $optional = "
-                `address` = '".mysql_real_escape_string($_POST['address'])."',
-                `city` = '".mysql_real_escape_string($_POST['city'])."',
-                `state` = '".mysql_real_escape_string($_POST['state_prov'])."',
-                `country` = '".mysql_real_escape_string($_POST['country'])."',
-                `phone` = '".mysql_real_escape_string($_POST['phone'])."',
-                `fax` = '".mysql_real_escape_string($_POST['fax'])."',
-                `website` = '".mysql_real_escape_string($_POST['website'])."',
-                `company` = '".mysql_real_escape_string($_POST['company'])."',";
+                `address` = '".$this->input->post('address')."',
+                `city` = '".$this->input->post('city')."',
+                `state` = '".$this->input->post('state_prov')."',
+                `country` = '".$this->input->post('country')."',
+                `phone` = '".$this->input->post('phone')."',
+                `fax` = '".$this->input->post('fax')."',
+                `website` = '".$this->input->post('website')."',
+                `company` = '".$this->input->post('company')."',";
         }
 
         $sql = "UPDATE 
                     users 
                 SET 
-                    `user_email` = '".mysql_real_escape_string($_POST['email'])."',
-                    `full_name` = '".mysql_real_escape_string($_POST['full_name'])."',
-                    `location` = '".mysql_real_escape_string($_POST['location'])."',
+                    `user_email` = '".$this->input->post('email')."',
+                    `full_name` = '".$this->input->post('full_name')."',
+                    `location` = '".$this->input->post('location')."',
                     ".$optional."
-                    `lat` = '".mysql_real_escape_string($_POST['latitude'])."',
-                    `lng` = '".mysql_real_escape_string($_POST['longitude'])."',
+                    `lat` = '".$this->input->post('latitude')."',
+                    `lng` = '".$this->input->post('longitude')."',
                     `img` = '".$img."'
                 WHERE 
                     user_id=".$this->session->userdata('user_id');
                     
-        $qry = mysql_query($sql);
+        $qry = $this->db->query($sql);
         
         if($qry){
-            $this->session->set_userdata('email', $_POST['email']);
+            $this->session->set_userdata('email', $this->input->post('email'));
             return true;
         }
     }
+
+/* Add a profile
+***************************************************************/
     
+//Just tp verify that there are no others
+    function username_checker() {
+        $qry = $this->db->query('SELECT * FROM `users` WHERE user_name = "'.$this->input->post('user_name').'"');       
+        if($qry){
+            return $qry->result();
+        }
+    }
+
 //add a new user 
     function profile_adder($img, $opts) {
         $permission = 2;
+        $optional_inserts = '';
+        $optional_vals = '';
         
-        $rand = rand(10000001,99999999);
+        $rand = substr(sha1(rand(10000001,99999999)), 0, 9);
         
-        $password = sha1($rand);
+        $password = hash("sha256", $rand);
 
             if($opts[0]->option_title === 'advanced accounts'){
                 $optional_inserts = "address, city, state, country, phone, fax, website, company, ";
 
                 $optional_vals = "
-                    '".mysql_real_escape_string($_POST['address'])."',
-                    '".mysql_real_escape_string($_POST['city'])."',
-                    '".mysql_real_escape_string($_POST['state_prov'])."',
-                    '".mysql_real_escape_string($_POST['country'])."',
-                    '".mysql_real_escape_string($_POST['phone'])."',
-                    '".mysql_real_escape_string($_POST['fax'])."',
-                    '".mysql_real_escape_string($_POST['website'])."',
-                    '".mysql_real_escape_string($_POST['company'])."',";
+                    '".$this->input->post('address')."',
+                    '".$this->input->post('city')."',
+                    '".$this->input->post('state_prov')."',
+                    '".$this->input->post('country')."',
+                    '".$this->input->post('phone')."',
+                    '".$this->input->post('fax')."',
+                    '".$this->input->post('website')."',
+                    '".$this->input->post('company')."',";
             }
 
         //Just to make sure we have a reason to add stuff to the db!
-        if(mysql_real_escape_string($_POST['user_name']) > ''){
+        if($this->input->post('user_name') > ''){
         
             $sql = "INSERT INTO 
                     users(user_name, user_email, user_pass, owner, permission, status, ".$optional_inserts."lat, lng, location, full_name, user_state, img) 
-                VALUES( '".mysql_real_escape_string($_POST['user_name'])."', 
-                        '".mysql_real_escape_string($_POST['user_email'])."',
-                        '".mysql_real_escape_string($password)."',
+                VALUES( '".$this->input->post('user_name')."', 
+                        '".$this->input->post('user_email')."',
+                        '".$password."',
                         '".$this->session->userdata('user_id')."',
                         '".$permission."',
                         'authorized',
                         ".$optional_vals."
-                        '".mysql_real_escape_string($_POST['latitude'])."',
-                        '".mysql_real_escape_string($_POST['longitude'])."',
-                        '".mysql_real_escape_string($_POST['location'])."',
-                        '".mysql_real_escape_string($_POST['full_name'])."',
+                        '".$this->input->post('latitude')."',
+                        '".$this->input->post('longitude')."',
+                        '".$this->input->post('location')."',
+                        '".$this->input->post('full_name')."',
                         'enabled',
-                        '".mysql_real_escape_string($img)."'
+                        '".$img."'
                         )";
-            $qry = mysql_query($sql);
+
+            $qry = $this->db->query($sql);
         
         }
 
@@ -127,14 +142,6 @@ class modelaccounts extends CI_Model {
 //the main function to pull in all the users and thier profiles
     function account_manager() {
         $qry = $this->db->query('SELECT * FROM `users` WHERE permission = 2');      
-        if($qry){
-            return $qry->result();
-        }
-    }
-    
-//Just tp verify that there are no others
-    function username_checker() {
-        $qry = $this->db->query('SELECT * FROM `users` WHERE user_name = "'.$_POST['user_name'].'"');       
         if($qry){
             return $qry->result();
         }
@@ -194,32 +201,34 @@ class modelaccounts extends CI_Model {
     
 //Edit this profile
     function this_profile_update($img, $id, $opts) {
+        $optional = '';
+
         if($opts[0]->option_title === 'advanced accounts'){
             $optional = "
-                `address` = '".mysql_real_escape_string($_POST['address'])."',
-                `city` = '".mysql_real_escape_string($_POST['city'])."',
-                `state` = '".mysql_real_escape_string($_POST['state_prov'])."',
-                `country` = '".mysql_real_escape_string($_POST['country'])."',
-                `phone` = '".mysql_real_escape_string($_POST['phone'])."',
-                `fax` = '".mysql_real_escape_string($_POST['fax'])."',
-                `website` = '".mysql_real_escape_string($_POST['website'])."',
-                `company` = '".mysql_real_escape_string($_POST['company'])."',";
+                `address` = '".$this->input->post('address')."',
+                `city` = '".$this->input->post('city')."',
+                `state` = '".$this->input->post('state_prov')."',
+                `country` = '".$this->input->post('country')."',
+                `phone` = '".$this->input->post('phone')."',
+                `fax` = '".$this->input->post('fax')."',
+                `website` = '".$this->input->post('website')."',
+                `company` = '".$this->input->post('company')."',";
         }
 
         $sql = "UPDATE 
                     users 
                 SET 
-                    `user_email` = '".mysql_real_escape_string($_POST['user_email'])."',
-                    `full_name` = '".mysql_real_escape_string($_POST['full_name'])."',
+                    `user_email` = '".$this->input->post('user_email')."',
+                    `full_name` = '".$this->input->post('full_name')."',
                     ".$optional."
-                    `location` = '".mysql_real_escape_string($_POST['location'])."',
-                    `lat` = '".mysql_real_escape_string($_POST['latitude'])."',
-                    `lng` = '".mysql_real_escape_string($_POST['longitude'])."',
-                    `img` = '".mysql_real_escape_string($img)."'
+                    `location` = '".$this->input->post('location')."',
+                    `lat` = '".$this->input->post('latitude')."',
+                    `lng` = '".$this->input->post('longitude')."',
+                    `img` = '".$img."'
                 WHERE 
                     user_id =".$id;
                     
-        $qry = mysql_query($sql);
+        $qry = $this->db->query($sql);
         
         if($qry){
             return true;
@@ -236,7 +245,7 @@ class modelaccounts extends CI_Model {
                 WHERE 
                     user_id =".$id;
                     
-        $qry = mysql_query($sql);
+        $qry = $this->db->query($sql);
         
         if($qry){
             return true;
@@ -253,7 +262,7 @@ class modelaccounts extends CI_Model {
                 WHERE 
                     user_id =".$id;
                     
-        $qry = mysql_query($sql);
+        $qry = $this->db->query($sql);
         
         if($qry){
             return true;
@@ -272,7 +281,7 @@ class modelaccounts extends CI_Model {
                 WHERE 
                     user_id =".$id;
                     
-        $qry = mysql_query($sql);
+        $qry = $this->db->query($sql);
         
         if($qry){
             return true;
@@ -290,7 +299,7 @@ class modelaccounts extends CI_Model {
                 WHERE 
                     user_id =".$id;
                     
-        $qry = mysql_query($sql);
+        $qry = $this->db->query($sql);
         
         if($qry){
             return true;
@@ -307,7 +316,7 @@ class modelaccounts extends CI_Model {
                 WHERE 
                     user_id =".$id;
                     
-        $qry = mysql_query($sql);
+        $qry = $this->db->query($sql);
         
         if($qry){
             return true;

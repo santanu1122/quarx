@@ -14,72 +14,108 @@ class model_users extends CI_Model {
 /* Add User
 ***************************************************************/
 
-    function add_user() {
+    function add_user($img) {
+        //has to generate a password
 
-            $sql = "INSERT INTO 
-                        pages(  page_title, 
-                                page_url_title, 
-                                page_entry, 
-                                page_parent, 
-                                page_img_library, 
-                                page_hide, 
-                                author_id
-                            ) 
-                    
-                    VALUES( '".$this->input->post('page_name')."', 
-                            '".mysql_real_escape_string($url_title)."', 
-                            '".$this->input->post('page_entry')."',
-                            '".$this->input->post('page_parent')."',
-                            '".$this->input->post('page_img_library')."',
-                            '0',
-                            '".$this->session->userdata('user_id')."'
-                            )";
+        $sql = "INSERT INTO 
+                    atomic_users(  
+                            user_name, 
+                            user_email, 
+                            user_fullname, 
+                            user_location, 
+                            user_bio,
+                            user_img,
+                            user_status
+                        ) 
+                VALUES( '".$this->input->post('user_name')."', 
+                        '".$this->input->post('user_email')."',
+                        '".$this->input->post('full_name')."',
+                        '".$this->input->post('location')."',
+                        '".$this->input->post('bio')."',
+                        '".$img."',
+                        'enabled'
+                        )";
 
-            $qry = $this->db->query($sql);
-            $id = $this->db->insert_id();
-            if($qry){
-                return $id;
-            }else{
-                return false;
-            }
+        $qry = $this->db->query($sql);
+
+        //has to email out a password
+
+        if($qry){
+            return true;
+        }else{
+            return false;
         }  
     }
 
-/* Edit Entry
+    function unc_validate($name) {
+        $this->db->where('user_name', mysql_real_escape_string($name));
+        $query = $this->db->get('atomic_users');
+        if($query->num_rows >= 1){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+
+/* Delete User
 ***************************************************************/
 
-    // function edit_entry() {  
-    //     $title = strtolower($this->input->post('page_name'));
-    //     $title = html_entity_decode($title);
-    //     $url_title = str_replace(" ", "-", $title);
-    //     $url_title = str_replace("'", "", $url_title);
-    //     $url_title = str_replace("\"", "", $url_title);
-    //     $url_title = str_replace("?", "", $url_title);
-    //     $url_title = str_replace("!", "", $url_title);
-    //     $url_title = str_replace(":", "", $url_title);
-    //     $url_title = str_replace("&", "", $url_title);
-    //     $url_title = str_replace("%", "", $url_title);
-    //     $url_title = str_replace("*", "", $url_title);
-    //     $url_title = str_replace("#", "", $url_title);
-    //     $url_title = str_replace("@", "", $url_title);
+    function delete_user($id) {
+        $qry = $this->db->query('DELETE FROM `atomic_users` WHERE user_id = '.$id);        
+        if($qry){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
-    //     $sql = "UPDATE 
-    //                 pages 
-    //             SET 
-    //                 `page_title` = '".$this->input->post('page_name')."',
-    //                 `page_url_title` = '".$url_title."',
-    //                 `page_entry` = '".$this->input->post('page_entry')."',
-    //                 `page_img_library` = '".$this->input->post('page_img_library')."',
-    //                 `page_parent` = '".$this->input->post('page_parent')."'
-    //             WHERE 
-    //                 page_id = ".$this->input->post('page_id');
+/* Enable User
+***************************************************************/
+
+    function enable_user($id) {
+        $qry = $this->db->query('UPDATE atomic_users SET `user_status` = "enabled" WHERE user_id = '.$id);        
+        if($qry){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+/* Disable User
+***************************************************************/
+
+    function disable_user($id) {
+        $qry = $this->db->query('UPDATE atomic_users SET `user_status` = "disabled" WHERE user_id = '.$id);        
+        if($qry){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+/* Edit User
+***************************************************************/
+
+    function update_user($img) {
+        $sql = "UPDATE 
+                    atomic_users 
+                SET 
+                    `user_email` = '".$this->input->post('user_email')."',
+                    `user_fullname` = '".$this->input->post('full_name')."',
+                    `user_location` = '".$this->input->post('location')."',
+                    `user_bio` = '".addslashes($this->input->post('bio'))."',
+                    `user_img` = '".$img."'
+                WHERE 
+                    user_id = ".$this->input->post('user_id');
                     
-    //     $qry = $this->db->query($sql);
+        $qry = $this->db->query($sql);
         
-    //     if($qry){
-    //         return $this->input->post('page_id');
-    //     }
-    // }
+        if($qry){
+            return true;
+        }else{
+            return false;
+        }
+    }
     
 /* Gets
 ***************************************************************/
@@ -91,56 +127,26 @@ class model_users extends CI_Model {
         }
     }
 
-    // function get_this_entry($id) {
-    //     $qry = $this->db->query('SELECT * FROM `pages` WHERE page_id = '.$id);        
-    //     if($qry){
-    //         return $qry->result();
-    //     }
-    // }
-
-    // function count_all_pages() {
-    //     $qry = $this->db->query('SELECT * FROM `pages`');        
-    //     if($qry){
-    //         return $qry->num_row();
-    //     }
-    // }
-
-/* Quick Edits
-***************************************************************/
-    
-    // function display_entry($id) {
-    //     $qry = $this->db->query('UPDATE `pages` SET page_hide = 0 WHERE page_id = '.$id);        
-    //     if($qry){
-    //         return true;
-    //     }
-    // }
-
-    // function archive_entry($id) {
-    //     $qry = $this->db->query('UPDATE `pages` SET page_hide = 1 WHERE page_id = '.$id);        
-    //     if($qry){
-    //         return true;
-    //     }
-    // }
-
-    // function delete_entry($id) {
-    //     $qry = $this->db->query('DELETE FROM `pages` WHERE page_id = '.$id);        
-    //     if($qry){
-    //         return true;
-    //     }
-    // }
+    function get_this_user($id) {
+        $qry = $this->db->query('SELECT * FROM `atomic_users` WHERE user_id = '.$id);        
+        if($qry){
+            return $qry->result();
+        }
+    }
 
 /* Search Actions
 ***************************************************************/
 
     //Simple search name function
-    // function search_page($term){
-    //     $qry = $this->db->query('SELECT * FROM `pages` WHERE page_title LIKE "%'.$term.'%" 
-    //                             || page_entry LIKE "%'.$term.'%" 
-    //                             ORDER BY page_id ASC');       
-    //     if($qry){
-    //         return $qry->result();
-    //     }
-    // }
+    function search_users($term){
+        $qry = $this->db->query('SELECT * FROM `atomic_users` WHERE user_name LIKE "%'.$term.'%" 
+                                || user_fullname LIKE "%'.$term.'%" 
+                                || user_email LIKE "%'.$term.'%" 
+                                ORDER BY user_fullname ASC');       
+        if($qry){
+            return $qry->result();
+        }
+    }
 
 }
 // End of File

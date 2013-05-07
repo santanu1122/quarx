@@ -177,6 +177,9 @@ class accounts extends CI_Controller {
         $this->image_lib->clear();
     }
 
+/* Denied Access
+***************************************************************/
+
     function insufficient() {   
         //configured the data to be transported to the view
         $data['root'] = base_url();
@@ -191,6 +194,9 @@ class accounts extends CI_Controller {
         $this->load->view('core/accounts/insufficient', $data);
         $this->load->view('common/footer', $data);
     }
+
+/* Email tool
+***************************************************************/
     
     function emailme($to, $name, $from, $subject, $message) {
         $this->load->library('email');
@@ -202,7 +208,7 @@ class accounts extends CI_Controller {
 
         $this->email->initialize($config);
         
-        $this->email->from($from, $name);
+        $this->email->from('do-not-reply@'.$_SERVER['HTTP_HOST']);
         $this->email->to($to);
         $this->email->subject($subject);
         $this->email->message($message);
@@ -296,7 +302,9 @@ class accounts extends CI_Controller {
         $qry = $this->modelaccounts->username_checker();
         
         if($qry){
+
             redirect('accounts/add?error');
+        
         }else{
             //load the form helper to help with the image upload
             $this->load->helper(array('form', 'url'));
@@ -305,7 +313,7 @@ class accounts extends CI_Controller {
             $id = 'img';
             $now = time();
             
-           ini_set('memory_limit','128M');
+            ini_set('memory_limit','128M');
         
             //setting the configuration for the file uploads
             $config['upload_path'] = './uploads/img/full/';
@@ -327,7 +335,7 @@ class accounts extends CI_Controller {
                 $this->make_medium($img);
             }
 
-            $opts = $this->quarxsetup->account_opts();    
+            $opts = $this->quarxsetup->account_opts();
             $this->load->model('modelaccounts');
             $rand = $this->modelaccounts->profile_adder($img, $opts);
         
@@ -528,6 +536,7 @@ class accounts extends CI_Controller {
             $oldimg = $myprofileImg->img;
             if($oldimg && $oldimg != site_url().'uploads/img/thumb/default.jpg'){
                 unlink('./uploads/img/full/'.$oldimg);
+                unlink('./uploads/img/medium/'.$oldimg);
                 unlink('./uploads/img/thumb/'.$oldimg);
             }
         }
@@ -538,7 +547,7 @@ class accounts extends CI_Controller {
         
         //setting the configuration for the file uploads
         $config['upload_path'] = './uploads/img/full/';
-        $config['allowed_types'] = 'gif|jpeg|jpg|png';
+        $config['allowed_types'] = 'gif|jpg|jpeg|png|GIF|JPG|JPEG|PNG';
         $config['max_size'] = '4000';
         $config['file_name'] = $id.'_'.$now.'.jpg';
         
@@ -549,20 +558,22 @@ class accounts extends CI_Controller {
         $opts = $this->quarxsetup->account_opts(); 
 
         if ( ! $this->upload->do_upload()){
+            
             $this->load->model('modelaccounts');
             $profile = $this->modelaccounts->this_account($_POST['user_id']);
             foreach($profile as $myprofileImg): endforeach;
             
             $img = $myprofileImg->img;
 
-            //Send the data to the model page to update the profile
             $this->load->model('modelaccounts');
             $query = $this->modelaccounts->this_profile_update($img, $_POST['user_id'], $opts);
             
             redirect('accounts/editor/'.encrypt($_POST['user_id']).'?success');
+
         }else{
-            $this->make_thumb($img);
             
+            $this->make_thumb($img);
+                
             //Send the data to the model page to update the profile
             $this->load->model('modelaccounts');
             $query = $this->modelaccounts->this_profile_update($img, $_POST['user_id'], $opts);
@@ -572,6 +583,7 @@ class accounts extends CI_Controller {
             }else{
                 redirect('accounts/editor/'.encrypt($_POST['user_id']).'?error');
             }
+        
         }
     }
 
@@ -664,6 +676,8 @@ class accounts extends CI_Controller {
 
         if(count($qry) == 0){
             $data['empty_result'] = 'Sorry, we were unable to find any one';
+        }else{
+            $data['empty_result'] = '';
         }
         
         //configure the data to be transported to the view

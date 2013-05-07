@@ -1,16 +1,20 @@
 <?php /*
     Filename:   search.php
-    Location:   /application/modeules/blog/views
+    Location:   /application/modeules/users/views
 */ ?>
 
 <div class="raw100 align-left">
 
     <div class="device">
+
+        <div class="raw100">
+            <a href="#" data-role="button" onclick="showMenu()">Users Menu</a>
+        </div>
     
-        <h1>Search Results</h1>
-        <div class="wide_box">
+        <div class="raw100">
             <div class="reallyTall">
-                <form id="SearchBox" method="post" action="<?php echo site_url('blog/search'); ?>">   
+                <form id="SearchBox" method="post" action="<?php echo site_url('users/search'); ?>">
+                    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />
                     <input id="search" name="search" class="searchBar" value="Enter a Search Term" onfocus="resetSearch()" />
                 </form>
             </div>
@@ -24,13 +28,13 @@
 
             <?php }else{ ?>
 
-            <?php foreach($results as $blog): ?>
+            <?php foreach($results as $user): ?>
                 <div class="grid gridrow">
-                    <div class="grid25"><p><a href="<?php echo site_url('blog/editor/'.encrypt($blog->blog_id)); ?>"><?php echo substr($blog->blog_title, 0, 30); ?></a></p></div>
-                    <div class="grid25 mHide"><p><?php echo valCheck($blog->blog_date); ?></p></div>
-                    <div class="grid25 mHide"><p><?php echo valTrim(strip_tags($blog->blog_entry, 20)); ?></p></div>
-                    <div class="grid25 mHide"><p><?php echo getCatName($blog->blog_cat); ?></p></div>
-                </div>
+                    <div class="grid25"><p><a href="<?php echo site_url('users/editor/'.encrypt($user->user_id)); ?>"><?php echo substr($user->user_fullname, 0, 30); ?></a></p></div>
+                    <div class="grid25 mHide"><p><?php echo valCheck($user->user_name); ?></p></div>
+                    <div class="grid25 mHide"><p><?php echo valTrim(strip_tags($user->user_email), 20); ?></p></div>
+                    <div class="grid25 mHide"><p><?php echo $user->last_login; ?></p></div>
+                </div></a>
             <?php endforeach; ?>
             
             <?php } ?>
@@ -41,7 +45,7 @@
 
 </div>
 
-<script>
+<script type="text/javascript">
     
     function resetSearch(){
         $('#search').val('');

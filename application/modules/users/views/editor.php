@@ -1,46 +1,20 @@
 <?php /*
-    Filename:   pages.php
-    Location:   /application/views/pages
+    Filename:   editor.php
+    Location:   users/views
 */ ?>
-
-<!-- Notices -->
-
-<div id="entryUpdated" class="updateBox">
-    <p>Your update was successful!</p>
-</div>
-
-<div id="entryAdded" class="updateBox">
-    <p>Your entry was successfully added!</p>
-</div>
-
-<div id="entryFailed" class="errorBox">
-    <p>Sorry, adding this entry failed. Are you sure you don't have an entry with the same title?</p>
-</div>
-
-<div id="catFailed" class="errorBox">
-    <p>Sorry, adding this category failed. Are you sure you don't have a category with the same title?</p>
-</div>
 
 <!-- Dialogs -->
 
-<div id="dialog-cat" class="dialogBox" title="Delete Confirmation">
-    <p>Are you sure you want to delete this category?</p>
-</div>
-
-<div id="dialog-oops" class="dialogBox" title="Oops!">
-    <p>Sorry, but you can't delete a category that has entries :(</p>
-</div>
-
 <div id="dialog-confirm" class="dialogBox" title="Delete Confirmation">
-    <p>Are you sure you want to delete this entry?</p>
+    <p>Are you sure you want to delete this user?</p>
 </div>
 
-<div id="dialog-archive" class="dialogBox" title="Archive Confirmation">
-    <p>Are you sure you want to archive this entry?</p>
+<div id="dialog-disable" class="dialogBox" title="Disable Confirmation">
+    <p>Are you sure you want to disable this user?</p>
 </div>
 
-<div id="dialog-display" class="dialogBox" title="Display Confirmation">
-    <p>Are you sure you want to display this entry?</p>
+<div id="dialog-enable" class="dialogBox" title="Enable Confirmation">
+    <p>Are you sure you want to enable this user?</p>
 </div>
 
 <!-- Main Page -->
@@ -48,117 +22,72 @@
 <div class="device">
 
     <div class="raw100">
-        <a href="#" data-role="button" onclick="showMenu()">Pages Menu</a>
+        <a href="#" data-role="button" onclick="showMenu()">Users Menu</a>
     </div>
 
-    <div class="raw100">
-        <a href="#imageLibrary" data-role="button" data-theme="d">Image Library</a>
-    </div>
-
-    <div class="raw100">
-        <div class="raw100">
-            <div id="PageEntries" class="wide_box align-left wide90">
-                
-                <div class="raw100">
-                    
-                    <div class="raw100">
-                        <div class="pad15">
-                            <input type="text" id="pagesName" name="pages_title" value="<?php echo htmlspecialchars($pages->page_title); ?>" />
-                        </div>
-                    </div>
-
-                    <div class="raw100">
-                        <select id="parentOptions" data-theme="a" name="page_parent">
-                        <!-- // options are fed via ajax -->
-                        </select>
-                    </div>
-                </div>
-                <div class="raw100 tall">
-                    <textarea id="pagesEntry" class="rtf" name="entry"><?php echo $pages->page_entry; ?></textarea>
-                </div>
-
-                <?php echo imgLibrarySelect($pages->page_img_library); ?>
-
-                <div id="SubmitBtnBox" class="raw100">
-                    <button id="addEntryButtonBox" data-theme="c" onclick="updateEntry(<?php echo $pages->page_id; ?>)">Update Entry</button>
-                </div>
-
-            </div>
-
-            <div class="raw100">
-                <?php if($pages->page_hide === '1'){ ?>
-                <button data-theme="c" onclick="displayEntry('<?php echo encrypt($pages->page_id); ?>')">Display</button>
-                <?php }else{ ?>
-                <button  data-theme="b" onclick="archiveEntry('<?php echo encrypt($pages->page_id); ?>')">Archive</button>
-                <?php } ?>
-                <button  data-theme="e" onclick="deleteConfirm('<?php echo encrypt($pages->page_id); ?>')">Delete</button>
-            </div> 
-
+    <div class="raw50">
+        <div class="profileImageBox mHide">  
+            <?php if($u->user_img){ ?>
+                <?php echo '<img src="'.$u->user_img.'" />'; ?>
+            <?php } ?>
         </div>
-        
+    </div>
+    <div class="raw50">
+        <div id="formHolder" class="raw100 form">
+            <form id="addAccount" method="post" enctype="multipart/form-data" action="<?php echo site_url('users/update_user'); ?>">
+                <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />
+
+                <input type="hidden" name="user_id" size="30" value="<?php echo $u->user_id; ?>" />
+
+                <!-- // Get to  the actual form! -->
+                <div class="raw100">
+                    <div class="raw33"><p>Username</p></div>
+                    <div class="raw66"><p><?php echo $u->user_name; ?></p></div>
+                </div>
+                <div class="raw100">
+                    <div class="raw33"><p>Email</p></div>
+                    <div class="raw66"><input type="text" name="user_email" size="30" value="<?php echo $u->user_email; ?>" /></div>
+                </div>
+                <div class="raw100">
+                    <div class="raw33"><p>Full Name</p></div>
+                    <div class="raw66"><input class="vital" type="text" name="full_name" size="30" value="<?php echo $u->user_fullname; ?>" /></div>
+                </div>
+                <div class="raw100">
+                    <div class="raw33"><p>Location</p></div>
+                    <div class="raw66"><input id="location" type="text" name="location" size="30" value="<?php echo $u->user_location; ?>" /></div>
+                </div>
+                <div class="raw100">
+                    <div class="raw33"><p>Bio</p></div>
+                    <div class="raw66"><textarea id="bio" class="rtf" name="bio"><?php echo stripslashes($u->user_bio); ?></textarea></div>
+                </div>
+
+                <div class="raw100">
+                    <div class="raw33"><p>Profile Image</p></div>
+                    <div class="raw66"><input type="file" name="userfile" size="20" data-role="none" /></div>
+                </div>
+                <div class="raw100">
+                    <div class="raw100"><input data-theme="c" class="fatButton" type="submit" value="Update User" /></div>
+                </div>
+            </form>
+        </div>
+
+        <?php if($u->user_status === 'disabled'){ ?>
+        <div class="raw50 mHide"><button data-theme="c" onclick="enableUser('<?php echo encrypt($u->user_id); ?>')">Enable</button></div>
+        <?php }else{ ?>
+        <div class="raw50 mHide"><button data-theme="b" onclick="disableUser('<?php echo encrypt($u->user_id); ?>')">Disable</button></div>
+        <?php } ?>
+        <div class="raw50 mHide"><button data-theme="e" onclick="deleteConfirm('<?php echo encrypt($u->user_id); ?>')">Delete</button></div>
     </div>
 
 </div>
 
 <script type="text/javascript">
 
-/* Entry Functions
-***************************************************************/
-
-    function updateEntry(id) {
-        var uppagesName = $("#pagesName").val(),
-            uppagesDate = $("#pagesDate").val(),
-            upparentOptions = $("#parentOptions").val(),
-            uppagesEntry = $("#pagesEntry").val(),
-            uppages_img_library = $('#selectLibrary-Collections').val();
-
-        if(upparentOptions === ''){
-            alert('Sorry we need more information.');
-        }else{
-            $.ajax({
-                url: "<?php echo site_url('pages/update_entry'); ?>",
-                type: 'POST',
-                cache: false,
-                data: {
-                    page_id: id,
-                    page_name: uppagesName, 
-                    page_parent: upparentOptions,
-                    page_date: uppagesDate,
-                    page_entry: uppagesEntry,
-                    page_img_library: uppages_img_library,
-                    <?php echo $this->security->get_csrf_token_name(); ?>: '<?php echo $this->security->get_csrf_hash(); ?>'
-                },
-                success: function(data) {
-                    $("#entryUpdated").fadeIn();
-                    setTimeout(function(){ $("#entryUpdated").fadeOut(); }, 1500);
-                }
-            });
-        }
-    }
-
-/* Parent Functions
-***************************************************************/
-
-    function getParentOptions() {        
-        $.ajax({
-            url: "<?php echo site_url('pages/options'); ?>",
-            type: 'GET',
-            cache: false,
-            dataType: 'html',
-            success: function(data) {
-                $("#parentOptions").html('<option value="<?php echo $pages->page_parent; ?>">Currently: <?php echo getParentName($pages->page_parent); ?></option>'+data).selectmenu('refresh', true);
-            }
-        });
-    }
-
-/* Entry Actions
-***************************************************************/
-
     function deleteConfirm(id){    
         $( "#dialog-confirm" ).dialogbox({
             buttons: {
                 Ok: function() {
-                    window.location="<?php echo site_url('pages/delete_entry').'/'; ?>"+id; 
+                    window.location="<?php echo site_url('users/delete_user').'/'; ?>"+id; 
                 },
                 Cancel: function() {
                     dialogDestroy('#dialog-confirm');
@@ -167,42 +96,33 @@
         });
     }
 
-    function archiveEntry(id){
-        $( "#dialog-archive" ).dialogbox({
+    function enableUser(id){
+        $( "#dialog-enable" ).dialogbox({
             buttons: {
                 Ok: function() {
-                    window.location="<?php echo site_url('pages/archive_this_entry').'/'; ?>"+id; 
+                    window.location="<?php echo site_url('users/enable_user').'/'; ?>"+id; 
                 },
                 Cancel: function() {
-                    dialogDestroy('#dialog-archive');
+                    dialogDestroy('#dialog-enable');
                 }
             }
         });
     }
 
-    function displayEntry(id){    
-        $( "#dialog-display" ).dialogbox({
+    function disableUser(id){    
+        $( "#dialog-disable" ).dialogbox({
             buttons: {
                 Ok: function() {
-                    window.location="<?php echo site_url('pages/display_this_entry').'/'; ?>"+id; 
+                    window.location="<?php echo site_url('users/disable_user').'/'; ?>"+id; 
                 },
                 Cancel: function() {
-                    dialogDestroy('#dialog-display');
+                    dialogDestroy('#dialog-disable');
                 }
             }
         });
     }
 
-/* Page Functions
-***************************************************************/
-    
-    $(document).ready(function(e) {
-        getParentOptions();
-
-        $('#pagesName').one('click', function(){
-            $(this).val('');
-        });
-    });
+    $(window).load(function(){ profileImageResize() });
 
 </script>
     

@@ -3,7 +3,7 @@
     Location:   /application/views/core
 */ ?>
 
-<!-- notifications -->
+<!-- dialogs -->
 
 <div id="dialog-confirm" class="dialogBox" title="Delete Confirmation">
     <p>Are you sure you want to delete this account?</p>
@@ -42,52 +42,67 @@
 
                 <div class="raw100">
                     <div class="gridrow bordered">
-                        <div class="grid25"><h3>Username</h3></div>
-                        <div class="grid25 mHide"><h3>Email</h3></div> 
-                        <div class="grid25 mHide"><h3>Full Name</h3></div> 
-                        <div class="grid25 mHide"><h3>Location</h3></div> 
+                        <div class="grid20"><h3>Username</h3></div>
+                        <div class="grid20 mHide"><h3>Email</h3></div> 
+                        <div class="grid20 mHide"><h3>Full Name</h3></div> 
+                        <div class="grid20 mHide"><h3>Last Login</h3></div>
+                        <div class="grid20 mHide"><h3></h3></div>
                     </div>
 
                     <?php foreach($profiles as $accounts): ?>
 
-                    <div class="accountInfoRow gridrow bordered clickable <?php if($accounts->status === 'unauthorized'){ echo ' unauthorized'; } ?>">
+                    <div class="accountInfoRow gridrow bordered <?php if($accounts->status == 'unauthorized'){ echo ' unauthorized'; } ?>">
 
                         <div class="accountControls">
 
-                            <?php if($accounts->status === 'authorized'){ ?>
                             <div id="controlbox" class="raw100">
+                            <?php if($accounts->status === 'authorized'){ ?>
 
-                            <div class="grid20"><button data-role="button" class="green" onclick="window.location='<?php echo site_url('accounts/editor').'/'.encrypt($accounts->user_id); ?>'">Edit</button></div>
+                                <div class="grid20"><button data-role="button" class="green" onclick="window.location='<?php echo site_url('accounts/editor').'/'.encrypt($accounts->user_id); ?>'">Edit</button></div>
 
                             <?php if($accounts->user_state == 'enabled'){ ?>
-                            <div class="grid20 mHide"><button data-role="button" class="yellow" onclick="disable(<?php echo $accounts->user_id; ?>)">Disable</button></div> 
+                                <div class="grid20 mHide"><button data-role="button" class="yellow" onclick="disable(<?php echo $accounts->user_id; ?>)">Disable</button></div> 
                             <?php }else{ ?>
-                            <div class="grid20 mHide"><button data-role="button" class="green" onclick="enable(<?php echo $accounts->user_id; ?>)">Enable</button></div> 
+                                <div class="grid20 mHide"><button data-role="button" class="green" onclick="enable(<?php echo $accounts->user_id; ?>)">Enable</button></div> 
                             <?php } ?>
                             
-                            <div class="grid20 mHide"><button data-role="button" class="red" onclick="deleteConfirm(<?php echo $accounts->user_id; ?>)">Delete</button></div>
+                                <div class="grid20 mHide"><button data-role="button" class="red" onclick="deleteConfirm(<?php echo $accounts->user_id; ?>)">Delete</button></div>
                             
                             <?php if($accounts->permission > 1 ){ ?>
-                            <div class="grid20 mHide"><button data-role="button" class="blue" onclick="masterConfirm(<?php echo $accounts->user_id; ?>)">Master</button></div> 
+                                <div class="grid20 mHide"><button data-role="button" class="blue" onclick="masterConfirm(<?php echo $accounts->user_id; ?>)">Master</button></div> 
                             <?php }else{ ?>
-                            <div class="grid20 mHide"><button data-role="button" class="red" onclick="standardConfirm(<?php echo $accounts->user_id; ?>)">Standard</button></div> 
+                                <div class="grid20 mHide"><button data-role="button" class="red" onclick="standardConfirm(<?php echo $accounts->user_id; ?>)">Standard</button></div> 
                             <?php } ?>
 
-                            <?php }else{ ?>                     
-                            <div class="grid20"><button data-role="button" class="green" onclick="authorize(<?php echo $accounts->user_id; ?>)">Authorize</button></div> 
+                            <?php }else{ ?>
+                                <div class="grid20"><button data-role="button" class="green" onclick="window.location='<?php echo site_url('accounts/editor').'/'.encrypt($accounts->user_id); ?>'">View</button></div>
+
+                                <div class="grid20"><button data-role="button" class="green" onclick="authorize(<?php echo $accounts->user_id; ?>)">Authorize</button></div> 
                             <?php } ?>
 
-                            <div class="grid20"><button data-role="button" data-icon="delete">Close</button></div>
+                                <div class="grid20"><button class="closer" data-role="button" data-icon="delete">Close</button></div>
 
-                        </div>
+                            </div>
 
                         </div>
 
                         <div class="accountInfo">
-                            <div class="grid25"><p><?php echo valTrim($accounts->user_name, 20); ?></p></div>
-                            <div class="grid25 mHide"><p><?php echo valTrim(valCheck($accounts->user_email), 20); ?></p></div> 
-                            <div class="grid25 mHide"><p><?php echo valTrim(valCheck($accounts->full_name), 20); ?></p></div> 
-                            <div class="grid25 mHide"><p><?php echo valTrim(valCheck($accounts->location), 20); ?></p></div> 
+                            <div class="grid20"><p><?php echo valTrim($accounts->user_name, 20); ?></p></div>
+                            <div class="grid20 mHide"><p><?php echo valTrim(valCheck($accounts->user_email), 15); ?></p></div> 
+                            <div class="grid20 mHide"><p><?php echo valTrim(valCheck($accounts->full_name), 20); ?></p></div> 
+                            <div class="grid20 mHide"><p><?php echo valTrim(valCheck($accounts->last_login), 20); ?></p></div> 
+                            <div class="grid20 mHide">
+                                <?php if($accounts->user_state == 'enabled'){ ?>
+                                <img src="<?php echo site_url(); ?>/images/active.png" title="active" class="raw15 padded5" />
+                                <?php }else{ ?>
+                                <img src="<?php echo site_url(); ?>/images/inactive.png" title="Inactive" class="raw15 padded5" />
+                                <?php } ?>
+                                <?php if($accounts->status == 'unauthorized'){ ?>
+                                <img src="<?php echo site_url(); ?>/images/lock.png" title="Unathorized" class="raw12 padded5" />
+                                <?php } ?>
+
+                                <img src="<?php echo site_url(); ?>/images/settings.png" title="Edit Account" class="action_Btn raw20 padded5 rightFloat clickable" />
+                            </div> 
                         </div>
 
                     </div>
@@ -107,10 +122,16 @@
 </div>
 
 <script type="text/javascript">
-
-    $('.accountInfoRow').bind('click', function(){
-        $(this).children('.accountControls').fadeToggle();
+    $('.closer').bind('click', function(){
+        $('.accountControls').hide();
     });
+
+    function binder(){
+        $('.action_Btn').bind('click', function(){
+            $('.accountControls').hide();
+            $(this).parent().parent().parent().children('.accountControls').show();
+        });
+    }
 
     function authorize(id){
         $( "#dialog-authorize" ).dialogbox({
@@ -206,6 +227,8 @@
         });
 
         $('a .accessControls').buttonMarkup({ corners: false });
+
+        binder();
     });
 
 </script>

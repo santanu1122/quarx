@@ -34,7 +34,6 @@
                     <div class="raw100">
                         <div class="raw50"><p>Remember Me <br /> ( 2 weeks )</p></div>
                         <div class="raw50"><input type="checkbox" id="rememberMe" name="remember_me" value="1" /><label for="rememberMe">I agree</label></div>
-                        
                     </div>
                     <div class="raw100">
                         <input type="submit" value="Login" />
