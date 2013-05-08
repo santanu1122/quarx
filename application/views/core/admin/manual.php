@@ -3,10 +3,10 @@
     Location:   /application/views/core/
 */ ?>
 
-<div class="device">
+<div id="device" class="device">
     <div id="manualMenu" class="manualMenu mHide tHide">
         <div id="manualMenuContent">
-            <h3>Menu</h3>
+            <h3 style="cursor: pointer;" onclick="pageScroll('#device')">Menu</h3>
             <hr />
             <ul>
                 <li onclick="pageScroll('#intro')">Introduction</li>
@@ -15,7 +15,7 @@
                 <?php if($this->session->userdata('user_id') == 1){ ?>
                 <li onclick="pageScroll('#admin-setup')">Setup</li>
                 <li onclick="pageScroll('#admin-atomic')">Atomic</li>
-                <li onclick="pageScroll('#admin-plugins')">Plugins</li>
+                <li onclick="pageScroll('#admin-modules')">Modules</li>
                 <?php } ?>
                 <li onclick="pageScroll('#admin-cloudCatcher')">CloudCatcher</li>
                 <li onclick="pageScroll('#admin-cloudInfo')">CloudInfo</li>
@@ -67,10 +67,10 @@
                 </ol>
         </div>
 
-        <div class="raw100" id="admin-plugins">   
-            <h1>Plugins/Modules</h1>
+        <div class="raw100" id="admin-modules">   
+            <h1>Modules</h1>
                 <br />
-                <p>Plugin or modules are installed very simply by downloading the appropriate ZIP file and deploying the module folders into the directory: 
+                <p>Modules are installed very simply by downloading the appropriate ZIP file and deploying the module folders into the directory: 
                 <br /><br />
                 quarx/application/modules/ 
                 <br /><br />

@@ -7,11 +7,13 @@ class connect_to_database extends CI_Controller {
 
     public function now($name, $password, $db) {
         $this->load->model('modelsetup');
+        
         $query = $this->modelsetup->createdb(decrypt($name), decrypt($db));
+
         $db_exists = $this->modelsetup->find_db( decrypt($name), decrypt($password), decrypt($name).'_'.decrypt($db) );
 
-        if($query == false){
-            if(!$db_exists){
+        if(!$query){
+            if($db_exists){
                 $this->session->set_flashdata('error', 'You need to manually add your database due to a lack of permission or incorrect credentials, sorry...');
                 redirect('setup/error');
             }
@@ -95,7 +97,7 @@ class connect_to_database extends CI_Controller {
     
         }else{
 
-            @unlink('./index.html');
+            @unlink('../index.html');
 
             redirect('setup/user');
         }

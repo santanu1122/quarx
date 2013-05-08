@@ -44,19 +44,33 @@
                 <h2>Requirements</h2>
                 <ul>
                     <li>PHP 5.1.6+</li>
+                    <li>MySQL</li>
                     <li>Apache rewrite_module</li>
-                    <li></li>
                 </ul>
 
                 <hr />
 
                 <h2>Installation</h2>
-                <p>in order to install Quarx, please add /install to the URL.</p>
+                <p>in order to install Quarx, please add 'setup/install' to the URL.</p>
 
                 <hr />
 
                 <h2>Files to Modify After Installation:</h2>
                 <p>/application/errors/error_404.php - You need to set any details you prefer in this such as the email address you want the error report sent to.<p>
+
+                <hr />
+
+                <h2>Special Notes:</h2>
+                <p>If you're adding Quarx to an exsiting database, you need to ensure there is not the following tables:<p>
+                <ul>
+                    <li>users</li>
+                    <li>img</li>
+                    <li>img_categories</li>
+                    <li>admin</li>
+                </ul>
+
+                <p>If you wish to avoid using the installed please take the sql file and import it to the database. Then modify the following file: <b>/application/config/database.php</b>, and set it with the database user details. The master login for this install method is U: master P: master</p>
+
             </div>
         
 

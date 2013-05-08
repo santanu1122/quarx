@@ -20,7 +20,7 @@ Deploy the contents of the zip file to your server and visit the folder, you wil
 
     http://www.example.com/quarx
 
-If you want a front-end (client side) package please view the atomic framework information in the installation documentation.
+If you want a front-end (client side) package please view the atomic-framework information in the installation documentation.
 
 ## How to use Quarx
 

@@ -96,7 +96,7 @@ function update_version($ver){
     function add_master_user($username, $userpass){
         $qry = $this->db->query("INSERT INTO `users` (`user_id`, `user_name`, `user_pass`, `user_email`, `permission`, `full_name`, `img`, `location`, `lat`, `lng`, `user_state`, `status`) 
             VALUES
-            (1, '".$username."', '".sha1($userpass)."', '', 1, '', '".site_url()."uploads/img/thumb/default.jpg', '', 0.000000, 0.000000, 'enabled', 'authorized');");
+            (1, '".$username."', '".hash("sha256", $userpass)."', '', 1, '', '".site_url()."uploads/img/thumb/default.jpg', '', 0.000000, 0.000000, 'enabled', 'authorized');");
         
         if(!$qry){
             return false;

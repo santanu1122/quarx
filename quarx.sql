@@ -1,12 +1,6 @@
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-
 --
 -- Database: `quarx_db`
 --
@@ -103,8 +97,4 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`user_id`, `user_name`, `user_pass`, `user_email`, `permission`, `owner`, `status`, `full_name`, `img`, `location`, `lat`, `lng`, `user_state`, `address`, `city`, `state`, `country`, `phone`, `fax`, `website`, `company`, `last_login`, `login_counter`) VALUES
-(1, 'master', '4f26aeafdb2367620a393c973eddbe8f8b846ebd', 'masteruser@somewhere.com', 1, 0, 'authorized', 'Master User', 'default.jpg', 'somewhere', 0.000000, 0.000000, 'enabled', '', '', '', '', '', '', '', '', '2013-01-01', 0);
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+(1, 'master', 'fc613b4dfd6736a7bd268c8a0e74ed0d1c04a959f59dd74ef2874983fd443fc9', 'masteruser@somewhere.com', 1, 0, 'authorized', 'Master User', 'default.jpg', 'somewhere', 0.000000, 0.000000, 'enabled', '', '', '', '', '', '', '', '', '2013-01-01', 0);
