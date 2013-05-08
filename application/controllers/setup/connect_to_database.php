@@ -97,7 +97,7 @@ class connect_to_database extends CI_Controller {
     
         }else{
 
-            @unlink('../index.html');
+            @unlink('../../index.html');
 
             redirect('setup/user');
         }

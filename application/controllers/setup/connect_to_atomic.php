@@ -101,21 +101,21 @@ class connect_to_atomic extends CI_Controller {
         
         }else{
 
-            $auto_path = '../application/config/autoload.php';
+            // $auto_path = '../application/config/autoload.php';
 
-            $str = read_file($auto_path);
+            // $str = read_file($auto_path);
 
-            $part_1_end_pos = 20+strrpos($str, "libraries'] = array(", 2);
-            $part_1 = substr($str, 0, $part_1_end_pos);
-            $part_2 = substr($str, $part_1_end_pos);
+            // $part_1_end_pos = 20+strrpos($str, "libraries'] = array(", 2);
+            // $part_1 = substr($str, 0, $part_1_end_pos);
+            // $part_2 = substr($str, $part_1_end_pos);
 
-            $inject = "'database', ";
+            // $inject = "'database', ";
 
-            $auto_file = $part_1.$inject.$part_2;
+            // $auto_file = $part_1.$inject.$part_2;
             
-            if ( ! write_file($auto_path, $auto_file) ){
-                redirect('setup/master?e');
-            }
+            // if ( ! write_file($auto_path, $auto_file) ){
+            //     redirect('setup/master?e');
+            // }
 
             $this->modelsetup->connected_to("atomic");
 

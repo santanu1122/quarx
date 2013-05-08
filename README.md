@@ -1,6 +1,6 @@
 # Quarx
 
-**Quarx** - A modular administrative structure for a website/application built on CodeIgniter
+**Quarx** - A modular CMS for a website/application built on CodeIgniter
 
 Download Here: https://github.com/mlantz/quarx/zipball/master
 
@@ -11,7 +11,7 @@ Download Here: https://github.com/mlantz/quarx/zipball/master
 **Requirements:**
 
 1. PHP 5.1.6+
-2. MySQL 5.0+
+2. MySQL
 3. cURL
 
 **Build Requirements:**
@@ -24,7 +24,8 @@ If you want a front-end (client side) package please view the atomic-framework i
 
 ## How to use Quarx
 
-1. Consult the manual built directly into Quarx
+1. Complete the install by visiting the quarx directory and then add /setup/install
+2. Then consult the manual for further direction
 
 ## More Info
 For more information please contact mattlantz at gmail dot com
