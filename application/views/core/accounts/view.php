@@ -87,7 +87,7 @@
                         </div>
 
                         <div class="accountInfo">
-                            <div class="grid20"><p><?php echo valTrim($accounts->user_name, 20); ?></p></div>
+                            <div class="grid20"><p><a href="<?php echo site_url('accounts/editor').'/'.encrypt($accounts->user_id); ?>"><?php echo valTrim($accounts->user_name, 20); ?></a></p></div>
                             <div class="grid20 mHide"><p><?php echo valTrim(valCheck($accounts->user_email), 15); ?></p></div> 
                             <div class="grid20 mHide"><p><?php echo valTrim(valCheck($accounts->full_name), 20); ?></p></div> 
                             <div class="grid20 mHide"><p><?php echo valTrim(valCheck($accounts->last_login), 20); ?></p></div> 
