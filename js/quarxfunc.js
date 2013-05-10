@@ -106,6 +106,8 @@ function inputDialogDestroy(idTag){
 (function($){  
     $.fn.dialogbox = function(options) {
 
+        $("html, body").animate({ scrollTop: 0 }, "slow");
+
         destroyDialogs();
 
         var defaults = {  
