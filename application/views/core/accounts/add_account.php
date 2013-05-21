@@ -111,7 +111,11 @@ Location:   /application/views/core
         $('#formHolder').keypress(function(event){
             if (event.keyCode == 10 || event.keyCode == 13) 
                 event.preventDefault();
-          });
+        });
+
+        $('#u_name').on("keyup", function() {
+            $(this).val($(this).val().replace(/\s/g, "").toLowerCase());
+        });
     });
 
     function validationCheck(name){
