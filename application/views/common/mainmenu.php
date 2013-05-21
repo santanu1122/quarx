@@ -27,6 +27,8 @@
             <?php if($this->session->userdata('logged_in')){ ?>
 
             <?php get_module_menus(); ?>
+
+             <?php get_special_module_menus(); ?>
             
             <?php if($this->session->userdata('permission') > 1){ ?>
             <?php if(check_master_access() == false){ ?>

@@ -41,6 +41,21 @@ class module_tools{
             }
         }
 
+        function get_special_module_menus(){
+            //scan the modules directory for modules
+            $modules = "application/modules/";
+             
+            //get all files in specified directory
+            $files = glob($modules . "*");
+             
+            //check for each module's menu
+            foreach($files as $file){
+                if(is_dir($file)){
+                    include($file.'/special_menu.php');
+                }
+            }
+        }
+
         function get_module_manual_menu(){
             //scan the modules directory for modules
             $modules = "application/modules/";
