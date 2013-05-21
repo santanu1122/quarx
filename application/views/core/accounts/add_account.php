@@ -135,6 +135,13 @@ Location:   /application/views/core
                     });
                     $('#addBtn').removeAttr('disabled');
                 }
+
+                if($('#u_name').val().length < 4){
+                    $('#u_name').parent().css({
+                        border: '1px solid #f00'
+                    });
+                    $('#addBtn').attr('disabled', 'disabled');
+                }
             }
         });
     }
