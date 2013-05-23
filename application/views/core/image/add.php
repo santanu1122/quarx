@@ -71,7 +71,7 @@
                 
                 <input type="file" name="userfile" size="30" data-role="none" style="margin-bottom: 30px;" />
 
-                <select id="collections" data-theme="a">
+                <select id="collections" name="collection" data-theme="a">
                     <option value="0">Collections</option>
                     <!-- place other collections here -->
                 </select>

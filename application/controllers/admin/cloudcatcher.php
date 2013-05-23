@@ -4,17 +4,21 @@
      
 class cloudcatcher extends CI_Controller {
 
-    public function __construct(){
+    public function __construct()
+    {
         parent::__construct();
-        if(!$this->session->userdata('logged_in')){
-            redirect('login/error'); // Denied! 
+        if(!$this->session->userdata('logged_in'))
+        {
+            redirect('login/error');
         }
 
-        if($this->session->userdata('permission') > 1){
+        if($this->session->userdata('permission') > 1)
+        {
             $setup = $this->quarxsetup->account_opts();
-            //check if master access is on
-            if($setup[2]->option_title === 'master access'){
-                redirect('accounts/permission'); // Denied! 
+
+            if($setup[2]->option_title === 'master access')
+            {
+                redirect('accounts/permission');
             }
         }
 
@@ -25,16 +29,14 @@ class cloudcatcher extends CI_Controller {
 /* Primary Tools
 *****************************************************************/
 
-    public function index(){  
-        //Check active plugins
+    public function index()
+    {  
         $this->load->model('modelsetup');
 
-        //configured the data to be transported to the view
         $data['root'] = base_url();
         $data['pageRoot'] = base_url().'index.php';
         $data['pagetitle'] = 'CloudCatcher';
         
-        //load the view elements
         $this->load->view('common/header', $data);
         $this->load->view('core/admin/cloudcatcher', $data);
         $this->load->view('common/footer', $data);
@@ -42,11 +44,13 @@ class cloudcatcher extends CI_Controller {
 
     /* Backup Action
     *************************************/
-    function backup(){
+    function backup()
+    {
         $this->load->model('modeladmin');
         $qry = $this->modeladmin->get_db_info();
 
-        if($qry->db_uname > '' && $this->input->post('backup')){
+        if($qry->db_uname > '' && $this->input->post('backup'))
+        {
 
             $date = date('m-d-y');
             $server = 'localhost';
@@ -69,11 +73,13 @@ class cloudcatcher extends CI_Controller {
 
     /* Delete Backup Action
     *************************************/
-    function deletebackup(){
+    function deletebackup()
+    {
         unlink('backup/'.$_GET['date'].'.zip');
         $goodbye = $this->delete_directory('backup/'.$_GET['date']);
 
-        if($goodbye){
+        if($goodbye)
+        {
             redirect('admin/cloudcatcher?success');
         }
     }
@@ -83,95 +89,134 @@ class cloudcatcher extends CI_Controller {
     
     /* Full Copy Action
     *************************************/
-    function duplicate( $source, $target ) {
-        if(!file_exists($target)){
+    function duplicate( $source, $target ) 
+    {
+        if(!file_exists($target))
+        {
             mkdir($target, 0755);
         }
 
-        if ( is_dir( $source ) ) {
+        if ( is_dir( $source ) ) 
+        {
             @mkdir( $target );
             $d = dir( $source );
-            while ( FALSE !== ( $entry = $d->read() ) ) {
-                if ( $entry == '.' || $entry == '..' ) {
+            while( FALSE !== ($entry = $d->read()) ) 
+            {
+                if( $entry == '.' || $entry == '..' ) 
+                {
                     continue;
                 }
+
                 $Entry = $source . '/' . $entry; 
-                if ( is_dir( $Entry ) && $entry != 'backup' ) {
+                
+                if ( is_dir( $Entry ) && $entry != 'backup' ) 
+                {
                     $this->duplicate( $Entry, $target . '/' . $entry );
                     continue;
                 }
-                    if($entry != 'backup'){
-                        copy( $Entry, $target . '/' . $entry );
-                    }
+                
+                if($entry != 'backup')
+                {
+                    copy( $Entry, $target . '/' . $entry );
+                }
             }   
      
             $d->close();
-        }else {
+        }
+        else
+        {
             copy( $source, $target );
         }
     }
 
     /* Backup Model
     *************************************/
-    
-    /* backup the db OR just a table */
-    function backup_models($host,$user,$pass,$name,$target,$tables = '*'){
-        $link = mysql_connect($host,$user,$pass);
-        mysql_select_db($name,$link);
+    function backup_models($host, $user, $pass, $name, $target, $tables = '*')
+    {
         $ret = '';
-        //get all of the tables
-        if($tables == '*'){
+
+        if($tables == '*')
+        {
             $tables = array();
-            $result = mysql_query('SHOW TABLES');
-            while($row = mysql_fetch_row($result)){
-                $tables[] = $row[0];
+            $r = $this->db->query('SHOW TABLES');
+            $result = $r->result_array();
+            $identifier = 'Tables_in_'.$name;
+            $n = 0;
+
+            foreach ($result as $row)
+            {
+                $tables[$n] = $row[$identifier];
+                $n++;
             }
-        }else{
+        }
+        else
+        {
             $tables = is_array($tables) ? $tables : explode(',',$tables);
         }
       
-        //cycle through
-        foreach($tables as $table){
-            $result = mysql_query('SELECT * FROM '.$table);
-            $num_fields = mysql_num_fields($result);
+        foreach($tables as $table)
+        {
+            
+            $r = $this->db->query('SELECT * FROM '.$table);
+            $result = $r->result();
+            $num_fields = $r->num_fields();
             
             $ret.= 'DROP TABLE '.$table.';';
-            $row2 = mysql_fetch_row(mysql_query('SHOW CREATE TABLE '.$table));
+            
+            $r2 = $this->db->query('SHOW CREATE TABLE '.$table);
+            $row2 = $r2->num_fields();
+
             $ret.= "\n\n".$row2[1].";\n\n";
         
-            for ($i = 0; $i < $num_fields; $i++){
-                while($row = mysql_fetch_row($result)){
+            for ($i = 0; $i < $num_fields; $i++)
+            {  
+                foreach ($result as $row)
+                {     
                     $ret.= 'INSERT INTO '.$table.' VALUES(';
-                    for($j=0; $j<$num_fields; $j++) {
-                        $row[$j] = addslashes($row[$j]);
-                        $row[$j] = ereg_replace("\n","\\n",$row[$j]);
-                        if (isset($row[$j])) { $ret.= '"'.$row[$j].'"' ; } else { $ret.= '""'; }
-                        if ($j<($num_fields-1)) { $ret.= ','; }
+                    
+                    for($j=0; $j < $num_fields; $j++) 
+                    {
+                        $vars = new ReflectionObject($row);
+                        $res = $vars->getProperties();
+                        $resName = $res[$j]->name;
+
+                        if ( isset( $row->$resName ) ) 
+                        { 
+                            $ret.= '"'.ereg_replace("\n","\\n", addslashes( $row->$resName )).'"' ; 
+                        }
+                        else 
+                        { 
+                            $ret.= '""'; 
+                        }
+                        if ($j < ($num_fields-1)) { $ret.= ','; }
                     }
+
                     $ret.= ");\n";
                 }
             }
             
             $ret.="\n\n\n";
         }
-      
-        //save file
+        
         $filename = $target.'/db-backup-'.time().'-'.(md5(implode(',',$tables))).'.sql';
       
         $handle = fopen($filename,'w+');
         fwrite($handle,$ret);
-        fclose($handle);   
+        fclose($handle);
     }
 
     /* Zip the backup
     *************************************/
-    function zip_backup($source, $destination){
+    function zip_backup($source, $destination)
+    {
         if (!extension_loaded('zip') || !file_exists($source)) {
             return false;
         }
 
         $zip = new ZipArchive();
-        if (!$zip->open($destination, ZIPARCHIVE::CREATE)) {
+
+        if (!$zip->open($destination, ZIPARCHIVE::CREATE)) 
+        {
             return false;
         }
 
@@ -201,24 +246,33 @@ class cloudcatcher extends CI_Controller {
         }
 
         return $zip->close();
-
     }
 
     /* Delete the backup folder and zip
     *************************************/
 
-    function delete_directory($dirname) {
-        if (is_dir($dirname)){
+    function delete_directory($dirname)
+    {
+        if (is_dir($dirname)) 
+        {
             $dir_handle = opendir($dirname);
         }
-        if (!$dir_handle){
+        
+        if (!$dir_handle)
+        {
             return false;
         }
-        while($file = readdir($dir_handle)) {
-            if ($file != "." && $file != "..") {
-                if (!is_dir($dirname."/".$file)){
+        
+        while($file = readdir($dir_handle))
+        {
+            if ($file != "." && $file != "..")
+            {
+                if (!is_dir($dirname."/".$file))
+                {
                     unlink($dirname."/".$file);
-                }else{
+                }
+                else
+                {
                     $this->delete_directory($dirname.'/'.$file);    
                 }
             }
@@ -231,5 +285,5 @@ class cloudcatcher extends CI_Controller {
     }
 
 }
-/* End of file admin.php */
+/* End of file cloudcatcher.php */
 /* Location: ./application/controllers/admin/ */

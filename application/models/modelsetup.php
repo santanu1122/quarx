@@ -10,42 +10,60 @@ class modelsetup extends CI_Model {
 /* Check setup state
 ***************************************************************/
 
-function is_installed() {
+function is_installed() 
+{
     $qry = $this->db->query('SELECT * FROM admin');
     return $qry;
 }
 
-function createdb($user, $name){
+function createdb($user, $name)
+{
     $this->load->dbforge();
     $qry = $this->dbforge->create_database($user."_".$name);
-    if(!$qry){
+    if(!$qry)
+    {
         return false;
-    }else{
+    }
+    else
+    {
         return true;
     }
 }
 
-function find_db($user, $pass, $name){
+function find_db($user, $pass, $name)
+{
     $qry = $this->load->database($name);
-    if(!$qry){
+    
+    if(!$qry)
+    {
         return false;
-    }else{
+    }
+    else
+    {
         return true;
     }
 }
 
-function current_version(){
+function current_version()
+{
     $qry = $this->db->query("SELECT * FROM admin WHERE admin_opts = 5");
-    if($qry){
+    
+    if($qry)
+    {
         return $qry->result();
     }
 }
 
-function update_version($ver){
+function update_version($ver)
+{
     $qry = $this->db->query("UPDATE admin SET option_title = '".$ver."' WHERE admin_opts = 5");
-    if(!$qry){
+    
+    if(!$qry)
+    {
         return false;
-    }else{
+    }
+    else
+    {
         return true;
     }
 }
@@ -53,7 +71,8 @@ function update_version($ver){
 /* Add User Details
 ***************************************************************/
 
-    function add_user_table($extras) {
+    function add_user_table($extras)
+    {
         $this->load->dbforge();
         $this->dbforge->add_field("`user_id` INT(14) NOT NULL auto_increment");
         $this->dbforge->add_field("`user_name` VARCHAR(160) NOT NULL");
@@ -64,7 +83,8 @@ function update_version($ver){
         $this->dbforge->add_field("`status` VARCHAR(40) NOT NULL");
         $this->dbforge->add_field("`full_name` VARCHAR(255) NOT NULL");
 
-        if($extras === true){
+        if($extras === true)
+        {
             $this->dbforge->add_field("`phone` VARCHAR(150) NOT NULL");
             $this->dbforge->add_field("`fax` VARCHAR(150) NOT NULL");
             $this->dbforge->add_field("`address` VARCHAR(255) NOT NULL");
@@ -88,17 +108,20 @@ function update_version($ver){
 
         $this->db->query("CREATE UNIQUE INDEX `user_name` ON users (`user_name`)");
 
-        if(!$qry){
+        if(!$qry)
+        {
             return false;
         }
     }
 
-    function add_master_user($username, $userpass){
+    function add_master_user($username, $userpass)
+    {
         $qry = $this->db->query("INSERT INTO `users` (`user_id`, `user_name`, `user_pass`, `user_email`, `permission`, `full_name`, `img`, `location`, `lat`, `lng`, `user_state`, `status`) 
             VALUES
             (1, '".$username."', '".hash("sha256", $userpass)."', '', 1, '', '".site_url()."uploads/img/thumb/default.jpg', '', 0.000000, 0.000000, 'enabled', 'authorized');");
         
-        if(!$qry){
+        if(!$qry)
+        {
             return false;
         }
     }
@@ -106,7 +129,8 @@ function update_version($ver){
 /* Add Admin Details
 ***************************************************************/
 
-    function add_admin_table() {
+    function add_admin_table()
+    {
         $this->load->dbforge();
         $this->dbforge->add_field("`admin_opts` INT(14) NOT NULL AUTO_INCREMENT");
         $this->dbforge->add_field("`option_title` VARCHAR(80) NOT NULL");
@@ -117,12 +141,14 @@ function update_version($ver){
         $this->dbforge->add_key('admin_opts', TRUE);
         $qry = $this->dbforge->create_table('admin', TRUE);
 
-        if(!$qry){
+        if(!$qry)
+        {
             return false;
         }
     }
 
-    function add_admin_opts($avdAccounts, $master, $version, $db_array){
+    function add_admin_opts($avdAccounts, $master, $version, $db_array)
+    {
         $adv_acc_qry = $this->db->query("INSERT INTO `admin` (`admin_opts`, `option_title`) 
             VALUES
             (1, '".$avdAccounts."');");
@@ -137,43 +163,52 @@ function update_version($ver){
         
         $this->add_admin_db_opts($db_array);
         
-        if(!$master_qry && !$adv_acc_qry){
+        if(!$master_qry && !$adv_acc_qry)
+        {
             return false;
         }
     }
 
-    function add_admin_db_opts($db_array){
+    function add_admin_db_opts($db_array)
+    {
         $qry = $this->db->query("INSERT INTO `admin` (`admin_opts`, `option_title`, `db_uname`, `db_password`, `db_name`) 
             VALUES
             (2, '".$avdAccounts."', '".$db_array['db_uname']."', '".$db_array['db_password']."', '".$db_array['db_name']."');");
         
-        if(!$qry){
+        if(!$qry)
+        {
             return false;
         }
     }
 
-    function connected_to($system){
+    function connected_to($system)
+    {
         $qry = $this->db->query("INSERT INTO `admin` (`admin_opts`, `option_title`) 
             VALUES
             (4, '".$system."');");
         
-        if(!$qry){
+        if(!$qry)
+        {
             return false;
         }
     }
 
-    function is_connected_to(){
+    function is_connected_to()
+    {
         $qry = $this->db->query("SELECT * FROM admin WHERE option_title = 'atomic'");
         
-        if($qry){
+        if($qry)
+        {
             return $qry->result();
         }
     }
 
-    function get_db_info(){
+    function get_db_info()
+    {
         $qry = $this->db->query("SELECT * FROM admin WHERE admin_opts = 2");
         
-        if($qry){
+        if($qry)
+        {
             return $qry->result();
         }
     }
@@ -181,7 +216,8 @@ function update_version($ver){
 /* Img Details
 ***************************************************************/
 
-    function add_img_table() {
+    function add_img_table()
+    {
         $this->load->dbforge();
         $this->dbforge->add_field("`img_id` INT(14) NOT NULL AUTO_INCREMENT");
         $this->dbforge->add_field("`img_location` VARCHAR(255) NOT NULL");
@@ -202,7 +238,8 @@ function update_version($ver){
         $this->dbforge->add_key('collection_id', TRUE);
         $qry = $this->dbforge->create_table('img_collections', TRUE);
 
-        if(!$qry){
+        if(!$qry)
+        {
             return false;
         }
     }
@@ -210,14 +247,16 @@ function update_version($ver){
 /* Edit Setup
 ***************************************************************/
 
-    function edit_account_config($avdAccounts){
+    function edit_account_config($avdAccounts)
+    {
         $qry = $this->db->query("UPDATE 
                             `admin` 
                             SET 
                             `option_title`= '".$avdAccounts."' 
                             WHERE `admin_opts`= 1");
 
-        if($avdAccounts === 'advanced accounts'){
+        if($avdAccounts === 'advanced accounts')
+        {
             $this->db->query("ALTER TABLE `users` ADD `address` VARCHAR( 250 ) NOT NULL");
             $this->db->query("ALTER TABLE `users` ADD `city` VARCHAR( 250 ) NOT NULL");
             $this->db->query("ALTER TABLE `users` ADD `state` VARCHAR( 250 ) NOT NULL");
@@ -228,18 +267,21 @@ function update_version($ver){
             $this->db->query("ALTER TABLE `users` ADD `company` VARCHAR( 250 ) NOT NULL");
         }
         
-        if(!$qry){
+        if(!$qry)
+        {
             return false;
         }
     }
 
-    function edit_master_access_config($masterAccess){
+    function edit_master_access_config($masterAccess)
+    {
         $qry = $this->db->query("UPDATE 
                             `admin` 
                             SET 
                             `option_title`= '".$masterAccess."' 
                             WHERE `admin_opts`= 3");
-        if(!$qry){
+        if(!$qry)
+        {
             return false;
         }
     }

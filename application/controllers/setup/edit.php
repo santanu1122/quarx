@@ -2,12 +2,14 @@
      
 class edit extends CI_Controller {
 
-    function __construct(){
+    function __construct()
+    {
         parent::__construct();
         $this->load->model('modelsetup');
         $qry = $this->modelsetup->is_installed();
 
-        if(!$qry){
+        if(!$qry)
+        {
             redirect('setup/install');
         }
     }
@@ -15,22 +17,29 @@ class edit extends CI_Controller {
 /* Initial Setup and Install
 ***************************************************************/
 
-    public function index() {
-        if($this->session->userdata('user_id') == 1){
-
+    public function index()
+    {
+        if($this->session->userdata('user_id') == 1)
+        {
             $data['quarxInstalled'] = 'installed';
             
             $state = $this->quarxsetup->account_opts();
 
-            if($state[0]->option_title === 'advanced accounts'){
+            if($state[0]->option_title === 'advanced accounts')
+            {
                 $data['accountStatus'] = 'checked="checked"';
-            }else{
+            }
+            else
+            {
                 $data['accountStatus'] = '';
             } 
 
-            if($state[2]->option_title === 'master access'){
+            if($state[2]->option_title === 'master access')
+            {
                 $data['masterAccess'] = 'checked="checked"';
-            }else{
+            }
+            else
+            {
                 $data['masterAccess'] = '';
             } 
 
@@ -39,34 +48,40 @@ class edit extends CI_Controller {
             $data['pageRoot'] = base_url().'index.php';
             $data['pagetitle'] = 'Setup Edit';
             
-            //load the view elements
             $this->load->view('core/setup/header', $data);
             $this->load->view('core/setup/edit', $data);
-        }else{
+        }
+        else
+        {
             redirect('accounts/insufficient');
         }
     }
 
-    public function edit_setup(){
+    public function edit_setup()
+    {
         $data['quarxInstalled'] = 'installed';
         
-        // Regarding Advanced Accounts
         $advancedAccounts = $this->input->post('advancedAccounts');
 
-        if($advancedAccounts === '1'){
+        if($advancedAccounts === '1')
+        {
             $avdaccts = 'advanced accounts';
-        }else{
+        }
+        else
+        {
             $avdaccts = 'simple accounts';
         }
 
         $this->load->model('modelsetup');
         $this->modelsetup->edit_account_config($avdaccts);
 
-        // Regarding Master Access
         $masterAccess = $this->input->post('masterAccess');
-        if($masterAccess === '1'){
+        if($masterAccess === '1')
+        {
             $masterAccess = 'master access';
-        }else{
+        }
+        else
+        {
             $masterAccess = 'standard access';
         }
 

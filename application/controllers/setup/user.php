@@ -5,7 +5,8 @@ class user extends CI_Controller {
 /* Initial Setup and Install
 ***************************************************************/
 
-    public function index() {
+    public function index() 
+    {
         $data['root'] = base_url();
         $data['pageRoot'] = base_url().'index.php';
         $data['pagetitle'] = 'Setup';
@@ -16,5 +17,6 @@ class user extends CI_Controller {
     }
 
 }
-/* End of file setup.php */
+
+/* End of file user.php */
 /* Location: ./application/controllers/ */

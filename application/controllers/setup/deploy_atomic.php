@@ -2,12 +2,14 @@
      
 class deploy_atomic extends CI_Controller {
 
-    function __construct(){
+    function __construct()
+    {
         parent::__construct();
         $this->load->model('modelsetup');
         $qry = $this->modelsetup->is_installed();
 
-        if(!$qry){
+        if(!$qry)
+        {
             redirect('setup/install');
         }
     }
@@ -15,8 +17,8 @@ class deploy_atomic extends CI_Controller {
 /* Deploy Atomic
 ***************************************************************/
 
-    public function index(){
-        //download the latest atomic build
+    public function index()
+    {
         $url  = 'http://www.ottacon.co/_quarx_/atomic.latest.zip';
         $path = '../../atomic.latest.zip';
 
@@ -31,17 +33,20 @@ class deploy_atomic extends CI_Controller {
 
         $zip = new ZipArchive;
         
-        if ($zip->open($path) === TRUE) {
+        if ($zip->open($path) === TRUE) 
+        {
             $zip->extractTo('../');
             $zip->close();
-        } else {
+        }
+        else
+        {
             echo 'failed';
         }
 
         exec('rm -rf ../../atomic.latest.zip');
         redirect('setup/master?av');
     }
-
 }
+
 /* End of file deploy_atomic.php */
 /* Location: ./application/controllers/setup */

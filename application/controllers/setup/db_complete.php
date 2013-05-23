@@ -2,12 +2,14 @@
      
 class db_complete extends CI_Controller {
 
-    function __construct(){
+    function __construct()
+    {
         parent::__construct();
         $this->load->model('modelsetup');
         $qry = $this->modelsetup->is_installed();
 
-        if($qry){
+        if($qry)
+        {
             redirect('login');
         }
     }
@@ -15,7 +17,8 @@ class db_complete extends CI_Controller {
 /* Initial Setup and Install
 ***************************************************************/
 
-    public function index() {
+    public function index() 
+    {
         $db_file = 
 "<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /*
@@ -94,11 +97,12 @@ class db_complete extends CI_Controller {
         
         $path = 'application/config/database.php';
 
-        if ( ! write_file($path, $db_file) ){
-             
+        if ( ! write_file($path, $db_file) )
+        {     
              echo 'Unable to set up the database. Please recheck your information and try agian.';
-        
-        }else{
+        }
+        else
+        {
             $db_array = array(
                 'db_uname' => $_POST['db_uname'],
                 'db_password' => $_POST['db_password'],
@@ -106,16 +110,15 @@ class db_complete extends CI_Controller {
             );
 
             $this->session->set_userdata('db_array', $db_array);
+            $name = $_POST['db_uname'];
+            $password = $_POST['db_password'];
+            $db = $_POST['db_name'];
 
-                $name = $_POST['db_uname'];
-                $password = $_POST['db_password'];
-                $db = $_POST['db_name'];
-
-                redirect("setup/connect_to_database/now/".encrypt($name)."/".encrypt($password)."/".encrypt($db));
+            redirect("setup/connect_to_database/now/".encrypt($name)."/".encrypt($password)."/".encrypt($db));
             
         }
     }
-
 }
+
 /* End of file db_complete.php */
 /* Location: ./application/controllers/setup */

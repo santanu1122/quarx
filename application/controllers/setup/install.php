@@ -2,12 +2,14 @@
      
 class install extends CI_Controller {
 
-    function __construct(){
+    function __construct()
+    {
         parent::__construct();
         $this->load->model('modelsetup');
         $qry = $this->modelsetup->is_installed();
 
-        if($qry){
+        if($qry)
+        {
             redirect('login');
         }
     }
@@ -15,7 +17,8 @@ class install extends CI_Controller {
 /* Initial Setup and Install
 ***************************************************************/
 
-    public function index() {
+    public function index()
+    {
         $this->load->model('modelsetup');
         $qry = $this->modelsetup->is_installed();
     
@@ -28,5 +31,6 @@ class install extends CI_Controller {
     }
 
 }
+
 /* End of file install.php */
 /* Location: ./application/controllers/setup */

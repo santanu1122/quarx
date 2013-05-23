@@ -6,43 +6,53 @@
 
 class modelaccounts extends CI_Model {
 
-    function __construct() {
-        // Call the Model constructor
+    function __construct() 
+    {
         parent::__construct();
     }
     
 //grab all the data for the current user account
-    function my_account() {
+    function my_account() 
+    {
         $qry = $this->db->query('SELECT * FROM `users` WHERE user_id='.$this->session->userdata('user_id'));
-        if($qry) {
+        if($qry) 
+        {
             return $qry->result();
         }
     }
 
 //username checker extrordinary
-    function unc_validate($name) {
+    function unc_validate($name) 
+    {
         $this->db->where('user_name', mysql_real_escape_string($name));
         $query = $this->db->get('users');
-        if($query->num_rows == 1){
+        if($query->num_rows == 1)
+        {
             return 1;
-        }else{
+        }
+        else
+        {
             return 0;
         }
     }
     
 //grab all the data for this account
-    function this_account($id) {
+    function this_account($id) 
+    {
         $qry = $this->db->query('SELECT * FROM `users` WHERE user_id='.$id);        
-        if($qry){
+        if($qry)
+        {
             return $qry->result();
         }
     }
     
 //simple task of updating the master profile based on the new inputs
-    function profile_update($img, $opts){
+    function profile_update($img, $opts)
+    {
         $optional = '';
 
-        if($opts[0]->option_title === 'advanced accounts'){
+        if($opts[0]->option_title === 'advanced accounts')
+        {
             $optional = "
                 `address` = '".$this->input->post('address')."',
                 `city` = '".$this->input->post('city')."',
@@ -69,7 +79,8 @@ class modelaccounts extends CI_Model {
                     
         $qry = $this->db->query($sql);
         
-        if($qry){
+        if($qry)
+        {
             $this->session->set_userdata('email', $this->input->post('email'));
             return true;
         }
@@ -79,15 +90,18 @@ class modelaccounts extends CI_Model {
 ***************************************************************/
     
 //Just tp verify that there are no others
-    function username_checker() {
+    function username_checker() 
+    {
         $qry = $this->db->query('SELECT * FROM `users` WHERE user_name = "'.$this->input->post('user_name').'"');       
-        if($qry){
+        if($qry)
+        {
             return $qry->result();
         }
     }
 
 //add a new user 
-    function profile_adder($img, $opts) {
+    function profile_adder($img, $opts) 
+    {
         $permission = 2;
         $optional_inserts = '';
         $optional_vals = '';
@@ -96,23 +110,24 @@ class modelaccounts extends CI_Model {
         
         $password = hash("sha256", $rand);
 
-            if($opts[0]->option_title === 'advanced accounts'){
-                $optional_inserts = "address, city, state, country, phone, fax, website, company, ";
+        if($opts[0]->option_title === 'advanced accounts')
+        {
+            $optional_inserts = "address, city, state, country, phone, fax, website, company, ";
 
-                $optional_vals = "
-                    '".$this->input->post('address')."',
-                    '".$this->input->post('city')."',
-                    '".$this->input->post('state_prov')."',
-                    '".$this->input->post('country')."',
-                    '".$this->input->post('phone')."',
-                    '".$this->input->post('fax')."',
-                    '".$this->input->post('website')."',
-                    '".$this->input->post('company')."',";
-            }
+            $optional_vals = "
+                '".$this->input->post('address')."',
+                '".$this->input->post('city')."',
+                '".$this->input->post('state_prov')."',
+                '".$this->input->post('country')."',
+                '".$this->input->post('phone')."',
+                '".$this->input->post('fax')."',
+                '".$this->input->post('website')."',
+                '".$this->input->post('company')."',";
+        }
 
-        //Just to make sure we have a reason to add stuff to the db!
+    //Just to make sure we have a reason to add stuff to the db!
         if($this->input->post('user_name') > ''){
-        
+    
             $sql = "INSERT INTO 
                     users(user_name, user_email, user_pass, owner, permission, status, ".$optional_inserts."lat, lng, location, full_name, user_state, img) 
                 VALUES( '".$this->input->post('user_name')."', 
@@ -131,16 +146,18 @@ class modelaccounts extends CI_Model {
                         )";
 
             $qry = $this->db->query($sql);
-        
+    
         }
 
-        if($qry){
+        if($qry)
+        {
             return $rand;
         }
     }
     
 //the main function to pull in all the users and thier profiles
-    function account_manager() {
+    function account_manager()
+    {
         $qry = $this->db->query('SELECT * FROM `users` WHERE permission = 2');      
         if($qry){
             return $qry->result();
@@ -148,62 +165,75 @@ class modelaccounts extends CI_Model {
     }
     
 //drop it like its hot!
-    function profile_deleter($id) {
+    function profile_deleter($id)
+    {
         $qry = $this->db->query('DELETE FROM users WHERE user_id ='.$id.' AND permission > 0');     
-        
-        if($qry){
+        if($qry)
+        {
             return true;
         }
     }
     
 //Simple search name function
-    function search_accounts($term) {
+    function search_accounts($term) 
+    {
         $qry = $this->db->query('SELECT * FROM `users` WHERE user_name LIKE "%'.$term.'%" AND user_id != 1 ORDER BY full_name ASC');      
-        if($qry){
+        if($qry)
+        {
             return $qry->result();
         }
     }
     
 //Better search function
-    function search_accounts_full($term, $offset=null, $limit=null){
-        if($offset == null){ 
+    function search_accounts_full($term, $offset=null, $limit=null)
+    {
+        if($offset == null)
+        { 
             $offset = 0; 
         }
+
         $qry = $this->db->query('SELECT * FROM `users` WHERE user_name LIKE "%'.$term.'%" AND user_id != 1
                                 || full_name LIKE "%'.$term.'%" AND user_id != 1
                                 || user_email LIKE "%'.$term.'%" AND user_id != 1
                                 || location LIKE "%'.$term.'%" AND user_id != 1
                                  ORDER BY full_name DESC LIMIT '.$offset.', '.$limit);     
-        if($qry){
+        if($qry)
+        {
             return $qry->result();
         }
     }
     
 //Search DB totals
-    function full_search_totals($name){
+    function full_search_totals($name)
+    {
         $qry = $this->db->query('SELECT * FROM `users` WHERE user_name LIKE "%'.$name.'%" AND user_id != 1
                                 || full_name LIKE "%'.$name.'%" AND user_id != 1
                                 || user_email LIKE "%'.$name.'%" AND user_id != 1
                                 || location LIKE "%'.$name.'%" AND user_id != 1
                                  ORDER BY full_name DESC');        
-        if($qry){
+        if($qry)
+        {
             return count($qry->result());
         }
     }
     
 //Just tp verify that there are no others
-    function editor($id) {
+    function editor($id)
+    {
         $qry = $this->db->query('SELECT * FROM `users` WHERE user_id = '.$id);      
-        if($qry){
+        if($qry)
+        {
             return $qry->result();
         }
     }
     
 //Edit this profile
-    function this_profile_update($img, $id, $opts) {
+    function this_profile_update($img, $id, $opts)
+    {
         $optional = '';
 
-        if($opts[0]->option_title === 'advanced accounts'){
+        if($opts[0]->option_title === 'advanced accounts')
+        {
             $optional = "
                 `address` = '".$this->input->post('address')."',
                 `city` = '".$this->input->post('city')."',
@@ -230,14 +260,15 @@ class modelaccounts extends CI_Model {
                     
         $qry = $this->db->query($sql);
         
-        if($qry){
+        if($qry)
+        {
             return true;
         }
     }
 
 //Authorize the user
-    function authorize_user($id) {
-
+    function authorize_user($id) 
+    {
         $sql = "UPDATE 
                     users 
                 SET 
@@ -247,14 +278,15 @@ class modelaccounts extends CI_Model {
                     
         $qry = $this->db->query($sql);
         
-        if($qry){
+        if($qry)
+        {
             return true;
         }
     }
 
 //Enable the user
-    function enable_user($id) {
-
+    function enable_user($id)
+    {
         $sql = "UPDATE 
                     users 
                 SET 
@@ -264,15 +296,16 @@ class modelaccounts extends CI_Model {
                     
         $qry = $this->db->query($sql);
         
-        if($qry){
+        if($qry)
+        {
             return true;
         }
     }
 
 
 //Make a user into master status
-    function master_user_upgrade($id) {
-
+    function master_user_upgrade($id) 
+    {
         $sql = "UPDATE 
                     users 
                 SET 
@@ -283,14 +316,15 @@ class modelaccounts extends CI_Model {
                     
         $qry = $this->db->query($sql);
         
-        if($qry){
+        if($qry)
+        {
             return true;
         }
     }
 
 //Make a user into master status
-    function master_user_downgrade($id) {
-
+    function master_user_downgrade($id)
+    {
         $sql = "UPDATE 
                     users 
                 SET 
@@ -301,14 +335,15 @@ class modelaccounts extends CI_Model {
                     
         $qry = $this->db->query($sql);
         
-        if($qry){
+        if($qry)
+        {
             return true;
         }
     }
 
 //Disable the user
-    function disable_user($id) {
-
+    function disable_user($id)
+    {
         $sql = "UPDATE 
                     users 
                 SET 
@@ -318,7 +353,8 @@ class modelaccounts extends CI_Model {
                     
         $qry = $this->db->query($sql);
         
-        if($qry){
+        if($qry)
+        {
             return true;
         }
     }
@@ -327,24 +363,34 @@ class modelaccounts extends CI_Model {
 ***************************************************************/
     
 //grab an account name for the account_tools library
-    function get_a_name($id){
+    function get_a_name($id)
+    {
         $qry = $this->db->query('SELECT * FROM `users` WHERE user_id = '.$id.' ORDER BY user_name ASC LIMIT 1');
-        if($qry){
+        if($qry)
+        {
             return $qry->result();
         }
     }
 
 //collect all the user data we have
-    function all_profiles($offset=null, $limit=null) {
-        if($offset == null){ $offset = 0; }
-        if($this->session->userdata('owner') == 0){
+    function all_profiles($offset=null, $limit=null)
+    {
+        if($offset == null)
+        { 
+            $offset = 0; 
+        }
+        
+        if($this->session->userdata('owner') == 0)
+        {
             $qry = $this->db->query('   SELECT * 
                                         FROM `users` 
                                         WHERE permission >= 1
                                         AND permission < 50
                                         AND user_id != 1
                                         ORDER BY user_name ASC LIMIT '.$offset.', '.$limit);
-        }else{
+        }
+        else
+        {
             $qry = $this->db->query('   SELECT * 
                                         FROM `users` 
                                         WHERE permission > 1 
@@ -353,27 +399,31 @@ class modelaccounts extends CI_Model {
                                         ORDER BY user_name ASC LIMIT '.$offset.', '.$limit);
         }
 
-        if($qry){
+        if($qry)
+        {
             return $qry->result();
         }
     }
     
 //collect all the sub users
-    function all_profiles_unlimited() {
+    function all_profiles_unlimited() 
+    {
         $qry = $this->db->query('SELECT * FROM `users` WHERE permission > 1 AND permission < 50 ORDER BY user_name ASC');       
-        if($qry){
+        if($qry)
+        {
             return $qry->result();
         }
     }
     
 //collect the total number of users
-    function all_profiles_tally() {
+    function all_profiles_tally()
+    {
         $qry = $this->db->query('SELECT * FROM `users` WHERE permission > 1 AND permission < 50 ORDER BY user_name ASC');       
-        if($qry){
+        if($qry)
+        {
             return count($qry->result());
         }
     }
-    
 }
 
 // End of File

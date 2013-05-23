@@ -2,12 +2,14 @@
      
 class master extends CI_Controller {
 
-    function __construct(){
+    function __construct()
+    {
         parent::__construct();
         $this->load->model('modelsetup');
         $qry = $this->modelsetup->is_installed();
 
-        if(!$qry){
+        if(!$qry)
+        {
             redirect('setup/install');
         }
     }
@@ -15,7 +17,8 @@ class master extends CI_Controller {
 /* Master
 ***************************************************************/
 
-    public function index() {
+    public function index()
+    {
         $data['quarxInstalled'] = 'installed';
         
         $this->load->model('modelsetup');
@@ -31,5 +34,6 @@ class master extends CI_Controller {
         $this->load->view('core/setup/master', $data);
     }
 }
+
 /* End of file master.php */
 /* Location: ./application/controllers/setup */

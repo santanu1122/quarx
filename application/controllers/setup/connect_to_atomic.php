@@ -2,12 +2,14 @@
      
 class connect_to_atomic extends CI_Controller {
 
-    function __construct(){
+    function __construct()
+    {
         parent::__construct();
         $this->load->model('modelsetup');
         $qry = $this->modelsetup->is_installed();
 
-        if(!$qry){
+        if(!$qry)
+        {
             redirect('setup/install');
         }
     }
@@ -15,7 +17,8 @@ class connect_to_atomic extends CI_Controller {
 /* Connect to Atomic
 ***************************************************************/
 
-    public function index() { 
+    public function index() 
+    { 
         $this->load->model('modelsetup');
         $db_info = $this->modelsetup->get_db_info();
 
@@ -95,36 +98,18 @@ class connect_to_atomic extends CI_Controller {
         
         $path = '../application/config/database.php';
 
-        if ( ! write_file($path, $db_file) ){
-             
+        if ( ! write_file($path, $db_file) )
+        {
             redirect('setup/master?e');
-        
-        }else{
-
-            // $auto_path = '../application/config/autoload.php';
-
-            // $str = read_file($auto_path);
-
-            // $part_1_end_pos = 20+strrpos($str, "libraries'] = array(", 2);
-            // $part_1 = substr($str, 0, $part_1_end_pos);
-            // $part_2 = substr($str, $part_1_end_pos);
-
-            // $inject = "'database', ";
-
-            // $auto_file = $part_1.$inject.$part_2;
-            
-            // if ( ! write_file($auto_path, $auto_file) ){
-            //     redirect('setup/master?e');
-            // }
-
+        }
+        else
+        {
             $this->modelsetup->connected_to("atomic");
-
             redirect('setup/master?s');
-
         }
 
     }
 
 }
-/* End of file setup.php */
+/* End of file connect_to_atomic.php */
 /* Location: ./application/controllers/ */

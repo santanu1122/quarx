@@ -7,15 +7,16 @@
 
 class modelimg extends CI_Model {
 
-    function __construct(){
-        // Call the Model constructor
+    function __construct()
+    {
         parent::__construct();
     }
    
 /* Upload Images
 ***************************************************************/
 
-    function upload_img($img, $collection) {
+    function upload_img($img, $collection) 
+    {
         $this->img_location   = site_url().'uploads/img/full/'.$img;
         $this->img_medium_location   = site_url().'uploads/img/medium/'.$img;
         $this->img_thumb_location   = site_url().'uploads/img/thumb/'.$img;
@@ -28,7 +29,8 @@ class modelimg extends CI_Model {
 /* Update Collection
 ***************************************************************/
 
-    function update_collection(){
+    function update_collection()
+    {
         $this->img_collection = $this->input->post('collections');
         $this->db->where('img_id', $this->input->post('imageId'));
         $this->db->update('img', $this);
@@ -39,10 +41,14 @@ class modelimg extends CI_Model {
 /* Gets
 ***************************************************************/
     
-    function get_all_img($collection) {
-        if($collection == null){
+    function get_all_img($collection) 
+    {
+        if($collection == null)
+        {
             $collection = '';
-        }else{
+        }
+        else
+        {
             $collection = 'WHERE img_collection = '.$collection;
         }
 
@@ -50,25 +56,30 @@ class modelimg extends CI_Model {
         return $query->result();
     }
 
-    function get_collection_name($id){
+    function get_collection_name($id)
+    {
         $query = $this->db->query("SELECT * FROM img_collections WHERE collection_id = ".$id);
         $collection = $query->result();
         return $collection[0]->collection_name;
     }
 
-    function favorite_img_set($id, $blog_id) {
+    function favorite_img_set($id, $blog_id)
+    {
         $sql = "UPDATE img SET `favorite` = 0 WHERE blog_id = ".$blog_id." || blog_id = 0";
-        $qry = mysql_query($sql);
-        if($qry){
+        $qry = $this->db->query($sql);
+        if($qry)
+        {
             $query = "UPDATE img SET `favorite` = 1 WHERE img_id = ".$id;
-            $res = mysql_query($query);
-            if($res){
+            $res = $this->db->query($query);
+            if($res)
+            {
                 return true;
             }
         }
     }
 
-    function get_collections() {
+    function get_collections() 
+    {
         $query = $this->db->query("SELECT * FROM img_collections ORDER BY collection_id DESC");
         return $query->result();
     }
@@ -76,30 +87,39 @@ class modelimg extends CI_Model {
 /* Delete Images/Collections
 ***************************************************************/
 
-    function delete_img($id) {
+    function delete_img($id)
+    {
         $query = $this->db->query("DELETE FROM img WHERE img_id = ".$id);
-        if($query){
+        if($query)
+        {
             return true;
         }
     }
 
-    function find_img($id) {       
+    function find_img($id)
+    {       
         $img_qry = $this->db->query('SELECT * FROM `img` WHERE img_id = '.$id);     
-        if($img_qry){
+        if($img_qry)
+        {
             return $img_qry->result();
         }
     }
 
-    function delete_collection(){
+    function delete_collection()
+    {
         $id = $this->input->post('idTag');
         $res = $this->db->query("SELECT * FROM img WHERE img_collection = '".$id."'");
         $res = $res->num_rows();
 
-        if($res > 0){
+        if($res > 0)
+        {
             return false;
-        }else{
+        }
+        else
+        {
             $query = $this->db->query("DELETE FROM img_collections WHERE collection_id = '".$id."'");
-            if($query){
+            if($query)
+            {
                 return true;
             }
         }
@@ -108,20 +128,26 @@ class modelimg extends CI_Model {
 /* Alt Title Tags
 ***************************************************************/
 
-    function set_alt_title($id, $alt, $title) {       
-        $img_qry = $this->db->query('UPDATE img 
-                                     SET 
-                                        `img_alt_tag` = "'.$alt.'",
-                                        `img_title_tag` = "'.$title.'"
-                                     WHERE img_id = '.$id);     
-        if(!$img_qry){
+    function set_alt_title($id, $alt, $title)
+    {       
+        $img_qry = $this->db->query(    'UPDATE 
+                                            img 
+                                        SET 
+                                            `img_alt_tag` = "'.$alt.'",
+                                            `img_title_tag` = "'.$title.'"
+                                        WHERE 
+                                            img_id = '.$id);     
+        if(!$img_qry)
+        {
             return false;
         }
     }
 
-    function get_alt_title($id) {       
+    function get_alt_title($id)
+    {       
         $img_qry = $this->db->query('SELECT * FROM `img` WHERE img_id = '.$id);     
-        if($img_qry){
+        if($img_qry)
+        {
             return $img_qry->result();
         }
     }
@@ -129,7 +155,8 @@ class modelimg extends CI_Model {
 /* Collections
 ***************************************************************/
 
-    function new_collection(){
+    function new_collection()
+    {
         $this->collection_name = $this->input->post('collection_name');
         $this->db->insert('img_collections', $this);
             

@@ -2,14 +2,16 @@
      
 class error extends CI_Controller {
 
-    function __construct(){
+    function __construct()
+    {
         parent::__construct();
     }
 
 /* Initial Setup and Install
 ***************************************************************/
 
-    public function index() {
+    public function index()
+    {
         $data['error'] = $this->session->flashdata('error');
 
         $data['root'] = base_url();
@@ -21,5 +23,6 @@ class error extends CI_Controller {
         $this->load->view('core/errors/general', $data);
     }
 }
-/* End of file setup.php */
+
+/* End of file error.php */
 /* Location: ./application/controllers/ */

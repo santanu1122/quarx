@@ -5,19 +5,26 @@ class complete extends CI_Controller {
 /* Initial Setup and Install
 ***************************************************************/
 
-    function quarx_install($userName, $userPassword, $advancedAccounts, $masterAccess, $db_array){
-            if($advancedAccounts === '1'){
+    function quarx_install($userName, $userPassword, $advancedAccounts, $masterAccess, $db_array)
+    {
+            if($advancedAccounts === '1')
+            {
                 $extras = true;
                 $avdaccts = 'advanced accounts';
-            }else{
+            }
+            else
+            {
                 $extras = false;
                 $avdaccts = 'simple accounts';
             }
 
-            if($masterAccess === '1'){
+            if($masterAccess === '1')
+            {
                 $extras = true;
                 $master = 'master access';
-            }else{
+            }
+            else
+            {
                 $extras = false;
                 $master = 'standard access';
             }
@@ -28,29 +35,35 @@ class complete extends CI_Controller {
             $version = @$current_quarx->version;
 
             $this->load->model('modelsetup');
-
-            // master user
             $table = $this->modelsetup->add_user_table($extras);
 
-            if($table !== false){
+            if($table !== false)
+            {
                 $this->modelsetup->add_master_user($userName, $userPassword);
             }
 
-            // admin options
             $admin = $this->modelsetup->add_admin_table();
-            if($admin !== false){
+
+            if($admin !== false)
+            {
                 $this->modelsetup->add_admin_opts($avdaccts, $master, $version, $db_array);
             }
 
-            // image table
             $img_table = $this->modelsetup->add_img_table();
 
             return "Quarx has been successfully installed.";
     }
 
-    public function index() {
-        if($this->input->post('username') != '' && $this->input->post('username') != 'User Name'){
-            $data['result'] = $this->quarx_install($this->input->post('username'), $this->input->post('confirm'), $this->input->post('advancedAccounts'), $this->input->post('masterAccess'), $this->session->userdata('db_array'));
+    public function index()
+    {
+        if($this->input->post('username') != '' && $this->input->post('username') != 'User Name')
+        {
+            $data['result'] = $this->quarx_install( $this->input->post('username'), 
+                                                    $this->input->post('confirm'), 
+                                                    $this->input->post('advancedAccounts'), 
+                                                    $this->input->post('masterAccess'), 
+                                                    $this->session->userdata('db_array')
+                                                   );
 
             $this->session->unset_userdata('db_array');
 
@@ -58,12 +71,13 @@ class complete extends CI_Controller {
             $data['root'] = base_url();
             $data['pageRoot'] = base_url().'index.php';
             $data['pagetitle'] = 'Setup Complete';
-            
-            //load the view elements
+
             $this->load->view('core/setup/header', $data);
             $this->load->view('core/setup/complete', $data);
 
-        }else{
+        }
+        else
+        {
             redirect('setup');
         }
     }
