@@ -1,13 +1,30 @@
-<?php /*
-	Filename: 	forgotpassword.php
-	Location: 	/application/views/core
-*/ ?>
+<?php
+
+/**
+ * Quarx
+ *
+ * A modular CMS built on CodeIgniter
+ *
+ * @package     Quarx
+ * @author      Matt Lantz
+ * @copyright   Copyright (c) 2013 Matt Lantz
+ * @license     http://ottacon.co/quarx/license
+ * @link        http://quarx.ottacon.co
+ * @since       Version 1.0
+ * 
+ */
+
+?>
+
+<!-- notifications -->
 
 <?php if(isset($error)){ ?>
     <div id="errorBox" class="errorBox">
         <p><?php echo $error; ?></p>
     </div>  
 <?php } ?>
+
+<!-- main content -->
 
 <div class="raw100"><!-- content -->
 
@@ -46,6 +63,8 @@
     </div>
 
 </div><!--/content -->
+
+<!-- javascript -->
 
 <script type="text/javascript">
     $(document).ready(function(){

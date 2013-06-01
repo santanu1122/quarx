@@ -1,7 +1,22 @@
-<?php /*
-    Filename:   img_feed.php
-    Location:   /application/views/images/
-*/ ?>
+<?php
+
+/**
+ * Quarx
+ *
+ * A modular CMS built on CodeIgniter
+ *
+ * @package     Quarx
+ * @author      Matt Lantz
+ * @copyright   Copyright (c) 2013 Matt Lantz
+ * @license     http://ottacon.co/quarx/license
+ * @link        http://quarx.ottacon.co
+ * @since       Version 1.0
+ * 
+ */
+
+?>
+
+<!-- dialogs -->
 
 <div id="dialog-img" title="Delete Confirmation" class="dialogBox">
     <div class="dialogbox_body">
@@ -25,6 +40,8 @@
     </div>
 </div>
 
+<!-- main content -->
+
 <div class="raw100">
     <select id="collections" data-theme="a">
         <?php if(isset($img_collection_name)){ ?>
@@ -37,26 +54,28 @@
 
 <div class="imgCollectionBox">
 
-        <?php if(count($image) === 0){ ?>
-            <h1 id="add_img_text" class="muted" style="text-align: center; margin: 100px auto 0px;">Add Images</h1>
-        <?php } ?>
+    <?php if(count($image) === 0){ ?>
+        <h1 id="add_img_text" class="muted" style="text-align: center; margin: 100px auto 0px;">Add Images</h1>
+    <?php } ?>
 
-        <?php foreach($image as $pic): ?>
-                            
-            <div class="imageBox">
-                <div class="imgThumbHolder">
-                    <div class="delBox" onclick="deleteMe(<?php echo $pic->img_id; ?>)">
-                        <span class="delIcon"></span>
-                    </div>
-                    <div class="thumbShot">
-                        <img data-web-link="<?php echo $pic->img_medium_location; ?>" onclick="<?php if($pic->img_alt_tag == ''){ echo 'setTags('.$pic->img_id.')'; }else{ echo 'updateTags('.$pic->img_id.')'; } ?>" id="<?php echo $pic->img_id ?>" src="<?php echo $pic->img_thumb_location; ?>" alt="<?php echo $pic->img_alt_tag; ?>" title="<?php echo $pic->img_title_tag; ?>" />
-                    </div>
+    <?php foreach($image as $pic): ?>
+                        
+        <div class="imageBox">
+            <div class="imgThumbHolder">
+                <div class="delBox" onclick="deleteMe(<?php echo $pic->img_id; ?>)">
+                    <span class="delIcon"></span>
+                </div>
+                <div class="thumbShot">
+                    <img data-web-link="<?php echo $pic->img_medium_location; ?>" onclick="<?php if($pic->img_alt_tag == ''){ echo 'setTags('.$pic->img_id.')'; }else{ echo 'updateTags('.$pic->img_id.')'; } ?>" id="<?php echo $pic->img_id ?>" src="<?php echo $pic->img_thumb_location; ?>" alt="<?php echo $pic->img_alt_tag; ?>" title="<?php echo $pic->img_title_tag; ?>" />
                 </div>
             </div>
-        
-        <?php endforeach; ?>
+        </div>
+    
+    <?php endforeach; ?>
 
 </div>
+
+<!-- javascript -->
 
 <script type="text/javascript">
 

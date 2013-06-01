@@ -1,10 +1,22 @@
-<?php /*
-    Filename:   edit.php
-    Location:   /application/views/core/setup
-*/ ?>
+<?php
+
+/**
+ * Quarx
+ *
+ * A modular CMS built on CodeIgniter
+ *
+ * @package     Quarx
+ * @author      Matt Lantz
+ * @copyright   Copyright (c) 2013 Matt Lantz
+ * @license     http://ottacon.co/quarx/license
+ * @link        http://quarx.ottacon.co
+ * @since       Version 1.0
+ * 
+ */
+
+?>
 
 <div class="raw100">
-        
     <div class="smallDevice">
 
         <div id="masterAccount">

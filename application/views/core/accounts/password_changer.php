@@ -1,7 +1,20 @@
-<?php /*
-    Filename:   password_changer.php
-    Location:   /application/views/core
-*/ ?>
+<?php
+
+/**
+ * Quarx
+ *
+ * A modular CMS built on CodeIgniter
+ *
+ * @package     Quarx
+ * @author      Matt Lantz
+ * @copyright   Copyright (c) 2013 Matt Lantz
+ * @license     http://ottacon.co/quarx/license
+ * @link        http://quarx.ottacon.co
+ * @since       Version 1.0
+ * 
+ */
+
+?>
 
 <div class="smallDevice tall">
     <div id="pwStrength"></div>

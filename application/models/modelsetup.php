@@ -1,9 +1,18 @@
 <?php
 
-/*
-    Filename:   modelsetup.php
-    Location:   /application/models/
-*/
+/**
+ * Quarx
+ *
+ * A modular CMS built on CodeIgniter
+ *
+ * @package     Quarx
+ * @author      Matt Lantz
+ * @copyright   Copyright (c) 2013 Matt Lantz
+ * @license     http://ottacon.co/quarx/license
+ * @link        http://quarx.ottacon.co
+ * @since       Version 1.0
+ * 
+ */
 
 class modelsetup extends CI_Model {
 

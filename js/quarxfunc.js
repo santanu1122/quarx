@@ -1,7 +1,17 @@
-/* 	quarxfunc.js
-	This is the collection of functions utilized in various places throughout the quarx frameworks
-*/
-
+/**
+ * Quarx
+ *
+ * A modular CMS built on CodeIgniter
+ *
+ * @package     Quarx
+ * @author      Matt Lantz
+ * @copyright   Copyright (c) 2013 Matt Lantz
+ * @license     http://ottacon.co/quarx/license
+ * @link        http://quarx.ottacon.co
+ * @since       Version 1.0
+ * 
+ */
+ 
 // Profile Image resizing
 function profileImageResize(){
     var width = $('.profileImageBox img').width(),

@@ -1,22 +1,35 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-/* Filename: image_tools.php
- * Location: application/libraries/
+/**
+ * Quarx
+ *
+ * A modular CMS built on CodeIgniter
+ *
+ * @package     Quarx
+ * @author      Matt Lantz
+ * @copyright   Copyright (c) 2013 Matt Lantz
+ * @license     http://ottacon.co/quarx/license
+ * @link        http://quarx.ottacon.co
+ * @since       Version 1.0
+ * 
  */
 
 class image_tools{
     
-    public function image_tools(){ 
+    public function image_tools()
+    { 
 
-        function getCollectionName($id){
-        $CI =& get_instance();
-        $CI->load->model('modelimg');
+        function getCollectionName($id)
+        {
+            $CI =& get_instance();
+            $CI->load->model('modelimg');
 
-        $qry = $CI->modelimg->get_collection_name($id);
-        return $qry;
-    }
+            $qry = $CI->modelimg->get_collection_name($id);
+            return $qry;
+        }
 
-        function imgLibrarySelect($img_collection = null){
+        function imgLibrarySelect($img_collection = null)
+        {
             $CI =& get_instance();
             $CI->load->model('modelimg');
 
@@ -43,7 +56,6 @@ class image_tools{
             $data .= '</select></div>';
         
             return $data;
-
         }
     }
 }

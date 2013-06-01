@@ -1,5 +1,18 @@
-// Populates and adds a marker to a google map
+/**
+ * Quarx
+ *
+ * A modular CMS built on CodeIgniter
+ *
+ * @package     Quarx
+ * @author      Matt Lantz
+ * @copyright   Copyright (c) 2013 Matt Lantz
+ * @license     http://ottacon.co/quarx/license
+ * @link        http://quarx.ottacon.co
+ * @since       Version 1.0
+ * 
+ */
 
+// Populates and adds a marker to a google map
 function getAjax(type, p_code, root){
     $.ajax({
         type: 'GET',
@@ -106,6 +119,5 @@ function locateMeAlt(){
           infowindow.open(map, marker);
         }
         })(marker, i));
-
-        }
+    }
 }

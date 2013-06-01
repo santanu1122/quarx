@@ -1,8 +1,20 @@
-<?php /*
-    Filename:   info.php
-    Location:   /application/views/core/admin
-    Author:     Matt Lantz
-*/ ?>
+<?php
+
+/**
+ * Quarx
+ *
+ * A modular CMS built on CodeIgniter
+ *
+ * @package     Quarx
+ * @author      Matt Lantz
+ * @copyright   Copyright (c) 2013 Matt Lantz
+ * @license     http://ottacon.co/quarx/license
+ * @link        http://quarx.ottacon.co
+ * @since       Version 1.0
+ * 
+ */
+
+?>
 
 <style type="text/css">
     #phpinfo table{ width: 100%; }

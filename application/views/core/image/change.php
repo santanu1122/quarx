@@ -1,13 +1,30 @@
-<?php /*
-    Filename:   add.php
-    Location:   /application/views/images/
-*/ ?>
+<?php
+
+/**
+ * Quarx
+ *
+ * A modular CMS built on CodeIgniter
+ *
+ * @package     Quarx
+ * @author      Matt Lantz
+ * @copyright   Copyright (c) 2013 Matt Lantz
+ * @license     http://ottacon.co/quarx/license
+ * @link        http://quarx.ottacon.co
+ * @since       Version 1.0
+ * 
+ */
+
+?>
+
+<!-- dialogs -->
 
 <div id="dialog-newColl" class="dialogBox" title="New Collection">
     <div class="dialogbox_body">
         <input onfocus="this.value=''" data-theme="a" id="collectionName" type="text" value="Collection Name" />
     </div>
 </div>
+
+<!-- notifications -->
 
 <div id="imageError" class="errorBox">
     <p>Sorry, there was an error.</p>
@@ -16,6 +33,8 @@
 <div id="imageSuccess" class="updateBox">
     <p>Upload Complete.</p>
 </div>
+
+<!-- main content -->
 
 <div class="raw100">
     
@@ -43,6 +62,8 @@
     </div>  
 
 </div>
+
+<!-- javascript -->
 
 <script type="text/javascript">
 

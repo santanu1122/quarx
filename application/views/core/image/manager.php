@@ -1,7 +1,22 @@
-<?php /*
-    Filename:   main.php
-    Location:   /application/views/images/
-*/ ?>
+<?php
+
+/**
+ * Quarx
+ *
+ * A modular CMS built on CodeIgniter
+ *
+ * @package     Quarx
+ * @author      Matt Lantz
+ * @copyright   Copyright (c) 2013 Matt Lantz
+ * @license     http://ottacon.co/quarx/license
+ * @link        http://quarx.ottacon.co
+ * @since       Version 1.0
+ * 
+ */
+
+?>
+
+<!-- dialogs -->
 
 <div id="dialog-img" title="Delete Confirmation" class="dialogBox">
     <div class="dialogbox_body">
@@ -21,6 +36,8 @@
 </div>
 <?php } ?>
 
+<!-- main content -->
+
 <div class="raw100 align-center">
     <a id="newCollectionBtn" href="#" data-role="button" data-icon="plus" data-theme="a">New Collection</a>
 
@@ -28,6 +45,8 @@
         <a href="#" onclick="deleteMe(<?php echo $c->collection_id; ?>)" data-role="button" data-theme="e" data-icon="delete"><?php echo $c->collection_name; ?></a>
     <?php endforeach; ?>
 </div>
+
+<!-- javascript -->
 
 <script type="text/javascript">
 

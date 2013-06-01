@@ -1,8 +1,18 @@
 <?php
-/*
-    Filename:   modelaccounts.php
-    Location:   /application/models/
-*/
+
+/**
+ * Quarx
+ *
+ * A modular CMS built on CodeIgniter
+ *
+ * @package     Quarx
+ * @author      Matt Lantz
+ * @copyright   Copyright (c) 2013 Matt Lantz
+ * @license     http://ottacon.co/quarx/license
+ * @link        http://quarx.ottacon.co
+ * @since       Version 1.0
+ * 
+ */
 
 class modelaccounts extends CI_Model {
 
@@ -11,7 +21,6 @@ class modelaccounts extends CI_Model {
         parent::__construct();
     }
     
-//grab all the data for the current user account
     function my_account() 
     {
         $qry = $this->db->query('SELECT * FROM `users` WHERE user_id='.$this->session->userdata('user_id'));
@@ -21,7 +30,6 @@ class modelaccounts extends CI_Model {
         }
     }
 
-//username checker extrordinary
     function unc_validate($name) 
     {
         $this->db->where('user_name', mysql_real_escape_string($name));
@@ -36,7 +44,6 @@ class modelaccounts extends CI_Model {
         }
     }
     
-//grab all the data for this account
     function this_account($id) 
     {
         $qry = $this->db->query('SELECT * FROM `users` WHERE user_id='.$id);        
@@ -46,7 +53,6 @@ class modelaccounts extends CI_Model {
         }
     }
     
-//simple task of updating the master profile based on the new inputs
     function profile_update($img, $opts)
     {
         $optional = '';
@@ -89,7 +95,6 @@ class modelaccounts extends CI_Model {
 /* Add a profile
 ***************************************************************/
     
-//Just tp verify that there are no others
     function username_checker() 
     {
         $qry = $this->db->query('SELECT * FROM `users` WHERE user_name = "'.$this->input->post('user_name').'"');       
@@ -99,7 +104,6 @@ class modelaccounts extends CI_Model {
         }
     }
 
-//add a new user 
     function profile_adder($img, $opts) 
     {
         $permission = 2;
@@ -125,7 +129,6 @@ class modelaccounts extends CI_Model {
                 '".$this->input->post('company')."',";
         }
 
-    //Just to make sure we have a reason to add stuff to the db!
         if($this->input->post('user_name') > ''){
     
             $sql = "INSERT INTO 
@@ -155,7 +158,6 @@ class modelaccounts extends CI_Model {
         }
     }
     
-//the main function to pull in all the users and thier profiles
     function account_manager()
     {
         $qry = $this->db->query('SELECT * FROM `users` WHERE permission = 2');      
@@ -164,7 +166,6 @@ class modelaccounts extends CI_Model {
         }
     }
     
-//drop it like its hot!
     function profile_deleter($id)
     {
         $qry = $this->db->query('DELETE FROM users WHERE user_id ='.$id.' AND permission > 0');     
@@ -174,7 +175,6 @@ class modelaccounts extends CI_Model {
         }
     }
     
-//Simple search name function
     function search_accounts($term) 
     {
         $qry = $this->db->query('SELECT * FROM `users` WHERE user_name LIKE "%'.$term.'%" AND user_id != 1 ORDER BY full_name ASC');      
@@ -184,7 +184,6 @@ class modelaccounts extends CI_Model {
         }
     }
     
-//Better search function
     function search_accounts_full($term, $offset=null, $limit=null)
     {
         if($offset == null)
@@ -203,7 +202,6 @@ class modelaccounts extends CI_Model {
         }
     }
     
-//Search DB totals
     function full_search_totals($name)
     {
         $qry = $this->db->query('SELECT * FROM `users` WHERE user_name LIKE "%'.$name.'%" AND user_id != 1
@@ -217,7 +215,6 @@ class modelaccounts extends CI_Model {
         }
     }
     
-//Just tp verify that there are no others
     function editor($id)
     {
         $qry = $this->db->query('SELECT * FROM `users` WHERE user_id = '.$id);      
@@ -227,7 +224,6 @@ class modelaccounts extends CI_Model {
         }
     }
     
-//Edit this profile
     function this_profile_update($img, $id, $opts)
     {
         $optional = '';
@@ -266,7 +262,6 @@ class modelaccounts extends CI_Model {
         }
     }
 
-//Authorize the user
     function authorize_user($id) 
     {
         $sql = "UPDATE 
@@ -284,7 +279,6 @@ class modelaccounts extends CI_Model {
         }
     }
 
-//Enable the user
     function enable_user($id)
     {
         $sql = "UPDATE 
@@ -302,8 +296,6 @@ class modelaccounts extends CI_Model {
         }
     }
 
-
-//Make a user into master status
     function master_user_upgrade($id) 
     {
         $sql = "UPDATE 
@@ -322,7 +314,6 @@ class modelaccounts extends CI_Model {
         }
     }
 
-//Make a user into master status
     function master_user_downgrade($id)
     {
         $sql = "UPDATE 
@@ -341,7 +332,6 @@ class modelaccounts extends CI_Model {
         }
     }
 
-//Disable the user
     function disable_user($id)
     {
         $sql = "UPDATE 
@@ -362,7 +352,6 @@ class modelaccounts extends CI_Model {
 /* GETS
 ***************************************************************/
     
-//grab an account name for the account_tools library
     function get_a_name($id)
     {
         $qry = $this->db->query('SELECT * FROM `users` WHERE user_id = '.$id.' ORDER BY user_name ASC LIMIT 1');
@@ -372,7 +361,6 @@ class modelaccounts extends CI_Model {
         }
     }
 
-//collect all the user data we have
     function all_profiles($offset=null, $limit=null)
     {
         if($offset == null)
@@ -405,7 +393,6 @@ class modelaccounts extends CI_Model {
         }
     }
     
-//collect all the sub users
     function all_profiles_unlimited() 
     {
         $qry = $this->db->query('SELECT * FROM `users` WHERE permission > 1 AND permission < 50 ORDER BY user_name ASC');       
@@ -415,7 +402,6 @@ class modelaccounts extends CI_Model {
         }
     }
     
-//collect the total number of users
     function all_profiles_tally()
     {
         $qry = $this->db->query('SELECT * FROM `users` WHERE permission > 1 AND permission < 50 ORDER BY user_name ASC');       

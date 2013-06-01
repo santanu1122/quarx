@@ -1,10 +1,26 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+/**
+ * Quarx
+ *
+ * A modular CMS built on CodeIgniter
+ *
+ * @package     Quarx
+ * @author      Matt Lantz
+ * @copyright   Copyright (c) 2013 Matt Lantz
+ * @license     http://ottacon.co/quarx/license
+ * @link        http://quarx.ottacon.co
+ * @since       Version 1.0
+ * 
+ */
+
 class account_tools {
     
-    public function account_tools(){
+    public function account_tools()
+    {
 
-        function getUserName($id){
+        function getUserName($id)
+        {
             $CI =& get_instance();
             $CI->load->model('modelaccounts');
             $query = $CI->modelaccounts->get_a_name($id);
@@ -13,7 +29,8 @@ class account_tools {
             return $res;
         }
 
-        function check_master_access(){
+        function check_master_access()
+        {
             $CI =& get_instance();
             $CI->load->model('modeladmin');
 
@@ -27,6 +44,7 @@ class account_tools {
                 exit;
             }
         }
+        
     }
 }
 

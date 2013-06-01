@@ -1,7 +1,22 @@
-<?php /*
-    Filename:   initial.php
-    Location:   /application/views/setup
-*/ ?>
+<?php
+
+/**
+ * Quarx
+ *
+ * A modular CMS built on CodeIgniter
+ *
+ * @package     Quarx
+ * @author      Matt Lantz
+ * @copyright   Copyright (c) 2013 Matt Lantz
+ * @license     http://ottacon.co/quarx/license
+ * @link        http://quarx.ottacon.co
+ * @since       Version 1.0
+ * 
+ */
+
+?>
+
+<!-- main content -->
 
 <div class="smallDevice tall">
     <div id="pwStrength"></div>
@@ -37,6 +52,8 @@
         </div>
     </div>
     
+</div>
+<!-- javascript -->
 
 <script type="text/javascript">
     

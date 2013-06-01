@@ -1,10 +1,18 @@
 <?php 
 
-/*
-	Written by: Matt Lantz
-	A simple tool that grabs the lat and long from Google
-	It hands out the XML which we parse and get what we need!
-*/
+/**
+ * Quarx
+ *
+ * A modular CMS built on CodeIgniter
+ *
+ * @package     Quarx
+ * @author      Matt Lantz
+ * @copyright   Copyright (c) 2013 Matt Lantz
+ * @license     http://ottacon.co/quarx/license
+ * @link        http://quarx.ottacon.co
+ * @since       Version 1.0
+ * 
+ */
 
 if($_GET['zip_postal']){
 	$addy = $_GET['zip_postal'];

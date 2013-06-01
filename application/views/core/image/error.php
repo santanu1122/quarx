@@ -1,7 +1,20 @@
-<?php /*
-    Filename:   error.php
-    Location:   /application/views/images/
-*/ ?>
+<?php
+
+/**
+ * Quarx
+ *
+ * A modular CMS built on CodeIgniter
+ *
+ * @package     Quarx
+ * @author      Matt Lantz
+ * @copyright   Copyright (c) 2013 Matt Lantz
+ * @license     http://ottacon.co/quarx/license
+ * @link        http://quarx.ottacon.co
+ * @since       Version 1.0
+ * 
+ */
+
+?>
 
 <script type="text/javascript" src="<?php echo $root; ?>js/jquery.min.js"></script>
 <script type="text/javascript" src="<?php echo $root; ?>js/jquery-ui.min.js"></script>
@@ -10,10 +23,8 @@
 
 <div class="wide_box align-center">
     
-    
     <div class="refresh" onclick="window.history.back()"></div>
     <p>Sorry, it seems we've encountered an error. Please try again.</p>
-
 
 </div>
 

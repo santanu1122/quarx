@@ -1,12 +1,25 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-//Author: Matt Lantz
+/**
+ * Quarx
+ *
+ * A modular CMS built on CodeIgniter
+ *
+ * @package     Quarx
+ * @author      Matt Lantz
+ * @copyright   Copyright (c) 2013 Matt Lantz
+ * @license     http://ottacon.co/quarx/license
+ * @link        http://quarx.ottacon.co
+ * @since       Version 1.0
+ * 
+ */
 
 class cryptography {
     
     public function cryptography(){
 
-        function url_base64_encode($str){
+        function url_base64_encode($str)
+        {
             return strtr(base64_encode($str),
                 array(
                     '+' => '.',
@@ -15,7 +28,8 @@ class cryptography {
             ));
         }
          
-        function url_base64_decode($str){
+        function url_base64_decode($str)
+        {
             return base64_decode(strtr($str,
                 array(
                     '.' => '+',
@@ -24,7 +38,8 @@ class cryptography {
             )));
         }
 
-        function encrypt($string){
+        function encrypt($string)
+        {
             $CI =& get_instance();
             $config_key = $CI->config->item('encryption_key');
             $sess = $CI->session->userdata('session_id');
@@ -36,7 +51,8 @@ class cryptography {
             return trim($encrypted); 
         }
         
-        function decrypt($string){
+        function decrypt($string)
+        {
             $CI =& get_instance();
             $config_key = $CI->config->item('encryption_key');
             $sess = $CI->session->userdata('session_id');

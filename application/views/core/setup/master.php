@@ -1,14 +1,22 @@
-<?php /*
-    Filename:   installed.php
-    Location:   /application/views/core/setup
-*/ ?>
+<?php
 
-<script type="text/javascript">
-    $(document).ready(function(){
-        $('#msgBox').fadeIn();
-        setTimeout(function(){ $('#msgBox').fadeOut(); }, 2200);    
-    });
-</script>
+/**
+ * Quarx
+ *
+ * A modular CMS built on CodeIgniter
+ *
+ * @package     Quarx
+ * @author      Matt Lantz
+ * @copyright   Copyright (c) 2013 Matt Lantz
+ * @license     http://ottacon.co/quarx/license
+ * @link        http://quarx.ottacon.co
+ * @since       Version 1.0
+ * 
+ */
+
+?>
+
+<!-- notifications -->
 
 <?php if(isset($_GET['s'])){ ?>
     <div id="msgBox" class="updateBox">
@@ -28,6 +36,8 @@
     </div>
 <?php } ?>
 
+<!-- main content -->
+
 <div class="raw100">
 
     <p class="align-left">It looks like you already have Quarx installed. Are you looking to edit the current setup?</p>
@@ -46,5 +56,14 @@
     <a data-role="button" data-theme="a" href="<?php echo site_url('login'); ?>">Return To Quarx</a>
 
 </div>
+
+<!-- javascript -->
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#msgBox').fadeIn();
+        setTimeout(function(){ $('#msgBox').fadeOut(); }, 2200);    
+    });
+</script>
     
 <?php /* End of File */ ?>

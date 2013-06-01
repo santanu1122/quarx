@@ -1,20 +1,30 @@
-<?php /*
-    Filename:   login.php
-    Location:   /application/views/core/
-*/ ?>
+<?php
 
-<script type="text/javascript">
-    $(document).ready(function(){
-        $("#errorBox").fadeIn();
-        setTimeout(function(){ $("#errorBox").fadeOut(); }, 2200);
-    });
-</script>
+/**
+ * Quarx
+ *
+ * A modular CMS built on CodeIgniter
+ *
+ * @package     Quarx
+ * @author      Matt Lantz
+ * @copyright   Copyright (c) 2013 Matt Lantz
+ * @license     http://ottacon.co/quarx/license
+ * @link        http://quarx.ottacon.co
+ * @since       Version 1.0
+ * 
+ */
 
-    <?php if(isset($error)){ ?>
-        <div id="errorBox" class="errorBox">
-            <p><?php echo $error; ?></p>
-        </div>  
-    <?php } ?>
+?>
+
+<!-- notifications -->
+
+<?php if(isset($error)){ ?>
+    <div id="errorBox" class="errorBox">
+        <p><?php echo $error; ?></p>
+    </div>  
+<?php } ?>
+
+<!-- main content -->
     
 <div class="raw100">
 
@@ -49,5 +59,12 @@
     </div>
     
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#errorBox").fadeIn();
+        setTimeout(function(){ $("#errorBox").fadeOut(); }, 2200);
+    });
+</script>
     
 <?php /* End of File */ ?>

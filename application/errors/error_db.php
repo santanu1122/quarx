@@ -55,7 +55,7 @@ p {
 </head>
 <body>
 	<div id="container">
-		<h1><?php echo $heading; ?>Whoa!</h1>
+		<h1><?php echo $heading; ?> Whoa!</h1>
 		<?php echo $message; ?><p>Are you sure your system is installed correctly!</p>
 	</div>
 </body>

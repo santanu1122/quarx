@@ -1,51 +1,30 @@
-<?php /*
-    Filename:   add.php
-    Location:   /application/views/images/
-*/ ?>
+<?php
 
-<style type="text/css">
+/**
+ * Quarx
+ *
+ * A modular CMS built on CodeIgniter
+ *
+ * @package     Quarx
+ * @author      Matt Lantz
+ * @copyright   Copyright (c) 2013 Matt Lantz
+ * @license     http://ottacon.co/quarx/license
+ * @link        http://quarx.ottacon.co
+ * @since       Version 1.0
+ * 
+ */
 
-.dialogBox{
-    min-width: 260px;
-    max-width: 260px;
-    top: 0;
-    margin: 40px auto;
-    position: absolute;
-    z-index: 10000;
-    background: #FFF;
-    border: 1px solid #bbb;
-    border-radius: 15px;
-    box-shadow: 0 0 15px #111;
-    display: none;
-}
+?>
 
-.dialogbox_header{
-    width: 260px;
-    background: #222;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    height: 50px;
-    margin: -12px 0 0 0;
-    text-align: center;
-}
-
-.dialogbox_body{
-    padding: 0 20px 20px 20px;
-}
-
-.dialogbox_header h1{
-    color: #FFF;
-    line-height: 50px;
-    font-size: 18px;
-}
-
-</style>
+<!-- dialogs -->
 
 <div id="dialog-newColl" class="dialogBox" title="New Collection">
     <div class="dialogbox_body">
         <input onfocus="this.value=''" data-theme="a" id="collectionName" type="text" value="Collection Name" />
     </div>
 </div>
+
+<!-- notifications -->
 
 <div id="imageError" class="errorBox">
     <p>Sorry, there was an error.</p>
@@ -54,6 +33,8 @@
 <div id="imageSuccess" class="updateBox">
     <p>Upload Complete.</p>
 </div>
+
+<!-- main content -->
 
 <div class="raw100">
     
@@ -85,6 +66,8 @@
     </div>  
 
 </div>
+
+<!-- javascript -->
 
 <script type="text/javascript">
 
