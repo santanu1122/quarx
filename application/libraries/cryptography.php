@@ -18,8 +18,7 @@ class cryptography {
     
     public function cryptography(){
 
-        function url_base64_encode($str)
-        {
+        function url_base64_encode($str){
             return strtr(base64_encode($str),
                 array(
                     '+' => '.',
@@ -28,8 +27,7 @@ class cryptography {
             ));
         }
          
-        function url_base64_decode($str)
-        {
+        function url_base64_decode($str){
             return base64_decode(strtr($str,
                 array(
                     '.' => '+',
@@ -38,29 +36,21 @@ class cryptography {
             )));
         }
 
-        function encrypt($string)
-        {
+        function encrypt($string){
             $CI =& get_instance();
             $config_key = $CI->config->item('encryption_key');
-            $sess = $CI->session->userdata('session_id');
-
-            $key = substr($config_key.$sess, 0, 30);
-
-            $encrypted = rawurlencode( url_base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_128, $key, $string, MCRYPT_MODE_ECB)) );
-            
+            $key = $CI->session->userdata('session_id').$config_key;
+            $iv = md5(md5($key));
+            $encrypted = rawurlencode(url_base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, md5($key), $string, MCRYPT_MODE_CBC, $iv)));
             return trim($encrypted); 
         }
         
-        function decrypt($string)
-        {
+        function decrypt($string){
             $CI =& get_instance();
             $config_key = $CI->config->item('encryption_key');
-            $sess = $CI->session->userdata('session_id');
-
-            $key = substr($config_key.$sess, 0, 30);
-
-            $decrypted =  mcrypt_decrypt(MCRYPT_RIJNDAEL_128, $key, url_base64_decode(rawurldecode($string)), MCRYPT_MODE_ECB);
-            
+            $key = $CI->session->userdata('session_id').$config_key;
+            $iv = md5(md5($key));
+            $decrypted =  mcrypt_decrypt(MCRYPT_RIJNDAEL_256, md5($key), url_base64_decode(rawurldecode($string)), MCRYPT_MODE_CBC, $iv);
             return trim($decrypted);
         }
     }
