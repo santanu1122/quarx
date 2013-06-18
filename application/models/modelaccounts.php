@@ -383,7 +383,7 @@ class modelaccounts extends CI_Model {
                                         FROM `users` 
                                         WHERE permission > 1 
                                         AND permission < 50
-                                        OR owner = '.$this->session->userdata('user_id').' 
+                                        AND owner = '.$this->session->userdata('user_id').' 
                                         ORDER BY user_name ASC LIMIT '.$offset.', '.$limit);
         }
 
