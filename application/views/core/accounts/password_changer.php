@@ -16,22 +16,24 @@
 
 ?>
 
-<div class="smallDevice tall">
-    <div id="pwStrength"></div>
+<div class="raw100">
+    <div id="msgBox">
+        <p id="pwStrength"></p>
+    </div>
 </div>
 
 <div class="smallDevice">
                     
-    <form id="pwChanger" method="post" action="<?php echo site_url('accounts/changepassword'); ?>">
+    <form id="pwChanger" class="raw100 raw-margin-top-30" method="post" action="<?php echo site_url('accounts/changepassword'); ?>">
         <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />
         <div class="raw100">
             <div class="raw100">
-                <div class="raw33"><p>New Password</p></div>
-                <div class="raw66"><input id="password" type="password" name="password" size="20" /></div>
+                <div class="raw50"><p>New Password</p></div>
+                <div class="raw50"><input id="password" type="password" name="password" size="20" /></div>
             </div>
             <div class="raw100">
-                <div class="raw33"><p>New Password Again</p></div>
-                <div class="raw66"><input id="confirm" type="password" name="confirm" size="20" /></div>
+                <div class="raw50"><p>New Password Again</p></div>
+                <div class="raw50"><input id="confirm" type="password" name="confirm" size="20" /></div>
             </div>
             <div class="raw100">
                 <div class="raw100"><input id="changeBtn" type="submit" value="Change" /></div>
@@ -61,13 +63,13 @@
         }
 
         if(val <= 20){
-            $("#pwStrength").attr('class', 'errorBorder');
-            $("#pwStrength").html('<p class="errorTxt">Your Password is Weak</p>'); 
+            $("#msgBox").attr('class', 'errorBox');
+            $("#msgBox").html('<p>Your Password is Weak</p>'); 
         }else{
-            $("#pwStrength").attr('class', 'successBorder');
-            $("#pwStrength").html('<p class="successTxt">Your Password is Strong</p>'); 
+            $("#msgBox").attr('class', 'updateBox');
+            $("#msgBox").html('<p>Your Password is Strong</p>'); 
         }
-            $("#pwStrength").show(); 
+            $("#msgBox").show();
     }
 
     //verify that they match first
@@ -76,12 +78,12 @@
             pw2 = $("#confirm").val();
 
         if(pw1 != pw2){
-            $("#pwStrength").attr('class', 'errorBorder');
-            $("#pwStrength").html('<p class="errorTxt">Your Passwords don\'t Match</p>'); 
+            $("#msgBox").attr('class', 'errorBox');
+            $("#msgBox").html('<p>Your Passwords don\'t Match</p>'); 
             return false;
         }else{
-            $("#pwStrength").attr('class', 'successBorder');
-            $("#pwStrength").html('<p class="successTxt">Your Passwords Match</p>'); 
+            $("#msgBox").attr('class', 'updateBox');
+            $("#msgBox").html('<p>Your Passwords Match</p>'); 
             return true;
         }
     }
@@ -100,8 +102,7 @@
         $("#changeBtn").click(function(event){
             event.preventDefault();
             if(!pwChecker()){
-                $("#pwStrength").attr('class', 'errorBorder');
-                $("#pwStrength").html('<p class="errorTxt">Your Passwords don\'t Match</p>'); 
+                $("#msgBox").html('<p>Your Passwords don\'t Match</p>'); 
             }else{
                 $('#pwChanger').submit();
             }

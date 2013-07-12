@@ -8,8 +8,8 @@
  * @package     Quarx
  * @author      Matt Lantz
  * @copyright   Copyright (c) 2013 Matt Lantz
- * @license     http://ottacon.co/quarx/license
- * @link        http://quarx.ottacon.co
+ * @license     http://ottacon.co/quarx/license.html
+ * @link        http://ottacon.co/quarx
  * @since       Version 1.0
  * 
  */
@@ -186,6 +186,8 @@ class accounts extends CI_Controller {
 
     function insufficient()
     {   
+        $this->output->cache(9);
+
         $data['root'] = base_url();
         $data['pageRoot'] = base_url().'index.php';
         $data['pagetitle'] = 'Login';
@@ -225,6 +227,7 @@ class accounts extends CI_Controller {
 
     function password() 
     {
+        $this->output->cache(9);
 
         $data['root'] = base_url();
         $data['pageRoot'] = base_url().'index.php';
@@ -261,7 +264,7 @@ class accounts extends CI_Controller {
     {   
         if($this->session->userdata('permission') > 1){
             $setup = $this->quarxsetup->account_opts();
-            if($setup[2]->option_title !== 'master access')
+            if($setup[2]->option_data !== 'master access')
             {
                 redirect('login/insufficient');
             }
@@ -293,7 +296,7 @@ class accounts extends CI_Controller {
         }
         else
         {
-            redirect('login');
+            echo 0;
         }
     }
 
@@ -303,7 +306,7 @@ class accounts extends CI_Controller {
         {
             $setup = $this->quarxsetup->account_opts();
 
-            if($setup[2]->option_title !== 'master access')
+            if($setup[2]->option_data !== 'master access')
             {
                 redirect('login/insufficient');
             }
@@ -379,7 +382,7 @@ class accounts extends CI_Controller {
         if($this->session->userdata('permission') > 1)
         {
             $setup = $this->quarxsetup->account_opts();
-            if($setup[2]->option_title !== 'master access')
+            if($setup[2]->option_data !== 'master access')
             {
                 redirect('login/insufficient');
             }
@@ -407,6 +410,9 @@ class accounts extends CI_Controller {
 
     function authorize_user($id) 
     {
+        $this->load->library("express_mail");
+        activated_account(getUserEmail($id));
+
         $this->load->model('modelaccounts');
         $query = $this->modelaccounts->authorize_user($id);
         
@@ -511,7 +517,7 @@ class accounts extends CI_Controller {
         if($this->session->userdata('permission') > 1)
         {
             $setup = $this->quarxsetup->account_opts();
-            if($setup[2]->option_title !== 'master access')
+            if($setup[2]->option_data !== 'master access')
             {
                 redirect('login/insufficient');
             }
@@ -621,7 +627,7 @@ class accounts extends CI_Controller {
         if($this->session->userdata('permission') > 1)
         {
             $setup = $this->quarxsetup->account_opts();
-            if($setup[2]->option_title !== 'master access')
+            if($setup[2]->option_data !== 'master access')
             {
                 redirect('login/insufficient');
             }
@@ -661,7 +667,7 @@ class accounts extends CI_Controller {
         if($this->session->userdata('permission') > 1)
         {
             $setup = $this->quarxsetup->account_opts();
-            if($setup[2]->option_title !== 'master access')
+            if($setup[2]->option_data !== 'master access')
             {
                 redirect('login/insufficient');
             }

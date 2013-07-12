@@ -15,6 +15,10 @@
 /* Custom Styles for Quarx
 ***************************************************************/
 
+input[type=file]{
+    margin-top: 15px;
+}
+
 body, html{
     background: #f9f9f9;
     overflow: none;
@@ -363,8 +367,8 @@ body, html{
     background: #CC3300;
 }
 
-.unauthorized p, .unauthorized h3{
-    color: #111;
+.unauthorized a, .unauthorized a:hover, .unauthorized a:visited, .unauthorized p, .unauthorized h3{
+    color: #FFF;
 }
 
 /* Image Characteristics ================================= */
@@ -875,4 +879,11 @@ body, html{
 .cloudcatcherBox{
     border: none;
     overflow-y: hidden; 
+}
+
+/*
+***************************************************************/
+
+#search{
+    background: url(../images/icons/search.png) right top no-repeat;
 }

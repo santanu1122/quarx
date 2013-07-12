@@ -44,6 +44,9 @@
     <script type="text/javascript" src="<?php echo $root; ?>js/quarxfunc.js"></script>
     <script type="text/javascript" src="<?php echo $root; ?>js/jquery.mobile.min.js"></script>
 
+    <!-- jquery plugins -->
+    <script type="text/javascript" src="<?php echo $root; ?>js/jquery.deefault.js"></script>
+    <script type="text/javascript" src="<?php echo $root; ?>js/jquery.tooltip.js"></script>
 
     <!-- Redactor -->
     <link rel="stylesheet" href="<?php echo $root; ?>js/redactor/redactor.css" />
@@ -71,7 +74,10 @@
             $('textarea.rtf').redactor({ 
                 minHeight: 275
             });
+
+            $(".top_menu_icons").tooltip();
         });
+
     </script>
 
     <!--[if gte IE 7]>
@@ -83,19 +89,26 @@
 
     <div data-role="page" data-url="<?php echo $pagetitle; ?>" data-theme="a">
 
-        <?php $this->load->view('common/mainmenu'); ?>
+        <?php if($this->session->userdata('logged_in')){ ?>
+            <?php $this->load->view('common/main_menu'); ?>
+            <?php $this->load->view('common/profile_menu'); ?>
+        <?php } ?>
 
         <?php if(isset($imageGalleryRequest)){ ?>
         <?php $this->load->view('core/image/librarySmall'); ?>
         <?php } ?>
 
         <div data-role="header">
-            <a href="#Menu" data-role="button" data-icon="bars">Menu</a>
+            <?php if($this->session->userdata('logged_in')){ ?>
+            <a class="top_menu_icons" href="#Menu" data-role="button" data-icon="bars" data-iconpos="notext" data-tooltip="Menu"></a>
+            <?php }else{ ?>
+            <a class="top_menu_icons" href="<?php echo site_url('login'); ?>" data-iconpos="notext" data-role="button" data-icon="quarx-login" data-tooltip="Login"></a>
+            <?php } ?>
 
             <h1> <?php echo $pagetitle; ?> </h1>
             
             <?php if($this->session->userdata('logged_in')){ ?>
-            <a href="<?php echo site_url('logout'); ?>" data-role="button" data-icon="delete">Sign Out</a>
+            <a class="top_menu_icons" href="#profileMenu" data-role="button" data-icon="gear" data-iconpos="notext" data-tooltip="My Account"></a>
             <?php } ?>
         </div>
 

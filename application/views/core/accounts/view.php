@@ -64,12 +64,12 @@
 
                     <?php foreach($profiles as $accounts): ?>
 
-                    <div class="accountInfoRow gridrow bordered <?php if($accounts->status == 'unauthorized'){ echo ' unauthorized'; } ?>">
+                    <div class="accountInfoRow gridrow bordered <?php if($accounts->a_status == 'unauthorized'){ echo ' unauthorized'; } ?>">
 
                         <div class="accountControls">
 
                             <div id="controlbox" class="raw100">
-                            <?php if($accounts->status === 'authorized'){ ?>
+                            <?php if($accounts->a_status === 'authorized'){ ?>
 
                                 <div class="grid20"><button data-role="button" class="green" onclick="window.location='<?php echo site_url('accounts/editor').'/'.encrypt($accounts->user_id); ?>'">Edit</button></div>
 
@@ -110,7 +110,7 @@
                                 <?php }else{ ?>
                                 <img src="<?php echo site_url(); ?>/images/inactive.png" title="Inactive" class="raw15 padded5" />
                                 <?php } ?>
-                                <?php if($accounts->status == 'unauthorized'){ ?>
+                                <?php if($accounts->a_status == 'unauthorized'){ ?>
                                 <img src="<?php echo site_url(); ?>/images/lock.png" title="Unathorized" class="raw12 padded5" />
                                 <?php } ?>
 

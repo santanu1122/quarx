@@ -1,0 +1,262 @@
+1373635704TS--->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta name="description" content="A simple to use, responsive design CMS system." />
+    <meta name="keywords" content="CMS System, Zen, Responsive Design" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+
+    <title>Quarx | Change my Password</title>
+
+    <!-- Quarx Custom Styles -->
+    <link rel="shortcut icon" type="image" href="http://localhost:8888/__quarx__/quarx/images/favicon.ico" />
+    <link rel="stylesheet" href="http://localhost:8888/__quarx__/quarx/css/raw.min.css" />
+    <link rel="stylesheet" href="http://localhost:8888/__quarx__/quarx/css/desktop-style.css" lang="EN" dir="ltr" type="text/css" />
+    <link rel='stylesheet' media='screen and (min-width: 320px) and (max-width: 980px)' href='http://localhost:8888/__quarx__/quarx/css/tablet-style.css' />
+    <link rel='stylesheet' media='screen and (min-width: 120px) and (max-width: 768px)' href='http://localhost:8888/__quarx__/quarx/css/mobile-styles.css' />
+
+    <!-- jQuery -->
+    <script type="text/javascript" src="http://localhost:8888/__quarx__/quarx/js/jquery.min.js"></script>
+    <script type="text/javascript" src="http://localhost:8888/__quarx__/quarx/js/jquery-migrate.min.js"></script>
+
+    <!-- jQuery Mobile Quarx Theme -->
+    <link rel="stylesheet" href="http://localhost:8888/__quarx__/quarx/js/themes/quarx.css" />
+    <link rel="stylesheet" href="http://localhost:8888/__quarx__/quarx/js/themes/jquery.mobile.structure.min.css" />
+    <script type="text/javascript" src="http://localhost:8888/__quarx__/quarx/js/quarxfunc.js"></script>
+    <script type="text/javascript" src="http://localhost:8888/__quarx__/quarx/js/jquery.mobile.min.js"></script>
+
+    <!-- jquery plugins -->
+    <script type="text/javascript" src="http://localhost:8888/__quarx__/quarx/js/jquery.deefault.js"></script>
+    <script type="text/javascript" src="http://localhost:8888/__quarx__/quarx/js/jquery.tooltip.js"></script>
+
+    <!-- Redactor -->
+    <link rel="stylesheet" href="http://localhost:8888/__quarx__/quarx/js/redactor/redactor.css" />
+    <script src="http://localhost:8888/__quarx__/quarx/js/redactor/redactor.min.js"></script>
+    
+    <!-- Custom Scripts -->
+    <script type="text/javascript">
+        </script>
+
+    <style type="text/css">
+        </style>
+
+    <script type="text/javascript">
+        $.mobile.ajaxEnabled = false;
+        $.mobile.selectmenu.prototype.options.nativeMenu = false;
+        
+        $(document).bind('mobileinit',function(){
+            $.mobile.selectmenu.prototype.options.hidePlaceholderMenuItems = false;
+            
+        });
+        
+        $(document).ready(function() {
+            $('textarea.rtf').redactor({ 
+                minHeight: 275
+            });
+
+            $(".top_menu_icons").tooltip();
+        });
+
+    </script>
+
+    <!--[if gte IE 7]>
+    <link rel="stylesheet" type="text/css" href="http://localhost:8888/__quarx__/quarx/css/ie.css" />
+    <![endif]-->
+</head>
+
+<body>
+
+    <div data-role="page" data-url="Change my Password" data-theme="a">
+
+                    
+<div data-role="panel" data-display="reveal" id="Menu" class="menuPanel panelBox">
+    
+    <h2 style="margin: -15px 0 15px 0; padding: 0px; line-height: 2.6em;"><img src="http://localhost:8888/__quarx__/quarx/images/quarx.png" width="15px" /> Quarx </h2>
+
+    <ul id="menu" data-role="listview">
+        
+        
+            <li><a href="http://localhost:8888/__quarx__/quarx/sample">Sample</a></li>
+                         
+                        <li><a href="http://localhost:8888/__quarx__/quarx/image/library">Image Library</a></li>
+            
+                                    <li><a href="http://localhost:8888/__quarx__/quarx/admin/cloudinfo">Admin - CloudInfo</a></li>
+                    <li onclick="window.location='http://localhost:8888/__quarx__/quarx/admin/cloudmail'"><a>Admin - CloudMail</a></li>
+                    <li onclick="window.location='http://localhost:8888/__quarx__/quarx/admin/cloudcatcher'"><a>Admin - CloudCatcher</a></li>
+
+                    <li><a href="http://localhost:8888/__quarx__/quarx/admin/manual">Manual</a></li>
+                    
+                
+                <li><a href="http://localhost:8888/__quarx__/quarx/setup">Setup</a></li>
+                <li><a href="http://localhost:8888/__quarx__/quarx/admin/about">About</a></li>
+
+                            
+        
+    </ul>
+
+</div>
+
+            
+<div data-role="panel" data-display="overlay" data-position="right" id="profileMenu" class="accountMenuPanel panelBox">
+    <div class="account-menu-box">
+        <h2>My Account</h2>
+    </div>
+    
+    <ul id="account_menu" data-role="listview">
+        
+                    
+            <li><a href="http://localhost:8888/__quarx__/quarx/accounts">My Account</a></li>
+            <li><a href="http://localhost:8888/__quarx__/quarx/accounts/password">Update Password</a></li>
+                        <li><a href="http://localhost:8888/__quarx__/quarx/accounts/add">Add an Account</a></li>
+            <li><a href="http://localhost:8888/__quarx__/quarx/accounts/view">View Accounts</a></li>                  
+            
+            <li><a href="http://localhost:8888/__quarx__/quarx/settings">Settings</a></li>
+
+        
+                    <li><a href="http://localhost:8888/__quarx__/quarx/logout">Sign Out</a></li>
+        
+    </ul>   
+
+</div>
+
+        
+        
+        <div data-role="header">
+                        <a class="top_menu_icons" href="#Menu" data-role="button" data-icon="bars" data-iconpos="notext" data-tooltip="Menu"></a>
+            
+            <h1> Change my Password </h1>
+            
+                        <a class="top_menu_icons" href="#profileMenu" data-role="button" data-icon="gear" data-iconpos="notext" data-tooltip="My Account"></a>
+                    </div>
+
+        <div id="body" data-role="content">
+            
+
+<div class="raw100">
+    <div id="msgBox">
+        <p id="pwStrength"></p>
+    </div>
+</div>
+
+<div class="smallDevice">
+                    
+    <form id="pwChanger" class="raw100 raw-margin-top-30" method="post" action="http://localhost:8888/__quarx__/quarx/accounts/changepassword">
+        <input type="hidden" name="q_csrf_token" value="d412d2a1053ab169f73457d5b1c9fb26" />
+        <div class="raw100">
+            <div class="raw100">
+                <div class="raw50"><p>New Password</p></div>
+                <div class="raw50"><input id="password" type="password" name="password" size="20" /></div>
+            </div>
+            <div class="raw100">
+                <div class="raw50"><p>New Password Again</p></div>
+                <div class="raw50"><input id="confirm" type="password" name="confirm" size="20" /></div>
+            </div>
+            <div class="raw100">
+                <div class="raw100"><input id="changeBtn" type="submit" value="Change" /></div>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+<script type="text/javascript">
+    
+    function strengthCH(pw){
+        
+        // a quick checker to let them know they've made a solid password!
+        var val = 0;
+        var pwlen = pw.length;
+        
+        if(pwlen >= 13){val = 5;}
+        else if(pwlen >= 10){val = 4;}
+        else if(pwlen >= 8){val = 3;}
+        else if(pwlen >= 5){val = 2;}
+
+        var re = [ null, /[a-z]/g, /[A-Z]/g, /\d/g, /[!@#$%\^&amp;\*\(\)=_+-]/g];
+
+        for (var i = 1; i < re.length; i++) {
+            val += (pw.match(re[i]) || []).length * i;
+        }
+
+        if(val <= 20){
+            $("#msgBox").attr('class', 'errorBox');
+            $("#msgBox").html('<p>Your Password is Weak</p>'); 
+        }else{
+            $("#msgBox").attr('class', 'updateBox');
+            $("#msgBox").html('<p>Your Password is Strong</p>'); 
+        }
+            $("#msgBox").show();
+    }
+
+    //verify that they match first
+    function pwChecker(){
+        var pw1 = $("#password").val()
+            pw2 = $("#confirm").val();
+
+        if(pw1 != pw2){
+            $("#msgBox").attr('class', 'errorBox');
+            $("#msgBox").html('<p>Your Passwords don\'t Match</p>'); 
+            return false;
+        }else{
+            $("#msgBox").attr('class', 'updateBox');
+            $("#msgBox").html('<p>Your Passwords Match</p>'); 
+            return true;
+        }
+    }
+
+    $(document).ready(function(){
+
+        $('#password').keyup(function(){
+            strengthCH($('#password').val());
+        });
+
+        $('#confirm').keyup(function(){
+            strengthCH($('#confirm').val());
+            pwChecker();
+        });
+
+        $("#changeBtn").click(function(event){
+            event.preventDefault();
+            if(!pwChecker()){
+                $("#msgBox").html('<p>Your Passwords don\'t Match</p>'); 
+            }else{
+                $('#pwChanger').submit();
+            }
+        });
+    });
+
+</script>
+
+
+    <div id="quarx-modal"></div>
+
+	</div>
+
+<!--     <div id="footer" data-role="footer" data-position="fixed" data-theme="a" class="align-center">
+        <p>&copy; 2013 Matt Lantz</p>
+    </div> -->
+
+</div>
+
+<script type="text/javascript" src="http://localhost:8888/__quarx__/quarx/js/jquery.gwtt.js"></script>
+<script type="text/javascript">
+    
+    $(document).ready(function(){
+        $('#imageLibraryBox').height($(document).height()-10);
+        $('#fullScreenImageLibrary').height($(document).height()-10);
+        $('#Menu').height($(window).height()-10);
+        
+        $(window).scroll(function(){
+            $('.updateBox, .errorBox').css({
+                top: $(window).scrollTop()
+            });    
+        });
+    });
+
+</script>
+    
+</body>
+</html>
+

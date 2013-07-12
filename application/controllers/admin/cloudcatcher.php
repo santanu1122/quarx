@@ -8,12 +8,12 @@
  * @package     Quarx
  * @author      Matt Lantz
  * @copyright   Copyright (c) 2013 Matt Lantz
- * @license     http://ottacon.co/quarx/license
- * @link        http://quarx.ottacon.co
+ * @license     http://ottacon.co/quarx/license.html
+ * @link        http://ottacon.co/quarx
  * @since       Version 1.0
  * 
  */
-     
+
 class cloudcatcher extends CI_Controller {
 
     public function __construct()
@@ -43,6 +43,8 @@ class cloudcatcher extends CI_Controller {
 
     public function index()
     {  
+        $this->output->cache(9);
+
         $this->load->model('modelsetup');
 
         $data['root'] = base_url();

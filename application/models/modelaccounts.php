@@ -32,6 +32,10 @@ class modelaccounts extends CI_Model {
 
     function unc_validate($name) 
     {
+        if(!$name){
+            return 0;
+        }
+
         $this->db->where('user_name', mysql_real_escape_string($name));
         $query = $this->db->get('users');
         if($query->num_rows == 1)
@@ -132,7 +136,7 @@ class modelaccounts extends CI_Model {
         if($this->input->post('user_name') > ''){
     
             $sql = "INSERT INTO 
-                    users(user_name, user_email, user_pass, owner, permission, status, ".$optional_inserts."lat, lng, location, full_name, user_state, img) 
+                    users(user_name, user_email, user_pass, owner, permission, a_status, ".$optional_inserts."lat, lng, location, full_name, user_state, img) 
                 VALUES( '".$this->input->post('user_name')."', 
                         '".$this->input->post('user_email')."',
                         '".$password."',
@@ -267,7 +271,7 @@ class modelaccounts extends CI_Model {
         $sql = "UPDATE 
                     users 
                 SET 
-                    `status` = 'authorized'
+                    `a_status` = 'authorized'
                 WHERE 
                     user_id =".$id;
                     

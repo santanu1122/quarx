@@ -53,8 +53,11 @@
     <a data-role="button" data-theme="a" href="<?php echo site_url('setup/connect_to_atomic'); ?>">Connect to the Atomic Framework</a>
     <?php } ?>
 
-    <a data-role="button" data-theme="a" href="<?php echo site_url('login'); ?>">Return To Quarx</a>
+    <div class="raw-block-25 raw100"></div>
 
+    <div class="raw100">
+        <a data-role="button" data-theme="a" href="<?php echo site_url('login'); ?>">Return To Quarx</a>
+    </div>
 </div>
 
 <!-- javascript -->

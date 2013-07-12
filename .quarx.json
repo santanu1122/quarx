@@ -1,3 +1,14 @@
 {
-    "version": "3.0"
+    "version": "3.2",
+    "buildDate": "2013-06-28",
+    "authors": "Matt Lantz",
+    "components": [
+        { "title": "CodeIgniter", "link": "http://codeigniter.com/" },
+        { "title": "jQuery", "link": "http://jquery.com/" }, 
+        { "title": "jQuery Mobile", "link": "http://jquerymobile.com/" },
+        { "title": "ToolBox", "link": "https://github.com/mlantz/toolbox" },
+        { "title": "DeefaultJS", "link": "https://github.com/mlantz/deefault" },
+        { "title": "TooltipJS", "link": "https://github.com/mlantz/tooltipJS" },
+        { "title": "rawCSS", "link": "https://github.com/mlantz/rawCSS" }
+    ]
 }

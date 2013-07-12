@@ -23,9 +23,16 @@ class modeladmin extends CI_Model {
         return $res;
     }
 
+    function get_opt($opt) 
+    {
+        $qry = $this->db->query("SELECT * FROM `admin` WHERE option_title = '".$opt."'");
+        $res = $qry->result();
+        return $res[0]->option_data;
+    }
+
     function get_db_info() 
     {
-        $qry = $this->db->query("SELECT * FROM `admin` WHERE admin_opts = 2");
+        $qry = $this->db->query("SELECT * FROM `admin` WHERE admin_opts = 6");
         $res = $qry->result();
         return $res[0];
     }

@@ -9,7 +9,7 @@
  * @author      Matt Lantz
  * @copyright   Copyright (c) 2013 Matt Lantz
  * @license     http://ottacon.co/quarx/license
- * @link        http://quarx.ottacon.co
+ * @link        http://ottacon.co/quarx
  * @since       Version 1.0
  * 
  */
@@ -31,7 +31,7 @@ class module_tools{
                      
                     foreach($files as $file){
                         if(is_dir($file)){
-                            include($file.'/menu.php');
+                            @include($file.'/menu.php');
                         }
                     }
                 }
@@ -42,7 +42,7 @@ class module_tools{
                  
                 foreach($files as $file){
                     if(is_dir($file)){
-                        include($file.'/menu.php');
+                        @include($file.'/menu.php');
                     }
                 }
             }
@@ -56,7 +56,7 @@ class module_tools{
              
             foreach($files as $file){
                 if(is_dir($file)){
-                    include($file.'/special_menu.php');
+                    @include($file.'/special_menu.php');
                 }
             }
         }
@@ -69,7 +69,7 @@ class module_tools{
              
             foreach($files as $file){
                 if(is_dir($file)){
-                    include($file.'/manual/manual_menu.php');
+                    @include($file.'/manual/manual_menu.php');
                 }
             }
         }
@@ -82,7 +82,7 @@ class module_tools{
              
             foreach($files as $file){
                 if(is_dir($file)){
-                    include($file.'/manual/manual.php');
+                    @include($file.'/manual/manual.php');
                 }
             }
         }
@@ -105,7 +105,7 @@ class module_tools{
                     $currentDir = end($pieces);
                     
                     if($currentDir == $currentModule){
-                        include($file.'/css/styles.css');
+                        @include($file.'/css/styles.css');
                     }
                 }
             }
@@ -130,11 +130,25 @@ class module_tools{
                     $currentDir = end($pieces);
                     
                     if($currentDir == $currentModule){
-                        include($file.'/js/module_functions.js');
+                        @include($file.'/js/module_functions.js');
                     }
                 }
             }
         }
+
+        function get_module_settings()
+        {
+            $modules = "application/modules/";
+             
+            $files = glob($modules . "*");
+             
+            foreach($files as $file){
+                if(is_dir($file)){
+                    @include($file.'/settings.php');
+                }
+            }
+        }
+
     }
 }
 

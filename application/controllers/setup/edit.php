@@ -9,7 +9,7 @@
  * @author      Matt Lantz
  * @copyright   Copyright (c) 2013 Matt Lantz
  * @license     http://ottacon.co/quarx/license
- * @link        http://quarx.ottacon.co
+ * @link        http://ottacon.co/quarx
  * @since       Version 1.0
  * 
  */
@@ -39,7 +39,7 @@ class edit extends CI_Controller {
             
             $state = $this->quarxsetup->account_opts();
 
-            if($state[0]->option_title === 'advanced accounts')
+            if($state[0]->option_data === 'advanced accounts')
             {
                 $data['accountStatus'] = 'checked="checked"';
             }
@@ -48,7 +48,7 @@ class edit extends CI_Controller {
                 $data['accountStatus'] = '';
             } 
 
-            if($state[2]->option_title === 'master access')
+            if($state[1]->option_data === 'master access')
             {
                 $data['masterAccess'] = 'checked="checked"';
             }
@@ -56,6 +56,31 @@ class edit extends CI_Controller {
             {
                 $data['masterAccess'] = '';
             } 
+
+            if($state[4]->option_data === 'yes')
+            {
+                $data['joining'] = 'checked="checked"';
+            }
+            else
+            {
+                $data['joining'] = '';
+            } 
+
+            if($state[5]->option_data === 'on')
+            {
+                $data['auto_auth'] = 'checked="checked"';
+            }
+            else
+            {
+                $data['auto_auth'] = '';
+            } 
+
+            $status = $this->quarxsetup->account_opts();
+            if($status[4]->option_data == "no"){
+                $data['joiningIsEnabled'] = false;
+            }else{
+                $data['joiningIsEnabled'] = true;
+            }
 
             $data['uname'] = $this->input->post('username');
             $data['root'] = base_url();
@@ -75,6 +100,8 @@ class edit extends CI_Controller {
     {
         $data['quarxInstalled'] = 'installed';
         
+        /* Advanced Accounts
+        *************************************/
         $advancedAccounts = $this->input->post('advancedAccounts');
 
         if($advancedAccounts === '1')
@@ -89,6 +116,9 @@ class edit extends CI_Controller {
         $this->load->model('modelsetup');
         $this->modelsetup->edit_account_config($avdaccts);
 
+        /* Master Access
+        *************************************/
+
         $masterAccess = $this->input->post('masterAccess');
         if($masterAccess === '1')
         {
@@ -101,6 +131,38 @@ class edit extends CI_Controller {
 
         $this->load->model('modelsetup');
         $this->modelsetup->edit_master_access_config($masterAccess);
+
+        /* Joining
+        *************************************/
+
+        $enableJoining = $this->input->post('enableJoining');
+        if($enableJoining === '1')
+        {
+            $enableJoining = 'yes';
+        }
+        else
+        {
+            $enableJoining = 'no';
+        }
+
+        $this->load->model('modelsetup');
+        $this->modelsetup->edit_joining_config($enableJoining);
+
+        /* Auto-Auth
+        *************************************/
+
+        $autoAuth = $this->input->post('autoAuth');
+        if($autoAuth === '1')
+        {
+            $autoAuth = 'on';
+        }
+        else
+        {
+            $autoAuth = 'off';
+        }
+
+        $this->load->model('modelsetup');
+        $this->modelsetup->edit_auto_auth_config($autoAuth);
         
         redirect('setup');
     }

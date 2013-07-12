@@ -1,6 +1,6 @@
 # Quarx
 
-**Quarx** - A modular CMS for a website/application built on CodeIgniter
+**Quarx** - A modular framework/CMS for a website/application built on CodeIgniter
 
 Download Here: https://github.com/mlantz/quarx/zipball/master
 

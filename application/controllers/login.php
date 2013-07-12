@@ -9,7 +9,7 @@
  * @author      Matt Lantz
  * @copyright   Copyright (c) 2013 Matt Lantz
  * @license     http://ottacon.co/quarx/license
- * @link        http://quarx.ottacon.co
+ * @link        http://ottacon.co/quarx
  * @since       Version 1.0
  * 
  */
@@ -41,6 +41,13 @@ class login extends CI_Controller {
 
             if($query === 'fail')
             {
+                $status = $this->quarxsetup->account_opts();
+                if($status[4]->option_data == "no"){
+                    $data['joiningIsEnabled'] = false;
+                }else{
+                    $data['joiningIsEnabled'] = true;
+                }
+
                 $data['root'] = base_url();
                 $data['pageRoot'] = base_url().'index.php';
                 $data['pagetitle'] = 'Login';
@@ -103,6 +110,75 @@ class login extends CI_Controller {
         }
     }
 
+/* Join
+***************************************************************/
+
+    public function join() 
+    {  
+        $data['error'] = $this->session->flashdata("error");
+
+        $data['root'] = base_url();
+        $data['pageRoot'] = base_url().'index.php';
+        $data['pagetitle'] = 'Join';
+
+        $this->load->view('common/header', $data);
+        $this->load->view('core/login/join', $data);
+        $this->load->view('common/footer', $data);
+    }
+
+    public function success() 
+    {  
+        $data['root'] = base_url();
+        $data['pageRoot'] = base_url().'index.php';
+        $data['pagetitle'] = 'Join';
+
+        $this->load->view('common/header', $data);
+        $this->load->view('core/login/success', $data);
+        $this->load->view('common/footer', $data);
+    }
+
+    function unc($name = null) 
+    {
+        if(!$name){
+            echo 1;
+            exit;
+        }
+
+        if($name > '')
+        {
+            $this->load->model('modelaccounts');
+            $query = $this->modelaccounts->unc_validate($name);
+            
+            echo $query;
+        }
+        else
+        {
+            echo 0;
+        }
+    }
+
+    function submit_profile()
+    {
+        $this->load->model("modellogin");
+        $query = $this->modellogin->submit_profile();
+
+        if(!$query)
+        {
+            $this->session->set_flashdata('error', 'Unable to successfully add your profile.');
+            redirect("login/join");
+        }
+        else
+        {
+            if($this->quarxsetup->get_option("auto_auth") == "on"){
+                $this->load->library("express_mail");
+                activated_account($this->input->post("user_email"));
+            }
+
+            redirect("login/success");
+        }
+    }
+
+
 /* Account Validation
 ***************************************************************/
 
@@ -137,6 +213,14 @@ class login extends CI_Controller {
         {   
             $data['error'] = "Sorry either your username or password was incorrect.";
         }
+
+            $status = $this->quarxsetup->account_opts();
+            if($status[4]->option_data == "no"){
+                $data['joiningIsEnabled'] = false;
+            }else{
+                $data['joiningIsEnabled'] = true;
+            }
+
             $data['root'] = base_url();
             $data['pageRoot'] = base_url().'index.php';
             $data['pagetitle'] = 'Sign In';

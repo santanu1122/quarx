@@ -9,7 +9,7 @@
  * @author      Matt Lantz
  * @copyright   Copyright (c) 2013 Matt Lantz
  * @license     http://ottacon.co/quarx/license
- * @link        http://quarx.ottacon.co
+ * @link        http://ottacon.co/quarx
  * @since       Version 1.0
  * 
  */
@@ -89,7 +89,7 @@ function update_version($ver)
         $this->dbforge->add_field("`user_email` VARCHAR(255) NOT NULL");
         $this->dbforge->add_field("`permission` INT(2) NOT NULL");
         $this->dbforge->add_field("`owner` INT(14) NOT NULL");
-        $this->dbforge->add_field("`status` VARCHAR(40) NOT NULL");
+        $this->dbforge->add_field("`a_status` VARCHAR(40) NOT NULL");
         $this->dbforge->add_field("`full_name` VARCHAR(255) NOT NULL");
 
         if($extras === true)
@@ -125,7 +125,7 @@ function update_version($ver)
 
     function add_master_user($username, $userpass)
     {
-        $qry = $this->db->query("INSERT INTO `users` (`user_id`, `user_name`, `user_pass`, `user_email`, `permission`, `full_name`, `img`, `location`, `lat`, `lng`, `user_state`, `status`) 
+        $qry = $this->db->query("INSERT INTO `users` (`user_id`, `user_name`, `user_pass`, `user_email`, `permission`, `full_name`, `img`, `location`, `lat`, `lng`, `user_state`, `a_status`) 
             VALUES
             (1, '".$username."', '".hash("sha256", $userpass)."', '', 1, '', '".site_url()."uploads/img/thumb/default.jpg', '', 0.000000, 0.000000, 'enabled', 'authorized');");
         
@@ -143,9 +143,7 @@ function update_version($ver)
         $this->load->dbforge();
         $this->dbforge->add_field("`admin_opts` INT(14) NOT NULL AUTO_INCREMENT");
         $this->dbforge->add_field("`option_title` VARCHAR(80) NOT NULL");
-        $this->dbforge->add_field("`db_uname` VARCHAR(50) NOT NULL");
-        $this->dbforge->add_field("`db_password` VARCHAR(55) NOT NULL");
-        $this->dbforge->add_field("`db_name` VARCHAR(50) NOT NULL");
+        $this->dbforge->add_field("`option_data` VARCHAR(255) NOT NULL");
 
         $this->dbforge->add_key('admin_opts', TRUE);
         $qry = $this->dbforge->create_table('admin', TRUE);
@@ -158,17 +156,25 @@ function update_version($ver)
 
     function add_admin_opts($avdAccounts, $master, $version, $db_array)
     {
-        $adv_acc_qry = $this->db->query("INSERT INTO `admin` (`admin_opts`, `option_title`) 
+        $adv_acc_qry = $this->db->query("INSERT INTO `admin` (`admin_opts`, `option_title`, `option_data`) 
             VALUES
-            (1, '".$avdAccounts."');");
+            (1, 'account_type', '".$avdAccounts."');");
 
-        $master_qry = $this->db->query("INSERT INTO `admin` (`admin_opts`, `option_title`) 
+        $master_qry = $this->db->query("INSERT INTO `admin` (`admin_opts`, `option_title`, `option_data`) 
             VALUES
-            (3, '".$master."');");
+            (3, 'access_type', '".$master."');");
 
-        $version_qry = $this->db->query("INSERT INTO `admin` (`admin_opts`, `option_title`) 
+        $version_qry = $this->db->query("INSERT INTO `admin` (`admin_opts`, `option_title`, `option_data`) 
             VALUES
-            (5, '".$version."');");
+            (5, 'quarx_version', '".$version."');");
+
+        $joining_qry = $this->db->query("INSERT INTO `admin` (`admin_opts`, `option_title`, `option_data`) 
+            VALUES
+            (7, 'enable_joining', 'no');");
+
+        $auto_auth_qry = $this->db->query("INSERT INTO `admin` (`admin_opts`, `option_title`, `option_data`) 
+            VALUES
+            (8, 'auto_auth', 'off');");
         
         $this->add_admin_db_opts($db_array);
         
@@ -180,9 +186,9 @@ function update_version($ver)
 
     function add_admin_db_opts($db_array)
     {
-        $qry = $this->db->query("INSERT INTO `admin` (`admin_opts`, `option_title`, `db_uname`, `db_password`, `db_name`) 
+        $qry = $this->db->query("INSERT INTO `admin` (`admin_opts`, `option_title`, `option_data`) 
             VALUES
-            (2, '".$avdAccounts."', '".$db_array['db_uname']."', '".$db_array['db_password']."', '".$db_array['db_name']."');");
+            (6, 'db_info', '[".$db_array['db_uname'].", ".$db_array['db_password'].", ".$db_array['db_name']."]');");
         
         if(!$qry)
         {
@@ -192,9 +198,9 @@ function update_version($ver)
 
     function connected_to($system)
     {
-        $qry = $this->db->query("INSERT INTO `admin` (`admin_opts`, `option_title`) 
+        $qry = $this->db->query("INSERT INTO `admin` (`admin_opts`, `option_title`, `option_data`) 
             VALUES
-            (4, '".$system."');");
+            (4, 'front_end_framework', '".$system."');");
         
         if(!$qry)
         {
@@ -204,7 +210,7 @@ function update_version($ver)
 
     function is_connected_to()
     {
-        $qry = $this->db->query("SELECT * FROM admin WHERE option_title = 'atomic'");
+        $qry = $this->db->query("SELECT * FROM admin WHERE options_data = 'atomic'");
         
         if($qry)
         {
@@ -214,7 +220,7 @@ function update_version($ver)
 
     function get_db_info()
     {
-        $qry = $this->db->query("SELECT * FROM admin WHERE admin_opts = 2");
+        $qry = $this->db->query("SELECT * FROM admin WHERE admin_opts = 6");
         
         if($qry)
         {
@@ -261,7 +267,7 @@ function update_version($ver)
         $qry = $this->db->query("UPDATE 
                             `admin` 
                             SET 
-                            `option_title`= '".$avdAccounts."' 
+                            `option_data`= '".$avdAccounts."' 
                             WHERE `admin_opts`= 1");
 
         if($avdAccounts === 'advanced accounts')
@@ -287,8 +293,34 @@ function update_version($ver)
         $qry = $this->db->query("UPDATE 
                             `admin` 
                             SET 
-                            `option_title`= '".$masterAccess."' 
+                            `option_data`= '".$masterAccess."' 
                             WHERE `admin_opts`= 3");
+        if(!$qry)
+        {
+            return false;
+        }
+    }
+
+    function edit_joining_config($joining)
+    {
+        $qry = $this->db->query("UPDATE 
+                            `admin` 
+                            SET 
+                            `option_data`= '".$joining."' 
+                            WHERE `admin_opts`= 7");
+        if(!$qry)
+        {
+            return false;
+        }
+    }
+
+    function edit_auto_auth_config($auto_auth)
+    {
+        $qry = $this->db->query("UPDATE 
+                            `admin` 
+                            SET 
+                            `option_data`= '".$auto_auth."' 
+                            WHERE `admin_opts`= 8");
         if(!$qry)
         {
             return false;

@@ -56,6 +56,12 @@
         <div class="raw100">
             <a data-role="button" href="<?php echo site_url('login/forgotpassword'); ?>">Forgot My Password</a>
         </div>
+        <?php if($joiningIsEnabled){ ?>
+        <div class="raw100 raw-block-25"></div>
+        <div class="raw100">
+            <a data-role="button" href="<?php echo site_url('login/join'); ?>">Click Here to Join</a>
+        </div>
+        <?php } ?>
     </div>
     
 </div>

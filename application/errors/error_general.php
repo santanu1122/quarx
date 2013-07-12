@@ -1,3 +1,5 @@
+<?php header("Location: error"); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

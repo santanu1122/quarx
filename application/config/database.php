@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /*
 | -------------------------------------------------------------------
 | DATABASE CONNECTIVITY SETTINGS
@@ -36,7 +36,7 @@
 |   ['swap_pre'] A default table prefix that should be swapped with the dbprefix
 |   ['autoinit'] Whether or not to automatically initialize the database.
 |   ['stricton'] TRUE/FALSE - forces 'Strict Mode' connections
-|                           - good for ensuring strict SQL while developing
+|                           - good for ensuring strict8 SQL while developing
 |
 | The $active_group variable lets you choose which connection group to
 | make active.  By default there is only one group (the 'default' group).
@@ -49,9 +49,9 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = '';
-$db['default']['password'] = '';
-$db['default']['database'] = '';
+$db['default']['username'] = 'root';
+$db['default']['password'] = 'root';
+$db['default']['database'] = 'root_new_q_8';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;

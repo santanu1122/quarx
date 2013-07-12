@@ -21,7 +21,7 @@
         <div class="raw50 mHide">
             <div class="googleMap"> 
                 <div id="map" class="googleMapInner">
-                    <h3 style="padding: 40px;">Please enter your location, then <br />click <u>here</u> </h3>
+                    <h3 style="padding: 40px;">Please enter your <?php if($this->quarxsetup->get_option("account_type") == 'advanced accounts' ){ echo "postal/zip code"; }else{ echo "location"; }?>, then click <u>here</u> </h3>
                 </div>
             </div>
         </div>
@@ -49,7 +49,7 @@
                         <div class="raw66"><input class="vital" type="text" name="full_name" size="30" value="" /></div>
                     </div>
 
-                    <?php if($opts[0]->option_title === 'advanced accounts' ){ ?>
+                    <?php if($this->quarxsetup->get_option("account_type") == 'advanced accounts' ){ ?>
 
                     <div class="raw100">
                         <div class="raw33"><p>Address</p></div>

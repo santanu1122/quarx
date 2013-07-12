@@ -1,5 +1,5 @@
 <?php /*
-    Filename:   complete.php
+    Filename:   setup_complete.php
     Location:   /application/views/setup
 */ ?>
 

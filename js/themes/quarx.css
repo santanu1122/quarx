@@ -1474,4 +1474,10 @@ a.ui-link-inherit {
 	outline-width: 1px;
 	outline-style: auto;
 }
-			
+
+/* Custom Icons
+***************************************************************/
+
+.ui-icon-quarx-login {
+    background-image: url(../images/icons/login_18.png);
+}

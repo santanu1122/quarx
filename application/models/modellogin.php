@@ -21,7 +21,7 @@ class modellogin extends CI_Model {
         $this->db->where('user_name', $uname);
         $this->db->where('user_pass', $upass);
         $this->db->where('user_state', 'enabled');
-        $this->db->where('status', 'authorized');
+        $this->db->where('a_status', 'authorized');
         $query = $this->db->get('users');
 
         if($query->num_rows() == 1)
@@ -71,7 +71,7 @@ class modellogin extends CI_Model {
         $this->db->where('user_name', $uname);
         $this->db->where('user_pass', $upass);
         $this->db->where('user_state', 'disabled');
-        $this->db->where('status', 'authorized');
+        $this->db->where('a_status', 'authorized');
         $query = $this->db->get('users');
 
         if($query->num_rows == 1)
@@ -86,7 +86,7 @@ class modellogin extends CI_Model {
     {
         $this->db->where('user_name', $uname);
         $this->db->where('user_pass', $upass);
-        $this->db->where('status', 'unauthorized');
+        $this->db->where('a_status', 'unauthorized');
         $query = $this->db->get('users');
 
         if($query->num_rows == 1)
@@ -205,6 +205,52 @@ class modellogin extends CI_Model {
         if($qry)
         {
             return true;
+        }
+    }
+
+    function submit_profile() 
+    {
+        $permission = 2;
+
+        $auth = "unauthorized";
+        $state = "disabled";
+
+        if($this->quarxsetup->get_option("auto_auth") == "on"){
+            $auth = "authorized";
+            $state = "enabled";
+        }
+
+        if($this->input->post("password") != $this->input->post("confirm")){
+            return false;
+        }
+        
+        $password = hash("sha256", $this->input->post("password"));
+
+        if($this->input->post('user_name') > ''){
+    
+            $sql = "INSERT INTO 
+                    users(user_name, user_email, user_pass, owner, permission, a_status, location, full_name, user_state, img) 
+                VALUES( '".$this->input->post('user_name')."', 
+                        '".$this->input->post('user_email')."',
+                        '".$password."',
+                        '0',
+                        '".$permission."',
+                        '".$auth."',
+                        '".$this->input->post('location')."',
+                        '".$this->input->post('full_name')."',
+                        '".$state."',
+                        '".site_url()."uploads/img/thumb/default.jpg'
+                        )";
+
+            $qry = $this->db->query($sql);
+    
+            if($qry)
+            {
+                return true;
+            }
+
+        }else{
+            return false;
         }
     }
 }

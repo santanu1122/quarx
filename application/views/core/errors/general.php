@@ -16,15 +16,11 @@
 
 ?>
 
-<div id="container">
-    <div style="padding: 20px;">
-        <h1>We've encountered an error.</h1>
-        <?php echo $error; ?>
-        <br />
-        <br />
-        <br />
-        <button style="padding: 15px;" onclick="window.history.back()">Back</button>
-    </div>
+<div class="smallDevice">
+    <h1 class="epic">Error</h1>
+    <h1>Ops! You caught us offguard.</h1>
+    <p>It seems that we've made a terrible error. We'll be doing our best to make sure this is fixed as soon as possible.</p>
+    <button onclick="javascript:history.back()">Back</button>
 </div>
 
 <?php //End of File ?>

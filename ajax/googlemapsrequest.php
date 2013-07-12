@@ -15,6 +15,7 @@
  */
 
 if($_GET['zip_postal']){
+
 	$addy = $_GET['zip_postal'];
 	
 	$trimmed = trim($addy);
@@ -27,6 +28,7 @@ if($_GET['zip_postal']){
 
 	if($_GET['type'] == 'lat'){ echo $lat; }
 	if($_GET['type'] == 'lng'){ echo $lng; }
+	
 }
 	
 ?>

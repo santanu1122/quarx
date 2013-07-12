@@ -9,7 +9,7 @@
  * @author      Matt Lantz
  * @copyright   Copyright (c) 2013 Matt Lantz
  * @license     http://ottacon.co/quarx/license
- * @link        http://quarx.ottacon.co
+ * @link        http://ottacon.co/quarx
  * @since       Version 1.0
  * 
  */
@@ -27,10 +27,10 @@ class user extends CI_Controller {
         $data['masterPage'] = true;
 
         $this->load->view('core/setup/header', $data);
-        $this->load->view('core/setup/initial', $data);
+        $this->load->view('core/setup/user_setup', $data);
     }
 
 }
 
 /* End of file user.php */
-/* Location: ./application/controllers/ */
+/* Location: ./application/controllers/setup */

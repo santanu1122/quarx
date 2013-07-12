@@ -64,7 +64,7 @@
                         <div class="raw66"><input type="text" name="full_name" size="30" value="<?php echo $myprofile->full_name; ?>" /></div>
                     </div>
 
-                    <?php if($opts[0]->option_title === 'advanced accounts' ){ ?>
+                    <?php if($this->quarxsetup->get_option("account_type") == 'advanced accounts' ){ ?>
                     
                     <div class="raw100">
                        <div class="raw33"><p>Address</p></div>
@@ -117,7 +117,6 @@
                     <div class="raw100">
                         <input data-theme="c" type="submit" value="Update" />
                     </div>
-                </table>
                 </form>
             </div>
     </div>
@@ -125,7 +124,7 @@
         <div class="raw100 mHide">
             <div class="mapBox mHide"> 
                 <div class="map mHide" id="map">
-                     <h3 style="padding: 40px;">Please enter your postal/zip code and click <u>here</u>.</h3>
+                     <h3 style="padding: 40px;">Please enter your <?php if($this->quarxsetup->get_option("account_type") == "advanced accounts" ){ echo "postal/zip code"; }else{ echo "location"; }?> and click <u>here</u>.</h3>
                 </div>
            </div>
         </div>

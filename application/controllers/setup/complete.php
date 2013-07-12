@@ -87,7 +87,7 @@ class complete extends CI_Controller {
             $data['pagetitle'] = 'Setup Complete';
 
             $this->load->view('core/setup/header', $data);
-            $this->load->view('core/setup/complete', $data);
+            $this->load->view('core/setup/setup_complete', $data);
 
         }
         else

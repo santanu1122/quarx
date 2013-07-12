@@ -24,6 +24,15 @@ class quarxsetup {
         
         return $query;
     }
+
+    public function get_option($opt)
+    {
+        $CI =& get_instance();
+        $CI->load->model('modeladmin');
+        $query = $CI->modeladmin->get_opt($opt);
+        
+        return $query;
+    }
 }
 
 //End of File

@@ -25,7 +25,7 @@
         <p class="align-left">Are you excited to start working on your web application? First we need to setup the database.</p>
         <h2>Database Information</h2>
         <div class="smallDevice">
-            <form method="post" enctype="multipart/form-data" action="<?php echo site_url('setup/db_complete'); ?>">
+            <form method="post" enctype="multipart/form-data" action="<?php echo site_url('setup/db_connect'); ?>">
                 <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />
 
                 <input id="db_uname"  value="Database User Name" type="text" name="db_uname" onfocus="this.value=''" />

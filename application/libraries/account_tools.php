@@ -9,7 +9,7 @@
  * @author      Matt Lantz
  * @copyright   Copyright (c) 2013 Matt Lantz
  * @license     http://ottacon.co/quarx/license
- * @link        http://quarx.ottacon.co
+ * @link        http://ottacon.co/quarx
  * @since       Version 1.0
  * 
  */
@@ -29,6 +29,16 @@ class account_tools {
             return $res;
         }
 
+        function getUserEmail($id)
+        {
+            $CI =& get_instance();
+            $CI->load->model('modelaccounts');
+            $query = $CI->modelaccounts->get_a_name($id);
+            $res = $query[0]->user_email;
+            
+            return $res;
+        }
+
         function check_master_access()
         {
             $CI =& get_instance();
@@ -36,7 +46,7 @@ class account_tools {
 
             $opts = $CI->modeladmin->get_permissions();
 
-            if($opts->option_title == 'master access'){
+            if($opts->option_data == 'master access'){
                 return TRUE;
                 exit;
             }else{

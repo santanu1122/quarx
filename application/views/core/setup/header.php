@@ -30,6 +30,7 @@
     <link rel="shortcut icon" type="image" href="<?php echo $root; ?>images/favicon.ico" />
     <link rel="stylesheet" href="<?php echo $root; ?>js/themes/jquery.mobile.structure.min.css" />
     <link rel="stylesheet" href="<?php echo $root; ?>js/themes/quarx.css" />
+    <link rel="stylesheet" href="<?php echo $root; ?>css/raw.min.css" />
     <link rel="stylesheet" href="<?php echo $root; ?>css/desktop-style.css" lang="EN" dir="ltr" type="text/css" />
     <link rel='stylesheet' media='screen and (min-width: 768px) and (max-width: 960px)' href='<?php echo $root; ?>css/tablet-style.css' />
     <link rel='stylesheet' media='screen and (min-width: 320px) and (max-width: 768px)' href='<?php echo $root; ?>css/mobile-styles.css' />
@@ -38,9 +39,17 @@
     <script type="text/javascript" src="<?php echo $root; ?>js/quarxfunc.js"></script>
     <script type="text/javascript" src="<?php echo $root; ?>js/jquery.mobile.min.js"></script>
 
+    <!-- jquery plugins -->
+    <script type="text/javascript" src="<?php echo $root; ?>js/jquery.deefault.js"></script>
+    <script type="text/javascript" src="<?php echo $root; ?>js/jquery.tooltip.js"></script>
+
     <script type="text/javascript">
 
         $.mobile.ajaxEnabled = false;
+
+        $(document).ready(function() {
+            $(".top_menu_icons").tooltip();
+        });
             
     </script>
 
@@ -50,15 +59,23 @@
 
     <div id="big_box" data-role="page" data-theme="a">
 
-        <?php $this->load->view('common/mainmenu'); ?>
-    
+            <?php $this->load->view('common/main_menu'); ?>
+
+        <?php if($this->session->userdata('logged_in')){ ?>
+            <?php $this->load->view('common/profile_menu'); ?>
+        <?php } ?>
+
         <div id="header" data-role="header">
             <?php if(isset($masterPage) == true){ ?>
-                <a href="#Menu" data-role="button" data-icon="bars">Menu</a>
+                <a class="top_menu_icons" href="#Menu" data-role="button" data-icon="bars" data-iconpos="notext" data-tooltip="Menu"></a>
             <?php }else{ ?>
                 <a data-rel="back" data-icon="back" data-iconpos="notext"></a>
             <?php } ?>
             <h2><img src="<?php echo $root; ?>images/quarx.png" style="width: 15px;" /> Quarx Setup</h2>
+
+            <?php if($this->session->userdata('logged_in')){ ?>
+            <a class="top_menu_icons" href="#profileMenu" data-role="button" data-icon="gear" data-iconpos="notext" data-tooltip="My Account"></a>
+            <?php } ?>
         </div>
         
         <div id="body" data-role="content">
