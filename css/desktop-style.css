@@ -35,7 +35,6 @@ body, html{
 .panelBox{
     min-height: 100%;
     background: #f9f9f9;
-    overflow-y: scroll;
 }
 
 .ui-content{
