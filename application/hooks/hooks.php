@@ -13,21 +13,15 @@
  * @since       Version 1.0
  * 
  */ 
+     
+class hooks extends CI_Controller {
 
-class translate{
+/* Main Functions
+***************************************************************/
+
     
-    public function translate(){ 
 
-        function lang($label, $obj){
-            $return = $obj->lang->line($label);
-            if($return){
-                echo $return;
-            }else{
-                echo $label;
-            }
-        }
-    }
 }
 
-//End of File
-?>
+/* End of file hooks.php */
+/* Location: ./application/hooks/ */

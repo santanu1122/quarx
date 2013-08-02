@@ -30,7 +30,7 @@ class modelaccounts extends CI_Model {
         }
     }
 
-    function unc_validate($name) 
+    function unc_validate($name)
     {
         if(!$name){
             return 0;
@@ -57,11 +57,11 @@ class modelaccounts extends CI_Model {
         }
     }
     
-    function profile_update($img, $opts)
+    function profile_update($img)
     {
         $optional = '';
 
-        if($opts[0]->option_title === 'advanced accounts')
+        if($this->quarxsetup->get_option("account_type") == 'advanced accounts')
         {
             $optional = "
                 `address` = '".$this->input->post('address')."',
@@ -108,7 +108,7 @@ class modelaccounts extends CI_Model {
         }
     }
 
-    function profile_adder($img, $opts) 
+    function profile_adder($img) 
     {
         $permission = 2;
         $optional_inserts = '';
@@ -118,7 +118,11 @@ class modelaccounts extends CI_Model {
         
         $password = hash("sha256", $rand);
 
-        if($opts[0]->option_title === 'advanced accounts')
+        if($this->input->post('user_name') == '' || $this->input->post('user_email') == ''){
+            return false;
+        }
+
+        if($this->quarxsetup->get_option("account_type") == 'advanced accounts')
         {
             $optional_inserts = "address, city, state, country, phone, fax, website, company, ";
 
@@ -228,11 +232,11 @@ class modelaccounts extends CI_Model {
         }
     }
     
-    function this_profile_update($img, $id, $opts)
+    function this_profile_update($img, $id)
     {
         $optional = '';
 
-        if($opts[0]->option_title === 'advanced accounts')
+        if($this->quarxsetup->get_option("account_type") == 'advanced accounts')
         {
             $optional = "
                 `address` = '".$this->input->post('address')."',

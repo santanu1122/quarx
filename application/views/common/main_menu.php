@@ -3,7 +3,7 @@
 /**
  * Quarx
  *
- * A modular CMS built on CodeIgniter
+ * A modular application framework built on CodeIgniter
  *
  * @package     Quarx
  * @author      Matt Lantz
@@ -12,7 +12,7 @@
  * @link        http://ottacon.co/quarx
  * @since       Version 1.0
  * 
- */
+ */ 
     
 ?>
 
@@ -48,6 +48,10 @@
 
                 <li><a href="<?php echo site_url('setup'); ?>">Setup</a></li>
                 <li><a href="<?php echo site_url('admin/about'); ?>">About</a></li>
+                
+                <?php if(ENVIRONMENT === "development"): ?>
+                <li><a href="<?php echo site_url('admin/tests'); ?>">Unit Tests</a></li>
+                <?php endif; ?>
 
                 <?php } ?>
             <?php } ?>

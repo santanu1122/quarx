@@ -41,18 +41,12 @@
 <!-- content -->
 
 <div class="raw100">
-
-<?php if(isset($success)){ ?>
-<div id="success" class="updateBox">
-<p><?php echo $success; ?></p>
+    <div id="msgBox" class="<?php echo $state; ?>">
+    <p><?php echo $message; ?></p>
+    </div>
 </div>
-<?php } ?>
 
-<?php if(isset($error)){ ?>
-<div id="error" class="errorBox">
-<p><?php echo $error; ?></p>
-</div>
-<?php } ?> 
+<div class="raw100">
 
 <?php foreach($profile as $profile): endforeach; ?>
     <div class="device">
@@ -257,14 +251,9 @@
             }
         });
     }
-
-    function hideSuccessErrors(){
-        $('#success').fadeIn('fast').delay(3000).fadeOut('slow');
-        $('#error').fadeIn('fast').delay(3000).fadeOut('slow');    
-    }
     
     $(document).ready(function(e) {
-        hideSuccessErrors();
+        $('#msgBox').show().delay(3000).fadeOut('slow');
         
         if($('#latBox').val() > 0){
             locateMeAlt();

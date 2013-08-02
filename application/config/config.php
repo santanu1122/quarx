@@ -389,3 +389,47 @@ $config['modules_locations'] = array( APPPATH.'modules/' => '../modules/' );
 
 /* End of file config.php */
 /* Location: ./application/config/config.php */
+
+/*
+|--------------------------------------------------------------------------
+| Benchmarking
+|--------------------------------------------------------------------------
+|
+| Benchmarking will display the processing time in the footer per page. This
+| can be incredibly useful to help find pitfalls in your code. It uses hooks
+| to add the markmark start, and end to each function.
+| 
+| Unit tests determines whether or not to display the unit test page
+|
+*/
+
+$config['benchmarking'] = false;
+$config['unit_tests'] = false;
+
+if(ENVIRONMENT === "development"):
+    $config['benchmarking'] = true;
+    $config['unit_tests'] = true;
+endif;
+
+/*
+|--------------------------------------------------------------------------
+| Footer Visible
+|--------------------------------------------------------------------------
+|
+| Turn footer visiblity on and off.
+|
+*/
+
+$config['footer_visible'] = false;
+
+/*
+|--------------------------------------------------------------------------
+| JSONp connection
+|--------------------------------------------------------------------------
+|
+| Set a token for JSONp access.
+|
+*/
+
+$config['jsonp_token'] = "@hacKer2082";
+

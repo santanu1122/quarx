@@ -87,7 +87,7 @@
 
 <body>
 
-    <div data-role="page" data-url="<?php echo $pagetitle; ?>" data-theme="a">
+    <div data-role="page" data-url="<?php echo $pagetitle; ?>" data-theme="a"><!-- beginning of all body contents -->
 
         <?php if($this->session->userdata('logged_in')){ ?>
             <?php $this->load->view('common/main_menu'); ?>

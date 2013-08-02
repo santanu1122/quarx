@@ -1,16 +1,16 @@
 /**
  * Quarx
  *
- * A modular CMS built on CodeIgniter
+ * A modular application framework built on CodeIgniter
  *
  * @package     Quarx
  * @author      Matt Lantz
  * @copyright   Copyright (c) 2013 Matt Lantz
  * @license     http://ottacon.co/quarx/license
- * @link        http://quarx.ottacon.co
+ * @link        http://ottacon.co/quarx
  * @since       Version 1.0
  * 
- */
+ */ 
 
 /* Custom Styles for Quarx
 ***************************************************************/
@@ -576,9 +576,20 @@ body, html{
     margin-left: 25%;
 }
 
+/* msgBox ============================================ */
+
+#msgBox{
+    display: none;
+}
+
+#msgBox p{
+    padding: 0;
+    margin: 0;
+}
+
 /* UpdateBox ============================================ */
 
-.updateBox{
+.successBox{
     z-index: 10000001;
     width: 100%;
     background: #33CC33;
@@ -590,9 +601,9 @@ body, html{
     display: none;
 }
 
-.updateBox p{
+.successBox p{
     color: #fff;
-    line-height: 30px;
+    line-height: 45px;
     text-align: center;
 }
 
@@ -620,7 +631,7 @@ body, html{
 }
 
 .errorBox p{
-    line-height: 30px;
+    line-height: 45px;
     text-align: center;
     color: #fff;
 }

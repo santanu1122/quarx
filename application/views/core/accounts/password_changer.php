@@ -66,7 +66,7 @@
             $("#msgBox").attr('class', 'errorBox');
             $("#msgBox").html('<p>Your Password is Weak</p>'); 
         }else{
-            $("#msgBox").attr('class', 'updateBox');
+            $("#msgBox").attr('class', 'successBox');
             $("#msgBox").html('<p>Your Password is Strong</p>'); 
         }
             $("#msgBox").show();
@@ -82,7 +82,7 @@
             $("#msgBox").html('<p>Your Passwords don\'t Match</p>'); 
             return false;
         }else{
-            $("#msgBox").attr('class', 'updateBox');
+            $("#msgBox").attr('class', 'successBox');
             $("#msgBox").html('<p>Your Passwords Match</p>'); 
             return true;
         }

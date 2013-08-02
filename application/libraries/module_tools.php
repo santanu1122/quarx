@@ -3,7 +3,7 @@
 /**
  * Quarx
  *
- * A modular CMS built on CodeIgniter
+ * A modular application framework built on CodeIgniter
  *
  * @package     Quarx
  * @author      Matt Lantz
@@ -12,7 +12,7 @@
  * @link        http://ottacon.co/quarx
  * @since       Version 1.0
  * 
- */
+ */ 
 
 class module_tools{
     
@@ -31,7 +31,9 @@ class module_tools{
                      
                     foreach($files as $file){
                         if(is_dir($file)){
-                            @include($file.'/menu.php');
+                            if(file_exists($file.'/menu.php')){
+                                @include($file.'/menu.php');
+                            }
                         }
                     }
                 }
@@ -42,7 +44,9 @@ class module_tools{
                  
                 foreach($files as $file){
                     if(is_dir($file)){
-                        @include($file.'/menu.php');
+                        if(file_exists($file.'/menu.php')){
+                            @include($file.'/menu.php');
+                        }
                     }
                 }
             }
@@ -56,7 +60,9 @@ class module_tools{
              
             foreach($files as $file){
                 if(is_dir($file)){
-                    @include($file.'/special_menu.php');
+                    if(file_exists($file.'/special_menu.php')){
+                        @include($file.'/special_menu.php');
+                    }
                 }
             }
         }
@@ -69,7 +75,9 @@ class module_tools{
              
             foreach($files as $file){
                 if(is_dir($file)){
-                    @include($file.'/manual/manual_menu.php');
+                    if(file_exists($file.'/manual/manual_menu.php')){
+                        @include($file.'/manual/manual_menu.php');
+                    }
                 }
             }
         }
@@ -82,7 +90,9 @@ class module_tools{
              
             foreach($files as $file){
                 if(is_dir($file)){
-                    @include($file.'/manual/manual.php');
+                    if(file_exists($file.'/manual/manual.php')){
+                        @include($file.'/manual/manual.php');
+                    }
                 }
             }
         }
@@ -105,7 +115,9 @@ class module_tools{
                     $currentDir = end($pieces);
                     
                     if($currentDir == $currentModule){
-                        @include($file.'/css/styles.css');
+                        if(file_exists($file.'/css/styles.css')){
+                            @include($file.'/css/styles.css');
+                        }
                     }
                 }
             }
@@ -130,7 +142,9 @@ class module_tools{
                     $currentDir = end($pieces);
                     
                     if($currentDir == $currentModule){
-                        @include($file.'/js/module_functions.js');
+                        if(file_exists($file.'/js/module_functions.js')){
+                            @include($file.'/js/module_functions.js');
+                        }
                     }
                 }
             }
@@ -144,7 +158,9 @@ class module_tools{
              
             foreach($files as $file){
                 if(is_dir($file)){
-                    @include($file.'/settings.php');
+                    if(file_exists($file.'/settings.php')){
+                        @include($file.'/settings.php');
+                    }
                 }
             }
         }

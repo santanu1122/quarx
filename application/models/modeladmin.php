@@ -27,7 +27,9 @@ class modeladmin extends CI_Model {
     {
         $qry = $this->db->query("SELECT * FROM `admin` WHERE option_title = '".$opt."'");
         $res = $qry->result();
-        return $res[0]->option_data;
+        if($res){
+            return $res[0]->option_data;
+        }
     }
 
     function get_db_info() 

@@ -17,6 +17,14 @@
 ?>
 
 <div class="raw100">
+    <?php if(isset($error)): ?>
+    <div id="msgBox" class="errorBox">
+        <p><?php echo $error; ?></p>
+    </div>
+    <?php endif; ?>
+</div>  
+
+<div class="raw100">
     <div class="device">
         <div class="raw50 mHide">
             <div class="googleMap"> 
@@ -49,7 +57,7 @@
                         <div class="raw66"><input class="vital" type="text" name="full_name" size="30" value="" /></div>
                     </div>
 
-                    <?php if($this->quarxsetup->get_option("account_type") == 'advanced accounts' ){ ?>
+                    <?php if( $this->quarxsetup->get_option("account_type") == 'advanced accounts' ){ ?>
 
                     <div class="raw100">
                         <div class="raw33"><p>Address</p></div>
@@ -114,12 +122,9 @@
 <script type="text/JavaScript" src="<?php echo $root; ?>js/googlemaps.js"></script>
 
 <script type="text/javascript">
-    function hideSuccessErrors(){
-        $('#error').delay(3000).fadeOut('slow');    
-    }
 
     $(document).ready(function(e) {
-        hideSuccessErrors();
+        $('#msgBox').show().delay(3000).fadeOut('slow');
 
         $('#formHolder').keypress(function(event){
             if (event.keyCode == 10 || event.keyCode == 13) 

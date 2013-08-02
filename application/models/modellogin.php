@@ -63,6 +63,10 @@ class modellogin extends CI_Model {
             endforeach;
             
             return true;
+        
+        }else{
+
+            return false;
         }
     }
 

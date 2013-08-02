@@ -32,13 +32,19 @@ class accounts extends CI_Controller {
 
     function index() 
     {   
-        if(isset($_GET['success']))
+        $data['state'] = '';
+        $data['message'] = '';
+
+        if($this->session->flashdata('success'))
         {
-            $data['profilesuccess'] = 'Your password has been changed successfully.';
+            $data['state'] = 'successBox';
+            $data['message'] = 'Your profile was successfully updated';
         }
-        if(isset($_GET['profilesuccess']))
+
+        if($this->session->flashdata('error'))
         {
-            $data['profilesuccess'] = 'Your profile has been updated successfully.';
+            $data['state'] = 'successBox';
+            $data['message'] = 'Your profile was unable to be updated';
         }
 
         $this->load->model('modelaccounts');
@@ -49,7 +55,6 @@ class accounts extends CI_Controller {
             $data['myprofile'] = $this->modelaccounts->my_account();
         }
 
-        $data['opts'] = $this->quarxsetup->account_opts();
         $data['page'] = base_url().'accounts';
         
         $data['root'] = base_url();
@@ -81,8 +86,6 @@ class accounts extends CI_Controller {
 
         $this->load->library('upload', $config);
 
-        $opts = $this->quarxsetup->account_opts();
-
         if ( ! $this->upload->do_upload() )
         {
             $this->load->model('modelaccounts');
@@ -92,9 +95,10 @@ class accounts extends CI_Controller {
             $img = $myprofileImg->img;
 
             $this->load->model('modelaccounts');
-            $query = $this->modelaccounts->profile_update($img, $opts);
+            $query = $this->modelaccounts->profile_update($img);
             
-            redirect('/accounts?profilesuccess');
+            $this->session->set_flashdata('success', 'Successfully updated');
+            redirect('accounts');
         }
         else
         {
@@ -118,20 +122,20 @@ class accounts extends CI_Controller {
             }
             
             $this->load->model('modelaccounts');
-            $query = $this->modelaccounts->profile_update($img, $opts);
+            $query = $this->modelaccounts->profile_update($img);
 
             /*
             ***************************************************************/
             
             if($query)
             {
-                redirect('accounts?profilesuccess');
-
+                $this->session->set_flashdata('success', 'Successfully updated');
+                redirect('accounts');
             }
             else
             {
-                $data['error'] = 'Sorry, but were unable to update your profile.';    
-                redirect('accounts?error');
+                $this->session->set_flashdata('error', 'update failed');  
+                redirect('accounts');
             }
         }
     }
@@ -248,11 +252,13 @@ class accounts extends CI_Controller {
             
             if($query)
             {
-                redirect('accounts?success');
+                $this->session->set_flashdata('success', 'update success'); 
+                redirect('accounts');
             }
             else
             {
-                redirect('accounts?error');
+                $this->session->set_flashdata('error', 'update failed'); 
+                redirect('accounts');
             }
         }
     }  
@@ -263,18 +269,16 @@ class accounts extends CI_Controller {
     function add() 
     {   
         if($this->session->userdata('permission') > 1){
-            $setup = $this->quarxsetup->account_opts();
-            if($setup[2]->option_data !== 'master access')
+            if($this->quarxsetup->get_option("access_type") !== 'master access')
             {
                 redirect('login/insufficient');
             }
         }
 
-        if(isset($_GET['error'])){
+        if($this->session->flashdata('error')){
             $data['error'] = 'Sorry, we were unable to add that account.';
         }
         
-        $data['opts'] = $this->quarxsetup->account_opts();
         $data['root'] = base_url();
         $data['pageRoot'] = base_url().'index.php';
         $data['pagetitle'] = 'Add an Account';
@@ -304,9 +308,7 @@ class accounts extends CI_Controller {
     {   
         if($this->session->userdata('permission') > 1)
         {
-            $setup = $this->quarxsetup->account_opts();
-
-            if($setup[2]->option_data !== 'master access')
+            if($this->quarxsetup->get_option("access_type") !== 'master access')
             {
                 redirect('login/insufficient');
             }
@@ -317,7 +319,8 @@ class accounts extends CI_Controller {
         
         if($qry)
         {
-            redirect('accounts/add?error');
+            $this->session->set_flashdata('error', 'adding failed'); 
+            redirect('accounts/add');
         }
         else
         {
@@ -349,18 +352,17 @@ class accounts extends CI_Controller {
                 $this->make_medium($img);
             }
 
-            $opts = $this->quarxsetup->account_opts();
             $this->load->model('modelaccounts');
-            $rand = $this->modelaccounts->profile_adder($img, $opts);
+            $rand = $this->modelaccounts->profile_adder($img);
         
             if($rand)
             {
                 $to = $this->input->post('user_email');
                 $name = $this->input->post('user_name');
                 $from = 'do-not-reply';
-                $subject = 'Your New Account';
+                $subject = 'Your New '.$SERVER['HTTP_HOST'].' Account';
                 $message = '
-<h3>Congratulations, you have a new account.</h3>
+<h3>Congratulations, you have a new account on '.$SERVER['HTTP_HOST'].'.</h3>
 <p>Username: '.$this->input->post('user_name').'</p>
 <p>Password: '.$rand.'</p>
 <p>Please be sure to change your password the next time you login. Thank you.</p>';
@@ -372,7 +374,8 @@ class accounts extends CI_Controller {
             }
             else
             {
-                redirect('accounts/add?error');
+                $this->session->set_flashdata('error', 'Failed to add user');
+                redirect('accounts/add');
             }
         }
     }
@@ -382,7 +385,7 @@ class accounts extends CI_Controller {
         if($this->session->userdata('permission') > 1)
         {
             $setup = $this->quarxsetup->account_opts();
-            if($setup[2]->option_data !== 'master access')
+            if($this->quarxsetup->get_option("access_type") !== 'master access')
             {
                 redirect('login/insufficient');
             }
@@ -404,6 +407,7 @@ class accounts extends CI_Controller {
         
         if($query)
         {
+            $this->session->set_flashdata('success', 'Successfully Deleted');
             redirect('accounts/view');
         }
     }
@@ -418,6 +422,7 @@ class accounts extends CI_Controller {
         
         if($query)
         {
+            $this->session->set_flashdata('success', 'Successfully Authorized');
             redirect('accounts/view');
         }
     }
@@ -429,6 +434,7 @@ class accounts extends CI_Controller {
         
         if($query)
         {
+            $this->session->set_flashdata('success', 'Successfully Enabled');
             redirect('accounts/view');
         }
     }
@@ -440,6 +446,7 @@ class accounts extends CI_Controller {
         
         if($query)
         {
+            $this->session->set_flashdata('success', 'Successfully Enabled');
             redirect('accounts/editor/'.encrypt($id));
         }
     }
@@ -450,6 +457,7 @@ class accounts extends CI_Controller {
         $query = $this->modelaccounts->master_user_upgrade($id);
         
         if($query){
+            $this->session->set_flashdata('success', 'Successfully Upgraded');
             redirect('accounts/editor/'.encrypt($id));
         }
     }
@@ -461,6 +469,7 @@ class accounts extends CI_Controller {
         
         if($query)
         {
+            $this->session->set_flashdata('success', 'Successfully Downgraded');
             redirect('accounts/editor/'.encrypt($id));
         }
     }
@@ -472,6 +481,7 @@ class accounts extends CI_Controller {
         
         if($query)
         {
+            $this->session->set_flashdata('success', 'Successfully Upgraded');
             redirect('accounts/view');
         }
     }
@@ -483,6 +493,7 @@ class accounts extends CI_Controller {
         
         if($query)
         {
+            $this->session->set_flashdata('success', 'Successfully Downgraded');
             redirect('accounts/view');
         }
     }
@@ -494,6 +505,7 @@ class accounts extends CI_Controller {
         
         if($query)
         {
+            $this->session->set_flashdata('success', 'Successfully Disabled');
             redirect('accounts/view');
         }
     }
@@ -505,6 +517,7 @@ class accounts extends CI_Controller {
         
         if($query)
         {
+            $this->session->set_flashdata('success', 'Successfully Disabled');
             redirect('accounts/editor/'.encrypt($id));
         }
     }
@@ -516,21 +529,25 @@ class accounts extends CI_Controller {
     {
         if($this->session->userdata('permission') > 1)
         {
-            $setup = $this->quarxsetup->account_opts();
-            if($setup[2]->option_data !== 'master access')
+            if($this->quarxsetup->get_option("access_type") !== 'master access')
             {
                 redirect('login/insufficient');
             }
         }
 
-        if(isset($_GET['success']))
+        $data['state'] = '';
+        $data['message'] = '';
+
+        if($this->session->flashdata('success'))
         {
-            $data['success'] = "This profile was successfully updated.";
+            $data['state'] = 'successBox';
+            $data['message'] = $this->session->flashdata('success');
         }
 
-        if(isset($_GET['error']))
+        if($this->session->flashdata('error'))
         {
-            $data['error'] = "There was an error updating this profile.";
+            $data['state'] = 'successBox';
+            $data['message'] = $this->session->flashdata('error');
         }
         
         $this->load->model('modelaccounts');
@@ -596,7 +613,8 @@ class accounts extends CI_Controller {
             $this->load->model('modelaccounts');
             $query = $this->modelaccounts->this_profile_update($img, $_POST['user_id'], $opts);
             
-            redirect('accounts/editor/'.encrypt($_POST['user_id']).'?success');
+            $this->session->set_flashdata('success', 'update success'); 
+            redirect('accounts/editor/'.encrypt($_POST['user_id']));
 
         }
         else
@@ -608,11 +626,13 @@ class accounts extends CI_Controller {
             
             if($query)
             {
-                redirect('accounts/editor/'.encrypt($_POST['user_id']).'?success');
+                $this->session->set_flashdata('success', 'update success'); 
+                redirect('accounts/editor/'.encrypt($_POST['user_id']));
             }
             else
             {
-                redirect('accounts/editor/'.encrypt($_POST['user_id']).'?error');
+                $this->session->set_flashdata('error', 'update failed'); 
+                redirect('accounts/editor/'.encrypt($_POST['user_id']));
             }
         
         }
@@ -626,11 +646,25 @@ class accounts extends CI_Controller {
     {
         if($this->session->userdata('permission') > 1)
         {
-            $setup = $this->quarxsetup->account_opts();
-            if($setup[2]->option_data !== 'master access')
+            if($this->quarxsetup->get_option("access_type") !== 'master access')
             {
                 redirect('login/insufficient');
             }
+        }
+
+        $data['state'] = '';
+        $data['message'] = '';
+
+        if($this->session->flashdata('success'))
+        {
+            $data['state'] = 'successBox';
+            $data['message'] = $this->session->flashdata('success');
+        }
+
+        if($this->session->flashdata('error'))
+        {
+            $data['state'] = 'successBox';
+            $data['message'] = $this->session->flashdata('error');
         }
 
         $this->load->library('toolbelt'); 
@@ -666,8 +700,7 @@ class accounts extends CI_Controller {
     {
         if($this->session->userdata('permission') > 1)
         {
-            $setup = $this->quarxsetup->account_opts();
-            if($setup[2]->option_data !== 'master access')
+            if($this->quarxsetup->get_option("access_type") !== 'master access')
             {
                 redirect('login/insufficient');
             }

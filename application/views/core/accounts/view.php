@@ -45,6 +45,12 @@
 <!-- content -->
 
 <div class="raw100">
+    <div id="msgBox" class="<?php echo $state; ?>">
+        <p><?php echo $message; ?></p>
+    </div>
+</div>
+
+<div class="raw100">
     <div class="device">
         <div class="raw100"> 
             <div class="raw100">
@@ -229,7 +235,9 @@
         $('#search').css('color','#222');
     }
 
-    $(document).ready(function(e) {     
+    $(document).ready(function(e) {
+        $('#msgBox').show().delay(3000).fadeOut('slow');
+
         $('#memberSearch').submit(function(){
             if($('#search').val().length < 3 ){
                 alert('Sorry, your search must have at least three characters');

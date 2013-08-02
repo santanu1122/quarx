@@ -18,13 +18,9 @@
 
 <?php
 
-$url  = $root.'.quarx.json';
-$quarx = file_get_contents($url);
-$quarx = json_decode($quarx);
-
-$version = $quarx->version;
-$buildDate = $quarx->buildDate;
-$authors = $quarx->authors;
+$version = $this->quarxsetup->quarx_details('version');
+$buildDate = $this->quarxsetup->quarx_details('buildDate');
+$authors = $this->quarxsetup->quarx_details('authors');
 
 ?>
 
@@ -58,7 +54,7 @@ $authors = $quarx->authors;
                 </div> 
                 <div class="raw100">
                     
-                    <?php foreach ($quarx->components as $c) { ?>
+                    <?php foreach ($this->quarxsetup->quarx_details('components') as $c) { ?>
                     
                     <div class="grid50"><a href="<?php echo $c->link; ?>" target="_blank"><?php echo $c->title; ?></a></div>
 

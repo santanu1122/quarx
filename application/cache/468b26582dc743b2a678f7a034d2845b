@@ -1,0 +1,226 @@
+1375208429TS--->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta name="description" content="A simple to use, responsive design CMS system." />
+    <meta name="keywords" content="CMS System, Zen, Responsive Design" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+
+    <title>Quarx | CloudCatcher</title>
+
+    <!-- Quarx Custom Styles -->
+    <link rel="shortcut icon" type="image" href="http://localhost:8888/__quarx/quarx/images/favicon.ico" />
+    <link rel="stylesheet" href="http://localhost:8888/__quarx/quarx/css/raw.min.css" />
+    <link rel="stylesheet" href="http://localhost:8888/__quarx/quarx/css/desktop-style.css" lang="EN" dir="ltr" type="text/css" />
+    <link rel='stylesheet' media='screen and (min-width: 320px) and (max-width: 980px)' href='http://localhost:8888/__quarx/quarx/css/tablet-style.css' />
+    <link rel='stylesheet' media='screen and (min-width: 120px) and (max-width: 768px)' href='http://localhost:8888/__quarx/quarx/css/mobile-styles.css' />
+
+    <!-- jQuery -->
+    <script type="text/javascript" src="http://localhost:8888/__quarx/quarx/js/jquery.min.js"></script>
+    <script type="text/javascript" src="http://localhost:8888/__quarx/quarx/js/jquery-migrate.min.js"></script>
+
+    <!-- jQuery Mobile Quarx Theme -->
+    <link rel="stylesheet" href="http://localhost:8888/__quarx/quarx/js/themes/quarx.css" />
+    <link rel="stylesheet" href="http://localhost:8888/__quarx/quarx/js/themes/jquery.mobile.structure.min.css" />
+    <script type="text/javascript" src="http://localhost:8888/__quarx/quarx/js/quarxfunc.js"></script>
+    <script type="text/javascript" src="http://localhost:8888/__quarx/quarx/js/jquery.mobile.min.js"></script>
+
+    <!-- jquery plugins -->
+    <script type="text/javascript" src="http://localhost:8888/__quarx/quarx/js/jquery.deefault.js"></script>
+    <script type="text/javascript" src="http://localhost:8888/__quarx/quarx/js/jquery.tooltip.js"></script>
+
+    <!-- Redactor -->
+    <link rel="stylesheet" href="http://localhost:8888/__quarx/quarx/js/redactor/redactor.css" />
+    <script src="http://localhost:8888/__quarx/quarx/js/redactor/redactor.min.js"></script>
+    
+    <!-- Custom Scripts -->
+    <script type="text/javascript">
+        </script>
+
+    <style type="text/css">
+        </style>
+
+    <script type="text/javascript">
+        $.mobile.ajaxEnabled = false;
+        $.mobile.selectmenu.prototype.options.nativeMenu = false;
+        
+        $(document).bind('mobileinit',function(){
+            $.mobile.selectmenu.prototype.options.hidePlaceholderMenuItems = false;
+            
+        });
+        
+        $(document).ready(function() {
+            $('textarea.rtf').redactor({ 
+                minHeight: 275
+            });
+
+            $(".top_menu_icons").tooltip();
+        });
+
+    </script>
+
+    <!--[if gte IE 7]>
+    <link rel="stylesheet" type="text/css" href="http://localhost:8888/__quarx/quarx/css/ie.css" />
+    <![endif]-->
+</head>
+
+<body>
+
+    <div data-role="page" data-url="CloudCatcher" data-theme="a"><!-- beginning of all body contents -->
+
+                    
+<div data-role="panel" data-display="reveal" id="Menu" class="menuPanel panelBox">
+    
+    <h2 style="margin: -15px 0 15px 0; padding: 0px; line-height: 2.6em;"><img src="http://localhost:8888/__quarx/quarx/images/quarx.png" width="15px" /> Quarx </h2>
+
+    <ul id="menu" data-role="listview">
+        
+        
+            <li><a href="http://localhost:8888/__quarx/quarx/sample">Sample</a></li>
+                         
+                        <li><a href="http://localhost:8888/__quarx/quarx/image/library">Image Library</a></li>
+            
+                                    <li><a href="http://localhost:8888/__quarx/quarx/admin/cloudinfo">Admin - CloudInfo</a></li>
+                    <li onclick="window.location='http://localhost:8888/__quarx/quarx/admin/cloudmail'"><a>Admin - CloudMail</a></li>
+                    <li onclick="window.location='http://localhost:8888/__quarx/quarx/admin/cloudcatcher'"><a>Admin - CloudCatcher</a></li>
+
+                    <li><a href="http://localhost:8888/__quarx/quarx/admin/manual">Manual</a></li>
+                    
+                
+                <li><a href="http://localhost:8888/__quarx/quarx/setup">Setup</a></li>
+                <li><a href="http://localhost:8888/__quarx/quarx/admin/about">About</a></li>
+                
+                                <li><a href="http://localhost:8888/__quarx/quarx/admin/tests">Unit Tests</a></li>
+                
+                            
+        
+    </ul>
+
+</div>
+
+            
+<div data-role="panel" data-display="overlay" data-position="right" id="profileMenu" class="accountMenuPanel panelBox">
+    <div class="account-menu-box">
+        <h2>My Account</h2>
+    </div>
+    
+    <ul id="account_menu" data-role="listview">
+        
+                    
+            <li><a href="http://localhost:8888/__quarx/quarx/accounts">My Account</a></li>
+            <li><a href="http://localhost:8888/__quarx/quarx/accounts/password">Update Password</a></li>
+                        <li><a href="http://localhost:8888/__quarx/quarx/accounts/add">Add an Account</a></li>
+            <li><a href="http://localhost:8888/__quarx/quarx/accounts/view">View Accounts</a></li>                  
+            
+            <li><a href="http://localhost:8888/__quarx/quarx/settings">Settings</a></li>
+
+        
+                    <li><a href="http://localhost:8888/__quarx/quarx/logout">Sign Out</a></li>
+        
+    </ul>   
+
+</div>
+
+        
+        
+        <div data-role="header">
+                        <a class="top_menu_icons" href="#Menu" data-role="button" data-icon="bars" data-iconpos="notext" data-tooltip="Menu"></a>
+            
+            <h1> CloudCatcher </h1>
+            
+                        <a class="top_menu_icons" href="#profileMenu" data-role="button" data-icon="gear" data-iconpos="notext" data-tooltip="My Account"></a>
+                    </div>
+
+        <div id="body" data-role="content">
+            
+
+<div class="raw100" style="min-height: 600px;"><!-- content -->
+    <div class="device">
+        <h1>CloudCatcher: Your Website Backup Tool</h1>
+
+        <div class="raw33">
+            <div class="padded20">
+                                <button id="backupBtn" onclick="cloudCatcher()">Backup Now</button>
+                <div id="loader" style="display: none;"><p>Loading</p></div>
+                
+            </div>
+        </div> 
+
+        <div class="raw66">
+            <div class="padded">
+                <h1>Cloud Catcher Instructions</h1>
+                <br />
+                <p>Welcome to Cloud Catcher, a simple backup tool for that extra bit of insurance. Don't fret the process is as simple as 1, 2, 3:</p>
+                <br />
+                <p><b>1.</b> Click the "Backup" button, and wait a few moments. You will see that your browser is working just let it work. You will know its done when two new buttons pop up.</p>
+                <br />
+                <p><b>2.</b> Click the "Download" button to download your copy of the backup to keep on your computer. Pretty easy eh. Place the file in a folder for safe keeping. Its named by the day so you can keep track of when your last backup was done. We recommend performing this action at least monthly.</p>
+                <br />
+                <p><b>3.</b> Click the "Delete Server Copy" button. This will actually delete the backup file from the server. The reason we do this is to make sure you have lots of space left on your server where the website is hosted.</p>
+                <br />
+                <p>You're all done! Remember to keep the downloaded files safe. They are your responsibility and in the event of a website error you may need to be able to send a recent version of your website to your developer to get the site back up and running with a recent copy of the site.</p>
+            </div>
+        </div> 
+    </div>
+
+</div><!--/content -->
+
+<script type="text/javascript">
+    
+    function cloudCatcher(){
+        $('#backupBtn').parent().hide();
+        $('#loader').show();
+        setInterval(function(){ $('#loader p').append(' .') }, 200);
+        
+        $.ajax({
+            type: 'POST',
+            url: "http://localhost:8888/__quarx/quarx/admin/cloudcatcher/backup/",
+            data: { backup: true, q_csrf_token: 'bbb4681bec4f82f66967b46635112025' },
+            dataType: "html",
+            success: function(data){
+                if(data == 1){
+                    window.location = 'http://localhost:8888/__quarx/quarx/admin/cloudcatcher'+'?download';
+                }else{
+
+                }
+            }
+        });
+    }
+
+</script>
+
+
+    <div id="quarx-modal"></div>
+
+	</div>
+
+    
+            <div class="raw100 raw-left align-center">
+            <p>Elapsed Time: {elapsed_time} seconds</p>
+            <p>Memory Usage: {memory_usage}</p>
+        </div>
+    
+</div><!-- end of all body contents -->
+
+<script type="text/javascript" src="http://localhost:8888/__quarx/quarx/js/jquery.gwtt.js"></script>
+<script type="text/javascript">
+    
+    $(document).ready(function(){
+        $('#imageLibraryBox').height($(document).height()-10);
+        $('#fullScreenImageLibrary').height($(document).height()-10);
+        $('#Menu').height($(window).height()-10);
+        
+        $(window).scroll(function(){
+            $('.updateBox, .errorBox').css({
+                top: $(window).scrollTop()
+            });    
+        });
+    });
+
+</script>
+    
+</body>
+</html>
+

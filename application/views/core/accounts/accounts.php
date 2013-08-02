@@ -20,12 +20,10 @@
 <script type="text/JavaScript" src="<?php echo $root; ?>js/googlemaps.js"></script>
 
 <div class="raw100">
-    <?php if(isset($profilesuccess)){ ?>
-    <div id="success" class="updateBox">
-        <p><?php echo $profilesuccess; ?></p>
+    <div id="msgBox" class="<?php echo $state; ?>">
+        <p><?php echo $message; ?></p>
     </div>
-    <?php } ?>
-</div>    
+</div> 
 
 <div class="device">
 
@@ -64,7 +62,7 @@
                         <div class="raw66"><input type="text" name="full_name" size="30" value="<?php echo $myprofile->full_name; ?>" /></div>
                     </div>
 
-                    <?php if($this->quarxsetup->get_option("account_type") == 'advanced accounts' ){ ?>
+                    <?php if( $this->quarxsetup->get_option("account_type") == 'advanced accounts' ){ ?>
                     
                     <div class="raw100">
                        <div class="raw33"><p>Address</p></div>
@@ -134,15 +132,10 @@
 </div>
 
 <script type="text/javascript">
-    $(window).load(function(){ profileImageResize() });
-
-    function hideSuccessErrors(){
-        $('#success').fadeIn('fast').delay(3000).fadeOut('slow');
-        $('#error').fadeIn('fast').delay(3000).fadeOut('slow');    
-    }
+    $(window).load(function(){ setTimeout(function() { profileImageResize(); }, 300) });
     
     $(document).ready(function(e) {
-        hideSuccessErrors();
+        $('#msgBox').show().delay(3000).fadeOut('slow'); 
         
         if($('#latBox').val() > 0){
             locateMeAlt();

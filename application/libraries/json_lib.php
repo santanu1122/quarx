@@ -3,17 +3,17 @@
 /**
  * Quarx
  *
- * A modular CMS built on CodeIgniter
+ * A modular application framework built on CodeIgniter
  *
  * @package     Quarx
  * @author      Matt Lantz
  * @copyright   Copyright (c) 2013 Matt Lantz
  * @license     http://ottacon.co/quarx/license
- * @link        http://quarx.ottacon.co
+ * @link        http://ottacon.co/quarx
  * @since       Version 1.0
  * 
- * if PHP < 5.2 we now have json_encode/json_decode  
- */
+ * if PHP < 5.2 we now have json_encode/json_decode
+ */ 
 
 class json_lib {
 
@@ -24,7 +24,7 @@ class json_lib {
         {
             function json_decode($content, $assoc=false) 
             {
-                require_once './hacks/JSON/JSON.php';
+                require_once './third-party/JSON/JSON.php';
                 if ($assoc) {
                     $json = new Services_JSON(SERVICES_JSON_LOOSE_TYPE);
                 }
@@ -40,9 +40,17 @@ class json_lib {
             
             function json_encode($content) 
             {
-                require_once './hacks/JSON/JSON.php';
+                require_once './third-party/JSON/JSON.php';
                 $json = new Services_JSON;
                 return $json->encode($content);
+            }
+        }
+
+        function check_jsonp_token($token)
+        {
+            $CI =& get_instance();
+            if($CI->config->item('jsonp_token') == $token){
+                return true;
             }
         }
 

@@ -3,13 +3,13 @@
 /**
  * Quarx
  *
- * A modular CMS built on CodeIgniter
+ * A modular application framework built on CodeIgniter
  *
  * @package     Quarx
  * @author      Matt Lantz
  * @copyright   Copyright (c) 2013 Matt Lantz
  * @license     http://ottacon.co/quarx/license
- * @link        http://quarx.ottacon.co
+ * @link        http://ottacon.co/quarx
  * @since       Version 1.0
  * 
  */
@@ -24,10 +24,10 @@ class express_mail {
             $CI =& get_instance();
 
             $from = 'do-not-reply';
-            $subject = 'Your Account was Activated!';
+            $subject = 'Your '.$SERVER['HTTP_HOST'].' Account was Activated!';
             $message = '
 <h4>Account Activated</h4><br />
-<p>Success! You\'re account has been activated. Feel free to login! Thanks.</p>';
+<p>Success! You\'re account on '.$SERVER['HTTP_HOST'].' has been activated. Feel free to login! Thanks.</p>';
 
             $CI->load->library('email');
 

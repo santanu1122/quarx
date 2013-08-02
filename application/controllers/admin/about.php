@@ -52,6 +52,7 @@ class about extends CI_Controller {
         
         $this->load->view('common/header', $data);
         $this->load->view('core/admin/about', $data);
+        $this->load->view('common/footer', $data);
     }
 
 }

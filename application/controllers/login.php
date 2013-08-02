@@ -64,7 +64,7 @@ class login extends CI_Controller {
         }
     }
 
-    public function error() 
+    public function error()
     {
         $this->load->model('modelsetup');
         $qry = $this->modelsetup->is_installed();
@@ -74,18 +74,26 @@ class login extends CI_Controller {
             redirect('setup');
         }
         else
-        { 
+        {
             $this->load->helper('cookie');
             $this->load->model('modellogin');
-            
-            $data['root'] = base_url();
-            $data['pageRoot'] = base_url().'index.php';
-            $data['pagetitle'] = 'Limbo';
-            $data['date'] = date("m-d-y");
-            
-            $this->load->view('common/header', $data);
-            $this->load->view('core/login/login_error', $data);
-            $this->load->view('common/footer', $data);
+            $query = $this->modellogin->cookie_validate($this->input->cookie('quarx-uname'), $this->input->cookie('quarx-pword'));
+
+            if($query === 'fail'){ 
+                $this->load->helper('cookie');
+                $this->load->model('modellogin');
+                
+                $data['root'] = base_url();
+                $data['pageRoot'] = base_url().'index.php';
+                $data['pagetitle'] = 'Limbo';
+                $data['date'] = date("m-d-y");
+                
+                $this->load->view('common/header', $data);
+                $this->load->view('core/login/login_error', $data);
+                $this->load->view('common/footer', $data);
+            }else{
+                redirect($SERVER['HTTP_REFERER']);
+            }
         }
     }
 
@@ -195,6 +203,8 @@ class login extends CI_Controller {
             );
 
             $this->session->set_userdata($data);
+
+            log_message('info', 'user '.$this->session->userdata("username").' successfully logged in.');
 
             redirect('accounts');
         }
