@@ -45,7 +45,7 @@ def getVersion(source):
         return "N/A"
 
 def updateVersion(source):
-    f = source+"/.version.txt"
+    f = source+"/.version_build.txt"
     vf = open(f, "r+")
     cv = vf.read()
 
@@ -72,24 +72,8 @@ def copyForDeployment(source, build, ignored):
                     os.makedirs(build+f)
                     print "made "+build+f+"..."
 
-                files = os.listdir(source+f)
+                copyForDeployment(source+f+"/", build+f+"/", ignored)
 
-                for sf in files:
-                    if sf not in ignored:
-                        if os.path.isdir(source+f+"/"+sf+"/"):
-                            if os.path.isdir(build+f+"/"+sf+"/"):
-                                print build+f+"/"+sf+"/ already exists..."
-                            else:
-                                os.makedirs(build+f+"/"+sf+"/")
-                                print "made "+build+f+"/"+sf+"/"
-
-                            copyForDeployment(source+f+"/"+sf+"/", build+f+"/"+sf+"/", ignored)
-
-                        else:
-                            shutil.copy(source+f+"/"+sf, build+f+"/"+sf)
-                            print "Deployed - "+sf+"..."
-                            deployedFileCount += 1
-                            totalFileCount += 1
             else:
                 shutil.copy(source+f, build+f)
                 print "Deployed - "+f+"..."

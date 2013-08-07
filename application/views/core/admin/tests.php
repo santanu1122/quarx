@@ -16,7 +16,7 @@
 
 ?>
 
-<div class="device">
+<div class="quarx-device">
 
     <div class="raw-padding-20">
 
@@ -24,7 +24,7 @@
 
     </div>
 
-    <div class="raw100 raw-left align-center">
+    <div class="raw100 raw-left quarx-align-center">
         <p>Unit Tests completed in: <?php echo $benchmark; ?> seconds.</p>
     </div>
 

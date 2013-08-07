@@ -18,23 +18,9 @@
 
 <!-- notifications -->
 
-<?php if(isset($_GET['s'])){ ?>
-    <div id="msgBox" class="updateBox">
-        <p>Your connection was successful.</p>
-    </div>
-<?php } ?>
-
-<?php if(isset($_GET['av'])){ ?>
-    <div id="msgBox" class="updateBox">
-        <p>You've successfully deployed the atomic framework.</p>
-    </div>
-<?php } ?>
-
-<?php if(isset($_GET['e'])){ ?>
-    <div id="msgBox" class="errorBox">
-        <p>Your connecton was not successful.</p>
-    </div>
-<?php } ?>
+<div id="quarx-msg-box" class="<?php echo $status; ?>">
+    <p><?php echo $message; ?></p>
+</div>
 
 <!-- main content -->
 
@@ -64,8 +50,8 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
-        $('#msgBox').fadeIn();
-        setTimeout(function(){ $('#msgBox').fadeOut(); }, 2200);    
+        $('#quarx-msg-box').fadeIn();
+        setTimeout(function(){ $('#quarx-msg-box').fadeOut(); }, 2200);    
     });
 </script>
     

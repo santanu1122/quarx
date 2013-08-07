@@ -17,7 +17,7 @@
 ?>
 
 <div class="raw100" style="min-height: 500px;"><!-- content -->
-    <div class="smallDevice">
+    <div class="quarx-small-device">
     <h1 style="margin: 20px;">Success!</h1>
     <br />
         <p>Your email was successfully sent!</p>

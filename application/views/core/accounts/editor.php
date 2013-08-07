@@ -3,16 +3,16 @@
 /**
  * Quarx
  *
- * A modular CMS built on CodeIgniter
+ * A modular application framework built on CodeIgniter
  *
  * @package     Quarx
  * @author      Matt Lantz
  * @copyright   Copyright (c) 2013 Matt Lantz
  * @license     http://ottacon.co/quarx/license
- * @link        http://quarx.ottacon.co
+ * @link        http://ottacon.co/quarx
  * @since       Version 1.0
  * 
- */
+ */ 
 
 ?>
 
@@ -41,7 +41,7 @@
 <!-- content -->
 
 <div class="raw100">
-    <div id="msgBox" class="<?php echo $state; ?>">
+    <div id="quarx-msg-box" class="<?php echo $state; ?>">
     <p><?php echo $message; ?></p>
     </div>
 </div>
@@ -49,11 +49,11 @@
 <div class="raw100">
 
 <?php foreach($profile as $profile): endforeach; ?>
-    <div class="device">
+    <div class="quarx-device">
 
         <div class="raw100">
             <div class="raw50 mHide">    
-                <div class="profileImageBox">
+                <div class="quarx-profile-image-box">
                     <?php if($profile->img){ echo '<img src="'.$profile->img.'" />'; } ?>
                 </div>
             </div>
@@ -65,8 +65,8 @@
                     <form method="post" enctype="multipart/form-data" action="<?php echo site_url('accounts/profile_editor'); ?>">
                         <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />
                         <!-- // These are the hidden fields with the lat and lng values -->
-                        <input id="latBox" type="hidden" name="latitude" size="30" value="<?php echo $profile->lat; ?>" />
-                        <input id="lngBox" type="hidden" name="longitude" size="30" value="<?php echo $profile->lng; ?>" />
+                        <input id="latBox" type="hidden" name="latitude" value="<?php echo $profile->lat; ?>" />
+                        <input id="lngBox" type="hidden" name="longitude" value="<?php echo $profile->lng; ?>" />
 
                         <!-- // Get to  the actual form! -->
                         <input type="hidden" name="user_id" value="<?php echo $profile->user_id; ?>" />
@@ -85,64 +85,64 @@
 
                         <div class="raw100">
                             <div class="raw33"><p>Email</p></div>
-                            <div class="raw66"><input <?php if( $profile->a_status != 'authorized' ){ echo 'disabled="disabled"'; } ?> type="text" name="user_email" size="30" value="<?php echo $profile->user_email; ?>" /></div>
+                            <div class="raw66"><input <?php if( $profile->a_status != 'authorized' ){ echo 'disabled="disabled"'; } ?> type="text" name="user_email" value="<?php echo $profile->user_email; ?>" /></div>
                         </div>
                         <div class="raw100">
                             <div class="raw33"><p>Full Name</p></div>
-                            <div class="raw66"><input <?php if( $profile->a_status != 'authorized' ){ echo 'disabled="disabled"'; } ?> type="text" name="full_name" size="30" value="<?php echo $profile->full_name; ?>" /></div>
+                            <div class="raw66"><input <?php if( $profile->a_status != 'authorized' ){ echo 'disabled="disabled"'; } ?> type="text" name="full_name" value="<?php echo $profile->full_name; ?>" /></div>
                         </div>
 
                         <?php if( $this->quarxsetup->get_option("account_type") == "advanced accounts" ){ ?>
                 
                         <div class="raw100">
                            <div class="raw33"><p>Address</p></div>
-                           <div class="raw66"><input <?php if( $profile->a_status != 'authorized' ){ echo 'disabled="disabled"'; } ?> type="text" name="address" size="30" value="<?php echo $profile->address; ?>" /></div>
+                           <div class="raw66"><input <?php if( $profile->a_status != 'authorized' ){ echo 'disabled="disabled"'; } ?> type="text" name="address" value="<?php echo $profile->address; ?>" /></div>
                         </div>
                         <div class="raw100">
                            <div class="raw33"><p>City</p></div>
-                           <div class="raw66"><input <?php if( $profile->a_status != 'authorized' ){ echo 'disabled="disabled"'; } ?> type="text" name="city" size="30" value="<?php echo $profile->city; ?>" /></div>
+                           <div class="raw66"><input <?php if( $profile->a_status != 'authorized' ){ echo 'disabled="disabled"'; } ?> type="text" name="city" value="<?php echo $profile->city; ?>" /></div>
                         </div>
                         <div class="raw100">
                            <div class="raw33"><p>State/Province</p></div>
-                           <div class="raw66"><input <?php if( $profile->a_status != 'authorized' ){ echo 'disabled="disabled"'; } ?> type="text" name="state_prov" size="30" value="<?php echo $profile->state; ?>" /></div>
+                           <div class="raw66"><input <?php if( $profile->a_status != 'authorized' ){ echo 'disabled="disabled"'; } ?> type="text" name="state_prov" value="<?php echo $profile->state; ?>" /></div>
                         </div>
                         <div class="raw100">
                            <div class="raw33"><p>Zip/Postal Code</p></div>
-                           <div class="raw66"><input <?php if( $profile->a_status != 'authorized' ){ echo 'disabled="disabled"'; } ?> id="location" type="text" name="location" size="30" value="<?php echo $profile->location; ?>" onblur="locateMe('<?php echo $root; ?>', this.value, '<?php echo $profile->location; ?>')" /></div>
+                           <div class="raw66"><input <?php if( $profile->a_status != 'authorized' ){ echo 'disabled="disabled"'; } ?> id="location" type="text" name="location" value="<?php echo $profile->location; ?>" onblur="locateMe('<?php echo $root; ?>', this.value, '<?php echo $profile->location; ?>')" /></div>
                         </div>
                         <div class="raw100">
                            <div class="raw33"><p>Country</p></div>
-                           <div class="raw66"><input <?php if( $profile->a_status != 'authorized' ){ echo 'disabled="disabled"'; } ?> type="text" name="country" size="30" value="<?php echo $profile->country; ?>" /></div>
+                           <div class="raw66"><input <?php if( $profile->a_status != 'authorized' ){ echo 'disabled="disabled"'; } ?> type="text" name="country" value="<?php echo $profile->country; ?>" /></div>
                         </div>
                         <div class="raw100">
                            <div class="raw33"><p>Phone</p></div>
-                           <div class="raw66"><input <?php if( $profile->a_status != 'authorized' ){ echo 'disabled="disabled"'; } ?> type="text" name="phone" size="30" value="<?php echo $profile->phone; ?>" /></div>
+                           <div class="raw66"><input <?php if( $profile->a_status != 'authorized' ){ echo 'disabled="disabled"'; } ?> type="text" name="phone" value="<?php echo $profile->phone; ?>" /></div>
                         </div>
                         <div class="raw100">
                            <div class="raw33"><p>Fax</p></div>
-                           <div class="raw66"><input <?php if( $profile->a_status != 'authorized' ){ echo 'disabled="disabled"'; } ?> type="text" name="fax" size="30" value="<?php echo $profile->fax; ?>" /></div>
+                           <div class="raw66"><input <?php if( $profile->a_status != 'authorized' ){ echo 'disabled="disabled"'; } ?> type="text" name="fax" value="<?php echo $profile->fax; ?>" /></div>
                         </div>
                         <div class="raw100">
                            <div class="raw33"><p>Website</p></div>
-                           <div class="raw66"><input <?php if( $profile->a_status != 'authorized' ){ echo 'disabled="disabled"'; } ?> type="text" name="website" size="30" value="<?php echo $profile->website; ?>" /></div>
+                           <div class="raw66"><input <?php if( $profile->a_status != 'authorized' ){ echo 'disabled="disabled"'; } ?> type="text" name="website" value="<?php echo $profile->website; ?>" /></div>
                         </div>
                         <div class="raw100">
                            <div class="raw33"><p>Company</p></div>
-                           <div class="raw66"><input <?php if( $profile->a_status != 'authorized' ){ echo 'disabled="disabled"'; } ?> type="text" name="company" size="30" value="<?php echo $profile->company; ?>" /></div>
+                           <div class="raw66"><input <?php if( $profile->a_status != 'authorized' ){ echo 'disabled="disabled"'; } ?> type="text" name="company" value="<?php echo $profile->company; ?>" /></div>
                         </div>
                         
                         <?php }else{ ?>
 
                         <div class="raw100">
                             <div class="raw33"><p>Location</p></div>
-                            <div class="raw66"><input <?php if( $profile->a_status != 'authorized' ){ echo 'disabled="disabled"'; } ?> id="location" type="text" name="location" size="30" value="<?php echo $profile->location; ?>" onblur="locateMe('<?php echo $root; ?>', this.value, '<?php echo $profile->location; ?>')" /></div>
+                            <div class="raw66"><input <?php if( $profile->a_status != 'authorized' ){ echo 'disabled="disabled"'; } ?> id="location" type="text" name="location" value="<?php echo $profile->location; ?>" onblur="locateMe('<?php echo $root; ?>', this.value, '<?php echo $profile->location; ?>')" /></div>
                         </div>
 
                         <?php } ?>
                 
                         <div class="raw100">
                             <div class="raw33"><p>Profile Image</p></div>
-                            <div class="raw66"><input <?php if( $profile->a_status != 'authorized' ){ echo 'disabled="disabled"'; } ?> data-role="none" type="file" name="userfile" size="20" /></div>
+                            <div class="raw66"><input <?php if( $profile->a_status != 'authorized' ){ echo 'disabled="disabled"'; } ?> data-role="none" type="file" name="userfile" /></div>
                         </div>
                         <?php if( $profile->a_status == 'authorized' ){ ?>
                         <div class="raw100">
@@ -171,9 +171,9 @@
         </div>
 
         <div class="raw100">
-            <div class="device mHide">
-                <div class="mapBox">
-                    <div id="map" class="map">
+            <div class="quarx-device mHide">
+                <div class="quarx-map-box">
+                    <div id="quarx-map" class="quarx-map">
                          <h3 style="padding: 40px;">Please enter your <?php if($this->quarxsetup->get_option("account_type") == 'advanced accounts' ){ echo "postal/zip code"; }else{ echo "location"; }?>, then click <u>here</u> </h3>
                     </div>
                 </div>
@@ -253,7 +253,7 @@
     }
     
     $(document).ready(function(e) {
-        $('#msgBox').show().delay(3000).fadeOut('slow');
+        $('#quarx-msg-box').show().delay(3000).fadeOut('slow');
         
         if($('#latBox').val() > 0){
             locateMeAlt();

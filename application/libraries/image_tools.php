@@ -17,7 +17,7 @@
 class image_tools{
     
     public function image_tools()
-    { 
+    {
 
         function getCollectionName($id)
         {
@@ -39,7 +39,7 @@ class image_tools{
 
             $data .= '<p>If you\'d like to add an image library please select one below.</p>';
 
-            $data .= '<select id="selectLibrary-Collections" data-theme="a" name="img_library">';
+            $data .= '<select id="quarx-select-library-collections" data-theme="a" name="quarx_img_library">';
 
             if($img_collection != 0){
                 $data .= '<option value="'.$img_collection.'">Currently: '.getCollectionName($img_collection).'</option>';
@@ -55,7 +55,21 @@ class image_tools{
 
             $data .= '</select></div>';
         
-            return $data;
+            echo $data;
+        }
+
+        function imageGalleryButton($str = null)
+        {
+            if(!$str){
+                $str = "Image Library";
+            }
+
+            echo '<a href="#quarx-image-library" data-role="button" data-theme="d">'.$str.'</a>';
+        }
+
+        function addImageGallery()
+        {
+            $GLOBALS['quarx-image-gallery-enabled'] = TRUE;
         }
     }
 }

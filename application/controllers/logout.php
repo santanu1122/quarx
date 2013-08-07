@@ -14,7 +14,7 @@
  * 
  */
      
-class logout extends CI_Controller {
+class Logout extends CI_Controller {
     
     public function index() 
     {

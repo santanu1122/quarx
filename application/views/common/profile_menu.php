@@ -16,12 +16,12 @@
     
 ?>
 
-<div data-role="panel" data-display="overlay" data-position="right" id="profileMenu" class="accountMenuPanel panelBox">
+<div data-role="panel" data-display="overlay" data-position="right" id="quarx-profile-menu" class="quarx-account-menu-panel quarx-panel-box">
     <div class="account-menu-box">
-        <h2>My Account</h2>
+        <h2 class="quarx-menu-title">My Account</h2>
     </div>
     
-    <ul id="account_menu" data-role="listview">
+    <ul id="quarx-account-menu" data-role="listview">
         
         <?php if($this->session->userdata('logged_in')){ ?>
             

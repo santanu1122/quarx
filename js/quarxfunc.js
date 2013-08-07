@@ -11,16 +11,21 @@
  * @since       Version 1.0
  * 
  */
- 
+
+function resetSearch(){
+    $('#quarx-search').val('');
+    $('#quarx-search').css('color','#222');
+}
+
 // Profile Image resizing
 function profileImageResize(){
-    var width = $('.profileImageBox img').width(),
-        height = $('.profileImageBox img').height();
+    var width = $('.quarx-profile-image-box img').width(),
+        height = $('.quarx-profile-image-box img').height();
 
     if(height == width){
-        $('.profileImageBox img').css({
+        $('.quarx-profile-image-box img').css({
             marginTop: 15,
-            marginLeft: ($('.profileImageBox img').parent().width() - 320)/2,
+            marginLeft: ($('.quarx-profile-image-box img').parent().width() - 320)/2,
             height: 320,
             width: 320
         });
@@ -28,10 +33,10 @@ function profileImageResize(){
 
     else if(height > width){
         var newWidth = ( width * 320 ) / height,
-            marginLeft = ($('.profileImageBox img').parent().width() - newWidth)/2,
+            marginLeft = ($('.quarx-profile-image-box img').parent().width() - newWidth)/2,
             marginTop = (350 - 320)/2;
 
-        $('.profileImageBox img').css({
+        $('.quarx-profile-image-box img').css({
             marginTop: marginTop,
             marginLeft: marginLeft,
             height: 320,
@@ -43,9 +48,9 @@ function profileImageResize(){
 
         var newHeight = ( height/width ) * 350,
             marginTop = (350 - newHeight)/2,
-            marginLeft = ($('.profileImageBox img').parent().width() - 350)/2;
+            marginLeft = ($('.quarx-profile-image-box img').parent().width() - 350)/2;
 
-        $('.profileImageBox img').css({
+        $('.quarx-profile-image-box img').css({
             marginTop: marginTop,
             marginLeft: marginLeft,
             width: 320,
@@ -56,7 +61,7 @@ function profileImageResize(){
 
 // Profile Image resizing
 function thumbnailImageResize(){
-    $('.imgThumbHolder img').each(function(){
+    $('.quarx-img-thumb-holder img').each(function(){
         var width = $(this).width(),
             height = $(this).height();
 

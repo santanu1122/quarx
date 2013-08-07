@@ -42,6 +42,7 @@ class quarxsetup {
 
         return $quarx->$col;
     }
+    
 }
 
 //End of File

@@ -3,13 +3,13 @@
 /**
  * Quarx
  *
- * A modular CMS built on CodeIgniter
+ * A modular application framework built on CodeIgniter
  *
  * @package     Quarx
  * @author      Matt Lantz
  * @copyright   Copyright (c) 2013 Matt Lantz
  * @license     http://ottacon.co/quarx/license
- * @link        http://quarx.ottacon.co
+ * @link        http://ottacon.co/quarx
  * @since       Version 1.0
  * 
  */
@@ -23,7 +23,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="<?php echo $root; ?>js/themes/jquery.mobile.structure.min.css" />
     <link rel="stylesheet" href="<?php echo $root; ?>js/themes/quarx.css" />
-    <link rel="stylesheet" href="<?php echo $root; ?>css/desktop-style.css" lang="EN" dir="ltr" type="text/css" />
+    <link rel="stylesheet" href="<?php echo $root; ?>css/quarx-desktop-style.css" lang="EN" dir="ltr" type="text/css" />
 
     <script type="text/javascript" src="<?php echo $root; ?>js/jquery.min.js"></script>
     <script type="text/javascript" src="<?php echo $root; ?>js/jquery-migrate.min.js"></script>
@@ -35,8 +35,9 @@
         $.mobile.selectmenu.prototype.options.nativeMenu = false;  
         $(document).ready(function(){
             if(window.frameElement.getAttribute('data-location') == 'fullScreen'){
-                $('#fullScreenImageLibraryHeader').remove();
-                $('#newCollection').css('top', '122px');
+                $('#quarx-full-screen-image-library-header').remove();
+            }else{
+                $("#quarx-new-collection").css("top", "226px");
             }
         });
     </script>
@@ -49,15 +50,10 @@
 
     <div data-theme="a">
 
-        <div id="fullScreenImageLibraryHeader" data-role="header">
-            <h1><a href="<?php echo site_url('image') ?>">Image Library</a></h1>
-            <?php if(!isset($libraryHome)){ ?>
-            <a data-rel="back" data-role="button">Back</a>
-            <?php }else{ ?>
-            <a href="<?php echo site_url('image'); ?>" data-role="button" data-icon="refresh" data-iconpos="notext"></a>
-            <?php }?>
+        <div id="quarx-full-screen-image-library-header" data-role="header">
+            <h1>Image Library</h1>
         </div>
 
-        <div id="body" data-role="content">
+        <div id="quarx-body" data-role="content">
             
 <?php /* End of File */ ?>

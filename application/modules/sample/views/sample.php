@@ -6,14 +6,19 @@
 
 ?>
 
-<div class="device"><!-- content -->
+<div class="quarx-device"><!-- content -->
 
-<div class="raw50" style="min-height: 300px;">
-    <h5 style="margin: 10px 0; color: #222;">Sample Module</h5>
-    <hr />
+<div class="raw50">
+    <h1>Sample Module</h1>
+    <div class="raw100">
+        <div class="raw-padding-15">
+            <?php imageGalleryButton("Initiate Image Library"); ?>
+            <?php imgLibrarySelect(); ?>
+        </div>
+    </div>
 </div>
 <div class="raw50">
-    <div class="padded" style="min-height: 500px;">
+    <div class="raw-padding-15" style="min-height: 500px;">
         <p>This is a sample module.</p>
     </div>
 </div>

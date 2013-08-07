@@ -18,7 +18,7 @@
 
 <div class="raw100"><!-- content -->
 
-    <div class="device">
+    <div class="quarx-device">
 
         <h1 style="margin: 20px;">Email Tool</h1>
 

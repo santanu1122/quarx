@@ -14,7 +14,7 @@
  * 
  */
      
-class connect_to_atomic extends CI_Controller {
+class Connect_to_atomic extends CI_Controller {
 
     function __construct()
     {
@@ -50,7 +50,8 @@ class connect_to_atomic extends CI_Controller {
         else
         {
             $this->modelsetup->connected_to("atomic");
-            redirect('setup/master?s');
+            $this->session->set_flashdata('success', 'Your connection to atomic was successful');
+            redirect('setup/master');
         }
 
     }

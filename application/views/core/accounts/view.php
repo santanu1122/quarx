@@ -3,16 +3,16 @@
 /**
  * Quarx
  *
- * A modular CMS built on CodeIgniter
+ * A modular application framework built on CodeIgniter
  *
  * @package     Quarx
  * @author      Matt Lantz
  * @copyright   Copyright (c) 2013 Matt Lantz
  * @license     http://ottacon.co/quarx/license
- * @link        http://quarx.ottacon.co
+ * @link        http://ottacon.co/quarx
  * @since       Version 1.0
  * 
- */
+ */ 
 
 ?>
 
@@ -42,75 +42,77 @@
     <p>Are you sure you want to disable this account? This will not delete the account or its information.</p>
 </div>
 
-<!-- content -->
+<!-- notifications -->
 
 <div class="raw100">
-    <div id="msgBox" class="<?php echo $state; ?>">
+    <div id="quarx-msg-box" class="<?php echo $state; ?>">
         <p><?php echo $message; ?></p>
     </div>
 </div>
 
+<!-- content -->
+
 <div class="raw100">
-    <div class="device">
+    <div class="quarx-device">
         <div class="raw100"> 
             <div class="raw100">
-                <form id="memberSearch" method="post" action="<?php echo site_url('accounts/search'); ?>"> 
-                    <input id="search" name="search" class="searchBar" value="Enter a Search Term to Find Someone" onfocus="resetSearch()" />
+                <form id="quarx-member-search" method="post" action="<?php echo site_url('accounts/search'); ?>"> 
+                    <input id="quarx-search" name="search" class="quarx-search-bar deefault" data-deefault="Enter a member name, email or location" onfocus="resetSearch()" />
                     <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />
                 </form>
 
                 <div class="raw100">
-                    <div class="gridrow bordered">
-                        <div class="grid20"><h3>Username</h3></div>
-                        <div class="grid20 mHide"><h3>Email</h3></div> 
-                        <div class="grid20 mHide"><h3>Full Name</h3></div> 
-                        <div class="grid20 mHide"><h3>Last Login</h3></div>
-                        <div class="grid20 mHide"><h3></h3></div>
+                    <div class="quarx-gridrow quarx-bordered">
+                        <div class="quarx-grid20"><h3>Username</h3></div>
+                        <div class="quarx-grid20 mHide"><h3>Email</h3></div> 
+                        <div class="quarx-grid20 mHide"><h3>Full Name</h3></div> 
+                        <div class="quarx-grid20 mHide"><h3>Last Login</h3></div>
+                        <div class="quarx-grid20 mHide"><h3></h3></div>
                     </div>
 
                     <?php foreach($profiles as $accounts): ?>
 
-                    <div class="accountInfoRow gridrow bordered <?php if($accounts->a_status == 'unauthorized'){ echo ' unauthorized'; } ?>">
+                    <div class="quarx-account-info-row quarx-gridrow quarx-bordered <?php if($accounts->a_status == 'unauthorized'){ echo ' unauthorized'; } ?>">
 
-                        <div class="accountControls">
+                        <div class="quarx-account-controls">
 
-                            <div id="controlbox" class="raw100">
+                            <div id="quarx-control-box" class="raw100">
                             <?php if($accounts->a_status === 'authorized'){ ?>
 
-                                <div class="grid20"><button data-role="button" class="green" onclick="window.location='<?php echo site_url('accounts/editor').'/'.encrypt($accounts->user_id); ?>'">Edit</button></div>
+                                <div class="quarx-grid20"><button class="quarx-green" onclick="window.location='<?php echo site_url('accounts/editor').'/'.encrypt($accounts->user_id); ?>'">Edit</button></div>
 
                             <?php if($accounts->user_state == 'enabled'){ ?>
-                                <div class="grid20 mHide"><button data-role="button" class="yellow" onclick="disable(<?php echo $accounts->user_id; ?>)">Disable</button></div> 
+                                <div class="quarx-grid20 mHide"><button class="quarx-yellow" onclick="disable(<?php echo $accounts->user_id; ?>)">Disable</button></div> 
                             <?php }else{ ?>
-                                <div class="grid20 mHide"><button data-role="button" class="green" onclick="enable(<?php echo $accounts->user_id; ?>)">Enable</button></div> 
+                                <div class="quarx-grid20 mHide"><button class="quarx-green" onclick="enable(<?php echo $accounts->user_id; ?>)">Enable</button></div> 
                             <?php } ?>
                             
-                                <div class="grid20 mHide"><button data-role="button" class="red" onclick="deleteConfirm(<?php echo $accounts->user_id; ?>)">Delete</button></div>
+                                <div class="quarx-grid20 mHide"><button class="quarx-red" onclick="deleteConfirm(<?php echo $accounts->user_id; ?>)">Delete</button></div>
                             
                             <?php if($accounts->permission > 1 ){ ?>
-                                <div class="grid20 mHide"><button data-role="button" class="blue" onclick="masterConfirm(<?php echo $accounts->user_id; ?>)">Master</button></div> 
+                                <div class="quarx-grid20 mHide"><button class="quarx-blue" onclick="masterConfirm(<?php echo $accounts->user_id; ?>)">Master</button></div> 
                             <?php }else{ ?>
-                                <div class="grid20 mHide"><button data-role="button" class="red" onclick="standardConfirm(<?php echo $accounts->user_id; ?>)">Standard</button></div> 
+                                <div class="quarx-grid20 mHide"><button class="quarxred" onclick="standardConfirm(<?php echo $accounts->user_id; ?>)">Standard</button></div> 
                             <?php } ?>
 
                             <?php }else{ ?>
-                                <div class="grid20"><button data-role="button" class="green" onclick="window.location='<?php echo site_url('accounts/editor').'/'.encrypt($accounts->user_id); ?>'">View</button></div>
+                                <div class="quarx-grid20"><button class="quarx-green" onclick="window.location='<?php echo site_url('accounts/editor').'/'.encrypt($accounts->user_id); ?>'">View</button></div>
 
-                                <div class="grid20"><button data-role="button" class="green" onclick="authorize(<?php echo $accounts->user_id; ?>)">Authorize</button></div> 
+                                <div class="quarx-grid20"><button class="quarx-green" onclick="authorize(<?php echo $accounts->user_id; ?>)">Authorize</button></div> 
                             <?php } ?>
 
-                                <div class="grid20"><button class="closer" data-role="button" data-icon="delete">Close</button></div>
+                                <div class="quarx-grid20"><button class="closer" data-icon="delete">Close</button></div>
 
                             </div>
 
                         </div>
 
-                        <div class="accountInfo">
-                            <div class="grid20"><p><a href="<?php echo site_url('accounts/editor').'/'.encrypt($accounts->user_id); ?>"><?php echo valTrim($accounts->user_name, 20); ?></a></p></div>
-                            <div class="grid20 mHide"><p><?php echo valTrim(valCheck($accounts->user_email), 15); ?></p></div> 
-                            <div class="grid20 mHide"><p><?php echo valTrim(valCheck($accounts->full_name), 20); ?></p></div> 
-                            <div class="grid20 mHide"><p><?php echo valTrim(valCheck($accounts->last_login), 20); ?></p></div> 
-                            <div class="grid20 mHide">
+                        <div class="quarx-account-info">
+                            <div class="quarx-grid20"><p><a href="<?php echo site_url('accounts/editor').'/'.encrypt($accounts->user_id); ?>"><?php echo valTrim($accounts->user_name, 20); ?></a></p></div>
+                            <div class="quarx-grid20 mHide"><p><?php echo valTrim(valCheck($accounts->user_email), 15); ?></p></div> 
+                            <div class="quarx-grid20 mHide"><p><?php echo valTrim(valCheck($accounts->full_name), 20); ?></p></div> 
+                            <div class="quarx-grid20 mHide"><p><?php echo valTrim(valCheck($accounts->last_login), 20); ?></p></div> 
+                            <div class="quarx-grid20 mHide">
                                 <?php if($accounts->user_state == 'enabled'){ ?>
                                 <img src="<?php echo site_url(); ?>/images/active.png" title="active" class="raw15 padded5" />
                                 <?php }else{ ?>
@@ -120,7 +122,7 @@
                                 <img src="<?php echo site_url(); ?>/images/lock.png" title="Unathorized" class="raw12 padded5" />
                                 <?php } ?>
 
-                                <img src="<?php echo site_url(); ?>/images/settings.png" title="Edit Account" class="action_Btn raw20 padded5 rightFloat clickable" />
+                                <img src="<?php echo site_url(); ?>/images/settings.png" title="Edit Account" class="quarx-action-btn raw20 padded5 rightFloat quarx-clickable" />
                             </div> 
                         </div>
 
@@ -142,13 +144,13 @@
 
 <script type="text/javascript">
     $('.closer').bind('click', function(){
-        $('.accountControls').hide();
+        $('.quarx-account-controls').hide();
     });
 
     function binder(){
-        $('.action_Btn').bind('click', function(){
-            $('.accountControls').hide();
-            $(this).parent().parent().parent().children('.accountControls').show();
+        $('.quarx-action-btn').bind('click', function(){
+            $('.quarx-account-controls').hide();
+            $(this).parent().parent().parent().children('.quarx-account-controls').show();
         });
     }
 
@@ -230,16 +232,11 @@
         });
     }
 
-    function resetSearch(){
-        $('#search').val('');
-        $('#search').css('color','#222');
-    }
-
     $(document).ready(function(e) {
-        $('#msgBox').show().delay(3000).fadeOut('slow');
+        $('#quarx-msg-box').show().delay(3000).fadeOut('slow');
 
-        $('#memberSearch').submit(function(){
-            if($('#search').val().length < 3 ){
+        $('#quarx-member-search').submit(function(){
+            if($('#quarx-search').val().length < 3 ){
                 alert('Sorry, your search must have at least three characters');
                 return false;
             }else{
@@ -247,7 +244,8 @@
             }
         });
 
-        $('a .accessControls').buttonMarkup({ corners: false });
+        $('.quarx-account-controls button').buttonMarkup({ corners: false });
+        $('.quarx-account-controls .ui-btn').css("margin", "0");
 
         binder();
     });

@@ -14,7 +14,7 @@
  * 
  */
      
-class deploy_atomic extends CI_Controller {
+class Deploy_atomic extends CI_Controller {
 
     function __construct()
     {
@@ -58,7 +58,8 @@ class deploy_atomic extends CI_Controller {
         }
 
         exec('rm -rf ../../atomic.latest.zip');
-        redirect('setup/master?av');
+        $this->session->set_flashdata('success', 'Your deployment of atomic was successful');
+        redirect('setup/master');
     }
 }
 

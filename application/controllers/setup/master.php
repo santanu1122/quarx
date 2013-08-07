@@ -14,7 +14,7 @@
  * 
  */
      
-class master extends CI_Controller {
+class Master extends CI_Controller {
 
     function __construct()
     {
@@ -37,7 +37,23 @@ class master extends CI_Controller {
         
         $this->load->model('modelsetup');
         $atomic = $this->modelsetup->is_connected_to('atomic');
-        $data['atomic'] = $atomic[0]->option_title;
+        
+        if($atomic){
+            $data['atomic'] = $atomic[0]->option_title;
+        }
+
+        $data['status'] = "";
+        $data['message'] = "";
+
+        if($this->session->flashdata('success')){
+            $data['status'] = "quarx-success-box";
+            $data['message'] = $this->session->flashdata('success');
+        }
+
+        if($this->session->flashdata('error')){
+            $data['status'] = "quarx-error-box";
+            $data['message'] = $this->session->flashdata('error');
+        }
     
         $data['root'] = base_url();
         $data['pageRoot'] = base_url().'index.php';

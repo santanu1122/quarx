@@ -1,6 +1,6 @@
 # Quarx
 
-**Quarx** - A modular framework/CMS for a website/application built on CodeIgniter
+**Quarx** - A modular application framework built on CodeIgniter
 
 Download Here: https://github.com/mlantz/quarx/zipball/master
 
@@ -20,12 +20,12 @@ Deploy the contents of the zip file to your server and visit the folder, you wil
 
     http://www.example.com/quarx
 
-If you want a front-end (client side) package please view the atomic-framework information in the installation documentation.
+If you want a front-end (client side) package please view the atomic-framework information in the quarx manual.
 
 ## How to use Quarx
 
 1. Complete the install by visiting the quarx directory and then add /setup/install
-2. Then consult the manual for further direction
+2. Then consult the quarx manual for further direction
 
 ## More Info
 For more information please contact mattlantz at gmail dot com

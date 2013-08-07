@@ -1,6 +1,6 @@
 {
-    "version": "3.2",
-    "buildDate": "2013-06-28",
+    "version": "3.5",
+    "buildDate": "2013-08-07",
     "authors": "Matt Lantz",
     "components": [
         { "title": "CodeIgniter", "link": "http://codeigniter.com/" },

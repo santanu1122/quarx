@@ -14,7 +14,7 @@
  * 
  */
      
-class image extends CI_Controller {
+class Image extends CI_Controller {
 
     function __construct()
     {
@@ -46,10 +46,23 @@ class image extends CI_Controller {
         $data['root'] = base_url();
         $data['pageRoot'] = base_url().'index.php';
         $data['libraryHome'] = true;
+        
+        $data['state'] = "";
+        $data['message'] = "";
 
-        $this->load->view('core/image/header', $data);
+        if($this->session->flashdata('error')){
+            $data['state'] = "quarx-error-box";
+            $data['message'] = $this->session->flashdata('error');
+        }
+
+        if($this->session->flashdata('success')){
+            $data['state'] = "quarx-success-box";
+            $data['message'] = $this->session->flashdata('success');
+        }
+
+        $this->load->view('core/image/common/header', $data);
         $this->load->view('core/image/main', $data);
-        $this->load->view('core/image/footer', $data);
+        $this->load->view('core/image/common/footer', $data);
     }
 
 /* Library
@@ -58,12 +71,10 @@ class image extends CI_Controller {
     {
         $data['root'] = base_url();
         $data['pageRoot'] = base_url().'index.php';
-        $data['fullScreen'] = true;
         $data['pagetitle'] = 'Image Library';
-        $data['libraryHome'] = true;
 
         $this->load->view('common/header', $data);
-        $this->load->view('core/image/library');
+        $this->load->view('core/image/frames/library');
         $this->load->view('common/footer', $data);
     }
 
@@ -89,8 +100,21 @@ class image extends CI_Controller {
     {
         $data['root'] = base_url();
         $data['pageRoot'] = base_url().'index.php';
+
+        $data['state'] = "";
+        $data['message'] = "";
+
+        if($this->session->flashdata('error')){
+            $data['state'] = "quarx-error-box";
+            $data['message'] = $this->session->flashdata('error');
+        }
+
+        if($this->session->flashdata('success')){
+            $data['state'] = "quarx-success-box";
+            $data['message'] = $this->session->flashdata('success');
+        }
         
-        $this->load->view('core/image/header', $data);
+        $this->load->view('core/image/common/header', $data);
         $this->load->view('core/image/add', $data);
     }
 
@@ -102,12 +126,13 @@ class image extends CI_Controller {
         if($collection != null)
         {
             $data['img_collection_name'] = $this->modelimg->get_collection_name($collection);
+            $data['img_collection_id'] = $collection;
         }
 
         $data['root'] = base_url();
         $data['pageRoot'] = base_url().'index.php';
 
-        $this->load->view('core/image/header', $data);
+        $this->load->view('core/image/common/header', $data);
         $this->load->view('core/image/img_feed', $data);
     }
 
@@ -118,8 +143,20 @@ class image extends CI_Controller {
         $data['collection'] = $this->modelimg->get_collections();
         $data['root'] = base_url();
         $data['pageRoot'] = base_url().'index.php';
+        $data['state'] = "";
+        $data['message'] = "";
 
-        $this->load->view('core/image/header', $data);
+        if($this->session->flashdata('error')){
+            $data['state'] = "quarx-error-box";
+            $data['message'] = $this->session->flashdata('error');
+        }
+
+        if($this->session->flashdata('success')){
+            $data['state'] = "quarx-success-box";
+            $data['message'] = $this->session->flashdata('success');
+        }
+
+        $this->load->view('core/image/common/header', $data);
         $this->load->view('core/image/manager', $data);
     }
 
@@ -129,7 +166,20 @@ class image extends CI_Controller {
         $data['root'] = base_url();
         $data['pageRoot'] = base_url().'index.php';
 
-        $this->load->view('core/image/header', $data);
+        $data['state'] = "";
+        $data['message'] = "";
+
+        if($this->session->flashdata('error')){
+            $data['state'] = "quarx-error-box";
+            $data['message'] = $this->session->flashdata('error');
+        }
+
+        if($this->session->flashdata('success')){
+            $data['state'] = "quarx-success-box";
+            $data['message'] = $this->session->flashdata('success');
+        }
+
+        $this->load->view('core/image/common/header', $data);
         $this->load->view('core/image/change', $data);
     }
 
@@ -200,7 +250,8 @@ class image extends CI_Controller {
 
         if ( ! $this->upload->do_upload())
         {
-            redirect('image?error');
+            $this->session->set_flashdata('error', 'Could not upload image.');
+            redirect('image/add');
         }
         else
         {
@@ -210,7 +261,8 @@ class image extends CI_Controller {
             $this->load->model('modelimg');
             $this->modelimg->upload_img($img, $collection);
 
-            redirect('image?success');
+            $this->session->set_flashdata('success', 'Image upload was successful.');
+            redirect('image');
         }
     }
 
@@ -252,10 +304,12 @@ class image extends CI_Controller {
         
         if($data)
         {
+            $this->session->set_flashdata('success', 'You\'ve successfully removed this image category.');
             echo 'true';
         }
         else
         {
+            $this->session->set_flashdata('error', 'Sorry, there was an error, are you sure this collection is empty?');
             echo 'false';
         }
     }
@@ -371,10 +425,12 @@ class image extends CI_Controller {
         
         if($data)
         {
+            $this->session->set_flashdata('success', 'Image collection change was successful.');
             redirect('image');
         }
         else
         {
+            $this->session->set_flashdata('error', 'Image collection change was not successful.');
             redirect('image/error');
         }
     }

@@ -16,7 +16,7 @@
 
 ?>
 
-<select id="selectLibrary-Collections" data-theme="a" name="gallery">
+<select id="quarx-select-library-collections" data-theme="a" name="gallery">
     <option value="0">Collections</option>
     <?php foreach ($collection as $col) { ?>
         

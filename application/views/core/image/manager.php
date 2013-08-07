@@ -30,15 +30,19 @@
     </div>
 </div>
 
-<?php if(isset($_GET['error'])){ ?>
-<div id="imageError" class="errorBox">
-    <p>Sorry, there was an error, are you sure this collection is empty?</p>
-</div>
-<?php } ?>
+<!-- notifications -->
+
+<div class="raw100">
+    <div id="quarx-msg-box" class="<?php echo $state; ?>">
+        <p><?php echo $message; ?></p>
+    </div>
+</div> 
 
 <!-- main content -->
 
-<div class="raw100 align-center">
+<?php $this->load->view("core/image/common/menu"); ?>
+
+<div class="quarx-img-box align-center">
     <a id="newCollectionBtn" href="#" data-role="button" data-icon="plus" data-theme="a">New Collection</a>
 
     <?php foreach ($collection as $c) : ?>
@@ -50,15 +54,7 @@
 
 <script type="text/javascript">
 
-    function feedback(type) {
-        if(type === "error"){
-            $("#imageError").fadeIn();
-            setTimeout(function(){ $("#imageError").fadeOut(); }, 2500);
-        }else{
-            $("#imageSuccess").fadeIn();
-            setTimeout(function(){ $("#imageSuccess").fadeOut(); }, 2500);
-        }
-    }
+    $("#quarx-msg-box").fadeIn().delay(2500).fadeOut("slow");
     
     $(document).ready(function(e) {
         <?php if(isset($_GET['error'])){ ?>

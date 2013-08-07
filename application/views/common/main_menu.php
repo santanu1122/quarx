@@ -16,11 +16,11 @@
     
 ?>
 
-<div data-role="panel" data-display="reveal" id="Menu" class="menuPanel panelBox">
+<div data-role="panel" data-display="reveal" id="quarx-main-menu" class="quarx-menu-panel quarx-panel-box">
     
-    <h2 style="margin: -15px 0 15px 0; padding: 0px; line-height: 2.6em;"><img src="<?php echo $root; ?>images/quarx.png" width="15px" /> Quarx </h2>
+    <h2 class="quarx-menu-title"><img src="<?php echo $root; ?>images/quarx.png" width="15px" /> Quarx </h2>
 
-    <ul id="menu" data-role="listview">
+    <ul id="quarx-menu" data-role="listview">
         
         <?php if($this->session->userdata('logged_in')){ ?>
 
@@ -39,8 +39,8 @@
 
                 <?php if($this->session->userdata('permission') == 1){ ?>
                     <li><a href="<?php echo site_url('admin/cloudinfo'); ?>">Admin - CloudInfo</a></li>
-                    <li onclick="window.location='<?php echo site_url('admin/cloudmail'); ?>'"><a>Admin - CloudMail</a></li>
-                    <li onclick="window.location='<?php echo site_url('admin/cloudcatcher'); ?>'"><a>Admin - CloudCatcher</a></li>
+                    <li><a href="<?php echo site_url('admin/cloudmail'); ?>">Admin - CloudMail</a></li>
+                    <li><a href="<?php echo site_url('admin/cloudcatcher'); ?>">Admin - CloudCatcher</a></li>
 
                     <li><a href="<?php echo site_url('admin/manual'); ?>">Manual</a></li>
                     

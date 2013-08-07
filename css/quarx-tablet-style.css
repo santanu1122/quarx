@@ -1,16 +1,16 @@
 /**
  * Quarx
  *
- * A modular CMS built on CodeIgniter
+ * A modular application framework built on CodeIgniter
  *
  * @package     Quarx
  * @author      Matt Lantz
  * @copyright   Copyright (c) 2013 Matt Lantz
  * @license     http://ottacon.co/quarx/license
- * @link        http://quarx.ottacon.co
+ * @link        http://ottacon.co/quarx
  * @since       Version 1.0
  * 
- */
+ */ 
 
 /* Custom Tablet Styles for Quarx
 ***************************************************************/
@@ -21,13 +21,13 @@
     margin: auto;
 }
 
-#Menu.ui-body-c{
+#quarx-main-menu.ui-body-c{
     background: transparent;
 }
 
 /* Menu
 ***************************************************************/
-#Menu.menuPanel{
+#quarx-menu.quarx-menu-panel{
     background: url(../images/bg_linen.jpg);
 }
 
@@ -41,7 +41,7 @@
 /* Profile Images
 ***************************************************************/
 
-.profileImageBox{
+.quarx-profile-image-box{
     min-width: 320px;
     max-width: 325px;
 }
@@ -49,18 +49,18 @@
 /* Device
 ***************************************************************/
 
-.device{
+.quarx-device{
     width: 680px;
     margin: 5px auto;
 }
 
-.smallDevice{
+.quarx-small-device{
     width: 320px;
     margin: 5px auto;
 }
 
 /* Account Views
 ***************************************************************/
-.accountControls{
+.quarx-account-controls{
     width: 680px;
 }

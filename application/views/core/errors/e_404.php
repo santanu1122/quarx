@@ -16,8 +16,8 @@
 
 ?>
 
-<div class="smallDevice">
-    <h1 class="epic">404</h1>
+<div class="quarx-small-device">
+    <h1 class="quarx-epic">404</h1>
     <h1>Ops! You caught us offguard.</h1>
     <p>It seems that we've made a terrible error. We'll be doing our best to make sure this is fixed as soon as possible.</p>
     <button onclick="javascript:history.back()">Back</button>

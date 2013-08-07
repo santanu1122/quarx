@@ -14,7 +14,7 @@
  * 
  */
      
-class login extends CI_Controller {
+class Login extends CI_Controller {
 
 /* Main Login
 ***************************************************************/
@@ -92,7 +92,7 @@ class login extends CI_Controller {
                 $this->load->view('core/login/login_error', $data);
                 $this->load->view('common/footer', $data);
             }else{
-                redirect($SERVER['HTTP_REFERER']);
+                redirect($_SERVER['HTTP_REFERER']);
             }
         }
     }
@@ -246,7 +246,7 @@ class login extends CI_Controller {
 
     public function forgotpassword() 
     {  
-        if(isset($_GET['e']))
+        if($this->session->flashdata('error'))
         {
             $data['error'] = "Sorry we couldn't find your account.";
         }      
@@ -267,7 +267,8 @@ class login extends CI_Controller {
 
         if($to === '' || $name === '')
         {
-            redirect('login/forgotpassword?e');
+            $this->session->set_flashdata('error', true);
+            redirect('login/forgotpassword');
         }
         else
         {

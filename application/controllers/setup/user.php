@@ -14,7 +14,7 @@
  * 
  */
      
-class user extends CI_Controller {
+class User extends CI_Controller {
 
 /* Initial Setup and Install
 ***************************************************************/
@@ -24,6 +24,7 @@ class user extends CI_Controller {
         $data['root'] = base_url();
         $data['pageRoot'] = base_url().'index.php';
         $data['pagetitle'] = 'Setup';
+        
         $data['masterPage'] = true;
 
         $this->load->view('core/setup/header', $data);

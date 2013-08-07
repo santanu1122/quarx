@@ -37,7 +37,7 @@
 <!-- content -->
 
 <div class="raw100">
-    <div class="smallDevice">
+    <div class="quarx-small-device">
 
         <div id="masterAccount">
             <p class="align-left">There are a variety of options in your current Quarx version.</p>

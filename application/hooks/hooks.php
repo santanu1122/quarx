@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
 
 /**
  * Quarx
@@ -14,12 +14,20 @@
  * 
  */ 
      
-class hooks extends CI_Controller {
+class hooks {
+    var $CI;
+
+    function hooks() {
+        $this->CI =& get_instance();
+    }
 
 /* Main Functions
 ***************************************************************/
 
-    
+    function init()
+    {
+        $GLOBALS["quarx-image-gallery-enabled"] = FALSE;
+    }
 
 }
 

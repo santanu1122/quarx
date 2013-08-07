@@ -14,7 +14,7 @@
  * 
  */
      
-class cloudmail extends CI_Controller {
+class Cloudmail extends CI_Controller {
 
     public function __construct()
     {
@@ -89,7 +89,7 @@ class cloudmail extends CI_Controller {
             if($this->session->userdata('permission') == 1)
             {
                 $to = $_POST['to'];
-                $from = 'do-not-reply';
+                $from = 'do-not-reply@'.$_SERVER['HTTP_HOST'];
                 $name = '';
                 $subject = $_POST['subject'];
                 $message = $_POST['message'];

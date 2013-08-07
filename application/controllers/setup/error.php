@@ -14,7 +14,7 @@
  * 
  */
      
-class error extends CI_Controller {
+class Error extends CI_Controller {
 
     function __construct()
     {

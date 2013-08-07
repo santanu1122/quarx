@@ -1,22 +1,22 @@
 /**
  * Quarx
  *
- * A modular CMS built on CodeIgniter
+ * A modular application framework built on CodeIgniter
  *
  * @package     Quarx
  * @author      Matt Lantz
  * @copyright   Copyright (c) 2013 Matt Lantz
  * @license     http://ottacon.co/quarx/license
- * @link        http://quarx.ottacon.co
+ * @link        http://ottacon.co/quarx
  * @since       Version 1.0
  * 
- */
+ */ 
 
 // Populates and adds a marker to a google map
 function getAjax(type, p_code, root){
     $.ajax({
         type: 'GET',
-        url: root+"ajax/googlemapsrequest.php?zip_postal="+p_code+"&type="+type,
+        url: root+"ajax?zip_postal="+p_code+"&type="+type,
         async: false,
         dataType: "html",
         success: function(data){
@@ -60,7 +60,7 @@ function locateMe(root, val, preVal){
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
  
-    var map = new google.maps.Map(document.getElementById("map"), myMap);
+    var map = new google.maps.Map(document.getElementById("quarx-map"), myMap);
     
     var infowindow = new google.maps.InfoWindow();
 
@@ -100,7 +100,7 @@ function locateMeAlt(){
         mapTypeId: google.maps.MapTypeId.ROADMAP
     }
  
-    var map = new google.maps.Map(document.getElementById("map"), myMap),
+    var map = new google.maps.Map(document.getElementById("quarx-map"), myMap),
         infowindow = new google.maps.InfoWindow(),
         marker, 
         i;

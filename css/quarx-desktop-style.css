@@ -12,7 +12,7 @@
  * 
  */ 
 
-/* Custom Styles for Quarx
+/* Custom Styles for Quarx jQuery Mobile UI Theme
 ***************************************************************/
 
 input[type=file]{
@@ -32,7 +32,7 @@ body, html{
     background: transparent;
 }
 
-.panelBox{
+.quarx-panel-box{
     min-height: 100%;
     background: #f9f9f9;
 }
@@ -51,7 +51,7 @@ body, html{
     overflow: hidden;
 }
 
-#imageLibrary > div.ui-panel-inner{
+#quarx-image-library > div.ui-panel-inner{
     padding: 0;
 }
 
@@ -68,13 +68,32 @@ body, html{
     margin: -20px -15px;
 }
 
+/* Image Box
+***************************************************************/
+
+.quarx-img-box{
+    width: 240px;
+    margin: 5px auto;
+}
+
+.quarx-notification{
+    text-align: center; 
+    margin: 100px auto 0;
+}
+
 /* Menu
 ***************************************************************/
-#Menu.menuPanel{
+#quarx-main-menu.quarx-menu-panel{
     background: url(../images/bg_linen.jpg);
 }
 
-#ImageBox.imagePanel{
+.quarx-menu-title{
+    margin: -15px 0 15px 0; 
+    padding: 0px; 
+    line-height: 2.6em;
+}
+
+#quarx-image-box.quarx-image-panel{
     background: url(../images/bg_linen.jpg);   
 }
 
@@ -102,43 +121,6 @@ body, html{
     float: right;
 }
 
-/* Raw Grid Structure
-***************************************************************/
-.raw0{
-    float: none;
-    margin: 0 auto;
-}
-
-.raw25{
-    width: 25%;
-    float: left;
-}
-
-.raw33{
-    width: 33.333%;
-    float: left;
-}
-
-.raw50{
-    width: 50%;
-    float: left;
-}
-
-.raw66{
-    width: 66.666%;
-    float: left;
-}
-
-.raw75{
-    width: 75%;
-    float: left;
-}
-
-.raw100{
-    width: 100%;
-    float: left;
-}
-
 /* Raw Margins
 ***************************************************************/
 
@@ -161,13 +143,13 @@ body, html{
 /* Device
 ***************************************************************/
 
-.device{
+.quarx-device{
     width: 960px;
     margin: 5px auto;
     clear: both;
 }
 
-.smallDevice{
+.quarx-small-device{
     width: 320px;
     margin: 5px auto;
 }
@@ -175,25 +157,24 @@ body, html{
 /* controlbox
 ***************************************************************/
 
-#controlbox{
+#quarx-control-box{
     overflow: visible;
 }
 
-#controlbox .ui-controlgroup{
+#quarx-control-box .ui-controlgroup{
     margin: 0;
     height: 40px;
     overflow: hidden;
 }
 
-.controlbox{
+.quarx-control-box{
     display: none;
-    /*position: absolute;*/
 }
 
 /* Messages
 ************************************/
 
-.errorMsg{
+.quarx-errorMsg{
     border: #600 solid 1px; 
     width: 30%; 
     margin: 5px auto; 
@@ -206,13 +187,13 @@ body, html{
     z-index: 10001;
 }
 
-.errorMsg p{
+.quarx-errorMsg p{
     padding: 7px; 
     color: #600; 
     font-size: 11px;
 }
 
-.successMsg{
+.quarx-successMsg{
     border: #0C3 solid 1px; 
     width: 30%; 
     margin: 5px auto; 
@@ -228,7 +209,7 @@ body, html{
 /* Password Details
 *************************************/
 
-#pwStrength{
+#quarx-pwStrength{
     width: 300px;
     min-height: 55px; 
     margin: 5px auto; 
@@ -238,127 +219,127 @@ body, html{
     z-index: 10000;
 }
 
-.successMsg p{
+.quarx-successMsg p{
     padding: 7px; 
     color: #0C3; 
     font-size: 11px;
 }
 
-.tall{
+.quarx-tall{
     min-height: 50px;
 }
 
 /* Buttons
 ***********************************************/
-.blue:span{
+.quarx-blue:span{
     background: #0099FF;
     color: #fff;
 }
 
-.blue:hover{
+.quarx-blue:hover{
     background: #0055BB;
 }
 
-.blue span:hover{
+.quarx-blue span:hover{
     color: #FFF;
 }
 
-.green{
+.quarx-green{
     background: #009900;
     color: #fff;
 }
 
-.green:hover{
+.quarx-green:hover{
     background: #006600;
 }
 
-.green span:hover{
+.quarx-green span:hover{
     color: #FFF;
 }
 
-.yellow{
+.quarx-yellow{
     background: #FFFF33;
     color: #111;
 }
 
-.yellow:hover{
+.quarx-yellow:hover{
     background: #FFFF00;
 }
 
-.red{
+.quarx-red{
     background: #CC3300;
     color: #fff;
 }
 
-.red:hover{
+.quarx-red:hover{
     background: #990000;
 }
 
-.red span:hover{
+.quarx-red span:hover{
     color: #FFF;
 }
 
 /* Grids
 ***********************************************/
-.grid{
+.quarx-grid{
     text-align: left;
 }
 
-.grid25{
+.quarx-grid25{
     float: left; 
     width: 25%;
 }
 
-.grid50{
+.quarx-grid50{
     float: left; 
     width: 50%;
 }
 
-.grid33{
+.quarx-grid33{
     float: left; 
     width: 33%;
 }
 
-.grid20{
+.quarx-grid20{
     float: left; 
     width: 20%;
 }
 
-.grid16{
+.quarx-grid16{
     float: left; 
     width: 16%;
 }
 
-.grid14{
+.quarx-grid14{
     float: left; 
     width: 14%;
 }
 
-.grid8{
+.quarx-grid8{
     float: left; 
     width: 8%;
 }
 
-.grid9{
+.quarx-grid9{
     float: left; 
     width: 9%;
 }
 
-.grid16 p, .grid9 p, .grid25 p, .grid50 p, .grid14 p, .grid20 p, .grid8 p, .grid33 p{
+.quarx-grid16 p, .quarx-grid9 p, .quarx-grid25 p, .quarx-grid50 p, .quarx-grid14 p, .quarx-grid20 p, .quarx-grid8 p, .quarx-grid33 p{
     display: inline;
 }
 
-.bordered{
+.quarx-bordered{
     border-bottom: 1px solid #ddd;
 }
 
-.gridrow{
-    min-height: 40px;
+.quarx-gridrow{
+    /*min-height: 40px;*/
     width: 100%;
     float: left;
 }
 
-.gridrow p{
+.quarx-gridrow p{
     line-height: 40px;
 }
 
@@ -372,7 +353,7 @@ body, html{
 
 /* Image Characteristics ================================= */
 
-.profileImageBox{
+.quarx-profile-image-box{
     min-width: 320px;
     max-width: 450px;
     height: 350px;
@@ -382,7 +363,7 @@ body, html{
     margin: 0 0;
 }
 
-.profileImageBox img{
+.quarx-profile-image-box img{
     background: #fff;
     width: 60%;
     max-width: 320px;
@@ -392,7 +373,7 @@ body, html{
 
 /* Map Characteristics ================================= */
 
-.mapBox{
+.quarx-map-box{
     width: 99.8%; 
     height: 400px; 
     margin: 20px auto;
@@ -400,22 +381,22 @@ body, html{
     border: 1px solid #bbb; 
 }
 
-.map{
+.quarx-map{
     width: 100%;
     height: 100%;
 }
 
 /* General Characteristics ================================= */
 
-.pointer{
+.quarx-pointer{
     cursor: pointer;
 }
 
-.muted{
+.quarx-muted{
     color: #999;
 }
 
-.googleMap{
+.quarx-google-map{
     width: 90%; 
     float: left; 
     height: 400px; 
@@ -423,13 +404,13 @@ body, html{
     border: 1px solid #DDD;
 }
 
-.googleMapInner{
+.quarx-google-map-inner{
     width: 100%; 
     height: 400px; 
     float:left;
 }
 
-.profileImage{
+.quarx-profile-image{
     border: 5px solid #222; 
     box-shadow: 0 5px 10px #222;
     width: 90%;
@@ -461,79 +442,75 @@ body, html{
     border: 1px solid #ccc;
 }
 
-.align-left{
+.quarx-align-left{
     text-align: left;
 }
 
-.align-right{
+.quarx-align-right{
     text-align: right;
 }
 
-.align-center{
+.quarx-align-center{
     text-align: center;
 }
 
-.leftBox{
+.quarx-left-box{
     float: left;
 }
 
-.rightBox{
+.quarx-right-box{
     float: right;
 }
 
-.leftFloat{
+.quarx-left-float{
     float: left;
 }
 
-.rightFloat{
+.quarx-right-float{
     float: right;
 }
 
-.tall{
+.quarx-tall{
     padding-top: 5px;
     padding-bottom: 5px;
 }
 
-.reallyTall{
+.quarx-really-tall{
     padding-top: 10px;
     padding-bottom: 10px;
 }
 
-.fat{
+.quarx-fat{
     width: 100%;
 }
 
-.fluffy{
+.quarx-fluffy{
     width: 70%;
     padding-left: 5px;
     padding-right: 5px;
 }
 
-.chubby{
+.quarx-chubby{
     width: 80%;
 }
 
-.dark{
+.quarx-dark{
     background: #111;
 }
 
-.medium{
+.quarx-medium{
     background: #ccc;
 }
 
-.tallBox{
+.quarx-tallBox{
     min-height: 180px;
 }
 
-.border-bottom{
+.quarx-border-bottom{
     border-bottom: 1px solid #222;
 }
 
-.border-top{
-    /*border-top: 1px solid #222;*/
-}
-
-.epic{
+.quarx-epic{
     font-size: 80px;
     text-align: center;
     line-height: 70px;
@@ -541,55 +518,55 @@ body, html{
 
 /* CloudMail ======================================= */
 
-.textBox p{
+.quarx-text-box p{
     cursor: pointer;
 }
 
 /*  Manual ========================================= */
 
-#manualMenu{
-    position: absolute;
+#quarx-manual-menu{
+    position: fixed;
     top: 40px;
     width: 200px;
-    z-index: 1;
+    z-index: 100000;
     min-height: 300px;
     text-align: left;
 }
 
-#manualMenuContent ul{
+#quarx-manual-menu-content ul{
     padding: 0;
 }
 
-#manualMenuContent ul li{
+#quarx-manual-menu-content ul li{
     list-style: none;
     margin: 0;
     padding: 0;
 }
 
-#manualMenuContent ul li:hover{
+#quarx-manual-menu-content ul li:hover{
     text-decoration: underline;
     cursor: pointer;
     background: #eee;
 }
 
-.manualContent{
+.quarx-manual-content{
     margin-left: 25%;
 }
 
 /* msgBox ============================================ */
 
-#msgBox{
+#quarx-msg-box{
     display: none;
 }
 
-#msgBox p{
+#quarx-msg-box p{
     padding: 0;
     margin: 0;
 }
 
 /* UpdateBox ============================================ */
 
-.successBox{
+.quarx-success-box{
     z-index: 10000001;
     width: 100%;
     background: #33CC33;
@@ -601,24 +578,24 @@ body, html{
     display: none;
 }
 
-.successBox p{
+.quarx-success-box p{
     color: #fff;
     line-height: 45px;
     text-align: center;
 }
 
-.successTxt{
+.quarx-success-txt{
     padding: 5px; 
     color: #0C3; 
 }
 
-.successBorder{
+.quarx-success-border{
     border: 1px solid #0C3;
 }
 
 /* ErrorBox ============================================ */
 
-.errorBox{
+.quarx-error-box{
     z-index: 1006001;
     width: 100%;
     background: #F00;
@@ -630,22 +607,22 @@ body, html{
     display: none;
 }
 
-.errorBox p{
+.quarx-error-box p{
     line-height: 45px;
     text-align: center;
     color: #fff;
 }
 
-.errorText{
+.quarx-error-text{
     padding: 5px; 
     color: #F00; 
 }
 
-.errorBorder{
+.quarx-error-border{
     border: 1px solid #F00;
 }
 
-.uploadImage{
+.quarx-upload-image{
     z-index: 100001;
     width: 35%;
     height: 250px;
@@ -658,18 +635,18 @@ body, html{
     display: none;
 }
 
-.thumbShot{
+.quarx-thumb-shot{
     width: 100%; 
     cursor: pointer;
     height: 130px;
 }
 
-.imgThumbHolder{
+.quarx-img-thumb-holder{
     margin: 10px;
     height: 130px;
 }
 
-.delBox{
+.quarx-del-box{
     float: right;
     width: 17px;
     height: 17px;
@@ -682,7 +659,7 @@ body, html{
     margin: 0 -10px;
 }   
 
-.favBox{
+.quarx-fav-box{
     float: left;
     width: 21px;
     height: 21px;
@@ -694,20 +671,20 @@ body, html{
     cursor: pointer;
 }
 
-.delIcon{
+.quarx-del-icon{
     background: url(../images/del-Icon.png) no-repeat;
     width: 16px;
     height: 16px;
     display: block;
 }
 
-.imgCollectionBox{
+.quarx-img-collection-box{
     width: 100%;
-    margin: -15px;
+    margin: 0;
     clear: both;
 }
 
-.imageBox{
+.quarx-image-box{
     width: 120px;
     float: left;
     overflow: hidden;
@@ -716,31 +693,33 @@ body, html{
 /* Account Controls
 **************************************************************/
 
-.accountInfoRow{
+.quarx-account-info-row{
     float: left;
 }
 
-.accountInfo{
+.quarx-account-info{
     position: relative;
     z-index: 0;
     width: 100%;
     height: 40px;
 }
 
-.accountControls{
+.quarx-account-controls{
     width: 960px;
     display: none;
     position: absolute;
     z-index: 1;
+    padding: 0;
+    margin: 0;
     height: 40px;
     background: url(../images/70black.png);
 }
 
-.clickable{
+.quarx-clickable{
     cursor: pointer;
 }
 
-.clickable:hover{
+.quarx-clickable:hover{
     background: #eee;
 }
 
@@ -771,7 +750,7 @@ body, html{
 /* jQuery Mobile Resets
 ***************************************************************/
 
-.accountControls .ui-btn{
+.quarx-account-controls .ui-btn{
     margin: 0;
     padding: 0;
     border: none;
@@ -828,65 +807,65 @@ body, html{
 /* Image Library
 ***************************************************************/
 
-#imageLibraryCloseBtn{
+#quarx-image-library-close-btn{
     position: absolute;
     top: 0px;
-    left: 220px;
+    left: 5px;
     z-index: 10000;
 }
 
-#imageLibraryBox{
-    margin: 0px 0 0 0px; 
+#quarx-image-library-box{
+    margin: 0px 0 0 0px;
     border: none; 
     width: 100%;
     overflow: hidden;
 }
 
-#newCollection{
+#quarx-new-collection{
     position: absolute;
     z-index: 100;
-    top: 165px;
-    left: 25px;
+    top: 184px;
+    margin-left: 8px;
 }
 
-#newCollectionChange{
+#quarx-new-collection-change{
     position: absolute;
     z-index: 100;
-    top: 65px;
-    left: 25px;
+    top: 70px;
+    margin-left: 5px;
 }
 
-#fullScreenImageLibrary{
+#quarx-full-screen-image-library{
     border: none; 
     min-height: 90%;
     margin-top: -22px;
 }
 
-#fullScreenImageLibrary iframe{
+#quarx-full-screen-image-library iframe{
     display: none;
 }
 
-#fullScreenImageNav{
+#quarx-full-screen-image-nav{
     width: 24%;
     margin-left: 1%;
     float: right;
 }
 
-#state{
+#quarx-state{
     display: none;
 }
 
 /* Admin Manual
 ***************************************************************/
 
-#toTopButton{
+#quarx-to-top-button{
     position: fixed;
     z-index: 100000;
     bottom: 10px;
     left: 0;
 }
 
-.cloudcatcherBox{
+.quarx-cloud-catcher-box{
     border: none;
     overflow-y: hidden; 
 }
@@ -894,6 +873,6 @@ body, html{
 /*
 ***************************************************************/
 
-#search{
+#quarx-search{
     background: url(../images/icons/search.png) right top no-repeat;
 }

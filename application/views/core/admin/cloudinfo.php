@@ -40,7 +40,7 @@
 
 <div class="raw100" style="text-align: left;"><!-- content -->
     <h1 style="margin: 20px 20px 20px 0px;">CloudInfo: Your Server Information</h1>
-    <div class="device form">
+    <div class="quarx-device quarx-form">
         
         <div class="raw100">
             <div class="raw50"><p>Currently Hosted On:</p></div>

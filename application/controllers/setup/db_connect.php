@@ -14,17 +14,15 @@
  * 
  */
      
-class db_connect extends CI_Controller {
+class DB_connect extends CI_Controller {
 
     function __construct()
     {
         parent::__construct();
-        $this->load->model('modelsetup');
-        $qry = $this->modelsetup->is_installed();
 
-        if($qry)
+        if($_SERVER['HTTP_REFERER'] !== site_url("setup/install"))
         {
-            redirect('login');
+            redirect('setup/install');
         }
     }
 
@@ -52,7 +50,6 @@ class db_connect extends CI_Controller {
         else
         {
             $db = $this->input->post('db_name');
-
             redirect("setup/db_connect/connect/".encrypt($name)."/".encrypt($password)."/".encrypt($db));
         }
     }
@@ -64,7 +61,7 @@ class db_connect extends CI_Controller {
         $username = decrypt($name); 
         $password = decrypt($pword); 
         $database = decrypt($db);
-        
+
         $query = $this->modelsetup->createdb($username, $database);
 
         $db_exists = $this->modelsetup->find_db( $username, $password, $username.'_'.$database );
@@ -100,7 +97,7 @@ class db_connect extends CI_Controller {
 
             $this->session->set_userdata("db_array", $db_array);
 
-            // @unlink('index.html');
+            @unlink('index.html');
 
             redirect('setup/user');
         }

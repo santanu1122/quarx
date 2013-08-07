@@ -1,16 +1,16 @@
 /**
  * Quarx
  *
- * A modular CMS built on CodeIgniter
+ * A modular application framework built on CodeIgniter
  *
  * @package     Quarx
  * @author      Matt Lantz
  * @copyright   Copyright (c) 2013 Matt Lantz
  * @license     http://ottacon.co/quarx/license
- * @link        http://quarx.ottacon.co
+ * @link        http://ottacon.co/quarx
  * @since       Version 1.0
  * 
- */
+ */ 
  
 /* IE Sucks
 ***************************************************************/
@@ -20,44 +20,44 @@ html{
     overflow-x: hidden;
 }
 
-#imageLibraryCloseBtn{
+#quarx-image-library-close-btn{
     position: absolute;
-    top: 0px;
+    top: 0;
     left: 220px;
     z-index: 10000;
 }
 
-#newCollection{
+#quarx-new-collection{
     position: absolute;
     z-index: 100;
     top: 165px;
     left: 25px;
 }
 
-#newCollectionChange{
+#quarx-new-collection-change{
     position: absolute;
     z-index: 100;
     top: 65px;
     left: 25px;
 }
 
-#fullScreenImageLibrary{
+#quarx-full-screen-image-library{
     border: none; 
     min-height: 90%; 
     margin-top: -22px;
 }
 
-#fullScreenImageLibrary iframe{
+#quarx-full-screen-image-library iframe{
     display: none;
 }
 
-#fullScreenImageNav{
+#quarx-full-screen-image-nav{
     width: 24%;
     margin-left: 1%;
     float: right;
 }
 
-#state{
+#quarx-state{
     display: none;
 }
 

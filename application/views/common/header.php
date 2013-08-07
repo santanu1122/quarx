@@ -3,16 +3,16 @@
 /**
  * Quarx
  *
- * A modular CMS built on CodeIgniter
+ * A modular application framework built on CodeIgniter
  *
  * @package     Quarx
  * @author      Matt Lantz
  * @copyright   Copyright (c) 2013 Matt Lantz
  * @license     http://ottacon.co/quarx/license
- * @link        http://quarx.ottacon.co
+ * @link        http://ottacon.co/quarx
  * @since       Version 1.0
  * 
- */
+ */ 
 
 ?>
 
@@ -30,9 +30,9 @@
     <!-- Quarx Custom Styles -->
     <link rel="shortcut icon" type="image" href="<?php echo $root; ?>images/favicon.ico" />
     <link rel="stylesheet" href="<?php echo $root; ?>css/raw.min.css" />
-    <link rel="stylesheet" href="<?php echo $root; ?>css/desktop-style.css" lang="EN" dir="ltr" type="text/css" />
-    <link rel='stylesheet' media='screen and (min-width: 320px) and (max-width: 980px)' href='<?php echo $root; ?>css/tablet-style.css' />
-    <link rel='stylesheet' media='screen and (min-width: 120px) and (max-width: 768px)' href='<?php echo $root; ?>css/mobile-styles.css' />
+    <link rel="stylesheet" href="<?php echo $root; ?>css/quarx-desktop-style.css" lang="EN" dir="ltr" type="text/css" />
+    <link rel='stylesheet' media='screen and (min-width: 320px) and (max-width: 960px)' href='<?php echo $root; ?>css/quarx-tablet-style.css' />
+    <link rel='stylesheet' media='screen and (min-width: 120px) and (max-width: 668px)' href='<?php echo $root; ?>css/quarx-mobile-styles.css' />
 
     <!-- jQuery -->
     <script type="text/javascript" src="<?php echo $root; ?>js/jquery.min.js"></script>
@@ -71,11 +71,13 @@
         });
         
         $(document).ready(function() {
+            $(".deefault").deefault();
+
             $('textarea.rtf').redactor({ 
                 minHeight: 275
             });
 
-            $(".top_menu_icons").tooltip();
+            $(".quarx-top-menu-icons").tooltip();
         });
 
     </script>
@@ -94,24 +96,24 @@
             <?php $this->load->view('common/profile_menu'); ?>
         <?php } ?>
 
-        <?php if(isset($imageGalleryRequest)){ ?>
-        <?php $this->load->view('core/image/librarySmall'); ?>
+        <?php if($GLOBALS["quarx-image-gallery-enabled"] === TRUE){ ?>
+        <?php $this->load->view('core/image/frames/library_small'); ?>
         <?php } ?>
 
         <div data-role="header">
             <?php if($this->session->userdata('logged_in')){ ?>
-            <a class="top_menu_icons" href="#Menu" data-role="button" data-icon="bars" data-iconpos="notext" data-tooltip="Menu"></a>
+            <a class="quarx-top-menu-icons" href="#quarx-main-menu" data-role="button" data-icon="bars" data-iconpos="notext" data-tooltip="Menu"></a>
             <?php }else{ ?>
-            <a class="top_menu_icons" href="<?php echo site_url('login'); ?>" data-iconpos="notext" data-role="button" data-icon="quarx-login" data-tooltip="Login"></a>
+            <a class="quarx-top-menu-icons" href="<?php echo site_url('login'); ?>" data-iconpos="notext" data-role="button" data-icon="quarx-login" data-tooltip="Login"></a>
             <?php } ?>
 
             <h1> <?php echo $pagetitle; ?> </h1>
             
             <?php if($this->session->userdata('logged_in')){ ?>
-            <a class="top_menu_icons" href="#profileMenu" data-role="button" data-icon="gear" data-iconpos="notext" data-tooltip="My Account"></a>
+            <a class="quarx-top-menu-icons" href="#quarx-profile-menu" data-role="button" data-icon="gear" data-iconpos="notext" data-tooltip="My Account"></a>
             <?php } ?>
         </div>
 
-        <div id="body" data-role="content">
+        <div id="quarx-body" data-role="content">
             
 <?php /* End of File */ ?>

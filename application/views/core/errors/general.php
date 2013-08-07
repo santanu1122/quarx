@@ -16,10 +16,11 @@
 
 ?>
 
-<div class="smallDevice">
-    <h1 class="epic">Error</h1>
+<div class="quarx-small-device">
+    <h1 class="quarx-epic">Error</h1>
     <h1>Ops! You caught us offguard.</h1>
     <p>It seems that we've made a terrible error. We'll be doing our best to make sure this is fixed as soon as possible.</p>
+    <p><?php if($this->session->flashdata('error')){ echo $this->session->flashdata('error'); } ?></p>
     <button onclick="javascript:history.back()">Back</button>
 </div>
 

@@ -26,24 +26,22 @@
 
 <!-- notifications -->
 
-<div id="imageError" class="errorBox">
-    <p>Sorry, there was an error.</p>
-</div>
-
-<div id="imageSuccess" class="updateBox">
-    <p>Upload Complete.</p>
+<div id="quarx-msg-box" class="<?php echo $state; ?>">
+    <p><?php echo $message; ?></p>
 </div>
 
 <!-- main content -->
 
-<div class="raw100">
+<?php $this->load->view("core/image/common/menu"); ?>
+
+<div class="quarx-img-box">
     
     <div class="raw100 align-center">
     
         <div class="align-center">
             <?php if(isset($error)){ foreach($error as &$item){ echo $item; } } ?>
             
-            <a id="newCollectionChange" href="#" data-role="button" data-icon="plus" data-theme="a" data-iconpos="notext"></a>
+            <a id="quarx-new-collection-change" href="#" data-role="button" data-icon="plus" data-theme="a" data-iconpos="notext"></a>
 
             <form id="addImageForm" action="<?php echo site_url('image/change_collection'); ?>" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="imageId" value="<?php echo $imageId; ?>" />
@@ -67,16 +65,6 @@
 
 <script type="text/javascript">
 
-    function feedback(type) {
-        if(type === "error"){
-            $("#imageError").fadeIn();
-            setTimeout(function(){ $("#imageError").fadeOut(); }, 2500);
-        }else{
-            $("#imageSuccess").fadeIn();
-            setTimeout(function(){ $("#imageSuccess").fadeOut(); parent.closeIFrame(); $('#addImageForm').show(); }, 2500);
-        }
-    }
-
     function populateCollections(){
         $.ajax({
             url: "<?php echo site_url('image/get_collections'); ?>",
@@ -84,7 +72,7 @@
             cache: false,
             dataType: 'html',
             success: function(data) {
-                $('#collections').append(data).selectmenu('refresh', true);
+                $('#collections').html(data).selectmenu('refresh', true);
             }
         });
     }
@@ -116,18 +104,11 @@
     }
 
     $(document).ready(function(e) {
+        $("#quarx-msg-box").fadeIn().delay(2500).fadeOut("slow");
+
         $('input:submit').button();
-        
-        <?php if(isset($_GET['error'])){ ?>
-            feedback('error');
-        <?php } ?>
 
-        <?php if(isset($_GET['success'])){ ?>
-            feedback('success'); 
-            $('#addImageForm').hide();
-        <?php } ?>
-
-        $('#newCollectionChange').bind('click', function(){
+        $('#quarx-new-collection-change').bind('click', function(){
             newCollectionBox();
         });
 

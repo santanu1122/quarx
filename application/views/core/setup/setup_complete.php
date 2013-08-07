@@ -5,7 +5,7 @@
 
 <div class="raw100">
 
-    <div class="smallDevice">
+    <div class="quarx-small-device">
         <br />
         <h1>Success! Your installation is complete.</h1>
         <br />

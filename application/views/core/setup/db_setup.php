@@ -22,9 +22,9 @@
         
     <div class="raw100">
         <h1>Admin Setup</h1>
-        <p class="align-left">Are you excited to start working on your web application? First we need to setup the database.</p>
+        <p class="quarx-align-left">Are you excited to start working on your web application? First we need to setup the database.</p>
         <h2>Database Information</h2>
-        <div class="smallDevice">
+        <div class="quarx-small-device">
             <form method="post" enctype="multipart/form-data" action="<?php echo site_url('setup/db_connect'); ?>">
                 <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />
 

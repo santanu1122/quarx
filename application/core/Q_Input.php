@@ -1,6 +1,6 @@
 <?php (defined('BASEPATH')) OR exit('No direct script access allowed');
 
-class MY_Input extends CI_Input
+class Q_Input extends CI_Input
 {
     //Escape the posts automatically
     function post($index = NULL, $xss_clean = TRUE)

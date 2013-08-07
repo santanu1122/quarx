@@ -18,17 +18,17 @@
 
 <!-- main content -->
 
-<div class="smallDevice tall">
+<div class="quarx-small-device quarx-tall">
     <div id="pwStrength"></div>
 </div>
 
 <div class="raw100">
     
-    <div class="wide_box" style="text-align: center; min-height: 500px;">
+    <div class="raw100" style="text-align: center; min-height: 500px;">
 
-        <div id="masterAccount" class="smallDevice">
+        <div id="masterAccount" class="quarx-small-device">
             <h1>Admin Setup</h1>
-            <p class="align-left">Stay calm we just need a little more information.</p>
+            <p class="quarx-align-left">Stay calm we just need a little more information.</p>
             <div class="raw100">
                 <h2>Master Account Information</h2>
                 <form method="post" enctype="multipart/form-data" action="<?php echo site_url('setup/complete'); ?>">
@@ -75,11 +75,11 @@
         }
 
         if(val <= 20){
-            $("#pwStrength").attr('class', 'errorBorder');
-            $("#pwStrength").html('<p class="errorTxt">Your Password is Weak</p>'); 
+            $("#pwStrength").attr('class', 'quarx-error-border');
+            $("#pwStrength").html('<p class="quarx-error-txt">Your Password is Weak</p>'); 
         }else{
-            $("#pwStrength").attr('class', 'successBorder');
-            $("#pwStrength").html('<p class="successTxt">Your Password is Strong</p>'); 
+            $("#pwStrength").attr('class', 'quarx-success-border');
+            $("#pwStrength").html('<p class="quarx-success-txt">Your Password is Strong</p>'); 
         }
             $("#pwStrength").show(); 
     }
@@ -90,12 +90,12 @@
             pw2 = $("#confirm").val();
 
         if(pw1 != pw2){
-            $("#pwStrength").attr('class', 'errorBorder');
-            $("#pwStrength").html('<p class="errorTxt">Your Passwords don\'t Match</p>'); 
+            $("#pwStrength").attr('class', 'quarx-error-border');
+            $("#pwStrength").html('<p class="quarx-error-txt">Your Passwords don\'t Match</p>'); 
             return false;
         }else{
-            $("#pwStrength").attr('class', 'successBorder');
-            $("#pwStrength").html('<p class="successTxt">Your Passwords Match</p>'); 
+            $("#pwStrength").attr('class', 'quarx-success-border');
+            $("#pwStrength").html('<p class="quarx-success-txt">Your Passwords Match</p>'); 
             return true;
         }
     }
@@ -114,8 +114,8 @@
         $("#changeBtn").click(function(event){
             event.preventDefault();
             if(!pwChecker()){
-                $("#pwStrength").attr('class', 'errorBorder');
-                $("#pwStrength").html('<p class="errorTxt">Your Passwords don\'t Match</p>'); 
+                $("#pwStrength").attr('class', 'quarx-error-border');
+                $("#pwStrength").html('<p class="errortxt">Your Passwords don\'t Match</p>'); 
             }else{
                 $('#pwChanger').submit();
             }

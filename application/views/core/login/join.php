@@ -3,7 +3,7 @@
 /**
  * Quarx
  *
- * A modular CMS built on CodeIgniter
+ * A modular application framework built on CodeIgniter
  *
  * @package     Quarx
  * @author      Matt Lantz
@@ -12,23 +12,23 @@
  * @link        http://ottacon.co/quarx
  * @since       Version 1.0
  * 
- */
+ */ 
 
 ?>
 
 <!-- notifications -->
 
-<div id="errorBox" class="errorBox">
+<div id="quarx-msg-box" class="quarx-error-box">
     <p><?php echo $error; ?></p>
 </div>  
 
 <!-- main content -->
     
-<div class="smallDevice">
+<div class="quarx-small-device">
 
     <div class="raw100"><p>We're going to need a little bit of information in order to get your profile built. Please complete the following.</p></div>
 
-    <form id="joinForm" method="post" action="<?php echo site_url('login/submit_profile'); ?>">
+    <form id="quarx-join-form" method="post" action="<?php echo site_url('login/submit_profile'); ?>">
         
         <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />
 
@@ -68,7 +68,7 @@
 
 <script type="text/javascript">
 
-    $("#joinForm").submit(function(e){
+    $("#quarx-join-form").submit(function(e){
 
         var pattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/,
             notification = "",
@@ -102,9 +102,9 @@
         if(state == "go"){
             return true;
         }else{
-            $("#errorBox p").html(notification);
-            $("#errorBox").fadeIn();
-            setTimeout(function(){ $("#errorBox").fadeOut(); }, 5200);
+            $("#quarx-msg-box p").html(notification);
+            $("#quarx-msg-box").fadeIn();
+            setTimeout(function(){ $("#quarx-msg-box").fadeOut(); }, 5200);
             return false;
         }
 
@@ -114,8 +114,8 @@
 
     <?php if(isset($error) && $error > ''){ ?>
     $(document).ready(function(){
-        $("#errorBox").fadeIn();
-        setTimeout(function(){ $("#errorBox").fadeOut(); }, 2200);
+        $("#quarx-msg-box").fadeIn();
+        setTimeout(function(){ $("#quarx-msg-box").fadeOut(); }, 2200);
     });
     <?php } ?>
 

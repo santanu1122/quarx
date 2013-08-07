@@ -14,7 +14,7 @@
  * 
  */
      
-class about extends CI_Controller {
+class About extends CI_Controller {
 
     public function __construct()
     {
@@ -42,7 +42,7 @@ class about extends CI_Controller {
 
     public function index()
     {  
-        $this->output->cache(9);
+        // $this->output->cache(9);
 
         $this->load->model('modelsetup');
 

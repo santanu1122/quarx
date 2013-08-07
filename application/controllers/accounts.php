@@ -14,7 +14,7 @@
  * 
  */
      
-class accounts extends CI_Controller {
+class Accounts extends CI_Controller {
 
     function __construct()
     {
@@ -37,13 +37,13 @@ class accounts extends CI_Controller {
 
         if($this->session->flashdata('success'))
         {
-            $data['state'] = 'successBox';
+            $data['state'] = 'quarx-success-box';
             $data['message'] = 'Your profile was successfully updated';
         }
 
         if($this->session->flashdata('error'))
         {
-            $data['state'] = 'successBox';
+            $data['state'] = 'quarx-error-box';
             $data['message'] = 'Your profile was unable to be updated';
         }
 
@@ -360,15 +360,16 @@ class accounts extends CI_Controller {
                 $to = $this->input->post('user_email');
                 $name = $this->input->post('user_name');
                 $from = 'do-not-reply';
-                $subject = 'Your New '.$SERVER['HTTP_HOST'].' Account';
+                $subject = 'Your New '.$_SERVER['HTTP_HOST'].' Account';
                 $message = '
-<h3>Congratulations, you have a new account on '.$SERVER['HTTP_HOST'].'.</h3>
+<h3>Congratulations, you have a new account on '.$_SERVER['HTTP_HOST'].'.</h3>
 <p>Username: '.$this->input->post('user_name').'</p>
 <p>Password: '.$rand.'</p>
 <p>Please be sure to change your password the next time you login. Thank you.</p>';
 
             $this->emailme($to, $name, $from, $subject, $message);
 
+            $this->session->set_flashdata('success', 'Successfully added a new user');
             redirect('accounts/view');
 
             }
@@ -394,20 +395,29 @@ class accounts extends CI_Controller {
         $this->load->model('modelaccounts');
 
         $profile = $this->modelaccounts->this_account($id);
-        foreach($profile as $myprofileImg): endforeach;
         
-        $oldimg = $myprofileImg->img;
-        if($oldimg && $oldimg != site_url().'uploads/img/thumb/default.jpg')
-        {
-            unlink('./uploads/img/full/'.$oldimg);
-            unlink('./uploads/img/thumb/'.$oldimg);
-        }
-        
-        $query = $this->modelaccounts->profile_deleter($id);
-        
-        if($query)
-        {
-            $this->session->set_flashdata('success', 'Successfully Deleted');
+        if($profile){
+
+            foreach($profile as $myprofileImg): endforeach;
+            
+            if($myprofileImg){
+                $oldimg = $myprofileImg->img;
+                if($oldimg && $oldimg != site_url().'uploads/img/thumb/default.jpg')
+                {
+                    @unlink('./uploads/img/full/'.$oldimg);
+                    @unlink('./uploads/img/thumb/'.$oldimg);
+                }
+            }
+                
+            $query = $this->modelaccounts->profile_deleter($id);
+            
+            if($query)
+            {
+                $this->session->set_flashdata('success', 'Successfully Deleted');
+                redirect('accounts/view');
+            }
+        }else{
+            $this->session->set_flashdata('error', 'User does not exist.');
             redirect('accounts/view');
         }
     }
@@ -540,13 +550,13 @@ class accounts extends CI_Controller {
 
         if($this->session->flashdata('success'))
         {
-            $data['state'] = 'successBox';
+            $data['state'] = 'quarx-success-box';
             $data['message'] = $this->session->flashdata('success');
         }
 
         if($this->session->flashdata('error'))
         {
-            $data['state'] = 'successBox';
+            $data['state'] = 'quarx-error-box';
             $data['message'] = $this->session->flashdata('error');
         }
         
@@ -613,7 +623,7 @@ class accounts extends CI_Controller {
             $this->load->model('modelaccounts');
             $query = $this->modelaccounts->this_profile_update($img, $_POST['user_id'], $opts);
             
-            $this->session->set_flashdata('success', 'update success'); 
+            $this->session->set_flashdata('success', 'Your updates were successful'); 
             redirect('accounts/editor/'.encrypt($_POST['user_id']));
 
         }
@@ -626,12 +636,12 @@ class accounts extends CI_Controller {
             
             if($query)
             {
-                $this->session->set_flashdata('success', 'update success'); 
+                $this->session->set_flashdata('success', 'Your updates were successful'); 
                 redirect('accounts/editor/'.encrypt($_POST['user_id']));
             }
             else
             {
-                $this->session->set_flashdata('error', 'update failed'); 
+                $this->session->set_flashdata('error', 'Your updates failed'); 
                 redirect('accounts/editor/'.encrypt($_POST['user_id']));
             }
         
@@ -657,13 +667,13 @@ class accounts extends CI_Controller {
 
         if($this->session->flashdata('success'))
         {
-            $data['state'] = 'successBox';
+            $data['state'] = 'quarx-success-box';
             $data['message'] = $this->session->flashdata('success');
         }
 
         if($this->session->flashdata('error'))
         {
-            $data['state'] = 'successBox';
+            $data['state'] = 'quarx-error-box';
             $data['message'] = $this->session->flashdata('error');
         }
 

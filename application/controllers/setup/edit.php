@@ -14,7 +14,7 @@
  * 
  */
      
-class edit extends CI_Controller {
+class Edit extends CI_Controller {
 
     function __construct()
     {
@@ -81,6 +81,8 @@ class edit extends CI_Controller {
             }else{
                 $data['joiningIsEnabled'] = true;
             }
+
+            $data["masterPage"] = true;
 
             $data['uname'] = $this->input->post('username');
             $data['root'] = base_url();
@@ -164,6 +166,7 @@ class edit extends CI_Controller {
         $this->load->model('modelsetup');
         $this->modelsetup->edit_auto_auth_config($autoAuth);
         
+        $this->session->set_flashdata('success', 'Your setup edits were successful');
         redirect('setup');
     }
 

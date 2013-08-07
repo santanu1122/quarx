@@ -3,23 +3,23 @@
 /**
  * Quarx
  *
- * A modular CMS built on CodeIgniter
+ * A modular application framework built on CodeIgniter
  *
  * @package     Quarx
  * @author      Matt Lantz
  * @copyright   Copyright (c) 2013 Matt Lantz
  * @license     http://ottacon.co/quarx/license
- * @link        http://quarx.ottacon.co
+ * @link        http://ottacon.co/quarx
  * @since       Version 1.0
  * 
- */
+ */ 
 
 ?>
 
 <!-- notifications -->
 
 <?php if(isset($error)){ ?>
-    <div id="errorBox" class="errorBox">
+    <div id="quarx-msg-box" class="quarx-error-box">
         <p><?php echo $error; ?></p>
     </div>  
 <?php } ?>
@@ -28,8 +28,9 @@
     
 <div class="raw100">
 
-    <div class="smallDevice">
+    <div class="quarx-small-device">
         <div class="form raw100">
+            
             <form method="post" action="<?php echo site_url('login/validator'); ?>" data-ajax="false">
                 <div class="raw100">
                     <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />
@@ -67,10 +68,7 @@
 </div>
 
 <script type="text/javascript">
-    $(document).ready(function(){
-        $("#errorBox").fadeIn();
-        setTimeout(function(){ $("#errorBox").fadeOut(); }, 2200);
-    });
+    $("#quarx-msg-box").fadeIn().delay(2500).fadeOut("slow");
 </script>
     
 <?php /* End of File */ ?>

@@ -16,10 +16,8 @@
 
 ?>
 
-<div class="device">
+<div class="quarx-device">
 
-    <a href="<?php echo site_url('image/library'); ?>" data-theme="a" data-role="button">Library Home</a>
-
-    <iframe id="fullScreenImageLibrary" class="raw100" src="<?php echo site_url('image'); ?>" data-location="fullScreen"></iframe>
+    <iframe id="quarx-full-screen-image-library" class="raw100" src="<?php echo site_url('image'); ?>" data-location="fullScreen"></iframe>
 
 </div>

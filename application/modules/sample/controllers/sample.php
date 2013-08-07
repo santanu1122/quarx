@@ -17,7 +17,9 @@ class sample extends MX_Controller {
 
     public function index(){
         $this->load->model('model_sample');
-                
+        
+        addImageGallery();
+
         $data['root'] = base_url();
         $data['pageRoot'] = base_url().'index.php';
         $data['pagetitle'] = 'Sample';

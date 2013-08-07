@@ -22,7 +22,12 @@ class modelsetup extends CI_Model {
 function is_installed() 
 {
     $qry = $this->db->query('SELECT * FROM admin');
-    return $qry;
+    
+    if($qry->num_rows() > 0){
+        return true;
+    }else{
+        return false;
+    }
 }
 
 function createdb($user, $name)

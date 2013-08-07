@@ -3,32 +3,32 @@
 /**
  * Quarx
  *
- * A modular CMS built on CodeIgniter
+ * A modular application framework built on CodeIgniter
  *
  * @package     Quarx
  * @author      Matt Lantz
  * @copyright   Copyright (c) 2013 Matt Lantz
  * @license     http://ottacon.co/quarx/license
- * @link        http://quarx.ottacon.co
+ * @link        http://ottacon.co/quarx
  * @since       Version 1.0
  * 
- */
+ */ 
 
 ?>
 
 <div class="raw100">
     <?php if(isset($error)): ?>
-    <div id="msgBox" class="errorBox">
+    <div id="quarx-msg-box" class="quarx-error-box">
         <p><?php echo $error; ?></p>
     </div>
     <?php endif; ?>
 </div>  
 
 <div class="raw100">
-    <div class="device">
+    <div class="quarx-device">
         <div class="raw50 mHide">
-            <div class="googleMap"> 
-                <div id="map" class="googleMapInner">
+            <div class="quarx-google-map"> 
+                <div id="quarx-map" class="quarx-google-map-inner">
                     <h3 style="padding: 40px;">Please enter your <?php if($this->quarxsetup->get_option("account_type") == 'advanced accounts' ){ echo "postal/zip code"; }else{ echo "location"; }?>, then click <u>here</u> </h3>
                 </div>
             </div>
@@ -36,71 +36,71 @@
 
         <div class="raw50">
 
-            <div id="formHolder" class="raw100 form">
-                <form id="addAccount" method="post" enctype="multipart/form-data" action="<?php echo site_url('accounts/add_profile'); ?>">
+            <div id="quarx-form-holder" class="raw100 quarx-form">
+                <form id="quarx-add-account" method="post" enctype="multipart/form-data" action="<?php echo site_url('accounts/add_profile'); ?>">
                     <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />
                     <!-- // These are the hidden fields with the lat and lng values -->
-                    <input id="latBox" type="hidden" name="latitude" size="30" value="" />
-                    <input id="lngBox" type="hidden" name="longitude" size="30" value="" />
+                    <input id="latBox" type="hidden" name="latitude" value="" />
+                    <input id="lngBox" type="hidden" name="longitude" value="" />
 
                     <!-- // Get to  the actual form! -->
                     <div class="raw100">
                         <div class="raw33"><p>Username</p></div>
-                        <div class="raw66"><input id="u_name" type="text" name="user_name" size="30" value="" onkeyup="validationCheck(this.value)" /></div>
+                        <div class="raw66"><input id="u_name" type="text" name="user_name" value="" onkeyup="validationCheck(this.value)" /></div>
                     </div>
                     <div class="raw100">
                         <div class="raw33"><p>Email</p></div>
-                        <div class="raw66"><input data-type="Email" class="vital" type="text" name="user_email" size="30" value="" /></div>
+                        <div class="raw66"><input data-type="Email" class="vital" type="text" name="user_email" value="" /></div>
                     </div>
                     <div class="raw100">
                         <div class="raw33"><p>Full Name</p></div>
-                        <div class="raw66"><input class="vital" type="text" name="full_name" size="30" value="" /></div>
+                        <div class="raw66"><input class="vital" type="text" name="full_name" value="" /></div>
                     </div>
 
                     <?php if( $this->quarxsetup->get_option("account_type") == 'advanced accounts' ){ ?>
 
                     <div class="raw100">
                         <div class="raw33"><p>Address</p></div>
-                        <div class="raw66"><input type="text" name="address" size="30" value="" /></div>
+                        <div class="raw66"><input type="text" name="address" value="" /></div>
                     </div>
                     <div class="raw100">
                         <div class="raw33"><p>City</p></div>
-                        <div class="raw66"><input type="text" name="city" size="30" value="" /></div>
+                        <div class="raw66"><input type="text" name="city" value="" /></div>
                     </div>
                     <div class="raw100">
                         <div class="raw33"><p>State/Province</p></div>
-                        <div class="raw66"><input type="text" name="state_prov" size="30" value="" /></div>
+                        <div class="raw66"><input type="text" name="state_prov" value="" /></div>
                     </div>
                     <div class="raw100">
                         <div class="raw33"><p>Zip/Postal Code</p></div>
-                        <div class="raw66"><input id="location" type="text" name="location" size="30" value="" onblur="locateMe('<?php echo $root; ?>', this.value, '')" /></div>
+                        <div class="raw66"><input id="location" type="text" name="location" value="" onblur="locateMe('<?php echo $root; ?>', this.value, '')" /></div>
                     </div>
                     <div class="raw100">
                         <div class="raw33"><p>Country</p></div>
-                        <div class="raw66"><input type="text" name="country" size="30" value="" /></div>
+                        <div class="raw66"><input type="text" name="country" value="" /></div>
                     </div>
                     <div class="raw100">
                         <div class="raw33"><p>Phone</p></div>
-                        <div class="raw66"><input type="text" name="phone" size="30" value="" /></div>
+                        <div class="raw66"><input type="text" name="phone" value="" /></div>
                     </div>
                     <div class="raw100">
                         <div class="raw33"><p>Fax</p></div>
-                        <div class="raw66"><input type="text" name="fax" size="30" value="" /></div>
+                        <div class="raw66"><input type="text" name="fax" value="" /></div>
                     </div>
                     <div class="raw100">
                         <div class="raw33"><p>Website</p></div>
-                        <div class="raw66"><input type="text" name="website" size="30" value="" /></div>
+                        <div class="raw66"><input type="text" name="website" value="" /></div>
                     </div>
                     <div class="raw100">
                         <div class="raw33"><p>Company</p></div>
-                        <div class="raw66"><input type="text" name="company" size="30" value="" /></div>
+                        <div class="raw66"><input type="text" name="company" value="" /></div>
                     </div>
 
                     <?php }else{ ?>
 
                     <div class="raw100">
                         <div class="raw33"><p>Location</p></div>
-                        <div class="raw66"><input id="location" type="text" name="location" size="30" value="" onblur="locateMe('<?php echo $root; ?>', this.value, '')" /></div>
+                        <div class="raw66"><input id="location" type="text" name="location" value="" onblur="locateMe('<?php echo $root; ?>', this.value, '')" /></div>
                     </div>
 
                     <?php } ?>
@@ -124,9 +124,9 @@
 <script type="text/javascript">
 
     $(document).ready(function(e) {
-        $('#msgBox').show().delay(3000).fadeOut('slow');
+        $('#quarx-msg-box').show().delay(3000).fadeOut('slow');
 
-        $('#formHolder').keypress(function(event){
+        $('#quarx-form-holder').keypress(function(event){
             if (event.keyCode == 10 || event.keyCode == 13) 
                 event.preventDefault();
         });

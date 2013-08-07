@@ -3,26 +3,26 @@
 /**
  * Quarx
  *
- * A modular CMS built on CodeIgniter
+ * A modular application framework built on CodeIgniter
  *
  * @package     Quarx
  * @author      Matt Lantz
  * @copyright   Copyright (c) 2013 Matt Lantz
  * @license     http://ottacon.co/quarx/license
- * @link        http://quarx.ottacon.co
+ * @link        http://ottacon.co/quarx
  * @since       Version 1.0
  * 
- */
+ */ 
 
 ?>
 
 <div class="raw100">
-    <div id="msgBox">
+    <div id="quarx-msg-box">
         <p id="pwStrength"></p>
     </div>
 </div>
 
-<div class="smallDevice">
+<div class="quarx-small-device">
                     
     <form id="pwChanger" class="raw100 raw-margin-top-30" method="post" action="<?php echo site_url('accounts/changepassword'); ?>">
         <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />
@@ -63,13 +63,13 @@
         }
 
         if(val <= 20){
-            $("#msgBox").attr('class', 'errorBox');
-            $("#msgBox").html('<p>Your Password is Weak</p>'); 
+            $("#quarx-msg-box").attr('class', 'quarx-error-box');
+            $("#quarx-msg-box").html('<p>Your Password is Weak</p>'); 
         }else{
-            $("#msgBox").attr('class', 'successBox');
-            $("#msgBox").html('<p>Your Password is Strong</p>'); 
+            $("#quarx-msg-box").attr('class', 'quarx-success-box');
+            $("#quarx-msg-box").html('<p>Your Password is Strong</p>'); 
         }
-            $("#msgBox").show();
+            $("#quarx-msg-box").show();
     }
 
     //verify that they match first
@@ -78,12 +78,12 @@
             pw2 = $("#confirm").val();
 
         if(pw1 != pw2){
-            $("#msgBox").attr('class', 'errorBox');
-            $("#msgBox").html('<p>Your Passwords don\'t Match</p>'); 
+            $("#quarx-msg-box").attr('class', 'quarx-error-box');
+            $("#quarx-msg-box").html('<p>Your Passwords don\'t Match</p>'); 
             return false;
         }else{
-            $("#msgBox").attr('class', 'successBox');
-            $("#msgBox").html('<p>Your Passwords Match</p>'); 
+            $("#quarx-msg-box").attr('class', 'quarx-success-box');
+            $("#quarx-msg-box").html('<p>Your Passwords Match</p>'); 
             return true;
         }
     }
@@ -102,7 +102,7 @@
         $("#changeBtn").click(function(event){
             event.preventDefault();
             if(!pwChecker()){
-                $("#msgBox").html('<p>Your Passwords don\'t Match</p>'); 
+                $("#quarx-msg-box").html('<p>Your Passwords don\'t Match</p>'); 
             }else{
                 $('#pwChanger').submit();
             }

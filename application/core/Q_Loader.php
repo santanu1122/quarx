@@ -3,4 +3,4 @@
 /* load the MX_Loader class */
 require APPPATH."core/modular-core/MX/Loader.php";
 
-class MY_Loader extends MX_Loader {}
+class Q_Loader extends MX_Loader {}

@@ -14,7 +14,7 @@
  * 
  */
      
-class complete extends CI_Controller {
+class Complete extends CI_Controller {
 
 /* Initial Setup and Install
 ***************************************************************/

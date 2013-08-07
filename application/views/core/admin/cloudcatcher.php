@@ -17,7 +17,7 @@
 ?>
 
 <div class="raw100" style="min-height: 600px;"><!-- content -->
-    <div class="device">
+    <div class="quarx-device">
         <h1>CloudCatcher: Your Website Backup Tool</h1>
 
         <div class="raw33">
