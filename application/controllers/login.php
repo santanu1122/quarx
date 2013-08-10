@@ -3,12 +3,12 @@
 /**
  * Quarx
  *
- * A modular CMS built on CodeIgniter
+ * A modular application framework built on CodeIgniter
  *
  * @package     Quarx
  * @author      Matt Lantz
  * @copyright   Copyright (c) 2013 Matt Lantz
- * @license     http://ottacon.co/quarx/license
+ * @license     http://ottacon.co/quarx/license.html
  * @link        http://ottacon.co/quarx
  * @since       Version 1.0
  * 
@@ -41,6 +41,12 @@ class Login extends CI_Controller {
 
             if($query === 'fail')
             {
+                if($this->session->flashdata('error')){
+                    $data['message'] = $this->session->flashdata('error');
+                }else{
+                    $data['message'] =  '';
+                }
+
                 $status = $this->quarxsetup->account_opts();
                 if($status[4]->option_data == "no"){
                     $data['joiningIsEnabled'] = false;
@@ -211,34 +217,20 @@ class Login extends CI_Controller {
 
         if($query == 'unauthorized')
         {
-            $data['error'] = "Sorry you're not yet authorized to access this system.";
+            $error = "Sorry you're not yet authorized to access this system.";
         }
         
         if($query == 'disabled')
         {
-            $data['error'] = "Sorry your account was disabled.";
+            $error = "Sorry your account was disabled.";
         }   
         
         if($query == 'noAccount')
         {   
-            $data['error'] = "Sorry either your username or password was incorrect.";
+            $error = "Sorry either your username or password was incorrect.";
         }
-
-            $status = $this->quarxsetup->account_opts();
-            if($status[4]->option_data == "no"){
-                $data['joiningIsEnabled'] = false;
-            }else{
-                $data['joiningIsEnabled'] = true;
-            }
-
-            $data['root'] = base_url();
-            $data['pageRoot'] = base_url().'index.php';
-            $data['pagetitle'] = 'Sign In';
-            $data['date'] = date("m-d-y");
-            
-            $this->load->view('common/header', $data);
-            $this->load->view('core/login/login', $data);
-            $this->load->view('common/footer', $data);
+            $this->session->set_flashdata('error', $error);
+            redirect('login');
     }
     
 /* Forgotten Password

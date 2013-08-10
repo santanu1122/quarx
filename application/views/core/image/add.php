@@ -3,13 +3,13 @@
 /**
  * Quarx
  *
- * A modular CMS built on CodeIgniter
+ * A modular application framework built on CodeIgniter
  *
  * @package     Quarx
  * @author      Matt Lantz
  * @copyright   Copyright (c) 2013 Matt Lantz
- * @license     http://ottacon.co/quarx/license
- * @link        http://quarx.ottacon.co
+ * @license     http://ottacon.co/quarx/license.html
+ * @link        http://ottacon.co/quarx
  * @since       Version 1.0
  * 
  */
@@ -40,7 +40,7 @@
     
     <div class="raw100 align-center">
     
-        <div class="align-center">
+        <div id="image_upload_box" class="quarx-align-center">
             <?php if(isset($error)){ foreach($error as &$item){ echo $item; } } ?>
             
             <a id="quarx-new-collection" href="#" data-role="button" data-icon="plus" data-theme="a" data-iconpos="notext"></a>
@@ -60,9 +60,9 @@
                 <input id="addBtn" data-theme="c" type="submit" value="Upload" />
             </form>
 
-                <div id="quarx-state" class="raw100"><p>Uploading Image...</p></div>
-
         </div>  
+
+        <div id="quarx-state" class="raw100 quarx-align-center"><p>Uploading Image...</p></div>
     </div>  
 
 </div>
@@ -119,7 +119,8 @@
 
         $('#addImageForm').submit(function(){
             $('#addBtn').hide();
-            $('#quarx-state').show();
+            $('#image_upload_box').hide();
+            $('#quarx-state').fadeIn("fast");
         });
 
         populateCollections();

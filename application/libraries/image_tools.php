@@ -8,11 +8,11 @@
  * @package     Quarx
  * @author      Matt Lantz
  * @copyright   Copyright (c) 2013 Matt Lantz
- * @license     http://ottacon.co/quarx/license
+ * @license     http://ottacon.co/quarx/license.html
  * @link        http://ottacon.co/quarx
  * @since       Version 1.0
  * 
- */ 
+ */
 
 class image_tools{
     
@@ -54,6 +54,26 @@ class image_tools{
                 }
 
             $data .= '</select></div>';
+
+            $data .= '<script type="text/javascript">
+
+$(document).ready(function(){
+    $("#quarx-select-library-collections-button").click(function(){
+        
+        $.ajax({
+            url: "'.site_url('image/get_collections').'",
+            type: "GET",
+            dataType: "HTML",
+            success: function(data) {
+                var options = \'<option value="0">None</option>\'+data;
+                $(\'#quarx-select-library-collections\').html(options).selectmenu("refresh");
+            }
+        });
+        
+    });
+});
+    
+</script>';
         
             echo $data;
         }

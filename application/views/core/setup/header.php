@@ -3,13 +3,13 @@
 /**
  * Quarx
  *
- * A modular CMS built on CodeIgniter
+ * A modular application framework built on CodeIgniter
  *
  * @package     Quarx
  * @author      Matt Lantz
  * @copyright   Copyright (c) 2013 Matt Lantz
- * @license     http://ottacon.co/quarx/license
- * @link        http://quarx.ottacon.co
+ * @license     http://ottacon.co/quarx/license.html
+ * @link        http://ottacon.co/quarx
  * @since       Version 1.0
  * 
  */
@@ -67,14 +67,14 @@
 
         <div id="header" data-role="header">
             <?php if(isset($masterPage)){ ?>
-                <a class="top_menu_icons" href="#quarx-main-menu" data-role="button" data-icon="bars" data-iconpos="notext" data-tooltip="Menu"></a>
+                <a class="quarx-top-menu-icons" href="#quarx-main-menu" data-role="button" data-icon="bars" data-iconpos="notext" data-tooltip="Menu"></a>
             <?php }else{ ?>
-                <a data-rel="back" data-icon="back" data-iconpos="notext"></a>
+                <a class="quarx-top-menu-icons" data-rel="back" data-icon="back" data-iconpos="notext"></a>
             <?php } ?>
             <h2><img src="<?php echo $root; ?>images/quarx.png" style="width: 15px;" /> Quarx Setup</h2>
 
             <?php if($this->session->userdata('logged_in')){ ?>
-            <a class="top_menu_icons" href="#quarx-profile-menu" data-role="button" data-icon="gear" data-iconpos="notext" data-tooltip="My Account"></a>
+            <a class="quarx-top-menu-icons" href="#quarx-profile-menu" data-role="button" data-icon="gear" data-iconpos="notext" data-tooltip="My Account"></a>
             <?php } ?>
         </div>
         

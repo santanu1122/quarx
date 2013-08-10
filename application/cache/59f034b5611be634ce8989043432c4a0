@@ -1,4 +1,4 @@
-1375897555TS--->
+1376076987TS--->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -66,6 +66,7 @@
     <!--[if gte IE 7]>
     <link rel="stylesheet" type="text/css" href="http://localhost:8888/__quarx/quarx/css/ie.css" />
     <![endif]-->
+
 </head>
 
 <body>
@@ -80,7 +81,8 @@
     <ul id="quarx-menu" data-role="listview">
         
         
-            <li><a href="http://localhost:8888/__quarx/quarx/sample">Sample</a></li>
+            
+<li><a href="http://localhost:8888/__quarx/quarx/sample">Sample</a></li>
                          
                         <li><a href="http://localhost:8888/__quarx/quarx/image/library">Image Library</a></li>
             
@@ -94,7 +96,6 @@
                 <li><a href="http://localhost:8888/__quarx/quarx/setup">Setup</a></li>
                 <li><a href="http://localhost:8888/__quarx/quarx/admin/about">About</a></li>
                 
-                                <li><a href="http://localhost:8888/__quarx/quarx/admin/tests">Unit Tests</a></li>
                 
                             
         
@@ -111,15 +112,15 @@
     <ul id="quarx-account-menu" data-role="listview">
         
                     
-            <li><a href="http://localhost:8888/__quarx/quarx/accounts">My Account</a></li>
-            <li><a href="http://localhost:8888/__quarx/quarx/accounts/password">Update Password</a></li>
-                        <li><a href="http://localhost:8888/__quarx/quarx/accounts/add">Add an Account</a></li>
-            <li><a href="http://localhost:8888/__quarx/quarx/accounts/view">View Accounts</a></li>                  
+            <li data-icon="home"><a href="http://localhost:8888/__quarx/quarx/accounts">My Account</a></li>
+            <li data-icon="quarx-login"><a href="http://localhost:8888/__quarx/quarx/accounts/password">Update Password</a></li>
+                        <li data-icon="quarx-add-user"><a href="http://localhost:8888/__quarx/quarx/accounts/add">Add an Account</a></li>
+            <li data-icon="quarx-all-users"><a href="http://localhost:8888/__quarx/quarx/accounts/view">View Accounts</a></li>                  
             
-            <li><a href="http://localhost:8888/__quarx/quarx/settings">Settings</a></li>
+            <li data-icon="gear"><a href="http://localhost:8888/__quarx/quarx/settings">Settings</a></li>
 
         
-                    <li><a href="http://localhost:8888/__quarx/quarx/logout">Sign Out</a></li>
+                    <li data-icon="quarx-power"><a href="http://localhost:8888/__quarx/quarx/logout">Sign Out</a></li>
         
     </ul>   
 
@@ -147,7 +148,7 @@
 <div class="quarx-small-device">
                     
     <form id="pwChanger" class="raw100 raw-margin-top-30" method="post" action="http://localhost:8888/__quarx/quarx/accounts/changepassword">
-        <input type="hidden" name="q_csrf_token" value="eee9ac8fa00a93cecc8db9275ef98008" />
+        <input type="hidden" name="q_csrf_token" value="1e09f3d50d00a38d079d8d589856bc88" />
         <div class="raw100">
             <div class="raw100">
                 <div class="raw50"><p>New Password</p></div>
@@ -238,11 +239,10 @@
 
 	</div>
 
+        <div id="quarx-footer" data-role="footer" data-position="fixed" data-theme="a" class="quarx-align-center">
+        <p>&copy; 2013 Matt Lantz</p>
+    </div>
     
-            <div class="raw100 raw-left quarx-align-center">
-            <p>Elapsed Time: {elapsed_time} seconds</p>
-            <p>Memory Usage: {memory_usage}</p>
-        </div>
     
 </div><!-- end of all body contents -->
 

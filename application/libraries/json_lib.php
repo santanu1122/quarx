@@ -8,12 +8,13 @@
  * @package     Quarx
  * @author      Matt Lantz
  * @copyright   Copyright (c) 2013 Matt Lantz
- * @license     http://ottacon.co/quarx/license
+ * @license     http://ottacon.co/quarx/license.html
  * @link        http://ottacon.co/quarx
  * @since       Version 1.0
  * 
- * if PHP < 5.2 we now have json_encode/json_decode
- */ 
+ * Made so that PHP < 5.2 will have json_encode/json_decode 
+ *
+ */
 
 class json_lib {
 

@@ -8,21 +8,18 @@
  * @package     Quarx
  * @author      Matt Lantz
  * @copyright   Copyright (c) 2013 Matt Lantz
- * @license     http://ottacon.co/quarx/license
+ * @license     http://ottacon.co/quarx/license.html
  * @link        http://ottacon.co/quarx
  * @since       Version 1.0
  * 
- */ 
-
+ */
 ?>
 
 <!-- notifications -->
 
-<?php if(isset($error)){ ?>
-    <div id="quarx-msg-box" class="quarx-error-box">
-        <p><?php echo $error; ?></p>
-    </div>  
-<?php } ?>
+<div id="quarx-msg-box" class="quarx-error-box">
+    <p><?php echo $message; ?></p>
+</div>
 
 <!-- main content -->
     
@@ -32,7 +29,7 @@
         <div class="form raw100">
             
             <form method="post" action="<?php echo site_url('login/validator'); ?>" data-ajax="false">
-                <div class="raw100">
+                <div class="raw100 quarx-mobile-table">
                     <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />
                     <div class="raw100">
                         <div class="raw50"><p>Username</p></div>

@@ -45,6 +45,7 @@ $route['404_override'] = 'error/e_404';
 
 //This makes sure that the default controller is loaded even when a language call is in the url
 //route example: http://domain.tld/en/controller => http://domain.tld/controller
+
 $route['(\w{2})/(.*)'] = '$2';
 $route['(\w{2})'] = $route['default_controller'];
 

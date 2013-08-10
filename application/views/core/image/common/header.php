@@ -8,7 +8,7 @@
  * @package     Quarx
  * @author      Matt Lantz
  * @copyright   Copyright (c) 2013 Matt Lantz
- * @license     http://ottacon.co/quarx/license
+ * @license     http://ottacon.co/quarx/license.html
  * @link        http://ottacon.co/quarx
  * @since       Version 1.0
  * 
@@ -40,11 +40,15 @@
                 $("#quarx-new-collection").css("top", "226px");
             }
         });
+
+        
+
     </script>
 
     <!--[if gte IE 7]>
     <link rel="stylesheet" type="text/css" href="<?php echo $root; ?>css/ie.css" />
     <![endif]-->
+
 </head>
 <body>
 

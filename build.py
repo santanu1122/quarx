@@ -1,6 +1,8 @@
 """
-build.py
-Author: Matt Lantz
+Name: build.py
+Author: Matt Lantz 
+        Copyright (c) 2013
+License: Apache 2.0
 
 A build tool for websites/apps with version numbering based on builds
 """
@@ -28,7 +30,7 @@ def zipdir(basedir, archivename):
                 print "Archived "+zfn+"..."
 
 def getIgnoredFiles(source):
-    f = source+"/.build_ignore.txt"
+    f = source+"/.build_ignore"
     igf = open(f, "r+")
     if igf:
         igfr = igf.read()
@@ -45,7 +47,7 @@ def getVersion(source):
         return "N/A"
 
 def updateVersion(source):
-    f = source+"/.version_build.txt"
+    f = source+"/.version_build"
     vf = open(f, "r+")
     cv = vf.read()
 

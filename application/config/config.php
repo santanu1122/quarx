@@ -372,6 +372,19 @@ $config['rewrite_short_tags'] = FALSE;
 */
 $config['proxy_ips'] = '';
 
+/**
+ * Quarx Additions to Config
+ *
+ * A modular application framework built on CodeIgniter
+ *
+ * @package     Quarx
+ * @author      Matt Lantz
+ * @copyright   Copyright (c) 2013 Matt Lantz
+ * @license     http://ottacon.co/quarx/license.html
+ * @link        http://ottacon.co/quarx
+ * @since       Version 1.0
+ * 
+ */
 
 /*
 |--------------------------------------------------------------------------
@@ -420,7 +433,7 @@ endif;
 |
 */
 
-$config['footer_visible'] = false;
+$config['footer_visible'] = true;
 
 /*
 |--------------------------------------------------------------------------

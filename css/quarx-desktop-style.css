@@ -6,11 +6,11 @@
  * @package     Quarx
  * @author      Matt Lantz
  * @copyright   Copyright (c) 2013 Matt Lantz
- * @license     http://ottacon.co/quarx/license
+ * @license     http://ottacon.co/quarx/license.html
  * @link        http://ottacon.co/quarx
  * @since       Version 1.0
  * 
- */ 
+ */
 
 /* Custom Styles for Quarx jQuery Mobile UI Theme
 ***************************************************************/
@@ -89,8 +89,12 @@ body, html{
 
 .quarx-menu-title{
     margin: -15px 0 15px 0; 
-    padding: 0px; 
+    padding: 0; 
     line-height: 2.6em;
+}
+
+.quarx-top-menu-icons{
+    margin-top: 2px !important;
 }
 
 #quarx-image-box.quarx-image-panel{
@@ -806,13 +810,6 @@ body, html{
 
 /* Image Library
 ***************************************************************/
-
-#quarx-image-library-close-btn{
-    position: absolute;
-    top: 0px;
-    left: 5px;
-    z-index: 10000;
-}
 
 #quarx-image-library-box{
     margin: 0px 0 0 0px;

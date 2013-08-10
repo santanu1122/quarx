@@ -56,14 +56,14 @@
                     fontFamily: "Arial",
                 });
 
-                var leftPos = e.pageX+10;
+                var leftPos = e.pageX+36;
 
                 if(leftPos+options.boxWidth > $(window).width()){
-                    leftPos = leftPos - (options.boxWidth + 10);
+                    leftPos = leftPos - (options.boxWidth + 36);
                 }
 
                 $("#"+toolTipBox).css({
-                    top: e.pageY+10,
+                    top: e.pageY+36,
                     left: leftPos
                 });
 

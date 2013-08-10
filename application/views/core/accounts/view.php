@@ -8,11 +8,11 @@
  * @package     Quarx
  * @author      Matt Lantz
  * @copyright   Copyright (c) 2013 Matt Lantz
- * @license     http://ottacon.co/quarx/license
+ * @license     http://ottacon.co/quarx/license.html
  * @link        http://ottacon.co/quarx
  * @since       Version 1.0
  * 
- */ 
+ */
 
 ?>
 
@@ -122,7 +122,7 @@
                                 <img src="<?php echo site_url(); ?>/images/lock.png" title="Unathorized" class="raw12 padded5" />
                                 <?php } ?>
 
-                                <img src="<?php echo site_url(); ?>/images/settings.png" title="Edit Account" class="quarx-action-btn raw20 padded5 rightFloat quarx-clickable" />
+                                <img src="<?php echo site_url(); ?>/images/settings.png" title="Edit Account" class="quarx-action-btn raw20 padded5 quarx-right-float quarx-clickable" />
                             </div> 
                         </div>
 

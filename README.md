@@ -10,7 +10,7 @@ Download Here: https://github.com/mlantz/quarx/zipball/master
 
 **Requirements:**
 
-1. PHP 5.1.6+
+1. PHP 5.2+
 2. MySQL
 3. cURL
 

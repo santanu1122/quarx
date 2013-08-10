@@ -9,6 +9,20 @@
 */
 
 
+/**
+ * Quarx
+ *
+ * A modular application framework built on CodeIgniter
+ *
+ * @package     Quarx
+ * @author      Matt Lantz
+ * @copyright   Copyright (c) 2013 Matt Lantz
+ * @license     http://ottacon.co/quarx/license.html
+ * @link        http://ottacon.co/quarx
+ * @since       Version 1.0
+ * 
+ */
+
 /* Swatches */
 
 /* A
@@ -1480,4 +1494,16 @@ a.ui-link-inherit {
 
 .ui-icon-quarx-login {
     background-image: url(../images/icons/login_18.png);
+}
+
+.ui-icon-quarx-power{
+    background-image: url(../images/icons/power.png);
+}
+
+.ui-icon-quarx-add-user{
+    background-image: url(../images/icons/add_user.png);
+}
+
+.ui-icon-quarx-all-users{
+    background-image: url(../images/icons/all_users.png);
 }
