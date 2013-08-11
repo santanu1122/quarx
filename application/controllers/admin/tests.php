@@ -69,7 +69,7 @@ class Tests extends CI_Controller {
     function test_quarx_setup(){
         $this->load->model("modelsetup");
         $res = $this->modelsetup->is_installed();
-        return $this->unit->test($res, "is_obj", "Quarx is installed - object");
+        return $this->unit->test($res, "is_bool", "Quarx is installed - object");
     }
 
     function test_quarx_version(){
