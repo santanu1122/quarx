@@ -24,10 +24,10 @@ class express_mail {
             $CI =& get_instance();
 
             $from = 'do-not-reply';
-            $subject = 'Your '.$SERVER['HTTP_HOST'].' Account was Activated!';
+            $subject = 'Your '.$_SERVER['HTTP_HOST'].' Account was Activated!';
             $message = '
 <h4>Account Activated</h4><br />
-<p>Success! You\'re account on '.$SERVER['HTTP_HOST'].' has been activated. Feel free to login! Thanks.</p>';
+<p>Success! You\'re account on '.$_SERVER['HTTP_HOST'].' has been activated. Feel free to login! Thanks.</p>';
 
             $CI->load->library('email');
 
