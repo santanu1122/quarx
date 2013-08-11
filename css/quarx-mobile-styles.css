@@ -22,9 +22,7 @@
 }
 
 .ui-content { 
-    /*max-width: 300px; */
-    padding: 10px; 
-    margin: auto;
+    padding: 0 !important; 
 }
 
 /* Raw Grid Structure
