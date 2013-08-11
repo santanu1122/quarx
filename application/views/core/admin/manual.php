@@ -44,6 +44,10 @@
         </div>
     </div>
 
+    <div id="quarx-manual-menu-title" onclick="showMenu()">
+        <h1>Menu</h1>
+    </div>
+
     <div class="raw75 align-left quarx-manual-content">
         <div class="raw100">
             <h1>Quarx Manual</h1>
@@ -185,14 +189,58 @@
         return false;
     }
 
-    $(window).scroll(function(){
-        $('#quarx-manual-menu').hide();
-        
-        $('#quarx-manual-menu').css({
-            top: 40 + $(window).scrollTop()
-        });
-        
-        $('#quarx-manual-menu').fadeIn("fast");
+    function showMenu(){
+        $('#quarx-manual-menu').show();
+    }
+
+    function setMenu(){
+        if($(window).width() > 960){
+            $(window).scroll(function(){
+                $('#quarx-manual-menu').hide();
+                
+                $('#quarx-manual-menu').css({
+                    top: 44 + $(window).scrollTop()
+                });
+                
+                $('#quarx-manual-menu').fadeIn("fast");
+            });
+
+            $('.quarx-manual-content').attr("style", "");
+
+            $('#quarx-manual-menu-title').fadeOut("fast");
+        }else{
+            $('.quarx-manual-content').css("margin-left", "0");
+
+            $('#quarx-manual-menu-title').fadeIn("fast");
+
+            $(window).scroll(function(){
+                $('#quarx-manual-menu').hide();
+                $('#quarx-manual-menu-title').fadeIn("fast");
+
+                $('#quarx-manual-menu-title').css({
+                    top: $(window).scrollTop()
+                });
+                
+                $('#quarx-manual-menu').css({
+                    top: $(window).scrollTop(),
+                    width: "100%",
+                    left: "0",
+                    margin: "0"
+                });
+
+                if($(window).scrollTop() == 0){
+                    $('#quarx-manual-menu-title').hide();
+                }
+            });
+        }
+    }
+
+    $(function(){
+        setMenu();
+    });
+    
+    $(window).resize(function(){
+        setMenu();
     });
 
 </script>

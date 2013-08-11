@@ -28,8 +28,12 @@ class image_tools{
             return $qry;
         }
 
-        function imgLibrarySelect($img_collection = null)
+        function imgLibrarySelect($img_collection = null, $id_tag = null)
         {
+            if($id_tag == null){
+                $id_tag = 'quarx-select-library-collections';
+            }
+
             $CI =& get_instance();
             $CI->load->model('modelimg');
 
@@ -39,7 +43,7 @@ class image_tools{
 
             $data .= '<p>If you\'d like to add an image library please select one below.</p>';
 
-            $data .= '<select id="quarx-select-library-collections" data-theme="a" name="quarx_img_library">';
+            $data .= '<select id="'.$id_tag.'" data-theme="a" name="quarx_img_library">';
 
             if($img_collection != 0){
                 $data .= '<option value="'.$img_collection.'">Currently: '.getCollectionName($img_collection).'</option>';
@@ -48,32 +52,30 @@ class image_tools{
             $data .= '<option value="0">None</option>';
 
                 foreach ($collection as $col) {
-                    
                     $data .= '<option value="'.$col->collection_id.'">'.$col->collection_name.'</option>';
-
                 }
 
             $data .= '</select></div>';
 
             $data .= '<script type="text/javascript">
 
-$(document).ready(function(){
-    $("#quarx-select-library-collections-button").click(function(){
-        
-        $.ajax({
-            url: "'.site_url('image/get_collections').'",
-            type: "GET",
-            dataType: "HTML",
-            success: function(data) {
-                var options = \'<option value="0">None</option>\'+data;
-                $(\'#quarx-select-library-collections\').html(options).selectmenu("refresh");
-            }
-        });
-        
-    });
-});
-    
-</script>';
+                        $(document).ready(function(){
+                            $("#quarx-select-library-collections-button").click(function(){
+
+                                $.ajax({
+                                    url: "'.site_url('image/get_collections').'",
+                                    type: "GET",
+                                    dataType: "HTML",
+                                    success: function(data) {
+                                        var options = \'<option value="0">None</option>\'+data;
+                                        $(\'#quarx-select-library-collections\').html(options).selectmenu("refresh");
+                                    }
+                                });
+                                
+                            });
+                        });
+                            
+                        </script>';
         
             echo $data;
         }

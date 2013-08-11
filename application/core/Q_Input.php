@@ -27,10 +27,10 @@ class Q_Input extends CI_Input
             {
                 $post[$key] = $this->_fetch_from_array($_POST, $key, $xss_clean);
             }
-            return mysql_real_escape_string($post);
+            return trim(mysql_real_escape_string($post));
         }
 
-        return mysql_real_escape_string($this->_fetch_from_array($_POST, $index, $xss_clean));
+        return trim(mysql_real_escape_string($this->_fetch_from_array($_POST, $index, $xss_clean)));
     }
 
 }
