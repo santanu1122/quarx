@@ -62,6 +62,10 @@
     </style>
 
     <script type="text/javascript">
+        $.ajaxSetup({
+            cache: false
+        });
+
         $.mobile.ajaxEnabled = false;
         $.mobile.selectmenu.prototype.options.nativeMenu = false;
         
