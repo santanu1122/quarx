@@ -185,7 +185,7 @@ class modelaccounts extends CI_Model {
     
     function search_accounts($term) 
     {
-        $qry = $this->db->query('SELECT * FROM `users` WHERE user_name LIKE "%'.$term.'%" AND user_id != 1 ORDER BY full_name ASC');      
+        $qry = $this->db->query('SELECT * FROM `users` WHERE user_name LIKE "%'.$term.'%" AND user_id != 1 AND permission < 50 ORDER BY full_name ASC');      
         if($qry)
         {
             return $qry->result();
@@ -199,10 +199,10 @@ class modelaccounts extends CI_Model {
             $offset = 0; 
         }
 
-        $qry = $this->db->query('SELECT * FROM `users` WHERE user_name LIKE "%'.$term.'%" AND user_id != 1
-                                || full_name LIKE "%'.$term.'%" AND user_id != 1
-                                || user_email LIKE "%'.$term.'%" AND user_id != 1
-                                || location LIKE "%'.$term.'%" AND user_id != 1
+        $qry = $this->db->query('SELECT * FROM `users` WHERE user_name LIKE "%'.$term.'%" AND user_id != 1 AND permission < 50
+                                || full_name LIKE "%'.$term.'%" AND user_id != 1 AND permission < 50
+                                || user_email LIKE "%'.$term.'%" AND user_id != 1 AND permission < 50
+                                || location LIKE "%'.$term.'%" AND user_id != 1 AND permission < 50
                                  ORDER BY full_name DESC LIMIT '.$offset.', '.$limit);     
         if($qry)
         {
@@ -212,10 +212,10 @@ class modelaccounts extends CI_Model {
     
     function full_search_totals($name)
     {
-        $qry = $this->db->query('SELECT * FROM `users` WHERE user_name LIKE "%'.$name.'%" AND user_id != 1
-                                || full_name LIKE "%'.$name.'%" AND user_id != 1
-                                || user_email LIKE "%'.$name.'%" AND user_id != 1
-                                || location LIKE "%'.$name.'%" AND user_id != 1
+        $qry = $this->db->query('SELECT * FROM `users` WHERE user_name LIKE "%'.$name.'%" AND user_id != 1 AND permission < 50
+                                || full_name LIKE "%'.$name.'%" AND user_id != 1 AND permission < 50
+                                || user_email LIKE "%'.$name.'%" AND user_id != 1 AND permission < 50
+                                || location LIKE "%'.$name.'%" AND user_id != 1 AND permission < 50
                                  ORDER BY full_name DESC');        
         if($qry)
         {

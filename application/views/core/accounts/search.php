@@ -37,11 +37,11 @@
 
             <?php foreach($results as $member): ?>
 
-                <div class="quarx-account-info-row quarx-gridrow quarx-bordered quarx-clickable" onclick="window.location='<?php echo site_url('accounts/editor/'.encrypt($member->user_id)); ?>'">
-                    <div class="grid25"><p><?php echo $member->user_name; ?></p></div>
-                    <div class="grid25 mHide"><p><?php echo valCheck($member->user_email); ?></p></div> 
-                    <div class="grid25 mHide"><p><?php echo valCheck($member->full_name); ?></p></div> 
-                    <div class="grid25 mHide"><p><?php echo valCheck($member->location); ?></p></div> 
+                <div class="quarx-account-info-row raw100 quarx-bordered quarx-clickable" onclick="window.location='<?php echo site_url('accounts/editor/'.encrypt($member->user_id)); ?>'">
+                    <div class="raw25"><p><?php echo $member->user_name; ?></p></div>
+                    <div class="raw25 mHide"><p><?php echo valCheck($member->user_email); ?></p></div> 
+                    <div class="raw25 mHide"><p><?php echo valCheck($member->full_name); ?></p></div> 
+                    <div class="raw25 mHide"><p><?php echo valCheck($member->location); ?></p></div> 
                 </div>
 
             <?php endforeach; ?>
