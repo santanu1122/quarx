@@ -39,13 +39,18 @@ class Connect_to_atomic extends CI_Controller {
         $db_path = '../application/config/database.php';
         $db_file = file_get_contents($db_path);
 
-        $db_file = str_replace("{username}", $db_info[0]->db_uname, $db_file);
-        $db_file = str_replace("{password}", $db_info[0]->db_password, $db_file);
-        $db_file = str_replace("{database}", $db_info[0]->db_uname.'_'.$db_info[0]->db_name, $db_file);
+        $dbs = $db_info[0]->option_data;
+        $dbs = substr($dbs, 1, (strlen($dbs)-2));
+        $dbs = explode(",", $dbs);
+
+        $db_file = str_replace("{username}", trim($dbs[0]), $db_file);
+        $db_file = str_replace("{password}", trim($dbs[1]), $db_file);
+        $db_file = str_replace("{database}", trim($dbs[0]).'_'.trim($dbs[2]), $db_file);
 
         if ( ! file_put_contents($db_path, $db_file) )
         {
-            redirect('setup/master?e');
+            $this->session->set_flashdata('error', 'Your connection to atomic was not successful');
+            redirect('setup/master');
         }
         else
         {

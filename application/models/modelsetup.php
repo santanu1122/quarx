@@ -215,7 +215,7 @@ function update_version($ver)
 
     function is_connected_to()
     {
-        $qry = $this->db->query("SELECT * FROM admin WHERE options_data = 'atomic'");
+        $qry = $this->db->query("SELECT * FROM admin WHERE admin_opts = 4");
         
         if($qry)
         {

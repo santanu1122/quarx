@@ -39,7 +39,7 @@ class Master extends CI_Controller {
         $atomic = $this->modelsetup->is_connected_to('atomic');
         
         if($atomic){
-            $data['atomic'] = $atomic[0]->option_title;
+            $data['atomic'] = true;
         }
 
         $data['status'] = "";
