@@ -185,7 +185,7 @@ class Login extends CI_Controller {
         {
             if($this->quarxsetup->get_option("auto_auth") == "on"){
                 $this->load->library("express_mail");
-                activated_account($this->input->post("user_email"));
+                activated_account($this->db->escape($this->input->post("user_email")));
             }
 
             redirect("login/success");
@@ -254,8 +254,8 @@ class Login extends CI_Controller {
 
     public function newpasswordsender() 
     {
-        $to = $this->input->post('u_email');
-        $name = $this->input->post('u_name');
+        $to = $this->db->escape($this->input->post('u_email'));
+        $name = $this->db->escape($this->input->post('u_name'));
 
         if($to === '' || $name === '')
         {

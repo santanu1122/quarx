@@ -245,7 +245,7 @@ class Accounts extends CI_Controller {
 
     function changepassword() 
     {   
-        if($this->input->post('password') == $this->input->post('confirm')) 
+        if($this->db->escape($this->input->post('password')) == $this->db->escape($this->input->post('confirm'))) 
         {
             $this->load->model('modellogin');
             $query = $this->modellogin->changepassword();
@@ -357,8 +357,8 @@ class Accounts extends CI_Controller {
         
             if($rand)
             {
-                $to = $this->input->post('user_email');
-                $name = $this->input->post('user_name');
+                $to = $this->db->escape($this->input->post('user_email'));
+                $name = $this->db->escape($this->input->post('user_name'));
                 $from = 'do-not-reply';
                 $subject = 'Your New '.$_SERVER['HTTP_HOST'].' Account';
                 $message = '
@@ -719,7 +719,7 @@ class Accounts extends CI_Controller {
         $this->load->library('cryptography');
         $this->load->library('toolbelt');
 
-        if($id == null){ $id = $this->input->post('search', true); }
+        if($id == null){ $id = $this->db->escape($this->input->post('search', true)); }
         $offset = $this->uri->segment(3);
         
         $this->load->library('pagination');
@@ -738,7 +738,7 @@ class Accounts extends CI_Controller {
         
         $qry = $this->modelaccounts->search_accounts_full($id, $offset, $config['per_page']);
         
-        $data['searchTerm'] = $this->input->post('search');
+        $data['searchTerm'] = $this->db->escape($this->input->post('search'));
         $data['totals'] = $config['total_rows'];
         $data['results'] = $qry;
 

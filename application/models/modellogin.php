@@ -26,7 +26,7 @@ class modellogin extends CI_Model {
 
         if($query->num_rows() == 1)
         {
-            $sql = "SELECT * FROM users WHERE user_name ='".$uname."'";
+            $sql = "SELECT * FROM users WHERE user_name ='".$this->db->escape_str($uname)."'";
             $qry = $this->db->query($sql);
 
             foreach ($qry->result() as $row):
@@ -113,22 +113,22 @@ class modellogin extends CI_Model {
 
     function validate()
     {
-        if($this->validAccount($this->input->post('username'), hash("sha256", $this->input->post('password'))) )
+        if($this->validAccount($this->input->post('username'), hash("sha256", $this->db->escape_str($this->input->post('password')))) )
         {
             return 'valid';
         }
         
-        elseif($this->disabledAccount($this->input->post('username'), hash("sha256", $this->input->post('password'))) )
+        elseif($this->disabledAccount($this->input->post('username'), hash("sha256", $this->db->escape_str($this->input->post('password')))) )
         {
             return 'disabled';
         }
         
-        elseif($this->unauthorizedAccount($this->input->post('username'), hash("sha256", $this->input->post('password'))) )
+        elseif($this->unauthorizedAccount($this->input->post('username'), hash("sha256", $this->db->escape_str($this->input->post('password')))) )
         {
             return 'unauthorized';
         }
         
-        elseif($this->noAccount($this->input->post('username'), hash("sha256", $this->input->post('password'))) )
+        elseif($this->noAccount($this->input->post('username'), hash("sha256", $this->db->escape_str($this->input->post('password')))) )
         {
             return 'noAccount';
         }
@@ -191,9 +191,9 @@ class modellogin extends CI_Model {
                         SET
                             user_pass = '".hash("sha256", $rand)."'
                         WHERE
-                            user_name = '".$this->input->post('u_name')."'
+                            user_name = '".$this->db->escape_str($this->input->post('u_name'))."'
                         AND
-                            user_email = '".$this->input->post('u_email')."'                          
+                            user_email = '".$this->db->escape_str($this->input->post('u_email'))."'                          
             ";
             
         $update_result = $this->db->query($update_sql);
@@ -203,7 +203,7 @@ class modellogin extends CI_Model {
     
     function changepassword()
     {
-        $sql = "UPDATE users SET `user_pass` = '".hash("sha256", $this->input->post('password'))."' WHERE user_id =".$this->session->userdata('user_id');
+        $sql = "UPDATE users SET `user_pass` = '".hash("sha256", $this->db->escape_str($this->input->post('password')))."' WHERE user_id =".$this->session->userdata('user_id');
         $qry = $this->db->query($sql);
         
         if($qry)
@@ -224,24 +224,24 @@ class modellogin extends CI_Model {
             $state = "enabled";
         }
 
-        if($this->input->post("password") != $this->input->post("confirm")){
+        if($this->db->escape_str($this->input->post("password")) != $this->db->escape_str($this->input->post("confirm"))){
             return false;
         }
         
-        $password = hash("sha256", $this->input->post("password"));
+        $password = hash("sha256", $this->db->escape_str($this->input->post("password")));
 
         if($this->input->post('user_name') > ''){
     
             $sql = "INSERT INTO 
                     users(user_name, user_email, user_pass, owner, permission, a_status, location, full_name, user_state, img) 
-                VALUES( '".$this->input->post('user_name')."', 
-                        '".$this->input->post('user_email')."',
+                VALUES( '".$this->db->escape_str($this->input->post('user_name'))."', 
+                        '".$this->db->escape_str($this->input->post('user_email'))."',
                         '".$password."',
                         '0',
                         '".$permission."',
                         '".$auth."',
-                        '".$this->input->post('location')."',
-                        '".$this->input->post('full_name')."',
+                        '".$this->db->escape_str($this->input->post('location'))."',
+                        '".$this->db->escape_str($this->input->post('full_name'))."',
                         '".$state."',
                         '".site_url()."uploads/img/thumb/default.jpg'
                         )";

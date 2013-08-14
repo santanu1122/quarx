@@ -84,7 +84,7 @@ class Edit extends CI_Controller {
 
             $data["masterPage"] = true;
 
-            $data['uname'] = $this->input->post('username');
+            $data['uname'] = $this->db->escape($this->input->post('username'));
             $data['root'] = base_url();
             $data['pageRoot'] = base_url().'index.php';
             $data['pagetitle'] = 'Setup Edit';
@@ -104,7 +104,7 @@ class Edit extends CI_Controller {
         
         /* Advanced Accounts
         *************************************/
-        $advancedAccounts = $this->input->post('advancedAccounts');
+        $advancedAccounts = $this->db->escape_str($this->input->post('advancedAccounts'));
 
         if($advancedAccounts === '1')
         {
@@ -121,7 +121,7 @@ class Edit extends CI_Controller {
         /* Master Access
         *************************************/
 
-        $masterAccess = $this->input->post('masterAccess');
+        $masterAccess = $this->db->escape_str($this->input->post('masterAccess'));
         if($masterAccess === '1')
         {
             $masterAccess = 'master access';
@@ -137,7 +137,7 @@ class Edit extends CI_Controller {
         /* Joining
         *************************************/
 
-        $enableJoining = $this->input->post('enableJoining');
+        $enableJoining = $this->db->escape_str($this->input->post('enableJoining'));
         if($enableJoining === '1')
         {
             $enableJoining = 'yes';
@@ -153,7 +153,7 @@ class Edit extends CI_Controller {
         /* Auto-Auth
         *************************************/
 
-        $autoAuth = $this->input->post('autoAuth');
+        $autoAuth = $this->db->escape_str($this->input->post('autoAuth'));
         if($autoAuth === '1')
         {
             $autoAuth = 'on';
