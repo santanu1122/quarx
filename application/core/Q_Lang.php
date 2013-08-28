@@ -25,7 +25,7 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 * THE SOFTWARE.
 */
-class Q_Lang extends CI_Lang
+class q_lang extends CI_Lang
 {
     function __construct() {
         
