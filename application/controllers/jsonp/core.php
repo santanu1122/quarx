@@ -14,7 +14,7 @@
  * 
  */
      
-class Core extends CI_Controller {
+class core extends CI_Controller {
 
     function __construct()
     {

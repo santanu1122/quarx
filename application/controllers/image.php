@@ -14,7 +14,7 @@
  * 
  */
      
-class Image extends CI_Controller {
+class image extends CI_Controller {
 
     function __construct()
     {

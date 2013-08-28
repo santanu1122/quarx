@@ -26,18 +26,18 @@
 <div class="raw100">
 
     <div class="quarx-small-device">
-        <div class="form raw100">
+        <div class="quarx-form raw100">
             
             <form method="post" action="<?php echo site_url('login/validator'); ?>" data-ajax="false">
                 <div class="raw100 quarx-mobile-table">
                     <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />
                     <div class="raw100">
                         <div class="raw50"><p>Username</p></div>
-                        <div class="raw50"><p><input type="text" name="username" /></p></div>
+                        <div class="raw50"><input type="text" name="username" /></div>
                     </div>
                     <div class="raw100">
                         <div class="raw50"><p>Password</p></div>
-                        <div class="raw50"><p><input type="password" name="password" /></p></div>
+                        <div class="raw50"><input type="password" name="password" /></div>
                     </div>
                     <div class="raw100">
                         <div class="raw50"><p>Remember Me <br /> ( 2 weeks )</p></div>

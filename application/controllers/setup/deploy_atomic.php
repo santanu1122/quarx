@@ -14,7 +14,7 @@
  * 
  */
      
-class Deploy_atomic extends CI_Controller {
+class deploy_atomic extends CI_Controller {
 
     function __construct()
     {

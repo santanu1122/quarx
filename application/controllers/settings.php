@@ -14,7 +14,7 @@
  * 
  */
      
-class Settings extends CI_Controller {
+class settings extends CI_Controller {
 
 /* Main Login
 ***************************************************************/

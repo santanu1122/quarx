@@ -14,7 +14,7 @@
  * 
  */
 
-class Cloudcatcher extends CI_Controller {
+class cloudcatcher extends CI_Controller {
 
     public function __construct()
     {

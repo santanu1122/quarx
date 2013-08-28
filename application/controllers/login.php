@@ -14,7 +14,7 @@
  * 
  */
      
-class Login extends CI_Controller {
+class login extends CI_Controller {
 
 /* Main Login
 ***************************************************************/

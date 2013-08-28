@@ -14,7 +14,7 @@
  * 
  */
      
-class Error extends CI_Controller {
+class error extends CI_Controller {
 
 /* Main Login
 ***************************************************************/

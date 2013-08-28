@@ -14,7 +14,7 @@
  * 
  */
      
-class User extends CI_Controller {
+class user extends CI_Controller {
 
 /* Initial Setup and Install
 ***************************************************************/

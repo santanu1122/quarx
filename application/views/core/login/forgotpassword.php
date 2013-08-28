@@ -34,7 +34,7 @@
         	<p>Please enter the following to get a new password sent to you.</p>
         </div>
         
-        <div class="raw100 form">
+        <div class="raw100 quarx-form">
             
             <form action="<?php echo site_url('login/newpasswordsender'); ?>" method="post">
                 <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />

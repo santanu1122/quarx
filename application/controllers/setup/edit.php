@@ -14,7 +14,7 @@
  * 
  */
      
-class Edit extends CI_Controller {
+class edit extends CI_Controller {
 
     function __construct()
     {

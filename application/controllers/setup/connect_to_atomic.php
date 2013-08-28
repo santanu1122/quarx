@@ -14,7 +14,7 @@
  * 
  */
      
-class Connect_to_atomic extends CI_Controller {
+class connect_to_atomic extends CI_Controller {
 
     function __construct()
     {

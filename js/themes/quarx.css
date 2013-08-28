@@ -1493,17 +1493,17 @@ a.ui-link-inherit {
 ***************************************************************/
 
 .ui-icon-quarx-login {
-    background-image: url(../images/icons/login_18.png);
+    background-image: url(../../images/icons/login_18.png);
 }
 
 .ui-icon-quarx-power{
-    background-image: url(../images/icons/power.png);
+    background-image: url(../../images/icons/power.png);
 }
 
 .ui-icon-quarx-add-user{
-    background-image: url(../images/icons/add_user.png);
+    background-image: url(../../images/icons/add_user.png);
 }
 
 .ui-icon-quarx-all-users{
-    background-image: url(../images/icons/all_users.png);
+    background-image: url(../../images/icons/all_users.png);
 }

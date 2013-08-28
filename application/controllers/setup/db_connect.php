@@ -14,7 +14,7 @@
  * 
  */
      
-class DB_connect extends CI_Controller {
+class db_connect extends CI_Controller {
 
     function __construct()
     {

@@ -14,7 +14,7 @@
  * 
  */
      
-class Install extends CI_Controller {
+class install extends CI_Controller {
 
     function __construct()
     {

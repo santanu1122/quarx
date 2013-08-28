@@ -45,7 +45,65 @@ class express_mail {
             
             $CI->email->send();
         }
+
+        /* After many headaches here is a Mandrill api connector
+        ***************************************************************/
     
+        function mandrill_message($key, $subject, $to, $to_name, $from, $from_name, $reply_to, $html)
+        {
+            if($to_name == null){ $to_name = "null"; }
+            if($from_name == null){ $from_name = "null"; }
+            if($reply_to == null){ $reply_to = "null"; }
+
+            $api = "https://mandrillapp.com/api/1.0/messages/send.json";
+            
+            $request = '{
+                "key": "'.$key.'",
+                "message": {
+                    "html": "'.str_replace(array("\r", "\n"), '', $html).'",
+                    "subject": "'.$subject.'",
+                    "from_email": "'.$from.'",
+                    "from_name": "'.$from_name.'",
+                    "to": [
+                        {
+                            "email": "'.$to.'",
+                            "name": "'.$to_name.'"
+                        }
+                    ],
+                    "headers": {
+                        "Reply-To": "'.$reply_to.'"
+                    }
+                },
+                "async": false,
+                "ip_pool": "Main Pool"
+            }';
+
+            $ch = curl_init();
+            
+            curl_setopt($ch, CURLOPT_URL, $api);
+            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true );
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true );
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $request);
+
+            $result = curl_exec($ch);
+            
+            if(curl_errno($ch)){
+                $result = curl_error($ch);
+            }
+
+            curl_close($ch);
+
+            $out = json_decode($result);
+
+            if($out[0]->status == 'sent'){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
     }
 
 }

@@ -14,7 +14,7 @@
  * 
  */
      
-class About extends CI_Controller {
+class about extends CI_Controller {
 
     public function __construct()
     {

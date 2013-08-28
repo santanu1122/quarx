@@ -14,7 +14,7 @@
  * 
  */
      
-class Accounts extends CI_Controller {
+class accounts extends CI_Controller {
 
     function __construct()
     {

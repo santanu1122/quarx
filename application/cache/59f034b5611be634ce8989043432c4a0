@@ -1,4 +1,4 @@
-1376443924TS--->
+1376502896TS--->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -100,6 +100,7 @@
                 <li><a href="http://localhost:8888/__quarx/quarx/setup">Setup</a></li>
                 <li><a href="http://localhost:8888/__quarx/quarx/admin/about">About</a></li>
                 
+                                <li><a href="http://localhost:8888/__quarx/quarx/admin/tests">Unit Tests</a></li>
                 
                             
         
@@ -152,7 +153,7 @@
 <div class="quarx-small-device">
                     
     <form id="pwChanger" class="raw100 raw-margin-top-30" method="post" action="http://localhost:8888/__quarx/quarx/accounts/changepassword">
-        <input type="hidden" name="q_csrf_token" value="7517a1421a9522fe532a9d9fbfde3bdd" />
+        <input type="hidden" name="q_csrf_token" value="9e4ecc5cb66d27d5c5e1d560f346f0f4" />
         <div class="raw100">
             <div class="raw100">
                 <div class="raw50"><p>New Password</p></div>
@@ -247,6 +248,10 @@
         <p>&copy; 2013 Matt Lantz</p>
     </div>
     
+            <div class="raw100 raw-left quarx-align-center">
+            <p>Elapsed Time: {elapsed_time} seconds</p>
+            <p>Memory Usage: {memory_usage}</p>
+        </div>
     
 </div><!-- end of all body contents -->
 

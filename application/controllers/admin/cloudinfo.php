@@ -14,7 +14,7 @@
  * 
  */
      
-class Cloudinfo extends CI_Controller {
+class cloudinfo extends CI_Controller {
 
     public function __construct()
     {
