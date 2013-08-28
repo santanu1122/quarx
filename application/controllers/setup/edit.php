@@ -57,7 +57,7 @@ class edit extends CI_Controller {
                 $data['masterAccess'] = '';
             } 
 
-            if($state[4]->option_data === 'yes')
+            if($this->quarxsetup->get_option("enable_joining") === 'yes')
             {
                 $data['joining'] = 'checked="checked"';
             }
@@ -66,7 +66,7 @@ class edit extends CI_Controller {
                 $data['joining'] = '';
             } 
 
-            if($state[5]->option_data === 'on')
+            if($this->quarxsetup->get_option("auto_auth") === 'on')
             {
                 $data['auto_auth'] = 'checked="checked"';
             }
@@ -75,8 +75,7 @@ class edit extends CI_Controller {
                 $data['auto_auth'] = '';
             } 
 
-            $status = $this->quarxsetup->account_opts();
-            if($status[4]->option_data == "no"){
+            if($this->quarxsetup->get_option("enable_joining") == "no"){
                 $data['joiningIsEnabled'] = false;
             }else{
                 $data['joiningIsEnabled'] = true;

@@ -619,6 +619,7 @@ body, html{
 .quarx-success-txt{
     padding: 5px; 
     color: #0C3; 
+    text-align: center;
 }
 
 .quarx-success-border{
@@ -645,9 +646,10 @@ body, html{
     color: #fff;
 }
 
-.quarx-error-text{
+.quarx-error-text, .quarx-error-txt{
     padding: 5px; 
     color: #F00; 
+    text-align: center;
 }
 
 .quarx-error-border{
