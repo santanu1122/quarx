@@ -29,9 +29,9 @@
                 <?php $allaccounts .= $user->user_email.', '; ?>
             <?php endforeach; ?>
 
-                <div class="textBox"><p onclick="dropIt('<?php echo $allaccounts; ?>')"><b>All Accounts</b></p></div>
+                <div class="textBox quarx-pointer"><p onclick="dropIt('<?php echo $allaccounts; ?>')"><b>All Accounts</b></p></div>
             <?php foreach($account as $user): ?>
-                <div class="textBox"><p onclick="dropIt('<?php echo $user->user_email; ?>')"><?php echo $user->user_name; ?> | <?php echo $user->user_email; ?></p></div>
+                <div class="textBox quarx-pointer"><p onclick="dropIt('<?php echo $user->user_email; ?>')"><?php echo $user->user_name; ?> | <?php echo $user->user_email; ?></p></div>
             <?php endforeach; ?>
 
         </div>

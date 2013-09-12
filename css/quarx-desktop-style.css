@@ -24,6 +24,10 @@ body, html{
     overflow: none;
 }
 
+a{
+    text-decoration: none;
+}
+
 #Menu.ui-body-c{
     background: transparent;
 }
@@ -542,7 +546,6 @@ body, html{
     z-index: 100000;
     min-height: 300px;
     text-align: left;
-    background: #f9f9f9;
 }
 
 #quarx-manual-menu-content ul{
@@ -558,7 +561,6 @@ body, html{
 #quarx-manual-menu-content ul li:hover{
     text-decoration: underline;
     cursor: pointer;
-    background: #eee;
 }
 
 .quarx-manual-content{

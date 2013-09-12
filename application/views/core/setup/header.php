@@ -29,7 +29,7 @@
 
     <link rel="shortcut icon" type="image" href="<?php echo $root; ?>images/favicon.ico" />
     <link rel="stylesheet" href="<?php echo $root; ?>js/themes/jquery.mobile.structure.min.css" />
-    <link rel="stylesheet" href="<?php echo $root; ?>js/themes/quarx.css" />
+    <link rel="stylesheet" href="<?php echo $root; ?>js/themes/<?php echo $this->config->item('theme'); ?>.css" />
     <link rel="stylesheet" href="<?php echo $root; ?>css/raw.min.css" />
     <link rel="stylesheet" href="<?php echo $root; ?>css/quarx-desktop-style.css" lang="EN" dir="ltr" type="text/css" />
     <link rel='stylesheet' media='screen and (min-width: 768px) and (max-width: 960px)' href='<?php echo $root; ?>css/quarx-tablet-style.css' />
@@ -57,7 +57,7 @@
 
 <body>
 
-    <div id="quarx" data-role="page" data-theme="a">
+    <div id="quarx" data-role="page" <?php if($this->config->item('theme') !== "flatui"){ echo 'data-theme="a"'; } ?>>
 
             <?php $this->load->view('common/main_menu'); ?>
 
@@ -67,7 +67,7 @@
 
         <div id="header" data-role="header">
             <?php if(isset($masterPage)){ ?>
-                <a class="quarx-top-menu-icons" href="#quarx-main-menu" data-role="button" data-icon="bars" data-iconpos="notext" data-tooltip="Menu"></a>
+                <a class="quarx-top-menu-icons" href="#quarx-main-menu" data-role="button" data-icon="quarx-bars" data-iconpos="notext" data-tooltip="Menu"></a>
             <?php }else{ ?>
                 <a class="quarx-top-menu-icons" data-rel="back" data-icon="back" data-iconpos="notext"></a>
             <?php } ?>

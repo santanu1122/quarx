@@ -23,7 +23,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <meta name="description" content="A simple to use, responsive design CMS system." />
     <meta name="keywords" content="CMS System, Zen, Responsive Design" />
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
 
     <title>Quarx | <?php echo $pagetitle; ?></title>
 
@@ -39,8 +39,9 @@
     <script type="text/javascript" src="<?php echo $root; ?>js/jquery-migrate.min.js"></script>
 
     <!-- jQuery Mobile Quarx Theme -->
-    <link rel="stylesheet" href="<?php echo $root; ?>js/themes/quarx.css" />
+    <link rel="stylesheet" href="<?php echo $root; ?>js/themes/<?php echo $this->config->item('theme'); ?>.css" />
     <link rel="stylesheet" href="<?php echo $root; ?>js/themes/jquery.mobile.structure.min.css" />
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="<?php echo $root; ?>js/quarxfunc.js"></script>
     <script type="text/javascript" src="<?php echo $root; ?>js/jquery.mobile.min.js"></script>
 
@@ -81,7 +82,9 @@
                 minHeight: 275
             });
 
-            $(".quarx-top-menu-icons").tooltip();
+            if($(window).width() > 600){
+                $(".quarx-top-menu-icons").tooltip();
+            }
         });
 
     </script>
@@ -107,7 +110,7 @@
 
         <div data-role="header">
             <?php if($this->session->userdata('logged_in')){ ?>
-            <a class="quarx-top-menu-icons" href="#quarx-main-menu" data-role="button" data-icon="bars" data-iconpos="notext" data-tooltip="Menu"></a>
+            <a class="quarx-top-menu-icons" href="#quarx-main-menu" data-role="button" data-icon="quarx-bars" data-iconpos="notext" data-tooltip="Menu"></a>
             <?php }else{ ?>
             <a class="quarx-top-menu-icons" href="<?php echo site_url('login'); ?>" data-iconpos="notext" data-role="button" data-icon="quarx-login" data-tooltip="Login"></a>
             <?php } ?>

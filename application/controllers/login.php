@@ -47,8 +47,7 @@ class login extends CI_Controller {
                     $data['message'] =  '';
                 }
 
-                $status = $this->quarxsetup->account_opts();
-                if($status[4]->option_data == "no"){
+                if($this->quarxsetup->get_option("enable_joining") == "no"){
                     $data['joiningIsEnabled'] = false;
                 }else{
                     $data['joiningIsEnabled'] = true;
@@ -129,15 +128,19 @@ class login extends CI_Controller {
 
     public function join() 
     {  
-        $data['error'] = $this->session->flashdata("error");
+        if($this->quarxsetup->get_option("enable_joining") == "yes"){
+            $data['error'] = $this->session->flashdata("error");
 
-        $data['root'] = base_url();
-        $data['pageRoot'] = base_url().'index.php';
-        $data['pagetitle'] = 'Join';
+            $data['root'] = base_url();
+            $data['pageRoot'] = base_url().'index.php';
+            $data['pagetitle'] = 'Join';
 
-        $this->load->view('common/header', $data);
-        $this->load->view('core/login/join', $data);
-        $this->load->view('common/footer', $data);
+            $this->load->view('common/header', $data);
+            $this->load->view('core/login/join', $data);
+            $this->load->view('common/footer', $data);
+        }else{
+            redirect("login");
+        }
     }
 
     public function success() 

@@ -117,7 +117,7 @@ class modelimg extends CI_Model {
     function delete_collection()
     {
         $id = $this->input->post('idTag');
-        $res = $this->db->query("SELECT * FROM img WHERE img_collection = '".$this->db->escape($id)."'");
+        $res = $this->db->query("SELECT * FROM img WHERE img_collection = '".$id."'");
         $res = $res->num_rows();
 
         if($res > 0)
@@ -126,7 +126,7 @@ class modelimg extends CI_Model {
         }
         else
         {
-            $query = $this->db->query("DELETE FROM img_collections WHERE collection_id = '".$this->db->escape($id)."'");
+            $query = $this->db->query("DELETE FROM img_collections WHERE collection_id = '".$id."'");
             if($query)
             {
                 return true;
@@ -142,10 +142,10 @@ class modelimg extends CI_Model {
         $img_qry = $this->db->query(    'UPDATE 
                                             img 
                                         SET 
-                                            `img_alt_tag` = "'.$this->db->escape($alt).'",
-                                            `img_title_tag` = "'.$this->db->escape($title).'"
+                                            `img_alt_tag` = "'.$this->db->escape_str($alt).'",
+                                            `img_title_tag` = "'.$this->db->escape_str($title).'"
                                         WHERE 
-                                            img_id = '.$this->db->escape($id));     
+                                            img_id = '.$id);     
         if(!$img_qry)
         {
             return false;
@@ -154,7 +154,7 @@ class modelimg extends CI_Model {
 
     function get_alt_title($id)
     {       
-        $img_qry = $this->db->query('SELECT * FROM `img` WHERE img_id = '.$this->db->escape($id));     
+        $img_qry = $this->db->query('SELECT * FROM `img` WHERE img_id = '.$id);     
         if($img_qry)
         {
             return $img_qry->result();

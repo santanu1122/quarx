@@ -22,7 +22,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="<?php echo $root; ?>js/themes/jquery.mobile.structure.min.css" />
-    <link rel="stylesheet" href="<?php echo $root; ?>js/themes/quarx.css" />
+    <link rel="stylesheet" href="<?php echo $root; ?>js/themes/<?php echo $this->config->item('theme'); ?>.css" />
     <link rel="stylesheet" href="<?php echo $root; ?>css/quarx-desktop-style.css" lang="EN" dir="ltr" type="text/css" />
 
     <script type="text/javascript" src="<?php echo $root; ?>js/jquery.min.js"></script>

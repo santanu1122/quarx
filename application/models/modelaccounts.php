@@ -185,7 +185,7 @@ class modelaccounts extends CI_Model {
     
     function search_accounts($term) 
     {
-        $qry = $this->db->query('SELECT * FROM `users` WHERE user_name LIKE "%'.$this->db->escape_str($term).'%" AND user_id != 1 AND permission < 50 ORDER BY full_name ASC');      
+        $qry = $this->db->query('SELECT * FROM `users` WHERE user_name LIKE "%'.$this->db->escape_like_str($term).'%" AND user_id != 1 AND permission < 50 ORDER BY full_name ASC');      
         if($qry)
         {
             return $qry->result();
@@ -199,11 +199,11 @@ class modelaccounts extends CI_Model {
             $offset = 0; 
         }
 
-        $qry = $this->db->query('SELECT * FROM `users` WHERE user_name LIKE "%'.$this->db->escape_str($term).'%" AND user_id != 1 AND permission < 50
-                                || full_name LIKE "%'.$this->db->escape_str($term).'%" AND user_id != 1 AND permission < 50
-                                || user_email LIKE "%'.$this->db->escape_str($term).'%" AND user_id != 1 AND permission < 50
-                                || location LIKE "%'.$this->db->escape_str($term).'%" AND user_id != 1 AND permission < 50
-                                 ORDER BY full_name DESC LIMIT '.$this->db->escape_str($offset).', '.$this->db->escape_str($limit));     
+        $qry = $this->db->query('SELECT * FROM `users` WHERE user_name LIKE "%'.$this->db->escape_like_str($term).'%" AND user_id != 1 AND permission < 50
+                                || full_name LIKE "%'.$this->db->escape_like_str($term).'%" AND user_id != 1 AND permission < 50
+                                || user_email LIKE "%'.$this->db->escape_like_str($term).'%" AND user_id != 1 AND permission < 50
+                                || location LIKE "%'.$this->db->escape_like_str($term).'%" AND user_id != 1 AND permission < 50
+                                 ORDER BY full_name DESC LIMIT '.$offset.', '.$limit);     
         if($qry)
         {
             return $qry->result();
@@ -212,10 +212,10 @@ class modelaccounts extends CI_Model {
     
     function full_search_totals($name)
     {
-        $qry = $this->db->query('SELECT * FROM `users` WHERE user_name LIKE "%'.$this->db->escape_str($name).'%" AND user_id != 1 AND permission < 50
-                                || full_name LIKE "%'.$this->db->escape_str($name).'%" AND user_id != 1 AND permission < 50
-                                || user_email LIKE "%'.$this->db->escape_str($name).'%" AND user_id != 1 AND permission < 50
-                                || location LIKE "%'.$this->db->escape_str($name).'%" AND user_id != 1 AND permission < 50
+        $qry = $this->db->query('SELECT * FROM `users` WHERE user_name LIKE "%'.$this->db->escape_like_str($name).'%" AND user_id != 1 AND permission < 50
+                                || full_name LIKE "%'.$this->db->escape_like_str($name).'%" AND user_id != 1 AND permission < 50
+                                || user_email LIKE "%'.$this->db->escape_like_str($name).'%" AND user_id != 1 AND permission < 50
+                                || location LIKE "%'.$this->db->escape_like_str($name).'%" AND user_id != 1 AND permission < 50
                                  ORDER BY full_name DESC');        
         if($qry)
         {

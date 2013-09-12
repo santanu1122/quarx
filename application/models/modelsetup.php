@@ -23,7 +23,7 @@ function is_installed()
 {
     $qry = $this->db->query('SELECT * FROM admin');
     
-    if($qry->num_rows() > 0){
+    if(count($qry->result()) > 0){
         return true;
     }else{
         return false;

@@ -446,3 +446,13 @@ $config['footer_visible'] = true;
 
 $config['jsonp_token'] = "@hacKer2082";
 
+/*
+|--------------------------------------------------------------------------
+| Themeing connection
+|--------------------------------------------------------------------------
+|
+| Available Themes: quarx, ios, flatui, bootstrap
+|
+*/
+
+$config['theme'] = "quarx";

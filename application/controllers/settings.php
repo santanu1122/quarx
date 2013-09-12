@@ -16,6 +16,17 @@
      
 class settings extends CI_Controller {
 
+    function __construct()
+    {
+        parent::__construct();
+        
+        if(!$this->session->userdata('logged_in')){
+            redirect('login/error');
+        }
+
+        $this->lang->load(config_item('language_abbr'), config_item('language'));
+    }
+
 /* Main Login
 ***************************************************************/
 

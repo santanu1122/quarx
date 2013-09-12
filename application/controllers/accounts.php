@@ -245,7 +245,7 @@ class accounts extends CI_Controller {
 
     function changepassword() 
     {   
-        if($this->db->escape($this->input->post('password')) == $this->db->escape($this->input->post('confirm'))) 
+        if($this->input->post('password') == $this->input->post('confirm') && $this->input->post('confirm') !== '') 
         {
             $this->load->model('modellogin');
             $query = $this->modellogin->changepassword();
@@ -260,6 +260,9 @@ class accounts extends CI_Controller {
                 $this->session->set_flashdata('error', 'update failed'); 
                 redirect('accounts');
             }
+        }else{
+            $this->session->set_flashdata('error', 'update failed'); 
+            redirect('accounts');
         }
     }  
     
@@ -719,7 +722,7 @@ class accounts extends CI_Controller {
         $this->load->library('cryptography');
         $this->load->library('toolbelt');
 
-        if($id == null){ $id = $this->db->escape($this->input->post('search', true)); }
+        if($id == null){ $id = $this->input->post('search', true); }
         $offset = $this->uri->segment(3);
         
         $this->load->library('pagination');
@@ -738,7 +741,7 @@ class accounts extends CI_Controller {
         
         $qry = $this->modelaccounts->search_accounts_full($id, $offset, $config['per_page']);
         
-        $data['searchTerm'] = $this->db->escape($this->input->post('search'));
+        $data['searchTerm'] = $this->input->post('search');
         $data['totals'] = $config['total_rows'];
         $data['results'] = $qry;
 
