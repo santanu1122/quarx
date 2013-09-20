@@ -257,8 +257,8 @@ class login extends CI_Controller {
 
     public function newpasswordsender() 
     {
-        $to = $this->db->escape($this->input->post('u_email'));
-        $name = $this->db->escape($this->input->post('u_name'));
+        $to = $this->input->post('u_email');
+        $name = $this->input->post('u_name');
 
         if($to === '' || $name === '')
         {

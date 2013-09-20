@@ -360,8 +360,8 @@ class accounts extends CI_Controller {
         
             if($rand)
             {
-                $to = $this->db->escape($this->input->post('user_email'));
-                $name = $this->db->escape($this->input->post('user_name'));
+                $to = $this->input->post('user_email');
+                $name = $this->input->post('user_name');
                 $from = 'do-not-reply';
                 $subject = 'Your New '.$_SERVER['HTTP_HOST'].' Account';
                 $message = '

@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
     `db_password` varchar(50) NOT NULL,
     `db_name` varchar(50) NOT NULL,
     PRIMARY KEY (`admin_opts`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `admin`
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `img` (
     `img_alt_tag` varchar(255) NOT NULL,
     `img_title_tag` varchar(255) NOT NULL,
     PRIMARY KEY (`img_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `img_collections` (
     `collection_id` int(14) NOT NULL AUTO_INCREMENT,
     `collection_name` varchar(255) NOT NULL,
     PRIMARY KEY (`collection_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS `users` (
     `user_email` varchar(160) NOT NULL,
     `permission` int(2) NOT NULL,
     `owner` int(8) NOT NULL,
-    `status` varchar(40) NOT NULL,
+    `a_status` varchar(40) NOT NULL,
     `full_name` varchar(255) NOT NULL,
     `img` varchar(255) NOT NULL DEFAULT 'default.jpg',
     `location` varchar(255) NOT NULL,
@@ -106,11 +106,11 @@ CREATE TABLE IF NOT EXISTS `users` (
     `login_counter` int(10) NOT NULL,
     PRIMARY KEY (`user_id`),
     UNIQUE KEY `user_name` (`user_name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `user_name`, `user_pass`, `user_email`, `permission`, `owner`, `status`, `full_name`, `img`, `location`, `lat`, `lng`, `user_state`, `address`, `city`, `state`, `country`, `phone`, `fax`, `website`, `company`, `last_login`, `login_counter`) VALUES
+INSERT INTO `users` (`user_id`, `user_name`, `user_pass`, `user_email`, `permission`, `owner`, `a_status`, `full_name`, `img`, `location`, `lat`, `lng`, `user_state`, `address`, `city`, `state`, `country`, `phone`, `fax`, `website`, `company`, `last_login`, `login_counter`) VALUES
 (1, 'master', 'fc613b4dfd6736a7bd268c8a0e74ed0d1c04a959f59dd74ef2874983fd443fc9', 'masteruser@somewhere.com', 1, 0, 'authorized', 'Master User', 'default.jpg', 'somewhere', 0.000000, 0.000000, 'enabled', '', '', '', '', '', '', '', '', '2013-01-01', 0);
