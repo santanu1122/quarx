@@ -14,6 +14,19 @@
  * 
  */
 
+    $carabiner_config = array(
+        'script_dir' => 'js/', 
+        'style_dir'  => 'css/',
+        'cache_dir'  => 'cache/',
+        'base_uri'   => base_url(),
+        'combine'    => FALSE,
+        'dev'        => FALSE,
+        'minify_js'  => TRUE,
+        'minify_css' => TRUE
+    );
+    
+    $this->carabiner->config($carabiner_config);
+
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -27,31 +40,35 @@
 
     <title>Quarx | <?php echo $pagetitle; ?></title>
 
+    <?php $this->carabiner->css('http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic,700italic'); ?>
+
     <!-- Quarx Custom Styles -->
     <link rel="shortcut icon" type="image" href="<?php echo $root; ?>images/favicon.ico" />
     <link rel="stylesheet" href="<?php echo $root; ?>css/raw.min.css" />
-    <link rel="stylesheet" href="<?php echo $root; ?>css/quarx-desktop-style.css" lang="EN" dir="ltr" type="text/css" />
-    <link rel='stylesheet' media='screen and (min-width: 320px) and (max-width: 960px)' href='<?php echo $root; ?>css/quarx-tablet-style.css' />
-    <link rel='stylesheet' media='screen and (min-width: 120px) and (max-width: 668px)' href='<?php echo $root; ?>css/quarx-mobile-styles.css' />
-
+    
     <!-- jQuery -->
+    <link rel="stylesheet" href="<?php echo $root; ?>js/themes/jquery.mobile.structure.min.css" />
     <script type="text/javascript" src="<?php echo $root; ?>js/jquery.min.js"></script>
     <script type="text/javascript" src="<?php echo $root; ?>js/jquery-migrate.min.js"></script>
-
-    <!-- jQuery Mobile Quarx Theme -->
-    <link rel="stylesheet" href="<?php echo $root; ?>js/themes/<?php echo $this->config->item('theme'); ?>.css" />
-    <link rel="stylesheet" href="<?php echo $root; ?>js/themes/jquery.mobile.structure.min.css" />
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <script type="text/javascript" src="<?php echo $root; ?>js/quarxfunc.js"></script>
     <script type="text/javascript" src="<?php echo $root; ?>js/jquery.mobile.min.js"></script>
-
-    <!-- jquery plugins -->
-    <script type="text/javascript" src="<?php echo $root; ?>js/jquery.deefault.js"></script>
-    <script type="text/javascript" src="<?php echo $root; ?>js/jquery.tooltip.js"></script>
 
     <!-- Redactor -->
     <link rel="stylesheet" href="<?php echo $root; ?>js/redactor/redactor.css" />
-    <script src="<?php echo $root; ?>js/redactor/redactor.min.js"></script>
+    <script type="text/javascript" src="<?php echo $root; ?>js/redactor/redactor.min.js"></script>
+
+    <?php $this->carabiner->css('quarx-desktop-style.css'); ?>
+    <?php $this->carabiner->css('quarx-tablet-style.css', 'screen and (min-width: 320px) and (max-width: 960px)'); ?>
+    <?php $this->carabiner->css('quarx-mobile-style.css', 'screen and (min-width: 120px) and (max-width: 668px)'); ?>
+    
+    <!-- jQuery Plugins -->
+    <?php $this->carabiner->js('jquery.deefault.js'); ?>
+    <?php $this->carabiner->js('jquery.tooltip.js'); ?>
+
+    <!-- jQuery Mobile Quarx Theme -->
+    <?php $this->carabiner->css('../js/themes/'.$this->config->item('theme').'.css'); ?>
+    <?php $this->carabiner->js('quarxfunc.js'); ?>
+
+    <?php $this->carabiner->display(); ?>
     
     <!-- Custom Scripts -->
     <script type="text/javascript">

@@ -37,11 +37,9 @@
             if(window.frameElement.getAttribute('data-location') == 'fullScreen'){
                 $('#quarx-full-screen-image-library-header').remove();
             }else{
-                $("#quarx-new-collection").css("top", "226px");
+                $("#quarx-new-collection").css("top", "232px");
             }
         });
-
-        
 
     </script>
 

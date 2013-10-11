@@ -57,7 +57,7 @@
 
 <body>
 
-    <div id="quarx" data-role="page" <?php if($this->config->item('theme') !== "flatui"){ echo 'data-theme="a"'; } ?>>
+    <div id="quarx" data-role="page" data-theme="a">
 
             <?php $this->load->view('common/main_menu'); ?>
 

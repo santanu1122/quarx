@@ -228,7 +228,7 @@ class image extends CI_Controller {
 *************************************/
     public function add_image()
     {
-        $collection = $this->db->escape($this->input->post('collection'));
+        $collection = $this->input->post('collection');
 
         $this->load->model('modelimg');
         $this->load->helper(array('form', 'url'));

@@ -1,0 +1,96 @@
+<!--
+
+/**
+ * Quarx
+ *
+ * A modular application framework built on CodeIgniter
+ *
+ * @package     Quarx
+ * @author      Matt Lantz
+ * @copyright   Copyright (c) 2013 Matt Lantz
+ * @license     http://ottacon.co/quarx/license.html
+ * @link        http://ottacon.co/quarx
+ * @since       Version 1.0
+ * 
+ */
+
+-->
+
+<!DOCTYPEHTML>
+
+<html lang='en-US'>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta name="description" content="A simple to use, responsive design CMS system." />
+    <meta name="keywords" content="CMS System, Zen, Responsive Design" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    
+    <title>Quarx</title>
+
+    <!-- Quarx Custom Styles -->
+    <link rel="shortcut icon" type="image" href="images/favicon.ico" />
+    <link rel="stylesheet" href="css/raw.min.css" />
+    <link rel="stylesheet" href="css/quarx-desktop-style.css" lang="EN" dir="ltr" type="text/css" />
+    <link rel='stylesheet' media='screen and (min-width: 320px) and (max-width: 980px)' href='css/quarx-tablet-style.css' />
+    <link rel='stylesheet' media='screen and (min-width: 120px) and (max-width: 768px)' href='css/quarx-mobile-styles.css' />
+
+    <!-- jQuery -->
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery-migrate.min.js"></script>
+
+    <!-- jQuery Mobile Quarx Theme -->
+    <link rel="stylesheet" href="js/themes/quarx.css" />
+    <link rel="stylesheet" href="js/themes/jquery.mobile.structure.min.css" />
+    <script type="text/javascript" src="js/quarxfunc.js"></script>
+    <script type="text/javascript" src="js/jquery.mobile.min.js"></script>
+
+</head>
+<body>
+
+    <div data-role="page" data-url="Welcome" data-theme="a">
+
+        <div data-role="header">
+            <h1>Welcome to Quarx</h1>
+        </div>
+
+        <div id="body" data-role="content">
+            <div class="quarx-small-device">
+                <h2>Introduction</h2>
+                <p>Quarx is a powerful and yet simplistic framework for building dynamic-modular web applications.</p>
+                <p>Built on the power of CodeIgniter it provides a way to initiate a web application in minutes or add an administration layer to an existing web application.</p>
+
+                <hr />
+
+                <h2>Requirements</h2>
+                <ul>
+                    <li>PHP 5.1.6+</li>
+                    <li>MySQL</li>
+                    <li>cURL</li>
+                </ul>
+
+                <hr />
+
+                <h2>Installation</h2>
+                <p><a href="setup/install">Click here to Install</a></p>
+
+                <hr />
+
+                <h2>Special Notes:</h2>
+                <p>If you're adding Quarx to an exsiting database, you need to ensure there is not the following tables:<p>
+                <ul>
+                    <li>users</li>
+                    <li>img</li>
+                    <li>img_categories</li>
+                    <li>admin</li>
+                </ul>
+
+                <p>If you wish to avoid using the installed please take the sql file and import it to the database. Then modify the following file: <b>/application/config/database.php</b>, and set it with the database user details. The master login for this install method is U: master P: master</p>
+
+            </div>
+
+        </div>
+
+</div>
+
+</body>
+</html>

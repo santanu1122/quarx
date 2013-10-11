@@ -433,7 +433,7 @@ endif;
 |
 */
 
-$config['footer_visible'] = true;
+$config['footer_visible'] = false;
 
 /*
 |--------------------------------------------------------------------------

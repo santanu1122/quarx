@@ -52,7 +52,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('database', 'session', 'cryptography', 'quarxsetup', 'json_lib', 'account_tools', 'module_tools', 'mobile', 'image_tools', 'toolbelt');
+$autoload['libraries'] = array('database', 'session', 'cryptography', 'quarxsetup', 'json_lib', 'account_tools', 'module_tools', 'mobile', 'image_tools', 'toolbelt', 'carabiner');
 
 
 /*
