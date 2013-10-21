@@ -22,7 +22,7 @@ class core extends CI_Controller {
         
         $this->valid_ips = array();
         
-        if(check_jsonp_token($this->db->escape($this->input->get('token')))){
+        if(check_jsonp_token($this->db->escape_str($this->input->get('token')))){
             array_push($this->valid_ips, $_SERVER['REMOTE_ADDR']);
         }else{
             echo 'failed()';
@@ -67,12 +67,12 @@ class core extends CI_Controller {
     public function validate() 
     {
         $this->load->model('modellogin');
-        $query = $this->modellogin->validAccount($this->db->escape($this->input->get('username')), hash("sha256", $this->db->escape($this->input->get('password'))));
+        $query = $this->modellogin->validAccount($this->db->escape_str($this->input->get('username')), hash("sha256", $this->db->escape_str($this->input->get('password'))));
 
         if($query)
         {
             $data = array(
-                'username' => $this->db->escape($this->input->get('username')),
+                'username' => $this->db->escape_str($this->input->get('username')),
                 'logged_in' => true
             );
 
