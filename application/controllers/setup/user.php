@@ -1,9 +1,9 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-     
+
 /**
  * Quarx
  *
- * A modular application framework built on CodeIgniter
+ * A modular application framework
  *
  * @package     Quarx
  * @author      Matt Lantz
@@ -11,24 +11,32 @@
  * @license     http://ottacon.co/quarx/license.html
  * @link        http://ottacon.co/quarx
  * @since       Version 1.0
- * 
+ *
  */
-     
-class user extends CI_Controller {
 
-/* Initial Setup and Install
-***************************************************************/
+class User extends CI_Controller {
 
-    public function index() 
+    public function __construct()
+    {
+        parent::__construct();
+
+        $with_tables = true;
+
+        if ($this->quarx->is_installed($with_tables))
+        {
+            redirect('login');
+        }
+    }
+
+    public function index()
     {
         $data['root'] = base_url();
         $data['pageRoot'] = base_url().'index.php';
-        $data['pagetitle'] = 'Setup';
-        
-        $data['masterPage'] = true;
+        $data['pagetitle'] = 'Setup: Master User';
 
-        $this->load->view('core/setup/header', $data);
-        $this->load->view('core/setup/user_setup', $data);
+        $this->load->view('common/header', $data);
+        $this->load->view('core/setup/step_2', $data);
+        $this->load->view('common/footer', $data);
     }
 
 }

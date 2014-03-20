@@ -1,0 +1,149 @@
+1394637820TS--->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta name="description" content="A simple to use, responsive design CMS system." />
+    <meta name="keywords" content="CMS System, Zen, Responsive Design" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+
+    <title>Quarx | Change my Password</title>
+
+    
+    <!-- Quarx Custom Styles -->
+    <link rel="shortcut icon" type="image" href="http://localhost:8888/_my_projects/quarx/quarx5/images/favicon.ico" />
+    <link rel="stylesheet" href="http://localhost:8888/_my_projects/quarx/quarx5/css/raw.min.css" />
+
+    <!-- jQuery -->
+    <link rel="stylesheet" href="http://localhost:8888/_my_projects/quarx/quarx5/js/themes/jquery.mobile.structure.min.css" />
+    <script type="text/javascript" src="http://localhost:8888/_my_projects/quarx/quarx5/js/jquery.min.js"></script>
+    <script type="text/javascript" src="http://localhost:8888/_my_projects/quarx/quarx5/js/jquery-migrate.min.js"></script>
+    <script type="text/javascript" src="http://localhost:8888/_my_projects/quarx/quarx5/js/jquery.mobile.min.js"></script>
+
+    <!-- Redactor -->
+    <link rel="stylesheet" href="http://localhost:8888/_my_projects/quarx/quarx5/js/redactor/redactor.css" />
+    <script type="text/javascript" src="http://localhost:8888/_my_projects/quarx/quarx5/js/redactor/redactor.min.js"></script>
+
+            
+    <!-- jQuery Plugins -->
+        
+    <!-- jQuery Mobile Quarx Theme -->
+            
+    <script type="text/javascript" src="http://localhost:8888/_my_projects/quarx/quarx5/js/jquery.deefault.js" charset="UTF-8"></script>
+<script type="text/javascript" src="http://localhost:8888/_my_projects/quarx/quarx5/js/jquery.tooltip.js" charset="UTF-8"></script>
+<script type="text/javascript" src="http://localhost:8888/_my_projects/quarx/quarx5/js/quarx.js" charset="UTF-8"></script>
+<script type="text/javascript" src="http://localhost:8888/_my_projects/quarx/quarx5/js/quarx-footer.js" charset="UTF-8"></script>
+<link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic,700italic" media="screen" />
+<link type="text/css" rel="stylesheet" href="http://localhost:8888/_my_projects/quarx/quarx5/css/quarx-desktop-style.css" media="screen" />
+<link type="text/css" rel="stylesheet" href="http://localhost:8888/_my_projects/quarx/quarx5/js/themes/quarx.css" media="screen" />
+<link type="text/css" rel="stylesheet" href="http://localhost:8888/_my_projects/quarx/quarx5/css/quarx-tablet-style.css" media="screen and (min-width: 320px) and (max-width: 960px)" />
+<link type="text/css" rel="stylesheet" href="http://localhost:8888/_my_projects/quarx/quarx5/css/quarx-mobile-style.css" media="screen and (min-width: 120px) and (max-width: 668px)" />
+
+    <!--[if gte IE 7]>
+    <link rel="stylesheet" type="text/css" href="http://localhost:8888/_my_projects/quarx/quarx5/css/ie.css" />
+    <![endif]-->
+
+    <!-- Custom Scripts -->
+    <script type="text/javascript">
+        </script>
+
+    <style type="text/css">
+        </style>
+
+</head>
+
+<body>
+
+    <div data-role="page" data-url="Change my Password" data-theme="a" style="margin-top: -2px;"><!-- beginning of all body contents -->
+
+        <div class="quarx-notification">
+            <div class="quarx-notify">
+                <p class="quarx-notify-title"></p>
+                <p class="quarx-notify-comment"></p>
+            </div>
+            <div class="quarx-notify-closer">
+                <button data-role="button" data-icon="delete" class="quarx-notify-closer-icon" data-iconpos="notext"></button>
+            </div>
+        </div>
+
+        
+<div data-role="panel" data-display="reveal" id="quarx-main-menu" class="quarx-menu-panel quarx-panel-box">
+
+    <h2 class="quarx-menu-title"><img src="http://localhost:8888/_my_projects/quarx/quarx5/images/quarx.png" width="15px" /> Quarx </h2>
+
+    <ul id="quarx-menu" data-role="listview">
+
+        
+<li><a href="http://localhost:8888/_my_projects/quarx/quarx5/sample">Sample</a></li><li><a href="http://localhost:8888/_my_projects/quarx/quarx5/image/library">Image Library</a></li><li><a href="http://localhost:8888/_my_projects/quarx/quarx5/file/library">File Library</a></li><li><a href="http://localhost:8888/_my_projects/quarx/quarx5/admin/manual">Manual</a></li><li><a href="http://localhost:8888/_my_projects/quarx/quarx5/admin">Admin</a></li><li><a href="http://localhost:8888/_my_projects/quarx/quarx5/admin/about">Admin - About</a></li><li><a href="http://localhost:8888/_my_projects/quarx/quarx5/admin/cloudcatcher">Admin - CloudCatcher</a></li><li><a href="http://localhost:8888/_my_projects/quarx/quarx5/unit">Unit Tests</a></li>
+    </ul>
+
+</div>
+
+
+<div data-role="panel" data-display="overlay" data-position="right" id="quarx-profile-menu" class="quarx-account-menu-panel quarx-panel-box">
+    <div class="account-menu-box">
+        <h2 class="quarx-menu-title">Accounts</h2>
+    </div>
+
+    <ul id="quarx-account-menu" data-role="listview">
+
+        <li data-icon="home"><a href="http://localhost:8888/_my_projects/quarx/quarx5/users/profile">My Account</a></li><li data-icon="quarx-login"><a href="http://localhost:8888/_my_projects/quarx/quarx5/users/password">Update Password</a></li><li data-icon="quarx-add-user"><a href="http://localhost:8888/_my_projects/quarx/quarx5/users/add">Add an Account</a></li><li data-icon="quarx-all-users"><a href="http://localhost:8888/_my_projects/quarx/quarx5/users/view">View Accounts</a></li><li data-icon="gear"><a href="http://localhost:8888/_my_projects/quarx/quarx5/users/settings">Settings</a></li>
+        <li data-icon="quarx-power"><a href="http://localhost:8888/_my_projects/quarx/quarx5/logout">Log Out</a></li>
+    </ul>
+
+</div>
+
+
+        
+        <div data-role="header">
+            <a class="quarx-top-menu-icons" href="#quarx-main-menu" data-role="button" data-icon="quarx-bars" data-iconpos="notext" data-tooltip="Menu"></a>
+            <h1> Change my Password </h1>
+
+            <a class="quarx-top-menu-icons" href="#quarx-profile-menu" data-role="button" data-icon="gear" data-iconpos="notext" data-tooltip="My Account"></a>        </div>
+
+        <div id="quarx-body" data-role="content">
+
+
+<div class="quarx-small-device">
+
+    <form id="pwChanger" class="raw100 raw-margin-top-30" method="post" action="http://localhost:8888/_my_projects/quarx/quarx5/users/password/update">
+        <input type="hidden" name="q_csrf_token" value="d3b05a55c99ddded2874e615d2ce5ae8" />
+
+        <div class="raw100 raw-left">
+            <div class="raw100 raw-left">
+                <div class="raw50 raw-left"><p>New Password</p></div>
+                <div class="raw50 raw-left"><input id="password" type="password" name="password" size="20" /></div>
+            </div>
+            <div class="raw100 raw-left">
+                <div class="raw50 raw-left"><p>New Password Again</p></div>
+                <div class="raw50 raw-left"><input id="confirm" type="password" name="confirm" size="20" /></div>
+            </div>
+            <div class="raw100 raw-left">
+                <div class="raw100 raw-left"><input id="changeBtn" type="submit" value="Change" /></div>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+
+    <div id="quarx-modal"></div>
+
+	</div><!-- end of content -->
+
+
+    </div>
+
+<div class="raw100 raw-left quarx-align-center"><p>Elapsed Time: {elapsed_time} seconds</p><p>Memory Usage: {memory_usage}</p></div>
+</div><!-- end of all contents -->
+
+<script type="text/javascript">
+
+
+</script>
+
+
+</body>
+</html>
+

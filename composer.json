@@ -1,15 +1,15 @@
 {
     "name": "mlantz/quarx",
-    "description": "Quarx is a simple CMS/ Application framework powered by CodeIgniter. It works with MySQL databases, but also can be adapted to work with SQLite and PostgreSQL. It has an HMVC structure so you can easily add more modules to your application.",
-    "license": "http://ottacon.co/_docs/quarx/license.html",
+    "description": "A simply powerful fully responsive CMS core with modular capacity",
+    "license": "Apache-2.0",
     "authors": [
         {
-            "name": "Matt Lantz",
+            "name": "mlantz",
             "email": "mattlantz@gmail.com"
         }
     ],
     "minimum-stability": "dev",
     "require": {
-        "php": ">=5.2.17"
+
     }
 }

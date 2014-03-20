@@ -3,7 +3,7 @@
 /**
  * Quarx
  *
- * A modular application framework built on CodeIgniter
+ * A modular CMS application
  *
  * @package     Quarx
  * @author      Matt Lantz
@@ -11,10 +11,10 @@
  * @license     http://ottacon.co/quarx/license.html
  * @link        http://ottacon.co/quarx
  * @since       Version 1.0
- * 
+ *
  */
-     
-class tests extends CI_Controller {
+
+class Tests extends CI_Controller {
 
     public function __construct()
     {
@@ -22,84 +22,38 @@ class tests extends CI_Controller {
 
         $this->load->library("unit");
 
-        if(ENVIRONMENT !== "development"){
-            redirect("accounts");
-        }
-
         $this->lang->load(config_item('language_abbr'), config_item('language'));
-    } 
 
-
-/* Primary Tools
-*****************************************************************/
+        if ( ! $this->input->is_cli_request())
+        {
+            redirect("error");
+        }
+    }
 
     public function index()
-    {  
-        $data['root'] = base_url();
-        $data['pageRoot'] = base_url().'index.php';
-        $data['pagetitle'] = 'Unit Tests';
+    {
+        $testCount = 0;
 
         $this->benchmark->mark('code_start');
 
-        /* Place test data here:
-        ***************************************************************/
-        $data['tests'] .= "<div class=\"raw100 raw-left\"><h2>Quarx Tests</h2></div>";
-        $data['tests'] .= $this->test_quarx_setup();
-        $data['tests'] .= $this->test_quarx_version();
-        $data['tests'] .= "<div class=\"raw100 raw-left\"><h2>Login Tests</h2></div>";
-        $data['tests'] .= $this->test_login();
-        $data['tests'] .= $this->test_disabled_account();
-        /**************************************************************/
+        $tests = scandir('application/controllers/tests');
+
+        foreach ($tests as $test)
+        {
+            if ($test != '.' && $test != '..' )
+            {
+                echo exec('php index.php tests '.str_replace(".php", "", $test))."\n";
+                $testCount++;
+            }
+        }
 
         $this->benchmark->mark('code_end');
 
-        $data['benchmark'] = $this->benchmark->elapsed_time('code_start', 'code_end');
-
-        $this->load->view('common/header', $data);
-        $this->load->view('core/admin/tests', $data);
-        $this->load->view('common/footer', $data);
-    }
-
-/* Unit Test Functions
-***************************************************************/
-
-    /* Model Setup
-    *************************************/
-
-    function test_quarx_setup(){
-        $this->load->model("modelsetup");
-        $res = $this->modelsetup->is_installed();
-        return $this->unit->test($res, "is_bool", "Quarx is installed - object");
-    }
-
-    function test_quarx_version(){
-        $this->load->model("modelsetup");
-        $res = $this->modelsetup->current_version();
-        return $this->unit->test($res, "is_array", "Quarx - version check - array");
-    }
-
-    /* Model Login
-    *************************************/
-
-    function test_login(){
-        $username = "test";
-        $password = "test";
-
-        $this->load->model("modellogin");
-        $res = $this->modellogin->validAccount($username, $password);
-        return $this->unit->test($res, "is_bool", "Login - validate user - boolean");
-    }
-
-    function test_disabled_account(){
-        $username = "test";
-        $password = "test";
-
-        $this->load->model("modellogin");
-        $res = $this->modellogin->disabledAccount($username, $password);
-        return $this->unit->test($res, "is_bool", "Login - disabled account - boolean");
+        echo "You ran: ".$testCount." test(s)\n";
+        echo "Your Tests took: ".$this->benchmark->elapsed_time('code_start', 'code_end')."\n";
     }
 
 }
 
-/* End of file about.php */
+/* End of file Tests.php */
 /* Location: ./application/controllers/admin */

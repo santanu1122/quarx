@@ -3,7 +3,7 @@
 /**
  * Quarx
  *
- * A modular application framework built on CodeIgniter
+ * A modular CMS application
  *
  * @package     Quarx
  * @author      Matt Lantz
@@ -11,40 +11,46 @@
  * @license     http://ottacon.co/quarx/license.html
  * @link        http://ottacon.co/quarx
  * @since       Version 1.0
- * 
+ *
  */
 
-class module_tools{
-    
-    public function module_tools()
-    {
+class Module_tools {
 
-        function get_module_menus()
+        public function get_module_menus()
         {
             $CI =& get_instance();
-            if($CI->session->userdata('permission') > 1){
-                if(check_master_access() == false){
-
+            if ($CI->session->userdata('permission') > 1)
+            {
+                if ($CI->quarx->get_option("access_type") == "standard access")
+                {
                     $modules = "application/modules/";
-                     
+
                     $files = glob($modules . "*");
-                     
-                    foreach($files as $file){
-                        if(is_dir($file)){
-                            if(file_exists($file.'/menu.php')){
+
+                    foreach ($files as $file)
+                    {
+                        if (is_dir($file))
+                        {
+                            if (file_exists($file.'/menu.php'))
+                            {
                                 @include($file.'/menu.php');
                             }
                         }
                     }
                 }
-            }else{
+            }
+            else
+            {
                 $modules = "application/modules/";
-                 
+
                 $files = glob($modules . "*");
-                 
-                foreach($files as $file){
-                    if(is_dir($file)){
-                        if(file_exists($file.'/menu.php')){
+
+                foreach ($files as $file)
+                {
+                    if (is_dir($file))
+                    {
+                        if (file_exists($file.'/menu.php'))
+                        {
                             @include($file.'/menu.php');
                         }
                     }
@@ -52,52 +58,61 @@ class module_tools{
             }
         }
 
-        function get_special_module_menus()
+        public function get_special_module_menus()
         {
             $modules = "application/modules/";
-             
+
             $files = glob($modules . "*");
-             
-            foreach($files as $file){
-                if(is_dir($file)){
-                    if(file_exists($file.'/special_menu.php')){
+
+            foreach ($files as $file)
+            {
+                if (is_dir($file))
+                {
+                    if (file_exists($file.'/special_menu.php'))
+                    {
                         @include($file.'/special_menu.php');
                     }
                 }
             }
         }
 
-        function get_module_manual_menu()
+        public function get_module_manual_menu()
         {
             $modules = "application/modules/";
-             
+
             $files = glob($modules . "*");
-             
-            foreach($files as $file){
-                if(is_dir($file)){
-                    if(file_exists($file.'/manual/manual_menu.php')){
+
+            foreach ($files as $file)
+            {
+                if (is_dir($file))
+                {
+                    if (file_exists($file.'/manual/manual_menu.php'))
+                    {
                         @include($file.'/manual/manual_menu.php');
                     }
                 }
             }
         }
 
-        function get_module_manual()
+        public function get_module_manual()
         {
             $modules = "application/modules/";
-             
+
             $files = glob($modules . "*");
-             
-            foreach($files as $file){
-                if(is_dir($file)){
-                    if(file_exists($file.'/manual/manual.php')){
+
+            foreach ($files as $file)
+            {
+                if (is_dir($file))
+                {
+                    if (file_exists($file.'/manual/manual.php'))
+                    {
                         @include($file.'/manual/manual.php');
                     }
                 }
             }
         }
 
-        function get_module_css()
+        public function get_module_css()
         {
             $CI =& get_instance();
             $router =& load_class('Router', 'core');
@@ -105,17 +120,20 @@ class module_tools{
             $currentModule = $router->fetch_class();
 
             $modules = "application/modules/";
-            
+
             $files = glob($modules . "*");
-             
-            foreach($files as $file){
-                if(is_dir($file)){
-                    
+
+            foreach ($files as $file)
+            {
+                if (is_dir($file))
+                {
                     $pieces = explode("/", $file);
                     $currentDir = end($pieces);
-                    
-                    if($currentDir == $currentModule){
-                        if(file_exists($file.'/css/styles.css')){
+
+                    if ($currentDir == $currentModule)
+                    {
+                        if (file_exists($file.'/css/styles.css'))
+                        {
                             @include($file.'/css/styles.css');
                         }
                     }
@@ -123,7 +141,7 @@ class module_tools{
             }
         }
 
-        function get_module_js()
+        public function get_module_js()
         {
             $CI =& get_instance();
 
@@ -132,17 +150,20 @@ class module_tools{
             $currentModule = $router->fetch_class();
 
             $modules = "application/modules/";
-             
+
             $files = glob($modules . "*");
-             
-            foreach($files as $file){
-                if(is_dir($file)){
-                    
+
+            foreach ($files as $file)
+            {
+                if (is_dir($file))
+                {
                     $pieces = explode("/", $file);
                     $currentDir = end($pieces);
-                    
-                    if($currentDir == $currentModule){
-                        if(file_exists($file.'/js/module_functions.js')){
+
+                    if ($currentDir == $currentModule)
+                    {
+                        if (file_exists($file.'/js/module_functions.js'))
+                        {
                             @include($file.'/js/module_functions.js');
                         }
                     }
@@ -150,22 +171,23 @@ class module_tools{
             }
         }
 
-        function get_module_settings()
+        public function get_module_settings()
         {
             $modules = "application/modules/";
-             
+
             $files = glob($modules . "*");
-             
-            foreach($files as $file){
-                if(is_dir($file)){
-                    if(file_exists($file.'/settings.php')){
+
+            foreach ($files as $file)
+            {
+                if (is_dir($file))
+                {
+                    if (file_exists($file.'/settings.php'))
+                    {
                         @include($file.'/settings.php');
                     }
                 }
             }
         }
-
-    }
 }
 
 //End of File

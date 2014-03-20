@@ -1,0 +1,204 @@
+1395344864TS--->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta name="description" content="A simple to use, responsive design CMS system." />
+    <meta name="keywords" content="CMS System, Zen, Responsive Design" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+
+    <title>Quarx | About</title>
+
+    
+    <!-- Quarx Custom Styles -->
+    <link rel="shortcut icon" type="image" href="http://localhost:8888/_my_projects/quarx/quarx5/images/favicon.ico" />
+    <link rel="stylesheet" href="http://localhost:8888/_my_projects/quarx/quarx5/css/raw.min.css" />
+
+    <!-- jQuery -->
+    <link rel="stylesheet" href="http://localhost:8888/_my_projects/quarx/quarx5/js/themes/jquery.mobile.structure.min.css" />
+    <script type="text/javascript" src="http://localhost:8888/_my_projects/quarx/quarx5/js/jquery.min.js"></script>
+    <script type="text/javascript" src="http://localhost:8888/_my_projects/quarx/quarx5/js/jquery-migrate.min.js"></script>
+    <script type="text/javascript" src="http://localhost:8888/_my_projects/quarx/quarx5/js/jquery.mobile.min.js"></script>
+
+    <!-- Redactor -->
+    <link rel="stylesheet" href="http://localhost:8888/_my_projects/quarx/quarx5/js/redactor/redactor.css" />
+    <script type="text/javascript" src="http://localhost:8888/_my_projects/quarx/quarx5/js/redactor/redactor.min.js"></script>
+
+            
+    <!-- jQuery Plugins -->
+        
+    <!-- jQuery Mobile Quarx Theme -->
+                            
+    <script type="text/javascript" src="http://localhost:8888/_my_projects/quarx/quarx5/js/jquery.deefault.js" charset="UTF-8"></script>
+<script type="text/javascript" src="http://localhost:8888/_my_projects/quarx/quarx5/js/jquery.tooltip.js" charset="UTF-8"></script>
+<script type="text/javascript" src="http://localhost:8888/_my_projects/quarx/quarx5/js/quarx-tools.js" charset="UTF-8"></script>
+<script type="text/javascript" src="http://localhost:8888/_my_projects/quarx/quarx5/js/quarx-dialogs.js" charset="UTF-8"></script>
+<script type="text/javascript" src="http://localhost:8888/_my_projects/quarx/quarx5/js/quarx-notify.js" charset="UTF-8"></script>
+<script type="text/javascript" src="http://localhost:8888/_my_projects/quarx/quarx5/js/quarx.js" charset="UTF-8"></script>
+<script type="text/javascript" src="http://localhost:8888/_my_projects/quarx/quarx5/js/quarx-footer.js" charset="UTF-8"></script>
+<script type="text/javascript" src="http://localhost:8888/_my_projects/quarx/quarx5/js/vague.js" charset="UTF-8"></script>
+<link type="text/css" rel="stylesheet" href="http://localhost:8888/_my_projects/quarx/quarx5/css/quarx-desktop-style.css" media="screen" />
+<link type="text/css" rel="stylesheet" href="http://localhost:8888/_my_projects/quarx/quarx5/js/themes/quarx.css" media="screen" />
+<link type="text/css" rel="stylesheet" href="http://localhost:8888/_my_projects/quarx/quarx5/css/quarx-tablet-style.css" media="screen and (min-width: 320px) and (max-width: 960px)" />
+<link type="text/css" rel="stylesheet" href="http://localhost:8888/_my_projects/quarx/quarx5/css/quarx-mobile-style.css" media="screen and (min-width: 120px) and (max-width: 668px)" />
+
+    <!--[if gte IE 7]>
+    <link rel="stylesheet" type="text/css" href="http://localhost:8888/_my_projects/quarx/quarx5/css/ie.css" />
+    <![endif]-->
+
+    <!-- Custom Scripts -->
+    <script type="text/javascript">
+        </script>
+
+    <style type="text/css">
+        </style>
+
+</head>
+
+<body>
+
+    <div id="quarx-wrapper" data-role="page" data-url="About" data-theme="a" style="overflow-x: hidden;"><!-- beginning of all body contents -->
+
+        <div class="quarx-notification">
+            <div class="quarx-notify">
+                <p class="quarx-notify-title"></p>
+                <p class="quarx-notify-comment"></p>
+            </div>
+            <div class="quarx-notify-closer">
+                <button data-role="button" data-icon="delete" class="quarx-notify-closer-icon" data-iconpos="notext"></button>
+            </div>
+        </div>
+
+        
+        
+<div data-role="panel" data-display="overlay" id="quarx-main-menu" class="quarx-menu-panel quarx-panel-box">
+
+    <h2 class="quarx-menu-title"><img src="http://localhost:8888/_my_projects/quarx/quarx5/img/quarx.png" width="15px" /> Quarx </h2>
+
+    <ul id="quarx-menu" data-role="listview">
+
+        
+<li><a href="http://localhost:8888/_my_projects/quarx/quarx5/sample">Sample</a></li><li><a href="http://localhost:8888/_my_projects/quarx/quarx5/images/library">Image Library</a></li><li><a href="http://localhost:8888/_my_projects/quarx/quarx5/admin">Admin Settings</a></li><li><a href="http://localhost:8888/_my_projects/quarx/quarx5/admin/cloudcatcher">CloudCatcher</a></li><li><a href="http://localhost:8888/_my_projects/quarx/quarx5/admin/about">About</a></li><li><a href="http://localhost:8888/_my_projects/quarx/quarx5/manual">Manual</a></li>
+    </ul>
+
+</div>
+
+
+<div data-role="panel" data-display="overlay" data-position="right" id="quarx-profile-menu" class="quarx-account-menu-panel quarx-panel-box">
+    <div class="account-menu-box">
+        <h2 class="quarx-menu-title">Accounts</h2>
+    </div>
+
+    <ul id="quarx-account-menu" data-role="listview">
+
+        <li data-icon="home"><a href="http://localhost:8888/_my_projects/quarx/quarx5/users/profile">My Account</a></li><li data-icon="quarx-login"><a href="http://localhost:8888/_my_projects/quarx/quarx5/users/password">Update Password</a></li><li data-icon="quarx-add-user"><a href="http://localhost:8888/_my_projects/quarx/quarx5/users/add">Add a User</a></li><li data-icon="quarx-all-users"><a href="http://localhost:8888/_my_projects/quarx/quarx5/users/view">View Users</a></li><li data-icon="gear"><a href="http://localhost:8888/_my_projects/quarx/quarx5/users/settings">Settings</a></li>
+        <li data-icon="quarx-power"><a href="http://localhost:8888/_my_projects/quarx/quarx5/logout">Log Out</a></li>
+    </ul>
+
+</div>
+
+
+        <div id="quarx-header" data-role="header">
+            <a class="quarx-top-menu-icons" href="#quarx-main-menu" data-role="button" data-icon="quarx-bars" data-iconpos="notext" data-tooltip="Menu"></a>
+            <h1> About </h1>
+
+            <a class="quarx-top-menu-icons" href="#quarx-profile-menu" data-role="button" data-icon="gear" data-iconpos="notext" data-tooltip="Accounts"></a>        </div>
+
+        <div id="quarx-body" data-role="content">
+
+
+<div class="raw100"><!-- content -->
+
+    <div class="quarx-small-device">
+
+        <div class="raw100">
+            <div style="raw100">
+                <img src="http://localhost:8888/_my_projects/quarx/quarx5/img/quarx.png" class="quarx-about-icon" />
+            </div>
+            <p>Quarx is a powerful platform/framework built to power both web sites, apps, mobile apps and even run as an app itself. It's overall construct is designed to be adaptive and responsive, both programmatically and visually.</p>
+            <br />
+            <div class="raw100 raw-left">
+                <div class="raw50 raw-left">
+                    <p>Author</p>
+                </div>
+                <div class="raw50 raw-left">
+                    <p>Matt Lantz</p>
+                </div>
+            </div>
+            <div class="raw100 raw-left">
+                <div class="raw50 raw-left">
+                    <p>Verison</p>
+                </div>
+                <div class="raw50 raw-left">
+                    <p>5</p>
+                </div>
+            </div>
+            <div class="raw100 raw-left">
+                <div class="raw50 raw-left">
+                    <p>More Information</p>
+                </div>
+                <div class="raw50 raw-left">
+                    <p><a target="_blank" href="https://ottacon.co/quarx">https://ottacon.co/quarx</a></p>
+                </div>
+            </div>
+            <div class="raw100 raw-left">
+                <h2>Built With:</h2>
+            </div>
+            <div class="raw100 raw-left">
+
+                <div class="raw50 raw-left"><a href="http://codeigniter.com/" target="_blank">CodeIgniter</a></div><div class="raw50 raw-left"><a href="http://jquery.com/" target="_blank">jQuery</a></div><div class="raw50 raw-left"><a href="http://jquerymobile.com/" target="_blank">jQuery Mobile</a></div><div class="raw50 raw-left"><a href="https://github.com/mlantz/toolbox" target="_blank">ToolBox</a></div><div class="raw50 raw-left"><a href="https://github.com/mlantz/deefault" target="_blank">DeefaultJS</a></div><div class="raw50 raw-left"><a href="https://github.com/mlantz/tooltipJS" target="_blank">TooltipJS</a></div><div class="raw50 raw-left"><a href="https://github.com/mlantz/rawCSS" target="_blank">rawCSS</a></div>
+            </div>
+            <div class="raw100 raw-left">
+                <h2>Requires:</h2>
+            </div>
+            <div class="raw100 raw-left">
+                <div class="raw70 raw-left">
+                    <p>PHP Version</p>
+                </div>
+                <div class="raw30 raw-left">
+                    <p>5.3+</p>
+                </div>
+            </div>
+            <div class="raw100 raw-left">
+                <div class="raw70 raw-left">
+                    <p>MySQL (Optional) Version</p>
+                </div>
+                <div class="raw30 raw-left">
+                    <p>5.3+</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div><!--/content -->
+
+
+    <div id="quarx-modal">
+        <div id="fountainG">
+            <div id="fountainG_1" class="fountainG"></div>
+            <div id="fountainG_2" class="fountainG"></div>
+            <div id="fountainG_3" class="fountainG"></div>
+            <div id="fountainG_4" class="fountainG"></div>
+            <div id="fountainG_5" class="fountainG"></div>
+            <div id="fountainG_6" class="fountainG"></div>
+            <div id="fountainG_7" class="fountainG"></div>
+            <div id="fountainG_8" class="fountainG"></div>
+        </div>
+    </div>
+
+<div id="quarx-benchmarking" class="raw100 raw-left quarx-align-center raw-margin-top-48 raw-margin-bottom-48"><p>Elapsed Time: {elapsed_time} seconds</p><p>Memory Usage: {memory_usage}</p></div>
+	</div><!-- end of content -->
+
+
+</div><!-- end of all contents -->
+
+<script type="text/javascript">
+</script>
+
+<script type="text/javascript" src="http://localhost:8888/_my_projects/quarx/quarx5/js/jquery.gwtt.js" charset="UTF-8"></script>
+<script type="text/javascript" src="http://localhost:8888/_my_projects/quarx/quarx5/js/quarx-footer.js" charset="UTF-8"></script>
+
+</body>
+</html>
+

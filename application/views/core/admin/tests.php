@@ -3,7 +3,7 @@
 /**
  * Quarx
  *
- * A modular application framework built on CodeIgniter
+ * A modular CMS application
  *
  * @package     Quarx
  * @author      Matt Lantz
@@ -11,7 +11,7 @@
  * @license     http://ottacon.co/quarx/license.html
  * @link        http://ottacon.co/quarx
  * @since       Version 1.0
- * 
+ *
  */
 
 ?>
@@ -20,14 +20,14 @@
 
     <div class="raw-padding-20">
 
-        <?php echo $tests; ?>
+        <?= $tests; ?>
 
     </div>
 
     <div class="raw100 raw-left quarx-align-center">
-        <p>Unit Tests completed in: <?php echo $benchmark; ?> seconds.</p>
+        <p>Unit Tests completed in: <?= $benchmark; ?> seconds.</p>
     </div>
 
 </div>
-    
+
 <!-- End of File -->

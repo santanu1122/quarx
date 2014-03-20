@@ -1,5 +1,0 @@
-.git
-.version.txt
-.build_ignore.txt
-.DS_Store
-.gitignore

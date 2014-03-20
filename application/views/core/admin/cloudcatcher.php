@@ -11,34 +11,36 @@
  * @license     http://ottacon.co/quarx/license.html
  * @link        http://ottacon.co/quarx
  * @since       Version 1.0
- * 
+ *
  */
 
 ?>
 
-<div class="raw100" style="min-height: 600px;"><!-- content -->
+<div class="raw100"><!-- content -->
     <div class="quarx-device">
         <h1>CloudCatcher: Your Website Backup Tool</h1>
 
-        <div class="raw33">
-            <div class="padded20">
-                <?php 
-                
-                if(isset($_GET['download'])){ ?>
-                    <?php $date = date('m-d-y'); ?>
-                
-                <button onclick="window.location='<?php echo site_url(); ?>backup/<?php echo $date; ?>.zip'" >Download</button>
-                <button onclick="window.location='<?php echo site_url(); ?>admin/cloudcatcher/deletebackup?date=<?php echo $date; ?>'">Delete Server Copy</button>
-                        
-                <?php  }else{ ?>
-                <button id="backupBtn" onclick="cloudCatcher()">Backup Now</button>
-                <div id="loader" style="display: none;"><p>Loading</p></div>
-                <?php } ?>
+        <div class="raw33 raw-left">
+            <div class="raw-padding-40">
+                <?php
+
+                    if (isset($_GET['download']))
+                    {
+                        $date = date('m-d-y');
+                        echo '<button onclick="window.location=\''.site_url().'backup/'.$date.'.zip\'">Download</button>';
+                        echo '<button onclick="window.location=\''.site_url().'admin/cloudcatcher/deletebackup?date='.$date.'\'">Delete Server Copy</button>';
+                    }
+                    else
+                    {
+                        echo '<button id="backupBtn" onclick="cloudCatcher()">Backup Now</button>';
+                    }
+
+                ?>
 
             </div>
-        </div> 
+        </div>
 
-        <div class="raw66">
+        <div class="raw66 raw-left">
             <div class="padded">
                 <h1>Cloud Catcher Instructions</h1>
                 <br />
@@ -52,28 +54,26 @@
                 <br />
                 <p>You're all done! Remember to keep the downloaded files safe. They are your responsibility and in the event of a website error you may need to be able to send a recent version of your website to your developer to get the site back up and running with a recent copy of the site.</p>
             </div>
-        </div> 
+        </div>
     </div>
 
 </div><!--/content -->
 
 <script type="text/javascript">
-    
+
     function cloudCatcher(){
         $('#backupBtn').parent().hide();
-        $('#loader').show();
-        setInterval(function(){ $('#loader p').append(' .') }, 200);
-        
+
+        _quarx_loading();
+
         $.ajax({
             type: 'POST',
-            url: "<?php echo site_url('admin/cloudcatcher/backup'); ?>/",
-            data: { backup: true, <?php echo $this->security->get_csrf_token_name(); ?>: '<?php echo $this->security->get_csrf_hash(); ?>' },
+            url: "<?= site_url('admin/cloudcatcher/backup'); ?>/",
+            data: { backup: true, <?= $this->security->get_csrf_token_name(); ?>: '<?= $this->security->get_csrf_hash(); ?>' },
             dataType: "html",
             success: function(data){
                 if(data == 1){
-                    window.location = '<?php echo site_url("admin/cloudcatcher"); ?>'+'?download';
-                }else{
-
+                    window.location = '<?= site_url("admin/cloudcatcher"); ?>'+'?download';
                 }
             }
         });

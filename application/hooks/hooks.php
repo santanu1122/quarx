@@ -3,7 +3,7 @@
 /**
  * Quarx
  *
- * A modular application framework built on CodeIgniter
+ * A modular CMS application
  *
  * @package     Quarx
  * @author      Matt Lantz
@@ -11,22 +11,31 @@
  * @license     http://ottacon.co/quarx/license.html
  * @link        http://ottacon.co/quarx
  * @since       Version 1.0
- * 
+ *
  */
-     
-class hooks {
-    var $CI;
 
-    function hooks() {
+class hooks {
+
+    protected $CI;
+
+    function hooks()
+    {
         $this->CI =& get_instance();
     }
 
-/* Main Functions
-***************************************************************/
-
     function init()
     {
-        $GLOBALS["quarx-image-gallery-enabled"] = FALSE;
+        $GLOBALS["quarx"] = array(
+            "quarx-image-library-enabled" => FALSE
+        );
+
+        $CI =& get_instance();
+
+        $config = $CI->config->item('carabiner_config');
+        $config['base_uri'] = base_url();
+
+        $CI->carabiner->config($config);
+        $CI->carabiner->empty_cache('both', 'yesterday');
     }
 
 }

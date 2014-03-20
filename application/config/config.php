@@ -77,8 +77,8 @@ $config['language']	= 'english';
 $config['language_abbr'] = "en";
 
 /* set available language abbreviations */
-$config['lang_uri_abbr'] = array(   "fr" => "french", 
-                                    "en" => "english", 
+$config['lang_uri_abbr'] = array(   "fr" => "french",
+                                    "en" => "english",
                                     "es" => "spanish"
                                 );
 
@@ -195,7 +195,7 @@ $config['directory_trigger']	= 'd'; // experimental not currently in use
 | your log files will fill up very fast.
 |
 */
-$config['log_threshold'] = 0;
+$config['log_threshold'] = 1;
 
 /*
 |--------------------------------------------------------------------------
@@ -259,7 +259,7 @@ $config['encryption_key'] = '!neutrino86';
 | 'sess_time_to_update'		= how many seconds between CI refreshing Session Information
 |
 */
-$config['sess_cookie_name']		= 'q_s';
+$config['sess_cookie_name']		= 'quarx';
 $config['sess_expiration']		= 3600;
 $config['sess_expire_on_close']	= TRUE;
 $config['sess_encrypt_cookie']	= TRUE;
@@ -383,7 +383,7 @@ $config['proxy_ips'] = '';
  * @license     http://ottacon.co/quarx/license.html
  * @link        http://ottacon.co/quarx
  * @since       Version 1.0
- * 
+ *
  */
 
 /*
@@ -393,7 +393,7 @@ $config['proxy_ips'] = '';
 | https://bitbucket.org/wiredesignz/codeigniter-modular-extensions-hmvc
 |
 | This allows the codeigniter core of the system to use modular structure
-| the modules are set in the modules folder in the core, and uses a couple 
+| the modules are set in the modules folder in the core, and uses a couple
 | core modifiers in the application/core folder.
 |
 */
@@ -411,7 +411,7 @@ $config['modules_locations'] = array( APPPATH.'modules/' => '../modules/' );
 | Benchmarking will display the processing time in the footer per page. This
 | can be incredibly useful to help find pitfalls in your code. It uses hooks
 | to add the markmark start, and end to each function.
-| 
+|
 | Unit tests determines whether or not to display the unit test page
 |
 */
@@ -448,7 +448,23 @@ $config['jsonp_token'] = "@hacKer2082";
 
 /*
 |--------------------------------------------------------------------------
-| Themeing connection
+| Carabiner Config
+|--------------------------------------------------------------------------
+*/
+
+$config['carabiner_config'] = array(
+    'script_dir' => 'js/',
+    'style_dir'  => 'css/',
+    'cache_dir'  => 'cache/',
+    'combine'    => FALSE,
+    'dev'        => TRUE,
+    'minify_js'  => TRUE,
+    'minify_css' => TRUE
+);
+
+/*
+|--------------------------------------------------------------------------
+| Theming connection
 |--------------------------------------------------------------------------
 |
 | Available Themes: quarx, ios, flatui, bootstrap
@@ -456,3 +472,21 @@ $config['jsonp_token'] = "@hacKer2082";
 */
 
 $config['theme'] = "quarx";
+
+/*
+|--------------------------------------------------------------------------
+| Quarx Mode
+|--------------------------------------------------------------------------
+|
+| Quarx can be used as the base of an application or a CMS. However, actual
+| admin settings access is still exclusive to the original master user.
+|
+| application : a web application with no admin users, no image library,
+|               no manual, no cloudcatcher
+| cms         : a CMS application with admin users, cloudcatcher, image/
+|               file library, manual
+| app-admin   : a web appication with admin users, cloudcatcher, image/
+|               file library, manual
+*/
+
+$config['quarx-mode'] = "cms";

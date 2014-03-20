@@ -1,0 +1,60 @@
+.raw-device{
+    width: 312px;
+}
+
+.raw-t-hide{
+    display: block;
+}
+
+.raw-m-hide{
+    display: none;
+}
+
+.raw-m-hide{
+    display: none;
+}
+
+.raw-grid-col-4{
+    width: 100%;
+    float: left;
+}
+
+.raw-grid-col-5{
+    width: 100%;
+    float: left;
+}
+
+.raw-grid-col-6{
+    width: 100%;
+    float: left;
+}
+
+.raw-grid-col-7{
+    width: 100%;
+    float: left;
+}
+
+.raw-grid-col-8{
+    width: 100%;
+    float: left;
+}
+
+.raw-grid-col-9{
+    width: 100%;
+    float: left;
+}
+
+.raw-grid-col-10{
+    width: 100%;
+    float: left;
+}
+
+.raw-grid-col-11{
+    width: 100%;
+    float: left;
+}
+
+.raw-grid-col-12{
+    width: 100%;
+    float: left;
+}

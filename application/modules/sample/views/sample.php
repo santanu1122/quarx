@@ -11,7 +11,7 @@
  * @license     http://ottacon.co/quarx/license.html
  * @link        http://ottacon.co/quarx
  * @since       Version 1.0
- * 
+ *
  */
 
 ?>
@@ -22,13 +22,13 @@
     <h1>Sample Module</h1>
     <div class="raw100">
         <div class="raw-padding-15">
-            <?php imageGalleryButton("Initiate Image Library"); ?>
-            <?php imgLibrarySelect(); ?>
+            <?php $this->image_tools->imageLibraryButton("Initiate Image Library"); ?>
+            <?php //$this->image_tools->imageLibrarySelect(); ?>
         </div>
     </div>
 </div>
 <div class="raw50">
-    <div class="raw-padding-15" style="min-height: 500px;">
+    <div class="raw-padding-15">
         <p>This is a sample module.</p>
     </div>
 </div>

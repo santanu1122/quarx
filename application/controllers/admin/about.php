@@ -11,45 +11,41 @@
  * @license     http://ottacon.co/quarx/license.html
  * @link        http://ottacon.co/quarx
  * @since       Version 1.0
- * 
+ *
  */
-     
-class about extends CI_Controller {
 
-    public function __construct()
+class About extends CI_Controller {
+
+    function __construct()
     {
         parent::__construct();
-        if(!$this->session->userdata('logged_in'))
+
+        if (!$this->session->userdata('logged_in'))
         {
-            redirect('login/error'); // Denied! 
+            redirect('error/login'); // Denied!
         }
 
-        if($this->session->userdata('permission') > 1)
+        if ($this->session->userdata('permission') != 1)
         {
-            $setup = $this->quarxsetup->account_opts();
-            if($setup[2]->option_title === 'master access')
-            {
-                redirect('accounts/permission');
-            }
+            $this->session->set_flashdata('error', 'You do not have sufficient permission to access this');
+            redirect('error');
         }
 
         $this->lang->load(config_item('language_abbr'), config_item('language'));
-    } 
-
-
-/* Primary Tools
-*****************************************************************/
+    }
 
     public function index()
-    {  
-        // $this->output->cache(9);
+    {
+        $this->output->cache(9);
 
-        $this->load->model('modelsetup');
+        $data['version'] = $this->quarx->quarx_details('version');
+        $data['info'] = $this->quarx->quarx_details('info');
+        $data['authors'] = $this->quarx->quarx_details('authors');
 
         $data['root'] = base_url();
         $data['pageRoot'] = base_url().'index.php';
         $data['pagetitle'] = 'About';
-        
+
         $this->load->view('common/header', $data);
         $this->load->view('core/admin/about', $data);
         $this->load->view('common/footer', $data);
@@ -57,5 +53,5 @@ class about extends CI_Controller {
 
 }
 
-/* End of file about.php */
+/* End of file About.php */
 /* Location: ./application/controllers/admin */

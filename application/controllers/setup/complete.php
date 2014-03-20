@@ -3,7 +3,7 @@
 /**
  * Quarx
  *
- * A modular application framework built on CodeIgniter
+ * A modular CMS application
  *
  * @package     Quarx
  * @author      Matt Lantz
@@ -11,89 +11,96 @@
  * @license     http://ottacon.co/quarx/license.html
  * @link        http://ottacon.co/quarx
  * @since       Version 1.0
- * 
+ *
  */
-     
-class complete extends CI_Controller {
 
-/* Initial Setup and Install
-***************************************************************/
+class Complete extends CI_Controller {
 
-    function quarx_install($userName, $userPassword, $advancedAccounts, $masterAccess, $db_array)
+    public function __construct()
     {
-            if($advancedAccounts === '1')
-            {
-                $extras = true;
-                $avdaccts = 'advanced accounts';
-            }
-            else
-            {
-                $extras = false;
-                $avdaccts = 'simple accounts';
-            }
+        parent::__construct();
 
-            if($masterAccess === '1')
-            {
-                $extras = true;
-                $master = 'master access';
-            }
-            else
-            {
-                $extras = false;
-                $master = 'standard access';
-            }
-
-            $current_quarx = @file_get_contents(base_url().".quarx.json");
-            $current_quarx = @json_decode($current_quarx);
-
-            $version = @$current_quarx->version;
-
-            $this->load->model('modelsetup');
-            $table = $this->modelsetup->add_user_table($extras);
-
-            if($table !== false)
-            {
-                $this->modelsetup->add_master_user($userName, $userPassword);
-            }
-
-            $admin = $this->modelsetup->add_admin_table();
-
-            if($admin !== false)
-            {
-                $this->modelsetup->add_admin_opts($avdaccts, $master, $version, $db_array);
-            }
-
-            $img_table = $this->modelsetup->add_img_table();
-
-            return "Quarx has been successfully installed.";
+        if ($this->quarx->is_installed(true))
+        {
+            redirect('login');
+        }
     }
 
     public function index()
     {
-        if($this->input->post('username') != '' && $this->input->post('username') != 'User Name')
+        if ($this->input->post('username') != '' && $this->input->post('username') != 'User Name')
         {
-            $data['result'] = $this->quarx_install( $this->input->post('username'), 
-                                                    $this->input->post('confirm'), 
-                                                    $this->input->post('advancedAccounts'), 
-                                                    $this->input->post('masterAccess'), 
-                                                    $this->session->userdata('db_array')
-                                                   );
+            $data['result'] = $this->quarx_install(
+                $this->input->post('username'),
+                $this->input->post('confirm'),
+                $this->input->post('advancedAccounts'),
+                $this->input->post('masterAccess'),
+                $this->session->userdata('db_array')
+            );
 
             $this->session->unset_userdata('db_array');
 
-            $data['uname'] = $this->input->post('username');
-            $data['root'] = base_url();
-            $data['pageRoot'] = base_url().'index.php';
-            $data['pagetitle'] = 'Setup Complete';
-
-            $this->load->view('core/setup/header', $data);
-            $this->load->view('core/setup/setup_complete', $data);
-
+            $this->done($this->input->post('username'));
         }
         else
         {
             redirect('setup');
         }
+    }
+
+    public function done($username)
+    {
+        $data['uname'] = $username;
+        $data['root'] = base_url();
+        $data['pageRoot'] = base_url().'index.php';
+        $data['pagetitle'] = 'Setup Complete';
+
+        $this->load->view('common/header', $data);
+        $this->load->view('core/setup/step_3', $data);
+        $this->load->view('common/footer', $data);
+    }
+
+    private function quarx_install($userName, $userPassword, $advancedAccounts, $masterAccess, $db_array)
+    {
+        $extras = false;
+        $avdaccts = 'simple accounts';
+        $master = 'standard access';
+
+        if ($advancedAccounts === '1')
+        {
+            $extras = true;
+            $avdaccts = 'advanced accounts';
+        }
+
+        if ($masterAccess === '1')
+        {
+            $extras = true;
+            $master = 'master access';
+        }
+
+        $current_quarx = @file_get_contents(base_url().".quarx.json");
+        $current_quarx = @json_decode($current_quarx);
+
+        $version = @$current_quarx->version;
+
+        $this->load->model('model_setup');
+        $table = $this->model_setup->add_user_table($extras);
+
+        if($table !== false)
+        {
+            $this->model_setup->add_master_user($userName, $userPassword);
+        }
+
+        $admin = $this->model_setup->add_admin_table();
+
+        if($admin !== false)
+        {
+            $this->model_setup->add_admin_opts($avdaccts, $master, $version, $db_array);
+        }
+
+        $img_table = $this->model_setup->add_img_table();
+
+        return "Quarx has been successfully installed.";
     }
 
 }

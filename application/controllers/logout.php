@@ -11,30 +11,30 @@
  * @license     http://ottacon.co/quarx/license.html
  * @link        http://ottacon.co/quarx
  * @since       Version 1.0
- * 
+ *
  */
-     
-class logout extends CI_Controller {
-    
-    public function index() 
+
+class Logout extends CI_Controller {
+
+    public function index()
     {
         $this->load->helper('cookie');
-        
-        delete_cookie('quarx-uname');
-        delete_cookie('quarx-pword');
+
+        delete_cookie('quarx-username');
+        delete_cookie('quarx-password');
 
         $this->session->sess_destroy();
-        
+
         $data['root'] = base_url();
         $data['pageRoot'] = base_url().'index.php';
-        $data['pagetitle'] = 'Sign Out';
+        $data['pagetitle'] = 'Log Out';
         $data['page'] = 'Logout';
 
         $this->load->view('common/header', $data);
         $this->load->view('core/login/logout', $data);
         $this->load->view('common/footer', $data);
     }
-    
+
 }
 
 /* End of file logout.php */

@@ -3,7 +3,7 @@
 /**
  * Quarx
  *
- * A modular application framework built on CodeIgniter
+ * A modular application framework
  *
  * @package     Quarx
  * @author      Matt Lantz
@@ -11,18 +11,15 @@
  * @license     http://ottacon.co/quarx/license.html
  * @link        http://ottacon.co/quarx
  * @since       Version 1.0
- * 
+ *
  */
-     
-class error extends CI_Controller {
+
+class Error extends CI_Controller {
 
     function __construct()
     {
         parent::__construct();
     }
-
-/* Initial Setup and Install
-***************************************************************/
 
     public function index()
     {
@@ -30,8 +27,7 @@ class error extends CI_Controller {
 
         $data['root'] = base_url();
         $data['pageRoot'] = base_url().'index.php';
-        $data['pagetitle'] = 'Setup';
-        $data['masterPage'] = true;
+        $data['pagetitle'] = 'Setup: Error';
 
         $this->load->view('core/setup/header', $data);
         $this->load->view('core/errors/general', $data);

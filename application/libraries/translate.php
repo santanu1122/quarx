@@ -3,7 +3,7 @@
 /**
  * Quarx
  *
- * A modular application framework built on CodeIgniter
+ * A modular CMS application
  *
  * @package     Quarx
  * @author      Matt Lantz
@@ -11,20 +11,22 @@
  * @license     http://ottacon.co/quarx/license.html
  * @link        http://ottacon.co/quarx
  * @since       Version 1.0
- * 
+ *
  */
 
-class translate{
-    
-    public function translate(){ 
+class Translate{
 
-        function lang($label, $obj){
-            $return = $obj->lang->line($label);
-            if($return){
-                echo $return;
-            }else{
-                echo $label;
-            }
+    public function line($label, $obj){
+
+        $return = $obj->lang->line($label);
+
+        if ($return)
+        {
+            echo $return;
+        }
+        else
+        {
+            echo $label;
         }
     }
 }

@@ -38,10 +38,17 @@
 |
 */
 
-$route['default_controller'] = "setup/install";
-$route['setup'] = "setup/master";
+$route['default_controller'] = "login";
 
+$route['setup'] = "setup/init";
+$route['admin'] = "admin/main";
+
+$route['users/password/update'] = 'users/password_change';
+
+$route['not-found'] = "error/e_404";
 $route['404_override'] = 'error/e_404';
+
+$route['users/search-for'] = "users/search_for";
 
 //This makes sure that the default controller is loaded even when a language call is in the url
 //route example: http://domain.tld/en/controller => http://domain.tld/controller

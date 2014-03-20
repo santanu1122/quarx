@@ -686,7 +686,7 @@
 
 
 /* Structure */
-/* links within "buttons" 
+/* links within "buttons"
 -----------------------------------------------------------------------------------------------------------*/
 a.ui-link-inherit {
 	text-decoration: none !important;
@@ -863,7 +863,7 @@ a.ui-link-inherit {
 }
 .ui-icon-checkbox-off,
 .ui-icon-radio-off {
-	background-color: transparent;	
+	background-color: transparent;
 }
 .ui-checkbox-on .ui-icon,
 .ui-radio-on .ui-icon {
@@ -941,7 +941,7 @@ a.ui-link-inherit {
 .ui-input-search.ui-focus {
 	-moz-box-shadow: 0 0 12px #4177d1 /*{global-active-background-color}*/;
 	-webkit-box-shadow: 0 0 12px #4177d1 /*{global-active-background-color}*/;
-	box-shadow: 0 0 12px #4177d1 /*{global-active-background-color}*/;	
+	box-shadow: 0 0 12px #4177d1 /*{global-active-background-color}*/;
 }
 /* unset box shadow in browsers that don't do it right
 -----------------------------------------------------------------------------------------------------------*/
@@ -962,27 +962,27 @@ a.ui-link-inherit {
 ***************************************************************/
 
 .ui-icon-quarx-bars {
-    background-image: url(../images/icons/quarx-menu.png);
+    background-image: url(../img/icons/quarx-menu.png);
     background-color: #333;
 }
 
 .ui-icon-quarx-login {
-    background-image: url(../images/icons/login_18.png);
+    background-image: url(../img/icons/login_18.png);
     background-color: #333;
 }
 
 .ui-icon-quarx-power{
-    background-image: url(../images/icons/power.png);
+    background-image: url(../img/icons/power.png);
     background-color: #333;
 }
 
 .ui-icon-quarx-add-user{
-    background-image: url(../images/icons/add_user.png);
+    background-image: url(../img/icons/add_user.png);
     background-color: #333;
 }
 
 .ui-icon-quarx-all-users{
-    background-image: url(../images/icons/all_users.png);
+    background-image: url(../img/icons/all_users.png);
     background-color: #333;
 }
 

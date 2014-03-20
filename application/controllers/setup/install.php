@@ -3,7 +3,7 @@
 /**
  * Quarx
  *
- * A modular application framework built on CodeIgniter
+ * A modular application framework
  *
  * @package     Quarx
  * @author      Matt Lantz
@@ -11,40 +11,33 @@
  * @license     http://ottacon.co/quarx/license.html
  * @link        http://ottacon.co/quarx
  * @since       Version 1.0
- * 
+ *
  */
-     
-class install extends CI_Controller {
+
+class Install extends CI_Controller {
 
     function __construct()
     {
         parent::__construct();
-        $this->load->model('modelsetup');
-        $qry = $this->modelsetup->is_installed();
 
-        if($qry)
+        if ($this->quarx->is_installed())
         {
             redirect('login');
         }
     }
 
-/* Initial Setup and Install
-***************************************************************/
-
     public function index()
     {
-        $this->load->model('modelsetup');
-        $qry = $this->modelsetup->is_installed();
-    
         $data['root'] = base_url();
         $data['pageRoot'] = base_url().'index.php';
-        $data['pagetitle'] = 'Setup';
+        $data['pagetitle'] = 'Quarx Setup';
 
-        $this->load->view('core/setup/header', $data);
-        $this->load->view('core/setup/db_setup', $data);
+        $this->load->view('common/header', $data);
+        $this->load->view('core/setup/step_1', $data);
+        $this->load->view('common/footer', $data);
     }
 
 }
 
-/* End of file install.php */
+/* End of file Install.php */
 /* Location: ./application/controllers/setup */
