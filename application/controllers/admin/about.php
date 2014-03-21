@@ -38,6 +38,9 @@ class About extends CI_Controller {
     {
         $this->output->cache(9);
 
+        $js = array('views/admin/quarx.admin.js');
+        $this->carabiner->group("quarx-admin-js", array('js'=>$js));
+
         $data['version'] = $this->quarx->quarx_details('version');
         $data['info'] = $this->quarx->quarx_details('info');
         $data['authors'] = $this->quarx->quarx_details('authors');

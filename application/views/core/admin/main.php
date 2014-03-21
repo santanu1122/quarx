@@ -29,16 +29,11 @@
 
         <?php
 
-            if(!isset($atomic) && !@file_get_contents('../.atomic.json'))
-            {
-                echo  '<a data-role="button" data-theme="a" href="'.site_url('admin/atomic').'">Add the Atomic Framework</a>';
-            }
+            if ( ! isset($atomic) && ! @file_get_contents('../.atomic.json')) echo  '<a data-role="button" data-theme="a" href="'.site_url('admin/atomic').'">Add the Atomic Framework</a>';
+            if ( ! isset($atomic) && @file_get_contents('../.atomic.json')) echo '<a data-role="button" data-theme="a" href="'.site_url('admin/connect').'">Connect to the Atomic Framework</a>';
+            if (count(scandir('application/controllers/setup'))) echo '<a data-role="button" data-theme="a" href="'.site_url('admin/cleanup').'">Remove the Installer</a>';
 
         ?>
-
-        <?php if(!isset($atomic) && @file_get_contents('../.atomic.json')){ ?>
-        <a data-role="button" data-theme="a" href="<?= site_url('admin/connect'); ?>">Connect to the Atomic Framework</a>
-        <?php } ?>
 
         <div class="raw-block-25 raw100"></div>
 
@@ -48,5 +43,7 @@
 
     </div>
 </div>
+
+<?php $this->carabiner->display("quarx-admin-js"); ?>
 
 <?php /* End of File */ ?>

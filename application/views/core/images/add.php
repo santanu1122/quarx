@@ -57,61 +57,13 @@
 
 </div>
 
-<!-- javascript -->
-
 <script type="text/javascript">
 
-    function populateCollections(){
-        $.ajax({
-            url: "<?= site_url('images/get_collections'); ?>",
-            type: 'GET',
-            cache: false,
-            dataType: 'html',
-            success: function(data) {
-                var optional = '<option value="0">Collections (Optional)</option>';
-                $('#collections').html(optional+data).selectmenu('refresh', true);
-            }
-        });
-    }
-
-    function newCollectionBox(){
-        $( "#dialog-newColl" ).dialogboxInput({
-            web_link: false,
-            buttons: {
-                Ok: function() {
-                    $.ajax({
-                        url: "<?= site_url('images/new_collection'); ?>",
-                        type: 'POST',
-                        cache: false,
-                        data: {
-                            collection_name: $('#collectionName').val(),
-                            <?= $this->security->get_csrf_token_name(); ?>: '<?= $this->security->get_csrf_hash(); ?>'
-                        },
-                        success: function(data) {
-                            inputDialogDestroy("#dialog-newColl");
-                            populateCollections();
-                        }
-                    });
-                },
-                Cancel: function() {
-                    inputDialogDestroy("#dialog-newColl");
-                }
-            }
-        });
-    }
-
-    $(document).ready(function(e) {
-        $('#quarx-new-collection').bind('click', function(){
-            newCollectionBox();
-        });
-
-        $('#addBtn').click(function(){
-            _quarx_loading();
-        });
-
-        populateCollections();
-    });
+    var _collectionID = 'null',
+    _quarxCollectionManager = false;
 
 </script>
+
+<?php $this->carabiner->display("quarx-images-js"); ?>
 
 <!-- End of File -->

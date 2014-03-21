@@ -40,6 +40,9 @@ class Cloudcatcher extends CI_Controller {
         $data['pageRoot'] = base_url().'index.php';
         $data['pagetitle'] = 'CloudCatcher';
 
+        $js = array('views/admin/quarx.admin.js');
+        $this->carabiner->group("quarx-admin-js", array('js'=>$js));
+
         $this->load->view('common/header', $data);
         $this->load->view('core/admin/cloudcatcher', $data);
         $this->load->view('common/footer', $data);

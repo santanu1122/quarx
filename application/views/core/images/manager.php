@@ -35,7 +35,7 @@
 <?php $this->load->view("core/images/common/menu"); ?>
 
 <div class="quarx-img-box align-center">
-    <a id="newCollectionBtn" href="#" data-role="button" data-icon="plus" data-theme="a">New Collection</a>
+    <a id="quarx-new-collection" href="#" data-role="button" data-icon="plus" data-theme="a">New Collection</a>
 
     <?php
 
@@ -48,54 +48,13 @@
 
 </div>
 
-<!-- javascript -->
-
 <script type="text/javascript">
 
-
-    $(document).ready(function(e) {
-        $('#newCollectionBtn').bind('click', function(){
-            newCollectionBox();
-        });
-    });
-
-    function newCollectionBox(){
-        $( "#dialog-newColl" ).dialogboxInput({
-            buttons: {
-                Ok: function() {
-                    $.ajax({
-                        url: "<?php echo site_url('images/new_collection'); ?>",
-                        type: 'POST',
-                        cache: false,
-                        data: {
-                            collection_name: $('#collectionName').val(),
-                            <?php echo $this->security->get_csrf_token_name(); ?>: '<?php echo $this->security->get_csrf_hash(); ?>'
-                        },
-                        success: function(data) {
-                            window.location = "<?php echo site_url('images/manager'); ?>";
-                        }
-                    });
-                },
-                Cancel: function() {
-                    inputDialogDestroy("#dialog-newColl");
-                }
-            }
-        });
-    }
-
-    function deleteMe(id) {
-        $( "#dialog-img" ).dialogboxInput({
-            buttons: {
-                Ok: function() {
-                    window.location = '<?= site_url('images/delete_collection'); ?>/'+id;
-                },
-                Cancel: function() {
-                    inputDialogDestroy( "#dialog-img" );
-                }
-            }
-        });
-    }
+    var _quarxCollectionManager = true,
+        _collectionID = 'null';
 
 </script>
+
+<?php $this->carabiner->display("quarx-images-js"); ?>
 
 <!-- End of File -->

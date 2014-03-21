@@ -136,6 +136,6 @@
         </div>
     </div>
 
-<?php $this->carabiner->display('account-manager'); ?>
+<?php $this->carabiner->display('quarx-users-js'); ?>
 
 <!-- End of File -->

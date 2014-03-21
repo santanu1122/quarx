@@ -1,0 +1,11 @@
+ALTER TABLE `users` ADD `address` VARCHAR( 250 ) NOT NULL;
+ALTER TABLE `users` ADD `city` VARCHAR( 250 ) NOT NULL;
+ALTER TABLE `users` ADD `state` VARCHAR( 250 ) NOT NULL;
+ALTER TABLE `users` ADD `country` VARCHAR( 250 ) NOT NULL;
+ALTER TABLE `users` ADD `phone` VARCHAR( 250 ) NOT NULL;
+ALTER TABLE `users` ADD `fax` VARCHAR( 250 ) NOT NULL;
+ALTER TABLE `users` ADD `website` VARCHAR( 250 ) NOT NULL;
+ALTER TABLE `users` ADD `company` VARCHAR( 250 ) NOT NULL;
+ALTER TABLE `users` ADD `manager` INT( 14 ) NOT NULL;
+ALTER TABLE `users` ADD `owner_view_count` INT( 8 ) NOT NULL;
+ALTER TABLE `users` ADD `owner_last_view` VARCHAR( 200 ) NOT NULL;

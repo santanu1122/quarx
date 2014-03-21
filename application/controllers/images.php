@@ -27,8 +27,8 @@ class Images extends CI_Controller {
 
         $this->lang->load(config_item('language_abbr'), config_item('language'));
 
-        $js = array('views/images.js');
-        $this->carabiner->group("images-js", array('js'=>$js));
+        $js = array('views/images/quarx-images.js');
+        $this->carabiner->group("quarx-images-js", array('js'=>$js));
     }
 
     public function index()
@@ -40,6 +40,11 @@ class Images extends CI_Controller {
     {
         $this->load->model('model_images');
 
+        $js = array(
+            array('views/images/quarx-images.js'),
+            array('views/images/quarx-images-library.js')
+        );
+        $this->carabiner->group("quarx-images-js", array('js'=>$js));
 
         $collection = (is_null($collection) ? null : $this->crypto->decrypt($collection));
 
@@ -74,6 +79,11 @@ class Images extends CI_Controller {
 
     public function add()
     {
+        $js = array(
+            array('views/images/quarx-images.js')
+        );
+        $this->carabiner->group("quarx-images-js", array('js'=>$js));
+
         $data['root'] = base_url();
         $data['pageRoot'] = base_url().'index.php';
         $data['pagetitle'] = 'Image Library: Add';
@@ -87,8 +97,12 @@ class Images extends CI_Controller {
     {
         $this->load->model('model_images');
 
-        $data['collection'] = $this->model_images->get_collections();
+        $js = array(
+            array('views/images/quarx-images.js')
+        );
+        $this->carabiner->group("quarx-images-js", array('js'=>$js));
 
+        $data['collection'] = $this->model_images->get_collections();
         $data['root'] = base_url();
         $data['pageRoot'] = base_url().'index.php';
         $data['pagetitle'] = "Collections Manager";
@@ -100,8 +114,12 @@ class Images extends CI_Controller {
 
     public function change($id)
     {
-        $data['imageId'] = $this->crypto->decrypt($id);
+        $js = array(
+            array('views/images/quarx-images.js')
+        );
+        $this->carabiner->group("quarx-images-js", array('js'=>$js));
 
+        $data['imageId'] = $this->crypto->decrypt($id);
         $data['root'] = base_url();
         $data['pageRoot'] = base_url().'index.php';
         $data['pagetitle'] = 'Change Collection';
@@ -113,7 +131,7 @@ class Images extends CI_Controller {
 
     public function add_image()
     {
-        $collection = $this->crypto->decrypt($this->input->post('collection'));
+        $collection = $this->input->post('collection');
 
         $this->load->model('model_images');
         $this->load->helper(array('form', 'url'));
@@ -159,7 +177,7 @@ class Images extends CI_Controller {
         {
             foreach ($data as $collection)
             {
-                echo '<option value="'.$this->crypto->encrypt($collection->collection_id).'">'.$collection->collection_name.'</option>';
+                echo '<option class="quarx-collection-options" value="'.$collection->collection_id.'">'.$collection->collection_name.'</option>';
             }
         }
     }
@@ -234,7 +252,7 @@ class Images extends CI_Controller {
         $this->load->model('model_images');
 
         $id = $this->crypto->decrypt($this->input->post('imageId'));
-        $collection = $this->crypto->decrypt($this->input->post('collections'));
+        $collection = $this->input->post('collections');
 
         $data = $this->model_images->update_collection($id, $collection);
 

@@ -68,6 +68,11 @@
 
     <!-- Custom Scripts -->
     <script type="text/javascript">
+
+    _quarxBlurBG = true;
+    _quarxRootURL = "<?= site_url(); ?>";
+    _quarxSecurityHash = "<?= $this->security->get_csrf_hash(); ?>";
+
     <?php $this->module_tools->get_module_js(); ?>
     </script>
 

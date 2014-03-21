@@ -3,7 +3,7 @@
 /**
  * Quarx
  *
- * A modular application framework built on CodeIgniter
+ * A modular CMS application
  *
  * @package     Quarx
  * @author      Matt Lantz

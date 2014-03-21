@@ -53,8 +53,8 @@ class Login extends CI_Controller {
     {
         if ($this->quarx->get_option("enable_joining") == "yes")
         {
-            $js = array('views/join.js');
-            $this->carabiner->group("join", array('js'=>$js));
+            $js = array('views/quarx-join.js');
+            $this->carabiner->group("quarx-join-js", array('js'=>$js));
 
             $data['root'] = base_url();
             $data['pageRoot'] = base_url().'index.php';
@@ -236,7 +236,7 @@ class Login extends CI_Controller {
         $data['pagetitle'] = 'New Password Sent';
 
         $this->load->view('common/header', $data);
-        $this->load->view('core/login/password-sent', $data);
+        $this->load->view('core/login/notify', $data);
         $this->load->view('common/footer', $data);
     }
 }

@@ -105,60 +105,13 @@
     </div>
 </div>
 
+<?php $this->carabiner->display("quarx-admin-js"); ?>
+
 <script type="text/javascript">
 
-$(function(){
-    $("button").parent().css("marginTop", "16px");
-});
-
-$('#account_info').bind("click", function(e){
-    e.preventDefault();
-
-    $( "#dialog-account_info" ).dialogbox({
-        buttons: {
-            Ok: function() {
-                inputDialogDestroy("#dialog-account_info");
-            }
-        }
+    $(function(){
+        $("button").parent().css("marginTop", "16px");
     });
-});
-
-
-$('#master_info').bind("click", function(e){
-    e.preventDefault();
-
-    $( "#dialog-master_info" ).dialogbox({
-        buttons: {
-            Ok: function() {
-                inputDialogDestroy("#dialog-master_info");
-            }
-        }
-    });
-});
-
-$('#joining_info').bind("click", function(e){
-    e.preventDefault();
-
-    $( "#dialog-joining_info" ).dialogbox({
-        buttons: {
-            Ok: function() {
-                inputDialogDestroy("#dialog-joining_info");
-            }
-        }
-    });
-});
-
-$('#autoAuth_info').bind("click", function(e){
-    e.preventDefault();
-
-    $( "#dialog-autoAuth_info" ).dialogbox({
-        buttons: {
-            Ok: function() {
-                inputDialogDestroy("#dialog-autoAuth_info");
-            }
-        }
-    });
-});
 
 </script>
 

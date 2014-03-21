@@ -1,4 +1,4 @@
-1395344864TS--->
+1395412676TS--->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -49,6 +49,10 @@
 
     <!-- Custom Scripts -->
     <script type="text/javascript">
+
+    _quarxRootURL = "http://localhost:8888/_my_projects/quarx/quarx5/";
+    _quarxSecurityHash = "f9e887cf6953eb25656e4d565fe115f8";
+
         </script>
 
     <style type="text/css">
@@ -78,8 +82,16 @@
 
     <ul id="quarx-menu" data-role="listview">
 
-        
-<li><a href="http://localhost:8888/_my_projects/quarx/quarx5/sample">Sample</a></li><li><a href="http://localhost:8888/_my_projects/quarx/quarx5/images/library">Image Library</a></li><li><a href="http://localhost:8888/_my_projects/quarx/quarx5/admin">Admin Settings</a></li><li><a href="http://localhost:8888/_my_projects/quarx/quarx5/admin/cloudcatcher">CloudCatcher</a></li><li><a href="http://localhost:8888/_my_projects/quarx/quarx5/admin/about">About</a></li><li><a href="http://localhost:8888/_my_projects/quarx/quarx5/manual">Manual</a></li>
+        <li><a href="http://localhost:8888/_my_projects/quarx/quarx5/blog">Blog</a></li>
+<li><a href="http://localhost:8888/_my_projects/quarx/quarx5/events">Events</a></li>
+<li><a href="http://localhost:8888/_my_projects/quarx/quarx5/feedback">Feedback</a></li>
+<li><a href="http://localhost:8888/_my_projects/quarx/quarx5/gallery">Gallery</a></li>
+<li><a href="http://localhost:8888/_my_projects/quarx/quarx5/inbox">Inbox</a></li>
+<li><a href="http://localhost:8888/_my_projects/quarx/quarx5/members">Members</a></li>
+<li><a href="http://localhost:8888/_my_projects/quarx/quarx5/pages">Pages</a></li>
+
+<li><a href="http://localhost:8888/_my_projects/quarx/quarx5/sample">Sample</a></li><li><a href="http://localhost:8888/_my_projects/quarx/quarx5/dealers">Dealer Manager</a></li>
+<li><a href="http://localhost:8888/_my_projects/quarx/quarx5/images/library">Image Library</a></li><li><a href="http://localhost:8888/_my_projects/quarx/quarx5/admin">Admin Settings</a></li><li><a href="http://localhost:8888/_my_projects/quarx/quarx5/admin/cloudcatcher">CloudCatcher</a></li><li><a href="http://localhost:8888/_my_projects/quarx/quarx5/admin/about">About</a></li><li><a href="http://localhost:8888/_my_projects/quarx/quarx5/manual">Manual</a></li>
     </ul>
 
 </div>
@@ -172,6 +184,8 @@
 
     </div>
 </div><!--/content -->
+
+<script type="text/javascript" src="http://localhost:8888/_my_projects/quarx/quarx5/js/views/admin/quarx.admin.js" charset="UTF-8"></script>
 
 
     <div id="quarx-modal">

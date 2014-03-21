@@ -52,19 +52,6 @@
     </div>
 </div>
 
-<script>
-
-    $(document).ready(function(e) {
-        $('#quarx-member-search').submit(function() {
-            if ($('#quarx-search').val().length < 3 ){
-                quarxNotify("Oops","Sorry, your search must have at least three characters");
-                return false;
-            } else {
-                return true;
-            }
-        });
-    });
-
-</script>
+<?php $this->carabiner->display("quarx-users-js"); ?>
 
 <?php //End of File ?>

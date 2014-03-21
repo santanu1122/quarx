@@ -38,8 +38,10 @@ class Edit extends CI_Controller {
     {
         if($this->session->userdata('user_id') == 1)
         {
-            $data['quarxInstalled'] = 'installed';
+            $js = array('views/admin/quarx.admin.js');
+            $this->carabiner->group("quarx-admin-js", array('js'=>$js));
 
+            $data['quarxInstalled'] = 'installed';
             $data['accountStatus'] = ($this->quarx->get_option('account_type') == 'advanced accounts' ? 'checked="checked"' : '');
             $data['masterAccess'] = ($this->quarx->get_option('access_type') == 'master access' ? 'checked="checked"' : '');
             $data['joining'] = ($this->quarx->get_option('enable_joining') == 'yes' ? 'checked="checked"' : '');

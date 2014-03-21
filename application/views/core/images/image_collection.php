@@ -30,7 +30,7 @@
                     echo '<span class="quarx-del-icon"></span>';
                 echo '</div>';
                 echo '<div class="quarx-thumb-shot">';
-                    echo '<img style="visibility: hidden;" data-web-link="'.$img->img_medium_location.'" onclick="'.$clickAction.'" id="image-'.$regular_id.'" src="'.$img->img_thumb_location.'" alt="'.$img->img_alt_tag.'" title="'.$img->img_title_tag.'" />';
+                    echo '<img style="visibility: hidden;" data-web-link="'.$img->img_medium_location.'" onclick="'.$clickAction.'" id="image-'.$regular_id.'" data-enc-id="'.$enc_id.'" src="'.$img->img_thumb_location.'" alt="'.$img->img_alt_tag.'" title="'.$img->img_title_tag.'" />';
                 echo '</div>';
             echo '</div>';
         echo '</div>';

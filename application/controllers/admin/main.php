@@ -37,6 +37,9 @@ class Main extends CI_Controller {
     {
         $this->load->model('model_admin');
 
+        $js = array('views/admin/quarx.admin.js');
+        $this->carabiner->group("quarx-admin-js", array('js'=>$js));
+
         $data['root'] = base_url();
         $data['pageRoot'] = base_url().'index.php';
         $data['pagetitle'] = 'Admin';

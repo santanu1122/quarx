@@ -58,6 +58,6 @@
 
 </div>
 
-<?php $this->carabiner->display("join"); ?>
+<?php $this->carabiner->display("quarx-join-js"); ?>
 
 <?php //End of File ?>

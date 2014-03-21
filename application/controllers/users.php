@@ -62,7 +62,7 @@ class Users extends CI_Controller {
         $data['pagetitle'] = 'My Profile';
 
         $this->load->view('common/header', $data);
-        $this->load->view('core/users/my-profile', $data);
+        $this->load->view('core/users/my-account', $data);
         $this->load->view('common/footer', $data);
     }
 
@@ -221,8 +221,8 @@ class Users extends CI_Controller {
             if($this->quarx->get_option("access_type") !== 'master access') redirect('users/insufficient');
         }
 
-        $js = array('views/add-account.js');
-        $this->carabiner->group("add-account", array('js'=>$js));
+        $js = array('views/users/add-user.js');
+        $this->carabiner->group("quarx-add-users", array('js'=>$js));
 
         $data['root'] = base_url();
         $data['pageRoot'] = base_url().'index.php';
@@ -334,12 +334,10 @@ class Users extends CI_Controller {
         $id = $this->crypto->decrypt($id[0]);
 
         $js = array(
-            array('views/loading.js'),
-            array('views/account-manager.js')
+            array('views/quarx-loading.js'),
+            array('views/users/quarx-users.js')
         );
-
-        $this->carabiner->group("account-manager", array('js'=>$js));
-
+        $this->carabiner->group("quarx-users-js", array('js'=>$js));
 
         if (intval($id) == 0) redirect("users");
 
@@ -552,9 +550,8 @@ class Users extends CI_Controller {
             }
         }
 
-        $js = array('views/account-manager.js');
-
-        $this->carabiner->group("account-manager", array('js'=>$js));
+        $js = array('views/users/quarx-users.js');
+        $this->carabiner->group("quarx-users-js", array('js'=>$js));
 
         $this->load->library('tools');
         $this->load->library('pagination');
@@ -600,6 +597,9 @@ class Users extends CI_Controller {
         }
 
         $this->load->library('pagination');
+
+        $js = array('views/users/quarx-users.js');
+        $this->carabiner->group("quarx-users-js", array('js'=>$js));
 
         $data['searchTerm'] = null;
         $data['totals'] = null;
@@ -663,6 +663,9 @@ class Users extends CI_Controller {
 
         $this->load->model('model_users');
         $this->load->library('pagination');
+
+        $js = array('views/users/quarx-users.js');
+        $this->carabiner->group("quarx-users-js", array('js'=>$js));
 
         $offset = $this->uri->segment(3);
 

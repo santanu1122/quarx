@@ -91,4 +91,6 @@
     </div>
 </div><!--/content -->
 
+<?php $this->carabiner->display("quarx-admin-js"); ?>
+
 <?php /* End of File */ ?>

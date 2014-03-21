@@ -3,7 +3,7 @@
 /**
  * Quarx
  *
- * A modular application framework built on CodeIgniter
+ * A modular CMS application
  *
  * @package     Quarx
  * @author      Matt Lantz
@@ -11,29 +11,15 @@
  * @license     http://ottacon.co/quarx/license.html
  * @link        http://ottacon.co/quarx
  * @since       Version 1.0
- * 
+ *
  */
 
 ?>
 
-<select id="quarx-select-library-collections" data-theme="a" name="gallery">
+<select id="quarx-select-library-collections" data-theme="a" name="quarx-select-library-collection">
 
 </select>
 
-<script type="text/javascript">
-
-$("#quarx-select-library-collections").bind("click", function (){
-    $.ajax({
-        url: "<?php echo site_url('image/get_collections'); ?>",
-        type: 'GET',
-        dataType: "HTML",
-        success: function(data) {
-            var options = '<option value="0">None</option>'+data;
-            $('#quarx-select-library-collections').html(options).selectmenu("refresh");
-        }
-    });
-});
-    
-</script>
+<?php $this->carabiner->display("quarx-images-js"); ?>
 
 <!-- End of File -->

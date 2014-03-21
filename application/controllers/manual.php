@@ -33,12 +33,15 @@ class Manual extends CI_Controller {
         if ($this->session->userdata('user_id') == 1) $data['displayMasterManual'] = true;
         if ($this->session->userdata('permission') == 1) $data['displayAdminManual'] = true;
 
+        $js = array('views/quarx-manual.js');
+        $this->carabiner->group("quarx-manual-js", array('js'=>$js));
+
         $data['root'] = base_url();
         $data['pageRoot'] = base_url().'index.php';
         $data['pagetitle'] = 'Manual';
 
         $this->load->view('common/header', $data);
-        $this->load->view('core/admin/manual', $data);
+        $this->load->view('core/manual', $data);
         $this->load->view('common/footer', $data);
     }
 

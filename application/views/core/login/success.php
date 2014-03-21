@@ -18,7 +18,7 @@
 
 <div class="quarx-small-device quarx-align-center">
 	<br />
-	<p>You're profile was successfully submitted. Please wait for an email indicating that your profile is active.</p>
+	<p>Your profile was successfully submitted. Please wait for an email indicating that your profile is active.</p>
 	<br />
 	<br />
 	<a href="<?php echo site_url('login'); ?>" data-role="button">Log In</a>

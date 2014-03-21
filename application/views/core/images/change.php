@@ -3,7 +3,7 @@
 /**
  * Quarx
  *
- * A modular application framework built on CodeIgniter
+ * A modular CMS application
  *
  * @package     Quarx
  * @author      Matt Lantz
@@ -54,12 +54,10 @@
 
 <script type="text/javascript">
 
-    var images_get_collectionsURL = '<?= site_url("images/get_collections"); ?>',
-        _sec_val = '<?= $this->security->get_csrf_hash(); ?>',
-        images_new_collectionURL = "<?= site_url('images/new_collection'); ?>";
+    var _collectionID = 'null';
 
 </script>
 
-<?php $this->carabiner->display("images-js"); ?>
+<?php $this->carabiner->display("quarx-images-js"); ?>
 
 <!-- End of File -->

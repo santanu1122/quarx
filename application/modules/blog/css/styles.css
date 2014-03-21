@@ -1,0 +1,35 @@
+/* blog module rules */
+
+textarea.tinymce{
+    height: 400px;
+}
+
+.tinymce_m{
+    resize: vertical;
+}
+
+.plusBtn{
+    margin-top: 7px;
+}
+
+.blog-category-container{
+    margin-top: -4px;
+}
+
+#search{
+    line-height: 29px;
+}
+
+.blog-search-box{
+    margin-top: -2px;
+}
+
+.entry-list:nth-child(odd){
+    background: #F8F8F8;
+}
+
+.entry-list-row p, .entry-list-row a{
+    padding: 0;
+    margin: 0;
+    line-height: 40px;
+}

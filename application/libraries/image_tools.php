@@ -27,32 +27,31 @@ class Image_tools{
 
     public function imageLibrarySelect($img_collection = null, $id_tag = null)
     {
-        if($id_tag == null){
-            $id_tag = 'quarx-select-library-collections';
-        }
+        if ($id_tag == null) $id_tag = 'quarx-select-library-collections';
 
         $CI =& get_instance();
-        $CI->load->model('modelimg');
+        $CI->load->model('model_images');
 
-        $collection = $CI->modelimg->get_collections();
+        $collection = $CI->model_images->get_collections();
 
-        $data = '<div class="raw100 align-center">';
+        $data = '<div class="raw100 raw-left align-center raw-margin-top-5">';
+        $data .= '<p>If you\'d like to add an image library to your entry please select one below.</p>';
+        $data .= '</div>';
 
-        $data .= '<p>If you\'d like to add an image library please select one below.</p>';
-
+        $data .= '<div class="raw100 raw-left raw-margin-bottom-10">';
         $data .= '<select id="'.$id_tag.'" data-theme="a" name="quarx_img_library">';
 
-        if($img_collection != 0){
-            $data .= '<option value="'.$img_collection.'">Currently: '.getCollectionName($img_collection).'</option>';
-        }
+        if ($img_collection != 0) $data .= '<option value="'.$img_collection.'">Currently: '.getCollectionName($img_collection).'</option>';
 
-        $data .= '<option value="0">None</option>';
+        $data .= '<option value="0">No Library Selected</option>';
 
-            foreach ($collection as $col) {
+            foreach ($collection as $col)
+            {
                 $data .= '<option value="'.$col->collection_id.'">'.$col->collection_name.'</option>';
             }
 
-        $data .= '</select></div>';
+        $data .= '</select>';
+        $data .= '</div>';
 
         $data .= '<script type="text/javascript">
 
@@ -60,7 +59,7 @@ class Image_tools{
                         $("#quarx-select-library-collections-button").click(function(){
 
                             $.ajax({
-                                url: "'.site_url('image/get_collections').'",
+                                url: "'.site_url('images/get_collections').'",
                                 type: "GET",
                                 dataType: "HTML",
                                 success: function(data) {

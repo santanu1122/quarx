@@ -185,7 +185,7 @@
         echo '<script type="text/JavaScript" src="'.$root.'js/googlemaps.js"></script>';
     }
 
-    $this->carabiner->display("add-account");
+    $this->carabiner->display("quarx-add-users");
 
 ?>
 

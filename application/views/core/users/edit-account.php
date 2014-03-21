@@ -54,7 +54,7 @@
             <?php
 
                 $profile_image = $root.'uploads/img/thumb/default.jpg';
-                if ($myprofile->img !== "") $profile_image = $myprofile->img;
+                if ($myprofile->img !== "" && ! is_null($myprofile->img)) $profile_image = $myprofile->img;
                 echo '<div class="quarx-profile-image" style="background-image: url('.$this->image_tools->change_img_size($profile_image, "medium").');"></div>';
 
             ?>
@@ -263,8 +263,25 @@
         echo '<script type="text/JavaScript" src="'.$root.'js/googlemaps.js"></script>';
     }
 
-    $this->carabiner->display("account-manager");
+    $this->carabiner->display("quarx-users-js");
 
 ?>
+
+<script type="text/javascript">
+
+    $("#saveBtn").click(function(){
+        _quarx_loading();
+    });
+
+<?php
+
+    if ($this->quarx->get_option("account_type") == 'advanced accounts' )
+    {
+        echo 'if ($("#latBox").val() > 0) { _locateMeAlt(); }';
+    }
+
+?>
+
+</script>
 
 <?php //End of File ?>

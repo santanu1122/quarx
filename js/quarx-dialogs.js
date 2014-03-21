@@ -16,7 +16,7 @@ function dialogDestroy(idTag) {
     $(idTag+'_dialog-header').remove();
     $(idTag+' .dialogbox_body').remove();
     $(idTag).hide();
-    $('#quarx-modal').fadeOut();
+    $('#quarx-modal').hide();
     $('#quarx-header, #quarx-body, #quarx-footer').Vague().unblur();
     $(".vague-svg-blur").remove();
 }
@@ -25,7 +25,7 @@ function inputDialogDestroy(idTag) {
     $(idTag+'_dialog-header').remove();
     $(idTag+' .dialogbox_body_btns').remove();
     $(idTag).hide();
-    $('#quarx-modal').fadeOut();
+    $('#quarx-modal').hide();
     $('#quarx-header, #quarx-body, #quarx-footer').Vague().unblur();
     $(".vague-svg-blur").remove();
 }
@@ -53,17 +53,19 @@ function destroyDialogs() {
         $('#quarx-modal').show();
         $('#quarx-modal').bind('click', function(){
             dialogDestroy('#'+idTag);
-            $('#quarx-modal').fadeOut();
+            $('#quarx-modal').hide();
         });
 
-        $('#quarx-header, #quarx-body, #quarx-footer').Vague({
-            intensity: 4,
-        }).blur();
+        if (_quarxBlurBG == true) {
+            $('#quarx-header, #quarx-body, #quarx-footer').Vague({
+                intensity: 4,
+            }).blur();
+        };
 
         if(options.modal !== true){
             $('#quarx-modal').css('background', 'none');
         }else{
-            $('#quarx-modal').css('background', '#333');
+            $('#quarx-modal').css('background', '#FFF');
         }
 
         if($(this).attr('data-copy') > ''){
@@ -100,7 +102,7 @@ function destroyDialogs() {
 
         $(this).prependTo("#quarx-wrapper");
 
-        $(this).fadeIn();
+        $(this).show();
     }
 
 })(jQuery);
@@ -126,12 +128,14 @@ function destroyDialogs() {
         $('#quarx-modal').show();
         $('#quarx-modal').bind('click', function(){
             inputDialogDestroy('#'+idTag);
-            $('#quarx-modal').fadeOut();
+            $('#quarx-modal').hide();
         });
 
-        $('#quarx-header, #quarx-body, #quarx-footer').Vague({
-            intensity: 4,
-        }).blur();
+        if (_quarxBlurBG == true) {
+            $('#quarx-header, #quarx-body, #quarx-footer').Vague({
+                intensity: 4,
+            }).blur();
+        };
 
         $('#'+idTag).Vague().unblur()
 
@@ -164,7 +168,7 @@ function destroyDialogs() {
 
         $(this).prependTo("#quarx-wrapper");
 
-        $(this).fadeIn();
+        $(this).show();
     }
 
 })(jQuery);

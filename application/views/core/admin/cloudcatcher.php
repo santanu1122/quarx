@@ -59,26 +59,6 @@
 
 </div><!--/content -->
 
-<script type="text/javascript">
-
-    function cloudCatcher(){
-        $('#backupBtn').parent().hide();
-
-        _quarx_loading();
-
-        $.ajax({
-            type: 'POST',
-            url: "<?= site_url('admin/cloudcatcher/backup'); ?>/",
-            data: { backup: true, <?= $this->security->get_csrf_token_name(); ?>: '<?= $this->security->get_csrf_hash(); ?>' },
-            dataType: "html",
-            success: function(data){
-                if(data == 1){
-                    window.location = '<?= site_url("admin/cloudcatcher"); ?>'+'?download';
-                }
-            }
-        });
-    }
-
-</script>
+<?php $this->carabiner->display("quarx-admin-js"); ?>
 
 <?php //End of File ?>
