@@ -27,6 +27,7 @@
 <div id="dialog-alt" title="Image Manager" class="dialogBox">
     <div class="dialogbox_body">
         <a href="#" onclick="changeMe()" data-role="button" data-theme="d">Change Collection</a>
+        <a href="#" onclick="viewFull()" data-role="button" data-theme="d">View This Image</a>
         <input class="deefault" id="pic_alt_tag" data-deefault="Alt Tag" />
         <input class="deefault" id="pic_title_tag" data-deefault="Title Tag" />
     </div>
@@ -35,6 +36,7 @@
 <div id="dialog-update-alt" title="Image Manager" class="dialogBox">
     <div class="dialogbox_body">
         <a href="#" onclick="changeMe()" data-role="button" data-theme="d">Change Collection</a>
+        <a href="#" onclick="viewFull()" data-role="button" data-theme="d">View This Image</a>
         <input id="update_pic_alt_tag" value="" />
         <input id="update_pic_title_tag" value="" />
     </div>
@@ -56,7 +58,7 @@
                     </select>
                 </div>
             </div>
-            <div class="raw100 raw-left library-container">
+            <div class="raw100 raw-left library-container raw-margin-top-40">
 
                 <!-- populated by ajax -->
 

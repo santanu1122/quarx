@@ -133,39 +133,68 @@ class Images extends CI_Controller {
     {
         $collection = $this->input->post('collection');
 
+        $this->load->library('upload');
         $this->load->model('model_images');
         $this->load->helper(array('form', 'url'));
 
-        $id = 'img';
-        $now = time();
+        $file_array = array();
+        $n = $i = 0;
 
         ini_set('memory_limit','128M');
 
-        $config['upload_path'] = './uploads/img/full/';
-        $config['allowed_types'] = 'gif|jpg|jpeg|png|GIF|JPG|JPEG|PNG';
-        $config['max_size'] = '4000';
-        $config['max_width'] = '4000';
-        $config['max_height'] = '4000';
-        $config['file_name'] = $id.'_'.$now.'.jpg';
+        $fileCount = count($_FILES['images']['name'])-1;
 
-        $img = $id.'_'.$now.'.jpg';
-        $this->load->library('upload', $config);
-
-        if ( ! $this->upload->do_upload())
+        foreach (range(0, $fileCount) as $f)
         {
-            $this->session->set_flashdata('message', array("error", "Failed to upload the image."));
-            redirect('images/add');
+            $rand = 'image-'.rand(100000, 999999);
+
+            array_push($file_array, $rand);
+
+            $_FILES[$rand] = array(
+                "name" => $_FILES['images']['name'][$n],
+                "type" => $_FILES['images']['type'][$n],
+                "tmp_name" => $_FILES['images']['tmp_name'][$n],
+                "error" => $_FILES['images']['error'][$n],
+                "size" => $_FILES['images']['size'][$n]
+            );
+
+            $n++;
         }
-        else
+
+        unset($_FILES['images']);
+
+        foreach ($_FILES as $file)
         {
-            $this->image_tools->make_thumb($img);
-            $this->image_tools->make_medium($img);
+            $now = time();
+            $ext = substr(strrchr($file['name'], "."), 1);
+            $img = $file_array[$i].'-'.$now.'.'.$ext;
 
-            $this->model_images->upload_img($img, $collection);
+            $config['upload_path'] = './uploads/img/full/';
+            $config['allowed_types'] = 'gif|jpg|jpeg|png|GIF|JPG|JPEG|PNG';
+            $config['max_size'] = '4000';
+            $config['max_width'] = '4000';
+            $config['max_height'] = '4000';
+            $config['file_name'] = $img;
 
-            $this->session->set_flashdata('message', array("info", "Image successfully uploaded"));
-            redirect('images');
+            $this->upload->initialize($config);
+
+            if ( ! $this->upload->do_upload($file_array[$i]))
+            {
+                $this->session->set_flashdata('message', array("error", $this->upload->display_errors()));
+                redirect('images/add');
+            }
+            else
+            {
+                $this->image_tools->make_thumb($img);
+                $this->image_tools->make_medium($img);
+                $this->model_images->upload_img($img, $collection);
+            }
+
+            $i++;
         }
+
+        $this->session->set_flashdata('message', array("info", "Image successfully uploaded"));
+        redirect('images');
     }
 
     public function get_collections()
@@ -201,10 +230,8 @@ class Images extends CI_Controller {
         redirect('images/manager');
     }
 
-    public function delete_img()
+    public function delete_img($id)
     {
-        $id = $this->crypto->decrypt($this->input->get('id'));
-
         $this->load->model('model_images');
         $img = $this->model_images->find_img($id);
 
@@ -245,6 +272,22 @@ class Images extends CI_Controller {
         $qry = $this->model_images->get_alt_title($id);
 
         if ($qry) echo '{ "alt_tag": "'.$qry[0]->img_alt_tag.'", "title_tag": "'.$qry[0]->img_title_tag.'" }';
+    }
+
+    public function view_full($id)
+    {
+        $id = $this->crypto->decrypt($id);
+        $this->load->model('model_images');
+        $img = $this->model_images->find_img($id);
+
+        $data['image'] = $img[0];
+        $data['root'] = base_url();
+        $data['pageRoot'] = base_url().'index.php';
+        $data['pagetitle'] = 'Image Library: View';
+
+        $this->load->view('common/header', $data);
+        $this->load->view('core/images/view_full', $data);
+        $this->load->view('common/footer', $data);
     }
 
     public function change_collection()

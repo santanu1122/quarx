@@ -40,7 +40,7 @@
 
             <form id="addImageForm" action="<?= site_url('images/add_image'); ?>" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" />
-                <input type="file" name="userfile" />
+                <input type="file" multiple="multiple" name="images[]" />
 
                 <p>Then select a Collection</p>
 

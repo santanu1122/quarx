@@ -23,9 +23,9 @@ class Model_images extends CI_Model {
 
     public function upload_img($img, $collection)
     {
-        $this->img_location   = site_url().'uploads/img/full/'.$img;
-        $this->img_medium_location   = site_url().'uploads/img/medium/'.$img;
-        $this->img_thumb_location   = site_url().'uploads/img/thumb/'.$img;
+        $this->img_location = site_url().'uploads/img/full/'.$img;
+        $this->img_medium_location = site_url().'uploads/img/medium/'.$img;
+        $this->img_thumb_location = site_url().'uploads/img/thumb/'.$img;
         $this->img_collection = $collection;
 
         return $this->db->insert('img', $this);

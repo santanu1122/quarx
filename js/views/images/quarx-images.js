@@ -50,8 +50,8 @@ function newCollectionBox(){
     });
 }
 
-function deleteMe(id) {
-    $( "#dialog-img" ).dialogboxInput({
+function deleteCollection(id) {
+    $( "#dialog-col-del" ).dialogboxInput({
         buttons: {
             Ok: function() {
                 window.location = _quarxRootURL+'images/delete_collection/'+id;
@@ -61,6 +61,38 @@ function deleteMe(id) {
             }
         }
     });
+}
+
+function deleteImage(id) {
+    $( "#dialog-img" ).dialogboxInput({
+        buttons: {
+            Ok: function() {
+                $.ajax({
+                    url: _quarxRootURL+'images/delete_img/'+id,
+                    type: 'GET',
+                    dataType: "HTML",
+                    success: function(data) {
+                        $("#container-"+id).remove();
+                        quarxNotify("Success", "The image was successfully deleted.");
+                        inputDialogDestroy("#dialog-img");
+                    }
+                });
+            },
+            Cancel: function() {
+                inputDialogDestroy("#dialog-img");
+            }
+        }
+    });
+}
+
+function viewFull() {
+    if ($('#dialog-update-alt').attr('data-imageId') > '') {
+        window.location = _quarxRootURL+"images/view_full/"+$('#dialog-update-alt').attr('data-enc-id');
+    }
+
+    if ($('#dialog-alt').attr('data-imageId') > '') {
+        window.location = _quarxRootURL+"images/view_full/"+$('#dialog-alt').attr('data-enc-id');
+    }
 }
 
 /*
@@ -82,7 +114,7 @@ $(function(){
 
     $("#quarx-select-library-collections").bind("click", function (){
         $.ajax({
-            url: _quarxRootURL+'image/get_collections',
+            url: _quarxRootURL+'images/get_collections',
             type: 'GET',
             dataType: "HTML",
             success: function(data) {

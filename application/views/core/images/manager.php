@@ -18,7 +18,7 @@
 
 <!-- dialogs -->
 
-<div id="dialog-img" title="Delete Confirmation" class="dialogBox">
+<div id="dialog-col-del" title="Delete Confirmation" class="dialogBox">
     <div class="dialogbox_body">
         <p>Are you sure you want to delete this image collection?</p>
     </div>
@@ -41,7 +41,7 @@
 
         foreach ($collection as $c)
         {
-            echo '<a href="#" onclick="deleteMe(\''.$this->crypto->encrypt($c->collection_id).'\')" data-role="button" data-theme="e" data-icon="delete">'.$c->collection_name.'</a>';
+            echo '<a href="#" onclick="deleteCollection(\''.$this->crypto->encrypt($c->collection_id).'\')" data-role="button" data-theme="e" data-icon="delete">'.$c->collection_name.'</a>';
         }
 
     ?>

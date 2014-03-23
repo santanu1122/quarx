@@ -24,9 +24,9 @@
         $regular_id = $img->img_id;
         $clickAction = ($img->img_alt_tag == '' ? 'setTags(\'image-'.$regular_id.'\')' : 'updateTags(\'image-'.$regular_id.'\')');
 
-        echo '<div class="quarx-image-box">';
+        echo '<div id="container-'.$regular_id.'" class="quarx-image-box">';
             echo '<div class="quarx-img-thumb-holder">';
-                echo '<div class="quarx-del-box" onclick="deleteMe(\''.$enc_id.'\')">';
+                echo '<div class="quarx-del-box" onclick="deleteImage(\''.$regular_id.'\')">';
                     echo '<span class="quarx-del-icon"></span>';
                 echo '</div>';
                 echo '<div class="quarx-thumb-shot">';

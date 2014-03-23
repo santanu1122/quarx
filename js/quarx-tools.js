@@ -12,48 +12,6 @@
  *
  */
 
-// Profile Image resizing
-function quarxProfileImageResize(){
-    var width = $('.quarx-profile-image-box img').width(),
-        height = $('.quarx-profile-image-box img').height();
-
-    if(height == width){
-        $('.quarx-profile-image-box img').css({
-            marginTop: 15,
-            marginLeft: ($('.quarx-profile-image-box img').parent().width() - 320)/2,
-            height: 320,
-            width: 320
-        });
-    }
-
-    else if(height > width){
-        var newWidth = ( width * 320 ) / height,
-            marginLeft = ($('.quarx-profile-image-box img').parent().width() - newWidth)/2,
-            marginTop = (350 - 320)/2;
-
-        $('.quarx-profile-image-box img').css({
-            marginTop: marginTop,
-            marginLeft: marginLeft,
-            height: 320,
-            width: newWidth
-        });
-    }
-
-    else if(width > height){
-
-        var newHeight = ( height/width ) * 350,
-            marginTop = (350 - newHeight)/2,
-            marginLeft = ($('.quarx-profile-image-box img').parent().width() - 350)/2;
-
-        $('.quarx-profile-image-box img').css({
-            marginTop: marginTop,
-            marginLeft: marginLeft,
-            width: 320,
-            height: newHeight
-        });
-    }
-}
-
 // Thumbnail Image resizing
 function quarxThumbnailImageResize() {
     $('.quarx-img-thumb-holder img').each(function(){
@@ -62,39 +20,42 @@ function quarxThumbnailImageResize() {
 
         if(height === width){
             $(this).css({
-                marginTop: -10,
+                marginTop: 0,
                 marginLeft: 0,
-                height: 114,
-                width: 114
+                height: 120,
+                width: 120
             });
         }
 
         if(height > width){
-            var newWidth = ( width * 114 ) / height,
-                marginLeft = (114 - newWidth)/2,
-                marginTop = -10;
+            var newWidth = ( width * 120 ) / height,
+                marginLeft = (120 - newWidth)/2,
+                marginTop = -13;
 
             $(this).css({
-                marginTop: marginTop,
+                marginTop: 0,
                 marginLeft: marginLeft,
-                height: 114,
+                height: 120,
                 width: newWidth
             });
 
+            $(this).parent().prev().css("margin-right", "6px");
         }
 
         if(width > height){
 
-            var newHeight = ( height/width ) * 114,
-                marginTop = -13,
+            var newHeight = (height / width) * 120,
+                marginTop = (120 - newHeight)/4,
                 marginLeft = 0;
 
             $(this).css({
-                marginTop: marginTop,
+                marginTop: 26,
                 marginLeft: marginLeft,
-                width: 114,
+                width: 120,
                 height: newHeight
             });
+
+            $(this).parent().prev().css("margin-top", marginTop);
         }
 
         $(this).css({opacity: 0.0, visibility: "visible"}).animate({opacity: 1.0}, 200);
