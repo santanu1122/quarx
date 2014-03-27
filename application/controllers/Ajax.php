@@ -55,7 +55,7 @@ class Ajax extends CI_Controller {
 
     public function unc($params)
     {
-        $name = $params[0] ?: '';
+        $name = $params ?: '';
 
         if ($name > '')
         {
