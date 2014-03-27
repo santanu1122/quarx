@@ -74,25 +74,25 @@ function destroyDialogs() {
             $(this).attr('data-copy', $(this).html());
         }
 
-        if(options.buttons){
+        if (options.buttons) {
 
-            $(this).html('');
-            $(this).append('<div class="dialogbox_body"></div>');
+            $("#"+idTag).html('');
             $('#'+idTag).prepend('<div class="dialogbox_header" id="'+idTag+'_dialog-header"><h1>'+$(this).attr('title')+'</h1></div>');
-            $('#'+idTag+ ' .dialogbox_body').append(coreTxt);
-            $('#'+idTag+ ' .dialogbox_body').append('<button data-theme="a" data-role="button" id="'+idTag+'_okBtn">Ok</button><button data-theme="a" data-role="button" id="'+idTag+'_CnclBtn">Cancel</button>').trigger('create');
+            $('#'+idTag).append('<div class="dialogbox_body"></div>');
+
+
+            $('#'+idTag+ ' .dialogbox_body').append(coreTxt).trigger('create');
+
+            if (typeof(options.buttons.Ok) == 'function') {
+                $('#'+idTag+ ' .dialogbox_body').append('<button data-theme="a" data-role="button" id="'+idTag+'_okBtn">Ok</button>').trigger('create');
+            }
+
+            if (typeof(options.buttons.Cancel) == 'function') {
+                $('#'+idTag+ ' .dialogbox_body').append('<button data-theme="a" data-role="button" id="'+idTag+'_CnclBtn">Cancel</button>').trigger('create');
+            }
 
             $('#'+idTag+'_okBtn').click( options.buttons.Ok );
             $('#'+idTag+'_CnclBtn').click( options.buttons.Cancel );
-
-            if(!options.buttons.Ok){
-                $('#'+idTag+'_okBtn').parent().remove();
-            }
-
-            if(!options.buttons.Cancel){
-                $('#'+idTag+'_CnclBtn').parent().remove();
-            }
-
         }
 
         $(this).css({
