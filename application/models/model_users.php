@@ -33,10 +33,10 @@ class Model_users extends CI_Model {
     {
         if ( ! $name) return 0;
 
-        $this->db->where('username', $this->db->escape_str($name));
+        $this->db->where('username', $name);
         $query = $this->db->get('users');
 
-        $unc_validity = ($query->num_rows() == 1 ? 1 : 0);
+        $unc_validity = ($query->num_rows() >= 1 ? 1 : 0);
 
         return $unc_validity;
     }
