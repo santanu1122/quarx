@@ -189,8 +189,8 @@
                             <input type="file" name="userfile" />
                         </div>
                     </div>
-                    <div class="raw100 raw-left">
-                        <input id="saveBtn" type="submit" value="Save" />
+                    <div class="raw30 raw-right">
+                        <input id="saveBtn" data-theme="d" type="submit" value="Save" />
                     </div>
                 </form>
             </div>

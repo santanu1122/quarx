@@ -37,7 +37,7 @@ $(document).ready(function() {
         minHeight: 275
     });
 
-    if($(window).width() > 600){
+    if ($(window).width() > 600) {
         $(".quarx-top-menu-icons").tooltip();
     }
 
@@ -67,6 +67,7 @@ $(document).ready(function() {
         $('#quarx-benchmarking').remove();
         $('#quarx-benchmarking').remove();
         $('.quarx-top-menu-icons').remove();
+        $('.quarx-device').css("width", "auto");
     }
 
     $(".quarx-popup").css({

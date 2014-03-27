@@ -46,22 +46,17 @@
 
 <div class="raw100 raw-left">
     <div class="quarx-device">
-        <div class="raw25 raw-left">
-            <?php $this->load->view("core/images/common/menu"); ?>
-        </div>
-        <div class="raw2 raw-left raw-block-10 mHide"></div>
-        <div class="raw73 raw-left">
+        <div class="raw100 raw-left">
             <div class="raw100 raw-left">
                 <div class="quarx-img-box">
+                    <?php $this->load->view("core/images/common/menu"); ?>
                     <select id="collections" data-theme="a">
                         <!-- populated by ajax -->
                     </select>
                 </div>
             </div>
             <div class="raw100 raw-left library-container raw-margin-top-40">
-
                 <!-- populated by ajax -->
-
             </div>
         </div>
     </div>

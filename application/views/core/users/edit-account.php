@@ -54,7 +54,7 @@
             <?php
 
                 $profile_image = $root.'uploads/img/thumb/default.jpg';
-                if ($myprofile->img !== "" && ! is_null($myprofile->img)) $profile_image = $myprofile->img;
+                if ($profile->img !== "" && ! is_null($profile->img)) $profile_image = $profile->img;
                 echo '<div class="quarx-profile-image" style="background-image: url('.$this->image_tools->change_img_size($profile_image, "medium").');"></div>';
 
             ?>

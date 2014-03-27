@@ -91,6 +91,10 @@ a{
     min-height: 100%;
 }
 
+.ui-body-a{
+    border: 0 !important;
+}
+
 /* Image Box
 ***************************************************************/
 
@@ -624,6 +628,10 @@ a{
     z-index: 100;
 }
 
+.quarx-thumb-shot img{
+    box-shadow: 0 0 4px;
+}
+
 .quarx-img-thumb-holder{
     width: 120px;
     height: 120px;
@@ -640,6 +648,7 @@ a{
     z-index: 1000;
     cursor: pointer;
     margin: -12px -12px 0 0;
+    box-shadow: 0 0 4px;
 }
 
 .quarx-del-icon{

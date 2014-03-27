@@ -167,8 +167,8 @@
                         </div>
                     </div>
                     <div class="raw100 raw-left">
-                        <div class="raw100 raw-left">
-                            <input id="addBtn" class="fatButton" type="submit" value="Add Account" />
+                        <div class="raw30 raw-right">
+                            <input id="addBtn" data-theme="d" type="submit" value="Add User" />
                         </div>
                     </div>
                 </form>
