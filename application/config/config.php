@@ -444,7 +444,9 @@ $config['footer_visible'] = false;
 |
 */
 
-$config['jsonp_token'] = "@hacKer2082";
+$config['jsonp_tokens'] = array(
+    "@hacKer2082"
+);
 
 /*
 |--------------------------------------------------------------------------

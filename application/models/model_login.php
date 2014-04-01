@@ -61,7 +61,7 @@ class Model_login extends CI_Model {
     |--------------------------------------------------------------------------
     */
 
-    private function do_login($username, $password)
+    public function do_login($username, $password)
     {
         $this->db->where('username', $username);
         $this->db->where('password', hash("sha256", $password));
