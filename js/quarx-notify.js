@@ -14,6 +14,9 @@
 
 // Notifications Growl style
 function quarxNotify(title, message) {
+
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+
     switch(title)
     {
         case "Error":

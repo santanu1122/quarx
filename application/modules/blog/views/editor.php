@@ -16,10 +16,6 @@
     <p>Are you sure you want to delete this category?</p>
 </div>
 
-<div id="dialog-oops" class="dialogBox" title="Oops!">
-    <p>Sorry, but you can't delete a category that has entries :(</p>
-</div>
-
 <div id="dialog-confirm" class="dialogBox" title="Delete Confirmation">
     <p>Are you sure you want to delete this entry?</p>
 </div>

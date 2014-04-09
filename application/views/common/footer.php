@@ -45,12 +45,9 @@
 
 <?php
 
-    if ($this->config->item('footer_visible'))
-    {
-        echo '<div id="quarx-footer" data-role="footer" data-position="fixed" data-theme="a" class="quarx-align-center">';
-        echo '<p>&copy;'.date('Y').' '.$this->quarx->quarx_details('authors').'</p>';
+        echo '<div id="quarx-footer" data-role="footer" data-theme="a" class="quarx-align-center">';
+        if ($this->config->item('footer_visible')) echo '<p>&copy;'.date('Y').' '.$this->quarx->quarx_details('authors').'</p>';
         echo '</div>';
-    }
 
 ?>
 

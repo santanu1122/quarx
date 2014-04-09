@@ -45,9 +45,14 @@ class User_tools {
 
         $query = $CI->model_users->get_notifications_setting();
 
-        if ($query[0]->setting_data == 1) return true;
+        if ($CI->session->userdata("logged_in"))
+        {
+            if ($query[0]->setting_data == 1) return true;
 
-        return false;
+            return false;
+        }
+
+        return true;
     }
 }
 

@@ -33,7 +33,7 @@ class Login extends CI_Controller {
         if ( ! $is_cookie_valid && ! $this->session->userdata('logged_in'))
         {
             $data['joiningIsEnabled'] = ($this->quarx->get_option("enable_joining") == "no" ? false : true);
-
+            $data['is_login'] = true;
             $data['root'] = base_url();
             $data['pageRoot'] = base_url().'index.php';
             $data['pagetitle'] = 'Login';
@@ -66,7 +66,7 @@ class Login extends CI_Controller {
         }
         else
         {
-            $this->session->set_flashdata('error', 'Sorry, but you\'re not currently able to join.');
+            $this->session->set_flashdata('message', array("info", "Sorry, but you\'re not currently able to join."));
             redirect("error");
         }
     }
@@ -122,17 +122,17 @@ class Login extends CI_Controller {
                 break;
 
             case 'disabled':
-                $this->session->set_flashdata('info', array("info", "It appears your account has been disabled."));
+                $this->session->set_flashdata('message', array("info", "It appears your account has been disabled"));
                 redirect('login');
                 break;
 
             case 'inactive':
-                $this->session->set_flashdata('info', array("info", "It appears your account has not yet been activated."));
+                $this->session->set_flashdata('message', array("info", "It appears your account has not yet been activated."));
                 redirect('login');
                 break;
 
             default:
-                $this->session->set_flashdata('info', array("info", "Sorry we could not log you in."));
+                $this->session->set_flashdata('message', array("info", "Sorry we could not log you in."));
                 redirect('login');
                 break;
         }

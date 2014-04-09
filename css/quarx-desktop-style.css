@@ -22,17 +22,29 @@ body, html{
     margin: 0;
     padding: 0;
     width: 100%;
+    min-height: 100%;
+    -ms-overflow-style: none;
+    margin-right: -14px
 }
+
+body::-webkit-scrollbar { width: 0 !important }
+html::-webkit-scrollbar { width: 0 !important }
 
 iframe{
     border: none;
+    width: 100%;
+    height: 100%;
 }
 
-a{
+a {
     text-decoration: none;
     margin: 0;
     padding: 0;
 }
+
+/*.ui-content, #quarx-wrapper {
+    min-height: 0 !important;
+}*/
 
 #Menu.ui-body-c{
     background: transparent;
@@ -45,6 +57,7 @@ a{
 .quarx-panel-box{
     min-height: 100%;
     background: #f9f9f9;
+    border: none !important;
 }
 
 .quarx-about-icon{
@@ -56,6 +69,7 @@ a{
     min-height: 100%;
     overflow-: hidden;
     overflow-y: auto;
+    border: none !important;
 }
 
 .ui-page{
@@ -91,8 +105,9 @@ a{
     min-height: 100%;
 }
 
-.ui-body-a{
-    border: 0 !important;
+.ui-overlay-a{
+    border-top: 0 !important;
+    border-bottom: 0 !important;
 }
 
 /* Image Box

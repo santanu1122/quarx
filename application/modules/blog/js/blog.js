@@ -149,7 +149,7 @@ _catOption = typeof _catOption !== 'undefined' ? _catOption : 'null';
                                 dialogDestroy( "#dialog-cat" );
                             }else{
                                 dialogDestroy( "#dialog-cat" );
-                                oops();
+                                quarxNotify('Oops', 'This category has entries so it cannot be deleted');
                             }
 
                         }
@@ -158,17 +158,6 @@ _catOption = typeof _catOption !== 'undefined' ? _catOption : 'null';
                 Cancel: function() {
                     dialogDestroy( "#dialog-cat" );
                 }
-            }
-        });
-    }
-
-    function oops(){
-        $( "#dialog-oops" ).dialogbox({
-            buttons: {
-                Ok: function() {
-                    dialogDestroy( "#dialog-oops" );
-                },
-                Cancel: false
             }
         });
     }

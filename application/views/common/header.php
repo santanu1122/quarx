@@ -23,11 +23,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <meta name="description" content="A simple to use, responsive design CMS system." />
     <meta name="keywords" content="CMS System, Zen, Responsive Design" />
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <title>Quarx | <?= $pagetitle; ?></title>
 
-    <?php //$this->carabiner->css('http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic,700italic'); ?>
+    <?php $this->carabiner->css('http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic,700italic'); ?>
 
     <!-- Quarx Custom Styles -->
     <link rel="shortcut icon" type="image" href="<?= $root; ?>images/favicon.ico" />
@@ -69,7 +69,7 @@
     <!-- Custom Scripts -->
     <script type="text/javascript">
 
-    _quarxBlurBG = true;
+    _quarxBlurBG = false;
     _quarxRootURL = "<?= site_url(); ?>";
     _quarxSecurityHash = "<?= $this->security->get_csrf_hash(); ?>";
 

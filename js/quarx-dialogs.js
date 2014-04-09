@@ -37,9 +37,9 @@ function destroyDialogs() {
 (function($){
     $.fn.dialogbox = function(options) {
 
-        $("html, body").animate({ scrollTop: 0 }, "slow");
-
         destroyDialogs();
+
+        var evt = window.event || options;
 
         var defaults = {
             ok: '',
@@ -75,11 +75,9 @@ function destroyDialogs() {
         }
 
         if (options.buttons) {
-
-            $("#"+idTag).html('');
+           $("#"+idTag).html('');
             $('#'+idTag).prepend('<div class="dialogbox_header" id="'+idTag+'_dialog-header"><h1>'+$(this).attr('title')+'</h1></div>');
             $('#'+idTag).append('<div class="dialogbox_body"></div>');
-
 
             $('#'+idTag+ ' .dialogbox_body').append(coreTxt).trigger('create');
 
@@ -95,12 +93,21 @@ function destroyDialogs() {
             $('#'+idTag+'_CnclBtn').click( options.buttons.Cancel );
         }
 
+        var heightAdjustment = $(this).height()/2;
+
+        var dialogPosY = evt.pageY - heightAdjustment;
+        if (dialogPosY < 50) {
+            dialogPosY = 50;
+        };
+
         $(this).css({
             left: ($(window).width() - 260)/2,
-            top: (($(window).height() - $(this).height())/2) - 40
+            top: dialogPosY,
         });
 
         $(this).prependTo("#quarx-wrapper");
+
+        $(".deefault").deefault();
 
         $(this).show();
     }
@@ -111,6 +118,8 @@ function destroyDialogs() {
     $.fn.dialogboxInput = function(options) {
 
         destroyDialogs();
+
+        var evt = window.event || options;
 
         var defaults = {
             ok: '',
@@ -157,16 +166,21 @@ function destroyDialogs() {
         $('#'+idTag+'_okBtn').click( options.buttons.Ok );
         $('#'+idTag+'_CnclBtn').click( options.buttons.Cancel );
 
-        if(!options.buttons.Cancel){
-            $('#'+idTag+'_CnclBtn').remove();
-        }
+        var heightAdjustment = $(this).height()/2;
+
+        var dialogPosY = evt.pageY - heightAdjustment;
+        if (dialogPosY < 50) {
+            dialogPosY = 50;
+        };
 
         $(this).css({
             left: ($(window).width() - 260)/2,
-            top: (($(window).height() - $(this).height())/2) - 40
+            top: dialogPosY,
         });
 
         $(this).prependTo("#quarx-wrapper");
+
+        $(".deefault").deefault();
 
         $(this).show();
     }
