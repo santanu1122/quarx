@@ -30,12 +30,26 @@ function _quarx_loading() {
 
 $(document).ready(function() {
     var quarxFrame = "";
+    var _redactor_active = true;
 
     $(".deefault").deefault();
 
-    $('textarea.rtf').redactor({
-        minHeight: 275
-    });
+    var browser = navigator.userAgent;
+    var IEpattern = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
+
+    if (IEpattern.test(browser)) {
+        var versionNumber = RegExp.$1;
+
+        if (versionNumber == '8.0') {
+            _redactor_active = false;
+        }
+    }
+
+    if (_redactor_active) {
+        $('textarea.rtf').redactor({
+            minHeight: 275
+        });
+    };
 
     if ($(window).width() > 600) {
         $(".quarx-top-menu-icons").tooltip();

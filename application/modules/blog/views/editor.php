@@ -75,10 +75,10 @@
         </div>
 
         <div class="raw100 raw-left">
-            <?php if($blog->blog_publish == 0){ ?>
             <div class="raw49 raw-left">
+            <?php if ($blog->blog_publish == 0) { ?>
             <button data-theme="c" onclick="publishEntry('<?= $this->crypto->encrypt($blog->blog_id); ?>')">Publish</button>
-            <?php }else{ ?>
+            <?php } else { ?>
             <button  data-theme="b" onclick="archiveEntry('<?= $this->crypto->encrypt($blog->blog_id); ?>')">Archive</button>
             <?php } ?>
             </div>
@@ -92,7 +92,7 @@
 
     <div class="raw2 raw-left raw-block-10"></div>
 
-    <div class="raw33 raw-left blog-category-container">
+    <div class="raw33 raw-left">
         <h2>Blog Categories</h2>
         <div class="raw70 raw-left">
             <input id="add_category" type="text" name="category" class="deefault" data-deefault="Category Name" />

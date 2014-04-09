@@ -9,7 +9,7 @@
  * @license     http://ottacon.co/quarx/license
  * @link        http://quarx.ottacon.co
  * @since       Version 1.0
- * 
+ *
  */
 
 (function($){
@@ -84,9 +84,9 @@
 		if(versionNumber == '7.0'){
 			blocked(versionNumber);
 		}
-		if(versionNumber == '8.0'){
-			blocked(versionNumber);
-		}
+		// if(versionNumber == '8.0'){
+		// 	blocked(versionNumber);
+		// }
 	}
 
 	if(FFpattern.test(browser)){
