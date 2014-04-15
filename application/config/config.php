@@ -260,14 +260,14 @@ $config['encryption_key'] = '!neutrino86';
 |
 */
 $config['sess_cookie_name']		= 'quarx';
-$config['sess_expiration']		= 3600;
+$config['sess_expiration']		= 7200;
 $config['sess_expire_on_close']	= TRUE;
 $config['sess_encrypt_cookie']	= TRUE;
 $config['sess_use_database']	= FALSE;
 $config['sess_table_name']		= 'ci_sessions';
 $config['sess_match_ip']		= TRUE;
 $config['sess_match_useragent']	= TRUE;
-$config['sess_time_to_update']	= 3600;
+$config['sess_time_to_update']	= 7200;
 
 /*
 |--------------------------------------------------------------------------
@@ -473,7 +473,7 @@ $config['carabiner_config'] = array(
 |
 */
 
-$config['theme'] = "quarx";
+$config['theme'] = "flatui";
 
 /*
 |--------------------------------------------------------------------------
