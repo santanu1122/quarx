@@ -20,10 +20,7 @@ class Manual extends CI_Controller {
     {
         parent::__construct();
 
-        if (!$this->session->userdata('logged_in'))
-        {
-            redirect('error/login'); // Denied!
-        }
+        if ( ! $this->session->userdata('logged_in')) redirect('error/login?r='.($_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']));
 
         $this->lang->load(config_item('language_abbr'), config_item('language'));
     }

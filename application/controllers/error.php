@@ -59,6 +59,11 @@ class Error extends CI_Controller {
 
     public function login()
     {
+        $site = str_replace("http://", "", site_url());
+        $site = str_replace("https://", "", $site);
+
+        $request = str_replace($site, "", $this->input->get("r"));
+
         $this->load->helper('cookie');
         $this->load->model('model_login');
 
@@ -92,7 +97,7 @@ class Error extends CI_Controller {
             @$this->session->set_userdata('owner', $user->owner);
             @$this->session->set_userdata('company', $user->company);
 
-            $uri = @$_SERVER['HTTP_REFERER'];
+            $uri = $request;
             redirect($uri ?: "users");
         }
     }

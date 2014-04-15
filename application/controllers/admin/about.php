@@ -20,10 +20,7 @@ class About extends CI_Controller {
     {
         parent::__construct();
 
-        if (!$this->session->userdata('logged_in'))
-        {
-            redirect('error/login'); // Denied!
-        }
+        if ( ! $this->session->userdata('logged_in')) redirect('error/login?r='.($_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']));
 
         if ($this->session->userdata('permission') != 1)
         {
