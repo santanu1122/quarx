@@ -13,7 +13,7 @@ function populateCollections(collectionId) {
             });
 
             if (collectionId == 'null') {
-                $("#collections").prepend("<option class=\"quarx-collection-options\" selected=\"true\" value=\"0\">Please Select a Category</option>");
+                $("#collections").prepend("<option class=\"quarx-collection-options\" data-placeholder=\"true\" selected=\"true\" value=\"0\">Select a Category</option>");
             };
 
             $("#collections").selectmenu("refresh", true);

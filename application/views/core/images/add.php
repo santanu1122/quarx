@@ -48,7 +48,7 @@
                     <!-- place other collections here -->
                 </select>
 
-                <input id="addBtn" data-theme="c" type="submit" value="Upload" />
+                <input id="addBtn" data-theme="d" type="submit" value="Upload" />
             </form>
 
         </div>

@@ -80,10 +80,10 @@
             </div>
             <div class="raw100 raw-left">
                 <div class="raw70 raw-left">
-                    <p>MySQL (Optional) Version</p>
+                    <p>MySQL Version</p>
                 </div>
                 <div class="raw30 raw-left">
-                    <p>5.3+</p>
+                    <p>5+</p>
                 </div>
             </div>
         </div>
