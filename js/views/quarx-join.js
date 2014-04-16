@@ -1,3 +1,9 @@
+$(document).ready(function(e) {
+    $('#u_name').on("keyup", function() {
+        $(this).val($(this).val().replace(/\s/g, "").toLowerCase());
+    });
+});
+
 $("#quarx-join-form").submit(function(e){
 
     var pattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/,
@@ -37,8 +43,6 @@ $("#quarx-join-form").submit(function(e){
     }
 
 });
-
-$("input").deefault();
 
 function validationCheck(name, URL){
     $.ajax({

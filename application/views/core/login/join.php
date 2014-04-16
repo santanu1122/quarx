@@ -27,25 +27,25 @@
         <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" />
 
         <div class="raw100">
-            <input id="u_name" type="text" data-deefault="Username" name="username" onkeyup="validationCheck(this.value, '<?= site_url('ajax/unc'); ?>/')" />
+            <input id="u_name" type="text" placeholder="Username" name="username" onkeyup="validationCheck(this.value, '<?= site_url('ajax/unc'); ?>/')" />
         </div>
 
         <div class="raw100">
-            <input id="password" type="password" name="password" data-deefault="Password"  />
+            <input id="password" type="password" name="password" placeholder="Password"  />
         </div>
         <div class="raw100">
-            <input id="confirm" type="password" name="confirm" data-deefault="Confirm Password" />
-        </div>
-
-        <div class="raw100">
-            <input id="user_email" data-type="Email" type="text" name="email" data-deefault="Email" />
-        </div>
-        <div class="raw100">
-            <input id="full_name" type="text" name="full_name" data-deefault="Full Name" />
+            <input id="confirm" type="password" name="confirm" placeholder="Confirm Password" />
         </div>
 
         <div class="raw100">
-            <input id="location" type="text" name="location" data-deefault="Location" />
+            <input id="user_email" data-type="Email" type="text" name="email" placeholder="Email" />
+        </div>
+        <div class="raw100">
+            <input id="full_name" type="text" name="full_name" placeholder="Full Name" />
+        </div>
+
+        <div class="raw100">
+            <input id="location" type="text" name="location" placeholder="Location" />
         </div>
 
         <div class="raw100 raw-block-35"></div>
