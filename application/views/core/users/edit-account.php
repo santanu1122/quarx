@@ -282,6 +282,27 @@
 
 ?>
 
+
+    var url = $(".quarx-profile-image").css('background-image').replace('url(', '').replace(')', '').replace("'", '').replace('"', '');
+    var profileBgImg = $('<img />');
+
+    profileBgImg.hide();
+    profileBgImg.bind('load', function()
+    {
+        var profileWidth = $(this).width();
+        var profileHeight = $(this).height();
+
+        if (profileWidth > profileHeight) {
+            $(".quarx-profile-image").css({
+                backgroundSize: "auto 320px"
+            });
+        };
+
+    });
+
+    $("body").append(profileBgImg);
+    profileBgImg.attr('src', url);
+
 </script>
 
 <?php //End of File ?>
