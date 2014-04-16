@@ -43,6 +43,7 @@
     <link rel="stylesheet" href="<?= $root; ?>js/redactor/redactor.css" />
     <script type="text/javascript" src="<?= $root; ?>js/redactor/redactor.min.js"></script>
 
+    <?php $this->carabiner->css('jqm-datebox.css'); ?>
     <?php $this->carabiner->css('quarx-desktop-style.css'); ?>
     <?php $this->carabiner->css('quarx-tablet-style.css', 'screen and (min-width: 320px) and (max-width: 960px)'); ?>
     <?php $this->carabiner->css('quarx-mobile-style.css', 'screen and (min-width: 120px) and (max-width: 668px)'); ?>
@@ -56,6 +57,8 @@
     <?php $this->carabiner->js('quarx-tools.js'); ?>
     <?php $this->carabiner->js('quarx-dialogs.js'); ?>
     <?php $this->carabiner->js('quarx-notify.js'); ?>
+    <?php $this->carabiner->js('jqm-datebox.core.js'); ?>
+    <?php $this->carabiner->js('jqm-datebox-1.1.0.mode.calbox.js'); ?>
     <?php $this->carabiner->js('quarx.js'); ?>
     <?php $this->carabiner->js('quarx-footer.js'); ?>
     <?php $this->carabiner->js('vague.js'); ?>
