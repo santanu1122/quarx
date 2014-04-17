@@ -95,7 +95,7 @@
                         <div class="raw33 raw-left">
                             <p>Username</p>
                         </div>
-                        <div class="raw66 raw-left">
+                        <div class="raw67 raw-left">
                             <p><?= $profile->username; ?></p>
                         </div>
                     </div>
@@ -103,7 +103,7 @@
                         <div class="raw33 raw-left">
                             <p>Email</p>
                         </div>
-                        <div class="raw66 raw-left">
+                        <div class="raw67 raw-left">
                             <input data-type="Email" class="vital" type="text" name="email" value="<?= $profile->email; ?>" />
                         </div>
                     </div>
@@ -111,7 +111,7 @@
                         <div class="raw33 raw-left">
                             <p>Full Name</p>
                         </div>
-                        <div class="raw66 raw-left">
+                        <div class="raw67 raw-left">
                             <input class="vital" type="text" name="full_name" value="<?= $profile->full_name; ?>" />
                         </div>
                     </div>
@@ -122,7 +122,7 @@
                         <div class="raw33 raw-left">
                             <p>Address</p>
                         </div>
-                        <div class="raw66 raw-left">
+                        <div class="raw67 raw-left">
                             <input type="text" name="address" value="<?= $profile->address; ?>" />
                         </div>
                     </div>
@@ -130,7 +130,7 @@
                         <div class="raw33 raw-left">
                             <p>City</p>
                         </div>
-                        <div class="raw66 raw-left">
+                        <div class="raw67 raw-left">
                             <input type="text" name="city" value="<?= $profile->city; ?>" />
                         </div>
                     </div>
@@ -138,7 +138,7 @@
                         <div class="raw33 raw-left">
                             <p>State/Province</p>
                         </div>
-                        <div class="raw66 raw-left">
+                        <div class="raw67 raw-left">
                             <input type="text" name="state_prov" value="<?= $profile->state; ?>" />
                         </div>
                     </div>
@@ -146,7 +146,7 @@
                         <div class="raw33 raw-left">
                             <p>Zip/Postal Code</p>
                         </div>
-                        <div class="raw66 raw-left">
+                        <div class="raw67 raw-left">
                             <input id="location" type="text" name="location" value="<?= $profile->location; ?>" onblur="locateMe('<?= $root; ?>', this.value, '')" />
                         </div>
                     </div>
@@ -154,7 +154,7 @@
                         <div class="raw33 raw-left">
                             <p>Country</p>
                         </div>
-                        <div class="raw66 raw-left">
+                        <div class="raw67 raw-left">
                             <input type="text" name="country" value="<?= $profile->country; ?>" />
                         </div>
                     </div>
@@ -162,7 +162,7 @@
                         <div class="raw33 raw-left">
                             <p>Phone</p>
                         </div>
-                        <div class="raw66 raw-left">
+                        <div class="raw67 raw-left">
                             <input type="text" name="phone" value="<?= $profile->phone; ?>" />
                         </div>
                     </div>
@@ -170,7 +170,7 @@
                         <div class="raw33 raw-left">
                             <p>Fax</p>
                         </div>
-                        <div class="raw66 raw-left">
+                        <div class="raw67 raw-left">
                             <input type="text" name="fax" value="<?= $profile->fax; ?>" />
                         </div>
                     </div>
@@ -178,7 +178,7 @@
                         <div class="raw33 raw-left">
                             <p>Website</p>
                         </div>
-                        <div class="raw66 raw-left">
+                        <div class="raw67 raw-left">
                             <input type="text" name="website" value="<?= $profile->website; ?>" />
                         </div>
                     </div>
@@ -186,7 +186,7 @@
                         <div class="raw33 raw-left">
                             <p>Company</p>
                         </div>
-                        <div class="raw66 raw-left">
+                        <div class="raw67 raw-left">
                             <input type="text" name="company" value="<?= $profile->company; ?>" />
                         </div>
                     </div>
@@ -197,7 +197,7 @@
                         <div class="raw33 raw-left">
                             <p>Location</p>
                         </div>
-                        <div class="raw66 raw-left">
+                        <div class="raw67 raw-left">
                             <input id="location" type="text" name="location" value="<?= $profile->location; ?>" onblur="locateMe('<?= $root; ?>', this.value, '')" />
                         </div>
                     </div>
@@ -208,7 +208,7 @@
                         <div class="raw33 raw-left">
                             <p>Profile Image</p>
                         </div>
-                        <div class="raw66 raw-left">
+                        <div class="raw67 raw-left">
                             <input type="file" name="userfile" size="20" />
                         </div>
                     </div>

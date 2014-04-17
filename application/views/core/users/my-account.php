@@ -72,7 +72,7 @@
                         <div class="raw33 raw-left">
                             <p>Username</p>
                         </div>
-                        <div class="raw66 raw-left">
+                        <div class="raw67 raw-left">
                             <p><?= $this->session->userdata('username'); ?></p>
                         </div>
                     </div>
@@ -80,7 +80,7 @@
                         <div class="raw33 raw-left">
                             <p>Email</p>
                         </div>
-                        <div class="raw66 raw-left">
+                        <div class="raw67 raw-left">
                             <input type="text" name="email" value="<?= $myprofile->email; ?>" />
                         </div>
                     </div>
@@ -88,7 +88,7 @@
                         <div class="raw33 raw-left">
                             <p>Full Name</p>
                         </div>
-                        <div class="raw66 raw-left">
+                        <div class="raw67 raw-left">
                             <input type="text" name="full_name" value="<?= $myprofile->full_name; ?>" />
                         </div>
                     </div>
@@ -99,7 +99,7 @@
                         <div class="raw33 raw-left">
                             <p>Address</p>
                         </div>
-                        <div class="raw66 raw-left">
+                        <div class="raw67 raw-left">
                             <input type="text" name="address" value="<?= $myprofile->address; ?>" />
                         </div>
                     </div>
@@ -107,7 +107,7 @@
                         <div class="raw33 raw-left">
                             <p>City</p>
                         </div>
-                        <div class="raw66 raw-left">
+                        <div class="raw67 raw-left">
                             <input type="text" name="city" value="<?= $myprofile->city; ?>" />
                         </div>
                     </div>
@@ -115,7 +115,7 @@
                         <div class="raw33 raw-left">
                             <p>State/Province</p>
                         </div>
-                        <div class="raw66 raw-left">
+                        <div class="raw67 raw-left">
                             <input type="text" name="state_prov" value="<?= $myprofile->state; ?>" />
                         </div>
                     </div>
@@ -123,7 +123,7 @@
                         <div class="raw33 raw-left">
                             <p>Zip/Postal Code</p>
                         </div>
-                        <div class="raw66 raw-left">
+                        <div class="raw67 raw-left">
                             <input id="location" type="text" name="location" value="<?= $myprofile->location; ?>" onblur="locateMe('<?= $root; ?>', this.value, '<?= $myprofile->location; ?>')" />
                         </div>
                     </div>
@@ -131,7 +131,7 @@
                         <div class="raw33 raw-left">
                             <p>Country</p>
                         </div>
-                        <div class="raw66 raw-left">
+                        <div class="raw67 raw-left">
                             <input type="text" name="country" value="<?= $myprofile->country; ?>" />
                         </div>
                     </div>
@@ -139,7 +139,7 @@
                         <div class="raw33 raw-left">
                             <p>Phone</p>
                         </div>
-                        <div class="raw66 raw-left">
+                        <div class="raw67 raw-left">
                             <input type="text" name="phone" value="<?= $myprofile->phone; ?>" />
                         </div>
                     </div>
@@ -147,7 +147,7 @@
                         <div class="raw33 raw-left">
                             <p>Fax</p>
                         </div>
-                        <div class="raw66 raw-left">
+                        <div class="raw67 raw-left">
                             <input type="text" name="fax" value="<?= $myprofile->fax; ?>" />
                         </div>
                     </div>
@@ -155,7 +155,7 @@
                         <div class="raw33 raw-left">
                             <p>Website</p>
                         </div>
-                        <div class="raw66 raw-left">
+                        <div class="raw67 raw-left">
                             <input type="text" name="website" value="<?= $myprofile->website; ?>" />
                         </div>
                     </div>
@@ -163,7 +163,7 @@
                         <div class="raw33 raw-left">
                             <p>Company</p>
                         </div>
-                        <div class="raw66 raw-left">
+                        <div class="raw67 raw-left">
                             <input type="text" name="company" value="<?= $myprofile->company; ?>" />
                         </div>
                     </div>
@@ -174,7 +174,7 @@
                         <div class="raw33 raw-left">
                             <p>Location</p>
                         </div>
-                        <div class="raw66 raw-left">
+                        <div class="raw67 raw-left">
                             <input id="location" type="text" name="location" value="<?= $myprofile->location; ?>" onblur="locateMe('<?= $root; ?>', this.value, '<?= $myprofile->location; ?>')" />
                         </div>
                     </div>
@@ -185,11 +185,11 @@
                         <div class="raw33 raw-left">
                             <p>Profile Image</p>
                         </div>
-                        <div class="raw66 raw-left">
+                        <div class="raw67 raw-left">
                             <input type="file" name="userfile" />
                         </div>
                     </div>
-                    <div class="raw30 raw-right">
+                    <div class="raw25 raw-right">
                         <input id="saveBtn" data-theme="d" type="submit" value="Save" />
                     </div>
                 </form>
