@@ -14,16 +14,16 @@
  *
  */
 
-class hooks {
+class Hooks {
 
     protected $CI;
 
-    function hooks()
+    public function hooks()
     {
         $this->CI =& get_instance();
     }
 
-    function init()
+    public function init()
     {
         $GLOBALS["quarx"] = array(
             "quarx-image-library-enabled" => FALSE

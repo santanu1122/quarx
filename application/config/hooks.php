@@ -10,6 +10,13 @@
 |
 */
 
+$hook['pre_system'][] = array(
+    'class'    => 'fatal',
+    'function' => 'shutdown',
+    'filename' => 'fatal.php',
+    'filepath' => 'hooks'
+);
+
 $hook['post_controller_constructor'] = array(
     'class'    => 'hooks',
     'function' => 'init',
