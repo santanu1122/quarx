@@ -207,10 +207,8 @@ class Model_users extends CI_Model {
             $data['company'] = $this->input->post('company') ?: "";
         }
 
-        if ( ! is_null($img))
-        {
-            $data['img'] = $img;
-        }
+        if ( ! is_null($img)) $data['img'] = $img;
+        else $data['img'] = site_url()."uploads/img/thumb/default.jpg";
 
         $user = $this->db->insert('users', $data);
 

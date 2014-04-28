@@ -12,6 +12,8 @@
  *
  */
 
+_magical_dialog_cursor_pos = 0;
+
 function dialogDestroy(idTag) {
     $(idTag+'_dialog-header').remove();
     $(idTag+' .dialogbox_body').remove();
@@ -30,6 +32,10 @@ function inputDialogDestroy(idTag) {
     $(".vague-svg-blur").remove();
 }
 
+$(document).mousemove(function(e){
+    _magical_dialog_cursor_pos = { x: e.pageX, y: e.pageY };
+});
+
 function destroyDialogs() {
     $('.dialogBox').hide();
 }
@@ -39,12 +45,13 @@ function destroyDialogs() {
 
         destroyDialogs();
 
-        var evt = window.event || options;
+        var evt = _magical_dialog_cursor_pos;
 
         var defaults = {
             ok: '',
             buttons: {}
         };
+
         options = $.extend(defaults, options);
 
         var idTag = $(this).attr('id');
@@ -95,7 +102,7 @@ function destroyDialogs() {
 
         var heightAdjustment = $(this).height()/2;
 
-        var dialogPosY = evt.pageY - heightAdjustment;
+        var dialogPosY = evt.y - heightAdjustment;
         if (dialogPosY < 50) {
             dialogPosY = 50;
         };
@@ -119,13 +126,16 @@ function destroyDialogs() {
 
         destroyDialogs();
 
-        var evt = window.event || options;
+        var evt = _magical_dialog_cursor_pos;
+
+        console.log(evt.y)
 
         var defaults = {
             ok: '',
             web_link: '',
             buttons: {}
         };
+
         options = $.extend(defaults, options);
 
         var idTag = $(this).attr('id'),
@@ -168,7 +178,7 @@ function destroyDialogs() {
 
         var heightAdjustment = $(this).height()/2;
 
-        var dialogPosY = evt.pageY - heightAdjustment;
+        var dialogPosY = evt.y - heightAdjustment;
         if (dialogPosY < 50) {
             dialogPosY = 50;
         };
