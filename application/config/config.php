@@ -473,7 +473,7 @@ $config['carabiner_config'] = array(
 |
 */
 
-$config['theme'] = "flatui";
+$config['theme'] = "quarx";
 
 /*
 |--------------------------------------------------------------------------

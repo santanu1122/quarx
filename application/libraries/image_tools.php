@@ -19,9 +19,9 @@ class Image_tools{
     public function getImageCollectionName($id)
     {
         $CI =& get_instance();
-        $CI->load->model('modelimg');
+        $CI->load->model('model_images');
 
-        $qry = $CI->modelimg->get_collection_name($id);
+        $qry = $CI->model_images->get_collection_name($id);
         return $qry;
     }
 
@@ -41,7 +41,7 @@ class Image_tools{
         $data .= '<div class="raw100 raw-left raw-margin-bottom-10">';
         $data .= '<select id="'.$id_tag.'" data-theme="a" name="quarx_img_library">';
 
-        if ($img_collection != 0) $data .= '<option value="'.$img_collection.'">Currently: '.getCollectionName($img_collection).'</option>';
+        if ($img_collection != 0) $data .= '<option value="'.$img_collection.'">Currently: '.$this->getImageCollectionName($img_collection).'</option>';
 
         $data .= '<option value="0">No Library Selected</option>';
 
