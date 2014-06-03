@@ -43,7 +43,7 @@ class Cleanup extends CI_Controller {
             $this->removeDirectory('application/view/core/setup');
         }
 
-        $this->session->set_flashdata('message', array("success", "You're Quarx installation has now been cleaned up."));
+        $this->session->set_flashdata('message', array("success", "Your Quarx installation has now been cleaned up."));
         redirect("admin");
     }
 

@@ -27,7 +27,7 @@
 
     <title>Quarx | <?= $pagetitle; ?></title>
 
-    <?php $this->carabiner->css('http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic,700italic'); ?>
+    <?php //$this->carabiner->css('http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic,700italic'); ?>
 
     <!-- Quarx Custom Styles -->
     <link rel="shortcut icon" type="image" href="<?= $root; ?>images/favicon.ico" />

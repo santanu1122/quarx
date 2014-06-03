@@ -67,7 +67,7 @@ a {
 
 .ui-content{
     min-height: 100%;
-    overflow-: hidden;
+    overflow-x: hidden;
     overflow-y: auto;
     border: none !important;
 }
