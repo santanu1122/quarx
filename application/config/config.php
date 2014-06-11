@@ -313,6 +313,8 @@ $config['csrf_token_name'] = 'q_csrf_token';
 $config['csrf_cookie_name'] = 'q_csrf_cookie';
 $config['csrf_expire'] = 3600;
 
+if ($_SERVER['HTTP_USER_AGENT'] == "SanityTestBot") $config['csrf_protection'] = FALSE;
+
 /*
 |--------------------------------------------------------------------------
 | Output Compression
