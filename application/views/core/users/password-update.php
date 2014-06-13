@@ -27,7 +27,7 @@
                 <div class="raw50 raw-left"><input id="password" type="password" name="password" size="20" /></div>
             </div>
             <div class="raw100 raw-left">
-                <div class="raw50 raw-left"><p>New Password Again</p></div>
+                <div class="raw50 raw-left"><p>Password Confirm</p></div>
                 <div class="raw50 raw-left"><input id="confirm" type="password" name="confirm" size="20" /></div>
             </div>
             <div class="raw100 raw-left">
