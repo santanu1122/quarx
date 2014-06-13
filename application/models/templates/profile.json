@@ -1,0 +1,42 @@
+[
+    {
+        "name": "email",
+        "required": true,
+        "type": "string",
+        "error": "an email address",
+        "db_name": "email",
+        "length": 0
+    },
+    {
+        "name": "full_name",
+        "required": true,
+        "type": "string",
+        "error": "a full name",
+        "db_name": "full_name",
+        "length": 0
+    },
+    {
+        "name": "location",
+        "required": false,
+        "type": "string",
+        "error": "",
+        "db_name": "location",
+        "length": 0
+    },
+    {
+        "name": "latitude",
+        "required": false,
+        "type": "int",
+        "error": "",
+        "db_name": "lat",
+        "length": 0
+    },
+    {
+        "name": "longitude",
+        "required": false,
+        "type": "int",
+        "error": "",
+        "db_name": "lng",
+        "length": 0
+    }
+]

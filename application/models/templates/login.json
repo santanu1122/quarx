@@ -1,0 +1,26 @@
+[
+    {
+        "name": "username",
+        "required": true,
+        "type": "string",
+        "error": "username",
+        "db_name": "",
+        "length": 3
+    },
+    {
+        "name": "password",
+        "required": true,
+        "type": "string",
+        "error": "password",
+        "db_name": "",
+        "length": 3
+    },
+    {
+        "name": "remember_me",
+        "required": false,
+        "type": "int",
+        "error": "remember me is invalid",
+        "db_name": "",
+        "length": 0
+    }
+]

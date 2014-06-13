@@ -35,11 +35,8 @@ class Users extends CI_Controller {
      */
     public function _remap($method, $params = array())
     {
-        if (method_exists(__CLASS__, $method)) {
-            $this->$method($params);
-        } else {
-            $this->profile();
-        }
+        if (method_exists(__CLASS__, $method)) $this->$method($params);
+        else $this->profile();
     }
 
     /**
@@ -108,6 +105,14 @@ class Users extends CI_Controller {
      */
     public function update()
     {
+        // validate the inputs before we do any work
+        $form = $this->validator->run("profile", "validate");
+        if ( ! $form['valid'])
+        {
+            $this->session->set_flashdata('message', array("error", "Please provide ".$form['error']));
+            redirect('users/profile');
+        }
+
         $this->load->helper(array('form', 'url'));
         $this->load->model('model_users');
 
@@ -183,6 +188,13 @@ class Users extends CI_Controller {
      */
     public function password_change()
     {
+        $form = $this->validator->run("password", "validate");
+        if ( ! $form['valid'])
+        {
+            $this->session->set_flashdata('message', array("error", "Invalid ".$form['error']));
+            redirect('users/password');
+        }
+
         $this->load->model('model_users');
 
         if($this->input->post('password') == $this->input->post('confirm') && $this->input->post('confirm') !== '')
@@ -207,7 +219,9 @@ class Users extends CI_Controller {
 */
 
     /**
-     * Add user
+     * Add user to Quarx
+     *
+     * @return  void
      */
     public function add()
     {
@@ -231,10 +245,20 @@ class Users extends CI_Controller {
     }
 
     /**
-     * Add new user data to Quarx
+     * Add new a user to Quarx
+     *
+     * @return void
      */
     public function add_profile()
     {
+        // validate the inputs before we do any work
+        $form = $this->validator->run("new-profile", "validate");
+        if ( ! $form['valid'])
+        {
+            $this->session->set_flashdata('message', array("error", "Please provide ".$form['error']));
+            redirect('users/add');
+        }
+
         if ($this->config->item("quarx-mode") == "application") redirect("users/profile");
 
         if ($this->session->userdata('permission') > 1)
@@ -419,7 +443,8 @@ class Users extends CI_Controller {
 
         $this->load->model('model_users');
 
-        switch ($field) {
+        switch ($field)
+        {
             case 'authorize':
                 $this->load->library("express_mail");
                 $this->express_mail->activated_account($this->user_tools->getUserEmail($id));
@@ -462,6 +487,14 @@ class Users extends CI_Controller {
      */
     public function update_user_profile()
     {
+        // validate the inputs before we do any work
+        $form = $this->validator->run("profile", "validate");
+        if ( ! $form['valid'])
+        {
+            $this->session->set_flashdata('message', array("error", "Please provide ".$form['error']));
+            redirect($_SERVER['HTTP_REFERER']);
+        }
+
         $this->load->helper(array('form', 'url'));
         $this->load->model('model_users');
 
@@ -499,9 +532,9 @@ class Users extends CI_Controller {
             if ($their_img != site_url().'uploads/img/thumb/default.jpg')
             {
                 $img_to_delete = str_replace(site_url().'uploads/img/thumb/', '', $their_img);
-                unlink('./uploads/img/full/'.$img_to_delete);
-                unlink('./uploads/img/medium/'.$img_to_delete);
-                unlink('./uploads/img/thumb/'.$img_to_delete);
+                @unlink('./uploads/img/full/'.$img_to_delete);
+                @unlink('./uploads/img/medium/'.$img_to_delete);
+                @unlink('./uploads/img/thumb/'.$img_to_delete);
             }
         }
 
@@ -621,7 +654,7 @@ class Users extends CI_Controller {
      */
     public function search_for($params)
     {
-        $term = $params[0] ?: null;
+        $term = $params ?: null;
 
         if($this->session->userdata('permission') > 1)
         {
@@ -701,6 +734,12 @@ class Users extends CI_Controller {
 |--------------------------------------------------------------------------
 */
 
+    /**
+     * Email function for any user information
+     *
+     * @param  array $params
+     * @return voide
+     */
     private function email($params)
     {
         $to = $params[0];

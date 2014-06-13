@@ -202,7 +202,7 @@ class Sanity {
         return "F -> ".$t['name']."\n";
     }
 
-    private function test_result($res, $expect)
+    public function test_result($res, $expect)
     {
         switch ($expect)
         {
@@ -218,6 +218,8 @@ class Sanity {
                 break;
 
             case 'is_int':
+                if ($res == "") $res = 0;
+                if (is_numeric($res)) return true;
                 if (is_int($res)) return true;
                 return false;
                 break;

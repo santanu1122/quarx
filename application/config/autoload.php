@@ -62,7 +62,8 @@ $autoload['libraries'] = array(
     'user_tools',
     'module_tools',
     'image_tools',
-    'carabiner'
+    'carabiner',
+    'validator'
 );
 
 

@@ -74,6 +74,16 @@ class Login extends CI_Controller {
     public function validate()
     {
         $this->load->model('model_login');
+
+        // Validator
+        $form = $this->validator->run("login", "validate");
+
+        if ( ! $form['valid'])
+        {
+            $this->session->set_flashdata("message", array("error", $form['error']));
+            redirect("login");
+        }
+
         $user = $this->model_login->validate();
 
         $password = $this->input->post("password");

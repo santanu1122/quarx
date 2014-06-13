@@ -71,13 +71,7 @@ class Model_users extends CI_Model {
 
     public function profile_update($img = null)
     {
-        $data = array(
-            'email' => $this->input->post('email'),
-            'full_name' => $this->input->post('full_name'),
-            'location' => $this->input->post('location'),
-            'lat' => $this->input->post('latitude'),
-            'lng' => $this->input->post('longitude')
-        );
+        $data = $this->validator->run("my-profile", "prepare");
 
         if ($this->quarx->get_option("account_type") == 'advanced accounts')
         {
@@ -110,13 +104,7 @@ class Model_users extends CI_Model {
 
     public function user_profile_update($img, $id)
     {
-        $data = array(
-            'email' => $this->input->post('email'),
-            'full_name' => $this->input->post('full_name'),
-            'location' => $this->input->post('location'),
-            'lat' => $this->input->post('latitude'),
-            'lng' => $this->input->post('longitude')
-        );
+        $data = $this->validator->run("profile", "prepare");
 
         if ($this->quarx->get_option("account_type") == 'advanced accounts')
         {
