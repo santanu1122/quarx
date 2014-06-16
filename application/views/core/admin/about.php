@@ -39,7 +39,15 @@
                     <p>Verison</p>
                 </div>
                 <div class="raw50 raw-left">
-                    <p><?= $version; ?></p>
+                    <p><?= $this->tools->build("version") ?></p>
+                </div>
+            </div>
+            <div class="raw100 raw-left">
+                <div class="raw50 raw-left">
+                    <p>Build</p>
+                </div>
+                <div class="raw50 raw-left">
+                    <p><?= $this->tools->build("build") ?></p>
                 </div>
             </div>
             <div class="raw100 raw-left">

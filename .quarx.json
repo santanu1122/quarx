@@ -1,7 +1,6 @@
 {
-    "version" : "5",
     "authors" : "Matt Lantz",
-    "info" : "https://ottacon.co/quarx",
+    "info" : "https://ottacon.co/#/web/quarx",
     "components" : [
         { "title" : "CodeIgniter", "link": "http://codeigniter.com/" },
         { "title" : "jQuery", "link": "http://jquery.com/" },

@@ -39,6 +39,16 @@ class Tools {
         return $polished;
     }
 
+    public function build($data)
+    {
+        $build_file = "build.json";
+        $build = json_decode(file_get_contents($build_file));
+
+        $buildInfo = end($build);
+
+        return $buildInfo->$data;
+    }
+
 }
 //End of File
 ?>
