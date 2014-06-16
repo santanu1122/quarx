@@ -69,6 +69,7 @@
 
                 case 'minor':
                     $version[1]++;
+                    $version[2] = 0;
                     break;
 
                 case 'patch':
