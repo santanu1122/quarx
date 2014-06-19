@@ -282,21 +282,23 @@
 
 ?>
 
-
     var url = $(".quarx-profile-image").css('background-image').replace('url(', '').replace(')', '').replace("'", '').replace('"', '');
-    var profileBgImg = $('<img />');
+    var profileBgImg = $('<img src="'+url+'" />');
 
-    profileBgImg.hide();
-    profileBgImg.bind('load', function()
-    {
-        var profileWidth = $(this).width();
-        var profileHeight = $(this).height();
+    $(profileBgImg).each(function(){
 
-        if (profileWidth > profileHeight) {
-            $(".quarx-profile-image").css({
-                backgroundSize: "auto 320px"
-            });
-        };
+        $(this).bind('load', function()
+        {
+            var profileWidth = $(this).width();
+            var profileHeight = $(this).height();
+
+            if (profileWidth > profileHeight) {
+                $(".quarx-profile-image").css({
+                    backgroundSize: "auto 320px"
+                });
+            };
+
+        });
 
     });
 
