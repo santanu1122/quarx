@@ -84,9 +84,6 @@
 		if(versionNumber == '7.0'){
 			blocked(versionNumber);
 		}
-		// if(versionNumber == '8.0'){
-		// 	blocked(versionNumber);
-		// }
 	}
 
 	if(FFpattern.test(browser)){
