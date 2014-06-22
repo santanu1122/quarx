@@ -24,7 +24,6 @@ class Model_setup extends CI_Model {
     public function is_installed($with_tables)
     {
         if (is_null($with_tables) && !$this->load->database("default", TRUE)->conn_id) return false;
-        // if ( ! is_object($this->db->get("admin")->result())) return false;
 
         return true;
     }
@@ -102,6 +101,9 @@ class Model_setup extends CI_Model {
         if (!$qry) return false;
     }
 
+    /**
+     * Build the settings table
+     */
     public function add_settings_table()
     {
         $this->load->dbforge();
@@ -119,6 +121,7 @@ class Model_setup extends CI_Model {
 
     /**
      * Add the master user
+     *
      * @param string $username
      * @param string $userpass
      */
@@ -152,7 +155,7 @@ class Model_setup extends CI_Model {
     }
 
     /**
-     * Forget the admin table
+     * Dont't forget the admin table
      */
     public function add_admin_table()
     {
@@ -170,6 +173,7 @@ class Model_setup extends CI_Model {
 
     /**
      * Add the admin options
+     *
      * @param string $avdAccounts
      * @param string $master
      * @param string $version
@@ -256,22 +260,37 @@ class Model_setup extends CI_Model {
         $this->db->insert('admin', $data);
     }
 
+    /**
+     * Check if connection exists
+     *
+     * @return boolean
+     */
     public function is_connected_to()
     {
         $this->db->select();
         $this->db->get("admin");
         $qry = $this->db->where("admin", 4);
+
         return $qry->result();
     }
 
+    /**
+     * Get database info
+     *
+     * @return array
+     */
     public function get_db_info()
     {
         $this->db->select();
         $this->db->get("admin");
         $qry = $this->db->where("admin", 6);
+
         return $qry->result();
     }
 
+    /**
+     * Create the img table
+     */
     public function add_img_table()
     {
         $this->load->dbforge();
@@ -281,7 +300,10 @@ class Model_setup extends CI_Model {
         $this->dbforge->add_field("`img_medium_location` VARCHAR(255) NOT NULL");
         $this->dbforge->add_field("`img_thumb_location` VARCHAR(255) NOT NULL");
         $this->dbforge->add_field("`img_collection` INT(14) NOT NULL");
+        $this->dbforge->add_field("`collection_order` int(14) NOT NULL");
         $this->dbforge->add_field("`favorite` int(2) NOT NULL DEFAULT '0'");
+        $this->dbforge->add_field("`published` int(2) NOT NULL DEFAULT '1'");
+        $this->dbforge->add_field("`original_name` varchar(255) NOT NULL DEFAULT 'undefined'");
         $this->dbforge->add_field("`img_alt_tag` varchar(255) NOT NULL");
         $this->dbforge->add_field("`img_title_tag` varchar(255) NOT NULL");
         $this->dbforge->add_key('img_id', TRUE);

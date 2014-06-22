@@ -22,9 +22,10 @@
 
     <div data-role="popup" id="imageLibraryMenu">
         <ul data-role="listview" data-inset="true" style="width:240px;" data-theme="a">
-            <li><a href="<?php echo site_url('images/add'); ?>">Upload Images</a></li>
-            <li><a href="<?php echo site_url('images/library'); ?>">View All Collections</a> </li>
-            <li><a href="<?php echo site_url('images/manager'); ?>">Manage Collections</a></li>
+            <li><a href="<?= site_url('images/add'); ?>">Upload Images</a></li>
+            <li><a href="<?= site_url('images/library'); ?>">View All Collections</a> </li>
+            <li><a href="<?= site_url('images/order'); ?>">Collection Order</a></li>
+            <li><a href="<?= site_url('images/manager'); ?>">Manage Collections</a></li>
         </ul>
     </div>
 

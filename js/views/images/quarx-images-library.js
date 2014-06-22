@@ -118,16 +118,78 @@ function loadImages(collectionId) {
         success: function(data) {
             $('.library-container').html(data);
             setTimeout(function(){ quarxThumbnailImageResize(); }, 150);
+
+            $("button").buttonMarkup();
+            $('input[type="checkbox"]').checkboxradio();
         }
     });
 }
 
-$(function() {
-    loadImages(_collectionID);
+function loadCollection(collectionId) {
+    $.ajax({
+        url: _quarxRootURL+"images/get_collection_order/"+collectionId,
+        type: 'GET',
+        cache: false,
+        dataType: 'html',
+        success: function(data) {
+            $('.order-container').html(data);
+            setTimeout(function(){ quarxThumbnailImageResize(); }, 150);
 
+            $("button").buttonMarkup();
+            $("select").selectmenu();
+            $('input[type="checkbox"]').checkboxradio();
+
+            collectionSetterBinder();
+        }
+    });
+}
+
+function setImageCollectionOrder(order, img) {
+    $.ajax({
+        url: _quarxRootURL+"images/set_collection_order/"+img+"/"+order,
+        type: 'GET',
+        cache: false,
+        dataType: 'html',
+        success: function(data) {
+            console.log("cool");
+        }
+    });
+}
+
+function collectionSetterBinder() {
+    $(".collection_order_setter").each(function(){
+        $(this).bind("change", function(){
+            setImageCollectionOrder($(this).val(), $(this).attr("data-img-id"));
+            loadCollection($('#collectionsOrder').val());
+        });
+    });
+}
+
+function publishQuarxImage(id, img_id) {
+    var publishState = "false";
+
+    if ($('input[data-img-id="'+img_id+'"]').attr("checked")) {
+        publishState = "true";
+    }
+
+    $.ajax({
+        url: _quarxRootURL+"images/publish_image/"+id+"/"+publishState,
+        type: 'GET',
+        cache: false,
+        dataType: 'html'
+    });
+}
+
+$(function() {
     $('#collections').bind('change', function(){
         _collectionID = $(this).val();
-        console.log(_collectionID)
         loadImages(_collectionID);
     });
+
+    $('#collectionsOrder').bind('change', function(){
+        _collectionID = $(this).val();
+        loadCollection(_collectionID);
+    });
+
+    collectionSetterBinder();
 });

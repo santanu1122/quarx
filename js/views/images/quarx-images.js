@@ -13,7 +13,7 @@ function populateCollections(collectionId) {
             });
 
             if (collectionId == 'null') {
-                $("#collections").prepend("<option class=\"quarx-collection-options\" data-placeholder=\"true\" selected=\"true\" value=\"0\">Select a Category</option>");
+                $("#collections").prepend("<option class=\"quarx-collection-options\" data-placeholder=\"true\" selected=\"true\" value=\"0\">Select a Collection</option><option class=\"quarx-collection-options\" value=\"null\">All Collections</option><option class=\"quarx-collection-options\" value=\"0\">Undefined</option>");
             };
 
             $("#collections").selectmenu("refresh", true);
@@ -51,13 +51,13 @@ function newCollectionBox(){
 }
 
 function deleteCollection(id) {
-    $( "#dialog-col-del" ).dialogboxInput({
+    $("#dialog-col-del").dialogboxInput({
         buttons: {
             Ok: function() {
                 window.location = _quarxRootURL+'images/delete_collection/'+id;
             },
             Cancel: function() {
-                inputDialogDestroy( "#dialog-img" );
+                inputDialogDestroy("#dialog-col-del");
             }
         }
     });

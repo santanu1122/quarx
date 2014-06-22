@@ -24,19 +24,19 @@
     </div>
 </div>
 
-<div id="dialog-alt" title="Image Manager" class="dialogBox">
+<div id="dialog-alt" title="Modify Image" class="dialogBox">
     <div class="dialogbox_body">
         <a href="#" onclick="changeMe()" data-role="button" data-theme="d">Change Collection</a>
-        <a href="#" onclick="viewFull()" data-role="button" data-theme="d">View This Image</a>
+        <a href="#" onclick="viewFull()" data-role="button" data-theme="d">Image Set</a>
         <input class="deefault" id="pic_alt_tag" data-deefault="Alt Tag" />
         <input class="deefault" id="pic_title_tag" data-deefault="Title Tag" />
     </div>
 </div>
 
-<div id="dialog-update-alt" title="Image Manager" class="dialogBox">
+<div id="dialog-update-alt" title="Modify Image" class="dialogBox">
     <div class="dialogbox_body">
         <a href="#" onclick="changeMe()" data-role="button" data-theme="d">Change Collection</a>
-        <a href="#" onclick="viewFull()" data-role="button" data-theme="d">View This Image</a>
+        <a href="#" onclick="viewFull()" data-role="button" data-theme="d">Image Set</a>
         <input id="update_pic_alt_tag" value="" />
         <input id="update_pic_title_tag" value="" />
     </div>
@@ -70,5 +70,9 @@
 </script>
 
 <?php $this->carabiner->display("quarx-images-js"); ?>
+
+<script type="text/javascript">
+    loadImages(_collectionID);
+</script>
 
 <!-- End of File -->

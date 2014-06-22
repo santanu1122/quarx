@@ -28,11 +28,22 @@ class Images extends CI_Controller {
         $this->carabiner->group("quarx-images-js", array('js'=>$js));
     }
 
+    /**
+     * Redirect to the library
+     *
+     * @return void
+     */
     public function index()
     {
         redirect("images/library");
     }
 
+    /**
+     * Displays the full library of images uploaded
+     *
+     * @param  string $collection The collection ID
+     * @return void
+     */
     public function library($collection = null)
     {
         $this->load->model('model_images');
@@ -63,6 +74,12 @@ class Images extends CI_Controller {
         $this->load->view('common/footer', $data);
     }
 
+    /**
+     * Get a collections images - ajax
+     *
+     * @param  string $collection ID
+     * @return void
+     */
     public function get_collection_images($collection = null)
     {
         $this->load->model('model_images');
@@ -74,6 +91,26 @@ class Images extends CI_Controller {
         $this->load->view("core/images/image_collection", $data);
     }
 
+    /**
+     * Get a collections order - ajax
+     *
+     * @param  string $collection ID
+     * @return void
+     */
+    public function get_collection_order($collection = null)
+    {
+        $this->load->model('model_images');
+
+        $collection = ($collection == "null" ? null : $collection);
+
+        $data['images'] = $this->model_images->get_all_images($collection);
+
+        $this->load->view("core/images/image_order", $data);
+    }
+
+    /**
+     * Add images to Quarx
+     */
     public function add()
     {
         $js = array(
@@ -90,6 +127,11 @@ class Images extends CI_Controller {
         $this->load->view('common/footer', $data);
     }
 
+    /**
+     * Collection manager
+     *
+     * @return void
+     */
     public function manager()
     {
         $this->load->model('model_images');
@@ -109,6 +151,38 @@ class Images extends CI_Controller {
         $this->load->view('common/footer', $data);
     }
 
+    /**
+     * Re-order the images in a collection
+     *
+     * @return void
+     */
+    public function order()
+    {
+        $this->load->model('model_images');
+
+        $js = array(
+            array('views/images/quarx-images.js'),
+            array('views/images/quarx-images-library.js')
+        );
+
+        $this->carabiner->group("quarx-images-js", array('js'=>$js));
+
+        $data['collections'] = $this->model_images->get_collections();
+        $data['root'] = base_url();
+        $data['pageRoot'] = base_url().'index.php';
+        $data['pagetitle'] = "Collection Order";
+
+        $this->load->view('common/header', $data);
+        $this->load->view('core/images/order', $data);
+        $this->load->view('common/footer', $data);
+    }
+
+    /**
+     * Modify an images collection
+     *
+     * @param  string $id encrypted image ID
+     * @return void
+     */
     public function change($id)
     {
         $js = array(
@@ -126,6 +200,11 @@ class Images extends CI_Controller {
         $this->load->view('common/footer', $data);
     }
 
+    /**
+     * Add images to Quarx action
+     *
+     * @return void
+     */
     public function add_image()
     {
         $collection = $this->input->post('collection');
@@ -160,6 +239,8 @@ class Images extends CI_Controller {
 
         unset($_FILES['images']);
 
+        $order = 1;
+
         foreach ($_FILES as $file)
         {
             $now = time();
@@ -184,9 +265,10 @@ class Images extends CI_Controller {
             {
                 $this->image_tools->make_thumb($img);
                 $this->image_tools->make_medium($img);
-                $this->model_images->upload_img($img, $collection);
+                $this->model_images->upload_img($img, $collection, $file['name'], $order);
             }
 
+            $order++;
             $i++;
         }
 
@@ -300,6 +382,38 @@ class Images extends CI_Controller {
         if ($data) $this->session->set_flashdata('message', array("info", "Image collection successfully moved"));
 
         redirect('images/library');
+    }
+
+    public function publish_image($id, $state)
+    {
+        $id = $this->crypto->decrypt($id);
+
+        $this->load->model("model_images");
+        $result = $this->model_images->publish_image($id, $state);
+
+        if ($result)
+        {
+            echo "success";
+            return true;
+        }
+
+        return false;
+    }
+
+    public function set_collection_order($img, $order)
+    {
+        $img = $this->crypto->decrypt($img);
+
+        $this->load->model("model_images");
+        $result = $this->model_images->set_image_order($img, $order);
+
+        if ($result)
+        {
+            echo "success";
+            return true;
+        }
+
+        return false;
     }
 }
 
