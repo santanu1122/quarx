@@ -13,6 +13,28 @@
  *
  */
 
+/*
+|--------------------------------------------------------------------------
+| Fonts
+|--------------------------------------------------------------------------
+*/
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('fonts/SourceSansProExtraLight.eot');
+    src: url('fonts/SourceSansProExtraLight.eot?#iefix') format('embedded-opentype'), url('fonts/SourceSansProExtraLight.woff') format('woff'), url('fonts/SourceSansProExtraLight.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('fonts/SourceSansPro.eot');
+    src: url('fonts/SourceSansPro.eot?#iefix') format('embedded-opentype'), url('fonts/SourceSansPro.woff') format('woff'), url('fonts/SourceSansPro.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
 /* Custom Styles for Quarx jQuery Mobile UI Theme
 ***************************************************************/
 
@@ -41,10 +63,6 @@ a {
     margin: 0;
     padding: 0;
 }
-
-/*.ui-content, #quarx-wrapper {
-    min-height: 0 !important;
-}*/
 
 #Menu.ui-body-c{
     background: transparent;
