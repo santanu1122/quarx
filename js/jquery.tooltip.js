@@ -1,26 +1,26 @@
-/*  
+/*
  * tooltip 0.1
  * jQuery Plugin
  *
  * Author:     Matt Lantz
- * Purpose:    To have floating comments that popup while 
+ * Purpose:    To have floating comments that popup while
  *             hovering over elements.
  *
  */
 
 ;(function($){
 
-    $.fn.tooltip = function(options) { 
-        
+    $.fn.tooltip = function(options) {
+
         var defaults = {
-            boxWidth: 200, 
+            boxWidth: 200,
             background: "#333",
             zIndex: "100000",
             border: "2px solid #EEE",
             textColor: "#FFF",
             textPositon: "center"
-        };  
-        
+        };
+
         var options = $.extend(defaults, options);
 
         /* Create Tip Box
@@ -34,7 +34,7 @@
         $("#"+toolTipBox).css({
             width: options.boxWidth,
             background: options.background,
-            position: 'absolute', 
+            position: 'absolute',
             zIndex: options.zIndex,
             display: 'none',
             borderRadius: "5px",
@@ -53,7 +53,7 @@
                     lineHeight: "35px",
                     margin: 0,
                     padding: "2px 8px",
-                    fontFamily: "Arial",
+                    fontFamily: "Arial"
                 });
 
                 var leftPos = e.pageX+36;
@@ -80,7 +80,7 @@
             });
 
         });
-        
+
     }
 
 })(jQuery);

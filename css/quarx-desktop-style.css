@@ -350,14 +350,21 @@ a {
     background-size: 320px;
 }
 
-/* Form Characteristics ================================= */
+/*
+|--------------------------------------------------------------------------
+| Forms
+|--------------------------------------------------------------------------
+*/
 
-.quarx-form p{
-    /*line-height: 30px;*/
+.quarx-form p {
     padding-top: 6px;
 }
 
-/* Map Characteristics ================================= */
+/*
+|--------------------------------------------------------------------------
+| Maps
+|--------------------------------------------------------------------------
+*/
 
 .quarx-map-box{
     width: 99.8%;
@@ -421,128 +428,76 @@ a {
     text-align: center;
 }
 
-.quarx-left-box{
-    float: left;
-}
-
 .quarx-right-box{
     float: right;
 }
 
-.quarx-left-float{
-    float: left;
-}
-
-.quarx-right-float{
-    float: right;
-}
-
-.quarx-tall{
+.quarx-tall {
     padding-top: 5px;
     padding-bottom: 5px;
 }
 
-.quarx-really-tall{
+.quarx-really-tall {
     padding-top: 10px;
     padding-bottom: 10px;
 }
 
-.quarx-fat{
+.quarx-fat {
     width: 100%;
 }
 
-.quarx-fluffy{
+.quarx-fluffy {
     width: 70%;
     padding-left: 5px;
     padding-right: 5px;
 }
 
-.quarx-chubby{
+.quarx-chubby {
     width: 80%;
 }
 
-.quarx-dark{
+.quarx-dark {
     background: #111;
 }
 
-.quarx-medium{
+.quarx-medium {
     background: #ccc;
 }
 
-.quarx-tallBox{
+.quarx-tallBox {
     min-height: 180px;
 }
 
-.quarx-border-bottom{
+.quarx-border-bottom {
     border-bottom: 1px solid #222;
 }
 
-.quarx-epic{
+.quarx-epic {
     font-size: 80px;
     text-align: center;
     line-height: 70px;
 }
 
-/*  Manual ========================================= */
+/*
+|--------------------------------------------------------------------------
+| Message Box
+|--------------------------------------------------------------------------
+*/
 
-#quarx-manual-menu{
-    position: fixed;
-    top: 44px;
-    width: 200px;
-    z-index: 100000;
-    min-height: 300px;
-    text-align: left;
-}
-
-#quarx-manual-menu-content ul{
-    padding: 0;
-}
-
-#quarx-manual-menu-content ul li{
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-#quarx-manual-menu-content ul li:hover{
-    text-decoration: underline;
-    cursor: pointer;
-}
-
-.quarx-manual-content{
-    margin-left: 25%;
-}
-
-#quarx-manual-menu-title{
-    background: #f9f9f9;
-    margin: 0;
-    padding: 0;
-    left: 0;
-    top: 0;
-    position: absolute;
-    float: none;
-    width: 100%;
-    border-bottom: 1px solid #bbb;
-    cursor: pointer;
+#quarx-msg-box {
     display: none;
 }
 
-#quarx-manual-menu-title h1{
-    line-height: 30px;
-    font-size: 25px;
-    text-align: center;
-}
-
-/* msgBox ============================================ */
-
-#quarx-msg-box{
-    display: none;
-}
-
-#quarx-msg-box p{
+#quarx-msg-box p {
     padding: 0;
     margin: 0;
 }
+
+/*
+|--------------------------------------------------------------------------
+| Images
+|--------------------------------------------------------------------------
+*/
 
 .quarx-upload-image{
     z-index: 100001;
@@ -557,13 +512,15 @@ a {
     display: none;
 }
 
-.quarx-image-box{
+.quarx-image-box {
     margin: 10px;
+    padding: 20px;
     width: 120px;
     float: left;
+    box-shadow: 0 0 4px;
 }
 
-.quarx-thumb-shot{
+.quarx-thumb-shot {
     width: 120px;
     height: 120px;
     cursor: pointer;
@@ -571,16 +528,12 @@ a {
     z-index: 100;
 }
 
-.quarx-thumb-shot img{
-    box-shadow: 0 0 4px;
-}
-
-.quarx-img-thumb-holder{
+.quarx-img-thumb-holder {
     width: 120px;
     height: 120px;
 }
 
-.quarx-del-box{
+.quarx-del-box {
     float: right;
     width: 17px;
     height: 17px;
@@ -591,37 +544,39 @@ a {
     z-index: 1000;
     cursor: pointer;
     margin: -12px -12px 0 0;
-    box-shadow: 0 0 4px;
 }
 
-.quarx-del-icon{
+.quarx-del-icon {
     background: url(../img/del-Icon.png) no-repeat;
     width: 16px;
     height: 16px;
     display: block;
 }
 
-.quarx-img-collection-box{
+.quarx-img-collection-box {
     width: 100%;
     margin: 0;
     clear: both;
 }
 
-/* Account Controls
-**************************************************************/
+/*
+|--------------------------------------------------------------------------
+| Account Controls
+|--------------------------------------------------------------------------
+*/
 
-.quarx-account-info-row{
+.quarx-account-info-row {
     float: left;
 }
 
-.quarx-account-info{
+.quarx-account-info {
     position: relative;
     z-index: 0;
     width: 100%;
     height: 40px;
 }
 
-.quarx-account-controls{
+.quarx-account-controls {
     width: 960px;
     display: none;
     position: absolute;
@@ -632,18 +587,21 @@ a {
     background: #777;
 }
 
-.quarx-clickable{
+.quarx-clickable {
     cursor: pointer;
 }
 
-.quarx-clickable:hover{
+.quarx-clickable:hover {
     background: #eee;
 }
 
-/* Pagination
-**************************************************************/
+/*
+|--------------------------------------------------------------------------
+| Pagination
+|--------------------------------------------------------------------------
+*/
 
-#pagination{
+#pagination {
     width: 100%;
     margin-top: 10px;
     float: left;
@@ -664,10 +622,13 @@ a {
     background: #cac9c9;
 }
 
-/* jQuery Mobile Resets
-***************************************************************/
+/*
+|--------------------------------------------------------------------------
+| jQuery Mobile Resets
+|--------------------------------------------------------------------------
+*/
 
-.quarx-account-controls .ui-btn{
+.quarx-account-controls .ui-btn {
     margin: 0;
     padding: 0;
     border: none;
@@ -684,8 +645,11 @@ a {
     top: -15px;
 }
 
-/* Dialog
-***************************************************************/
+/*
+|--------------------------------------------------------------------------
+| Dialog
+|--------------------------------------------------------------------------
+*/
 
 .dialogBox {
     min-width: 260px;
@@ -730,67 +694,129 @@ a {
     cursor: pointer;
 }
 
-/* Image Library
-***************************************************************/
+/*
+|--------------------------------------------------------------------------
+| Images
+|--------------------------------------------------------------------------
+*/
 
-#quarx-image-library-box{
+#quarx-image-library-box {
     margin: 0;
     border: none;
     width: 100%;
     overflow: hidden;
 }
 
-#quarx-new-collection{
-    /*position: absolute;
-    z-index: 100;
-    top: 184px;
-    margin-left: 8px;*/
-}
-
-#quarx-new-collection-change{
+#quarx-new-collection-change {
     position: absolute;
     z-index: 100;
     top: 70px;
     margin-left: 5px;
 }
 
-#quarx-full-screen-image-library{
+#quarx-full-screen-image-library {
     border: none;
     min-height: 90%;
     margin-top: -22px;
 }
 
-#quarx-full-screen-image-library iframe{
+#quarx-full-screen-image-library iframe {
     display: none;
 }
 
-#quarx-full-screen-image-nav{
+#quarx-full-screen-image-nav {
     width: 24%;
     margin-left: 1%;
     float: right;
 }
 
-#quarx-state{
+#quarx-state {
     display: none;
 }
 
-/* Admin Manual
-***************************************************************/
+.image-name {
+    font-size: 0.7em;
+    overflow: hidden;
+}
 
-#quarx-to-top-button{
+.image-order-block {
+    min-height: 155px;
+    margin-top: 20px;
+    box-shadow: 0 0 4px;
+    text-align: center;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Admin / Manual
+|--------------------------------------------------------------------------
+*/
+
+#quarx-to-top-button {
     position: fixed;
     z-index: 100000;
     bottom: 10px;
     left: 0;
 }
 
-.quarx-cloud-catcher-box{
+.quarx-cloud-catcher-box {
     border: none;
     overflow-y: hidden;
 }
 
+#quarx-manual-menu {
+    position: fixed;
+    top: 44px;
+    width: 200px;
+    z-index: 100000;
+    min-height: 300px;
+    text-align: left;
+}
+
+#quarx-manual-menu-content ul {
+    padding: 0;
+}
+
+#quarx-manual-menu-content ul li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#quarx-manual-menu-content ul li:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.quarx-manual-content {
+    margin-left: 25%;
+}
+
+#quarx-manual-menu-title {
+    background: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    left: 0;
+    top: 0;
+    position: absolute;
+    float: none;
+    width: 100%;
+    border-bottom: 1px solid #bbb;
+    cursor: pointer;
+    display: none;
+}
+
+#quarx-manual-menu-title h1 {
+    line-height: 30px;
+    font-size: 25px;
+    text-align: center;
+}
+
 /*
-***************************************************************/
+|--------------------------------------------------------------------------
+| General
+|--------------------------------------------------------------------------
+*/
 
 #quarx-search{
     background: url(../images/icons/search.png) right top no-repeat;
@@ -832,6 +858,16 @@ a {
 
 .quarx-notify-closer-icon{
     cursor: pointer;
+}
+
+.quarx-notification-bar {
+    position: absolute;
+    z-index: 1000;
+    top: 170px;
+    width: 320px;
+    background: #f9f9f9;
+    box-shadow: 0 0 4px;
+    border-radius: 4px;
 }
 
 /*

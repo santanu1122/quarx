@@ -107,7 +107,7 @@
                                         if ($authorization == 'disabled') echo '<img src="'.site_url().'/img/inactive.png" title="active" class="raw15 raw-padding-5" />';
                                         if ($authorization == 'inactive') echo '<img src="'.site_url().'/img/lock.png" title="active" class="raw12 raw-padding-5" />';
 
-                                    echo '<img src="'.site_url().'/img/settings.png" title="Edit Account" class="quarx-action-btn raw20 raw-padding-5 quarx-right-float quarx-clickable" />';
+                                    echo '<img src="'.site_url().'/img/settings.png" title="Edit Account" class="quarx-action-btn raw20 raw-padding-5 raw-right quarx-clickable" />';
                                 echo '</div>';
                             echo '</div>';
                             echo '</div>';

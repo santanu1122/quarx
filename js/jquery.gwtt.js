@@ -66,8 +66,6 @@
 		document.getElementById('_____blankpage').appendChild(blockerbox);
 
 		document.getElementById('_____blockerbox').innerHTML = '<p style="margin-top: 20px; padding: 5px 15px; line-height: 1.5em;">Whoa slow down! <br /> We\'re not trying to be rude but you need to upgrade your browser.</p><p style="line-height: 1.5em;">You\'re currently using <br style="line-height: 1.5em;" /> '+browserTitle+' '+versionNumber+'</p><p style="line-height: 1.5em;"><br style="line-height: 1.5em;" />: (</p><br style="line-height: 1.5em;" /><p style="line-height: 1.5em;"><a style="line-height: 1.5em;" href="http://windows.microsoft.com/ie"><b>Internet Explorer</b></a></p><p><b><a style="line-height: 1.5em;" href="http://getfirefox.com">Firefox</a><b></p><p><b><a href="http://google.com/chrome">Chrome</a><b></p>';
-
-		// console.log("Your browser is too old my friend. Time to get a new one perhaps.")
 	}
 
 	if(IEpattern.test(browser)){

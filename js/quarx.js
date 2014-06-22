@@ -86,7 +86,7 @@ $(document).ready(function() {
 
     $(".quarx-popup").css({
         width: $(window).width() * 0.9,
-        height: $(window).height() * 0.8,
+        height: $(window).height() * 0.8
     });
 
     $("#quarx-body").css("min-height", ($(window).height() - 50)+"px");
@@ -99,14 +99,14 @@ $(document).ready(function() {
 
         $(".quarx-img-box, #quarx-image-library").css({
             width: windowWidth,
-            height: windowHeight,
+            height: windowHeight
         });
 
         $("#quarx-image-library").css("display", "block");
 
         if (_quarxBlurBG == true) {
             $('#quarx-header, #quarx-body, #quarx-footer').Vague({
-                intensity: 4,
+                intensity: 4
             }).blur();
         };
 
