@@ -32,6 +32,7 @@ class Login extends CI_Controller {
 
         if ( ! $is_cookie_valid && ! $this->session->userdata('logged_in'))
         {
+            $data["cookie_warning"] = ($this->input->cookie('quarx-cookie-accept') == 1) ? false : true;
             $data['joiningIsEnabled'] = ($this->quarx->get_option("enable_joining") == "no" ? false : true);
             $data['is_login'] = true;
             $data['root'] = base_url();
@@ -166,7 +167,7 @@ class Login extends CI_Controller {
         $to = $this->input->post('email');
         $name = $this->input->post('username');
 
-        if($to === '' || $name === '')
+        if ($to === '' || $name === '')
         {
             $this->session->set_flashdata('message', array("info", "We could not find you in our system."));
             redirect('login/forgot');
@@ -175,7 +176,7 @@ class Login extends CI_Controller {
         {
             $legit_user = $this->model_login->user_validate();
 
-            if($legit_user)
+            if ($legit_user)
             {
                 $rand = $this->model_login->new_password($name, $to);
 
@@ -219,15 +220,17 @@ class Login extends CI_Controller {
         $this->load->model("model_users");
         $query = $this->model_users->add_profile(null, $this->input->post("password"), $this->quarx->get_option("auto_auth")); //image, password, auto-auth
 
-        if ($query)
-        {
-            redirect("login/success");
-        }
+        if ($query) redirect("login/success");
 
         $this->session->set_flashdata('error', 'Unable to successfully add your profile.');
         redirect("error");
     }
 
+    /**
+     * Reponse for new user registration
+     *
+     * @return void
+     */
     public function success()
     {
         $data['root'] = base_url();
@@ -239,6 +242,12 @@ class Login extends CI_Controller {
         $this->load->view('common/footer', $data);
     }
 
+    /**
+     * Repsonse for forgotten password
+     * or username.
+     *
+     * @return void
+     */
     public function notify()
     {
         $data['root'] = base_url();
@@ -248,6 +257,24 @@ class Login extends CI_Controller {
         $this->load->view('common/header', $data);
         $this->load->view('core/login/notify', $data);
         $this->load->view('common/footer', $data);
+    }
+
+    /**
+     * Accepting that cookies will be used
+     *
+     * @return void
+     */
+    public function accept_cookies()
+    {
+        $cookie = array(
+            'name'   => 'quarx-cookie-accept',
+            'value'  => true,
+            'expire' => '2592000'
+        );
+
+        $this->input->set_cookie($cookie);
+
+        redirect("login");
     }
 }
 /* End of file Login.php */

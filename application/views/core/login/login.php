@@ -21,6 +21,21 @@
 <div class="raw100">
 
     <div class="quarx-small-device">
+
+        <?php
+
+            if ($cookie_warning)
+            {
+                echo '<div class="raw100 quarx-notification-bar">';
+                    echo '<div class="raw-padding-20">';
+                        echo '<p class="text-center">Please be aware that Quarx requires cookies to be used.</p>';
+                        echo '<button onclick="window.location=\''.site_url('login/accept_cookies').'\'">Accept</button>';
+                    echo '</div>';
+                echo '</div>';
+            }
+
+        ?>
+
         <div class="quarx-form raw100">
 
             <form method="post" action="<?= site_url('login/validate'); ?>" data-ajax="false">
@@ -67,8 +82,8 @@
 
 <?php
 
-    if ($joiningIsEnabled) {
-
+    if ($joiningIsEnabled)
+    {
         echo '<div class="raw100 raw-left raw-block-25"></div>';
         echo '<div class="raw100 raw-left">';
         echo '<a data-role="button" href="'.site_url('login/join').'">Click Here to Join</a>';
