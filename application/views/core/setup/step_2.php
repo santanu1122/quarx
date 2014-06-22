@@ -1,18 +1,18 @@
 <?php
 
-    /**
-     * Quarx
-     *
-     * A modular CMS application
-     *
-     * @package     Quarx
-     * @author      Matt Lantz
-     * @copyright   Copyright (c) 2013 Matt Lantz
-     * @license     http://ottacon.co/quarx/license.html
-     * @link        http://ottacon.co/quarx
-     * @since       Version 1.0
-     *
-     */
+/**
+ * Quarx
+ *
+ * A modular application structure built on CodeIgniter
+ *
+ * @package     Quarx
+ * @author      Matt Lantz
+ * @copyright   Copyright (c) 2013 - 2014 Matt Lantz
+ * @license     https://ottacon.co/docs/quarx/license.html
+ * @link        https://github.com/mlantz/quarx
+ * @since       Version 1.0
+ *
+ */
 
     $js = array('views/setup/quarx.setup.js');
     $this->carabiner->group("quarx-setup-js", array('js'=>$js));

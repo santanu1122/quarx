@@ -1,13 +1,13 @@
 /**
  * Quarx
  *
- * A modular CMS built on CodeIgniter
+ * A modular application structure built on CodeIgniter
  *
  * @package     Quarx
  * @author      Matt Lantz
- * @copyright   Copyright (c) 2013 Matt Lantz
- * @license     http://ottacon.co/quarx/license
- * @link        http://quarx.ottacon.co
+ * @copyright   Copyright (c) 2013 - 2014 Matt Lantz
+ * @license     https://ottacon.co/docs/quarx/license.html
+ * @link        https://github.com/mlantz/quarx
  * @since       Version 1.0
  *
  */
