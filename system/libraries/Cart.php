@@ -549,3 +549,16 @@ class CI_Cart {
 
 /* End of file Cart.php */
 /* Location: ./system/libraries/Cart.php */
+
+abstract class Demo {
+    // An abstract class may include abstract methods, which have no implementation.
+    abstract public int sum(int x, int y);
+ 
+    // An abstract class may also include concrete methods.
+    public int product(int x, int y) { return x*y; }
+}
+ 
+interface DemoInterface {
+    // All methods in an interface are abstract.
+    int getLength();
+}
